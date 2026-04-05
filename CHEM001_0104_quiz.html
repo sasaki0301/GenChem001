@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 4 Quiz – Classifying Matter</title>
+
+<style>
+/* (Same style from your template — unchanged) */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.quiz-container {
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+
+h2 { color: #136f63; }
+
+.progress-wrapper {
+  background: #e9f5ef;
+  border-radius: 8px;
+  height: 14px;
+  margin-bottom: 25px;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, #136f63, #2b7de9);
+  width: 0%;
+}
+.progress-text {
+  text-align: right;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #174ea6;
+}
+
+.question {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #174ea6;
+  margin-bottom: 20px;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.choice {
+  background: #e8ecf8;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.choice.correct { background: #136f63; color: #fff; }
+.choice.incorrect { background: #e57373; color: #fff; }
+
+.explanation {
+  background: #eef3ff;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: none;
+}
+
+.next-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #136f63;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+<div class="quiz-container">
+<h2>Lesson 4 Quiz: Classifying Matter</h2>
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+
+<div id="quizBox"></div>
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+</div>
+
+<script>
+
+const quizData = [
+{q:"Which is a pure substance?",c:["Saltwater","Air","Oxygen gas","Milk"],a:2,e:"Oxygen is a single element with fixed composition."},
+
+{q:"Which best describes a compound?",c:["Physically mixed substances","Single type of atom","Chemically bonded elements","Uniform mixture"],a:2,e:"Compounds are formed by chemical bonding."},
+
+{q:"Which is a heterogeneous mixture?",c:["Saltwater","Air","Sand in water","Vinegar"],a:2,e:"Sand and water are not uniform."},
+
+{q:"Which is homogeneous?",c:["Oil and water","Saltwater","Soil","Granite"],a:1,e:"Saltwater appears uniform throughout."},
+
+{q:"Why can mixtures be separated physically?",c:["They are bonded chemically","They have fixed ratios","Components retain identity","They are elements"],a:2,e:"Mixture components are not chemically bonded."},
+
+{q:"Which is NOT a compound?",c:["H₂O","CO₂","NaCl","O₂"],a:3,e:"O₂ is an element, not a compound."},
+
+{q:"Which is an element?",c:["Water","Carbon dioxide","Iron","Salt"],a:2,e:"Iron is made of only one type of atom."},
+
+{q:"Which best distinguishes compounds from mixtures?",c:["Color","Mass","Chemical bonding","Volume"],a:2,e:"Compounds involve chemical bonds."},
+
+{q:"Air is best classified as:",c:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"],a:2,e:"Air is a uniform mixture of gases."},
+
+{q:"Which is true about compounds?",c:["Variable composition","Separated physically","Fixed ratio of elements","Not chemically bonded"],a:2,e:"Compounds have fixed composition."},
+
+{q:"A mixture that appears uniform but contains multiple substances is:",c:["Compound","Element","Homogeneous mixture","Heterogeneous mixture"],a:2,e:"Uniform mixtures are homogeneous."},
+
+{q:"Which is hardest to separate?",c:["Mixture","Compound","Solution","Suspension"],a:1,e:"Compounds require chemical separation."}
+];
+
+quizData.sort(()=>Math.random()-0.5);
+
+let current=0, score=0;
+const quizBox=document.getElementById("quizBox");
+const nextBtn=document.getElementById("nextBtn");
+const progressText=document.getElementById("progressText");
+const progressBar=document.getElementById("progressBar");
+
+function showQuestion(){
+ const q=quizData[current];
+ updateProgress();
+
+ const shuffled = q.c.map((c,i)=>({c,i})).sort(()=>Math.random()-0.5);
+
+ quizBox.innerHTML=`<div class="question">${q.q}</div><div class="choices"></div><div class="explanation"></div>`;
+ const choicesDiv=quizBox.querySelector(".choices");
+
+ shuffled.forEach(({c,i})=>{
+  const btn=document.createElement("button");
+  btn.className="choice";
+  btn.textContent=c;
+  btn.onclick=()=>selectChoice(i);
+  choicesDiv.appendChild(btn);
+ });
+
+ nextBtn.style.display="none";
+}
+
+function selectChoice(i){
+ const q=quizData[current];
+ const exp=quizBox.querySelector(".explanation");
+
+ document.querySelectorAll(".choice").forEach((btn,idx)=>{
+  btn.disabled=true;
+  if(q.c.indexOf(btn.textContent)===q.a) btn.classList.add("correct");
+  if(idx===i && q.a!==q.c.indexOf(btn.textContent)) btn.classList.add("incorrect");
+ });
+
+ if(i===q.a) score++;
+
+ exp.innerHTML=`<strong>Explanation:</strong> ${q.e}`;
+ exp.style.display="block";
+ nextBtn.style.display="inline-block";
+}
+
+nextBtn.onclick=()=>{
+ current++;
+ if(current<quizData.length) showQuestion();
+ else showResult();
+};
+
+function updateProgress(){
+ const percent=(current/quizData.length)*100;
+ progressBar.style.width=percent+"%";
+ progressText.textContent=`Question ${current+1} of ${quizData.length}`;
+}
+
+function showResult(){
+ const percent=Math.round(score/quizData.length*100);
+ quizBox.innerHTML=`<h3>Score: ${score}/${quizData.length} (${percent}%)</h3>`;
+ nextBtn.style.display="none";
+}
+
+showQuestion();
+
+</script>
+</body>
+</html>
