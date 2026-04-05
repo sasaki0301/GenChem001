@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 1 Quiz – Particle Nature of Matter</title>
+
+<style>
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+h2 { color: #136f63; }
+
+.question {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  color: #174ea6;
+}
+
+.choice {
+  display: block;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #e8ecf8;
+  cursor: pointer;
+}
+
+.choice:hover { background: #d3dbf8; }
+.choice.selected { background: #174ea6; color: #fff; }
+
+.explanation {
+  display: none;
+  margin-top: 10px;
+  background: #eef3ff;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.next-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #136f63;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+<div class="quiz-container">
+<h2>Lesson 1 Quiz: Particle Nature of Matter</h2>
+<div id="quizBox"></div>
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+</div>
+
+<script>
+
+let quizData = [
+{q:"1. Which statement best explains why gases are compressible?",c:["Particles are large","Particles have strong forces","Particles are far apart","Particles move slowly"],a:2,e:"Gas particles are far apart, leaving space that can be compressed."},
+
+{q:"2. Which change would increase the kinetic energy of particles?",c:["Decrease temperature","Increase pressure","Increase temperature","Decrease volume"],a:2,e:"Kinetic energy is directly related to temperature."},
+
+{q:"3. A substance expands when heated because:",c:["Particles get bigger","Particles move faster and spread out","Particles gain mass","Forces increase"],a:1,e:"Particles move faster and occupy more space."},
+
+{q:"4. Which best explains diffusion?",c:["Particles stop moving","Particles move randomly and spread out","Particles attract strongly","Particles lose energy"],a:1,e:"Diffusion is caused by random particle motion."},
+
+{q:"5. Why do solids maintain their shape?",c:["Particles are fixed in position","Particles move freely","Particles are far apart","Particles have no forces"],a:0,e:"Strong forces keep particles fixed in solids."},
+
+{q:"6. Which scenario has the strongest intermolecular forces?",c:["Gas","Liquid","Solid","All equal"],a:2,e:"Solids have the strongest intermolecular forces."},
+
+{q:"7. What happens when temperature decreases?",c:["Particles stop moving","Particles move slower","Particles disappear","Particles increase mass"],a:1,e:"Lower temperature reduces kinetic energy."},
+
+{q:"8. Which statement is TRUE about particle spacing?",c:["Solids have no space","Liquids have more space than gases","Gases have largest spacing","All states have equal spacing"],a:2,e:"Gas particles are farthest apart."},
+
+{q:"9. A sealed container of gas is heated. What happens?",c:["Particles slow down","Particles move faster","Particles disappear","Particles shrink"],a:1,e:"Heating increases particle motion."},
+
+{q:"10. Which best describes particle motion in liquids?",c:["Fixed vibration","Random sliding motion","No movement","Circular motion"],a:1,e:"Liquid particles move past each other."},
+
+{q:"11. Why are gases able to fill their container?",c:["Particles are large","Particles are attracted strongly","Particles move freely","Particles are fixed"],a:2,e:"Gas particles move freely in all directions."},
+
+{q:"12. Which explains why particles in solids do not flow?",c:["No energy","Strong attractive forces","Particles are too large","No motion exists"],a:1,e:"Strong forces prevent flow."}
+];
+
+quizData.sort(() => Math.random() - 0.5);
+
+let current=0, score=0, showing=false;
+const quizBox=document.getElementById("quizBox");
+const nextBtn=document.getElementById("nextBtn");
+
+function showQuestion(){
+ const q=quizData[current];
+ quizBox.innerHTML=`<div class="question">${q.q}</div><div id="choices"></div><div class="explanation"></div>`;
+ const choices=document.getElementById("choices");
+
+ q.c.map((choice, index)=>({choice,index}))
+  .sort(()=>Math.random()-0.5)
+  .forEach(({choice,index})=>{
+    const btn=document.createElement("button");
+    btn.className="choice";
+    btn.textContent=choice;
+    btn.onclick=()=>selectChoice(index);
+    choices.appendChild(btn);
+  });
+
+ nextBtn.style.display="none";
+ showing=false;
+}
+
+function selectChoice(i){
+ if(showing) return;
+ const q=quizData[current];
+ const exp=quizBox.querySelector(".explanation");
+
+ document.querySelectorAll(".choice").forEach(btn=>btn.disabled=true);
+
+ if(i===q.a) score++;
+
+ exp.innerHTML=`<strong>${i===q.a?"✅ Correct":"❌ Incorrect"}</strong><br>${q.e}`;
+ exp.style.display="block";
+ nextBtn.style.display="inline-block";
+ showing=true;
+}
+
+nextBtn.onclick=()=>{
+ current++;
+ if(current<quizData.length) showQuestion();
+ else showResult();
+};
+
+function showResult(){
+ const percent=Math.round(score/quizData.length*100);
+ quizBox.innerHTML=`<h3>Score: ${score}/${quizData.length} (${percent}%)</h3>`;
+}
+
+showQuestion();
+
+</script>
+</body>
+</html>
