@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 2 Quiz – States of Matter and Phase Changes</title>
+
+<style>
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+h2 { color: #136f63; }
+
+.question {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  color: #174ea6;
+}
+
+.choice {
+  display: block;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #e8ecf8;
+  cursor: pointer;
+}
+
+.choice:hover { background: #d3dbf8; }
+.choice.selected { background: #174ea6; color: #fff; }
+
+.explanation {
+  display: none;
+  margin-top: 10px;
+  background: #eef3ff;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.next-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #136f63;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+<div class="quiz-container">
+<h2>Lesson 2 Quiz: States of Matter and Phase Changes</h2>
+<div id="quizBox"></div>
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+</div>
+
+<script>
+
+let quizData = [
+{q:"During melting, what happens to the temperature of a substance?",c:["It increases","It decreases","It remains constant","It fluctuates randomly"],a:2,e:"Temperature remains constant because energy is used to overcome intermolecular forces."},
+
+{q:"Which process requires energy input?",c:["Freezing","Condensation","Melting","Deposition"],a:2,e:"Melting requires energy to break intermolecular forces."},
+
+{q:"Why does boiling occur at a constant temperature?",c:["Particles stop moving","Energy increases kinetic energy","Energy breaks intermolecular forces","Heat is lost"],a:2,e:"Energy is used to separate particles, not increase temperature."},
+
+{q:"Which state has particles with the highest kinetic energy?",c:["Solid","Liquid","Gas","All equal"],a:2,e:"Gas particles move fastest and have highest kinetic energy."},
+
+{q:"Which change involves particles becoming more ordered?",c:["Melting","Vaporization","Freezing","Sublimation"],a:2,e:"Freezing arranges particles into a structured solid."},
+
+{q:"Why can liquids flow but solids cannot?",c:["Liquids have weaker forces","Liquids have no particles","Solids have no energy","Liquids are heavier"],a:0,e:"Weaker forces allow particles to move past each other."},
+
+{q:"During a heating curve plateau, what is increasing?",c:["Temperature","Kinetic energy","Potential energy","Mass"],a:2,e:"Energy increases potential energy by overcoming forces."},
+
+{q:"Which process involves gas directly becoming solid?",c:["Condensation","Deposition","Sublimation","Freezing"],a:1,e:"Deposition is gas → solid."},
+
+{q:"Why are gases easily compressible?",c:["Strong forces","Particles are close","Large empty spaces","Low energy"],a:2,e:"Gas particles are far apart."},
+
+{q:"Which statement is FALSE?",c:["Solids have fixed volume","Liquids have fixed shape","Gases fill containers","Liquids flow"],a:1,e:"Liquids do not have fixed shape."},
+
+{q:"What happens to particle spacing during vaporization?",c:["Decreases","Remains same","Increases greatly","Becomes zero"],a:2,e:"Particles move far apart in gas."},
+
+{q:"Which explains condensation?",c:["Particles gain energy","Particles lose energy and come closer","Particles stop moving","Particles expand"],a:1,e:"Cooling reduces energy and brings particles closer."},
+
+{q:"Why does temperature increase after a phase change is complete?",c:["Energy now increases kinetic energy","Forces increase","Particles shrink","Mass increases"],a:0,e:"Energy now increases particle motion."}
+];
+
+quizData.sort(() => Math.random() - 0.5);
+
+let current=0, score=0, showing=false;
+const quizBox=document.getElementById("quizBox");
+const nextBtn=document.getElementById("nextBtn");
+
+function showQuestion(){
+ const q=quizData[current];
+ quizBox.innerHTML=`<div class="question">${q.q}</div><div id="choices"></div><div class="explanation"></div>`;
+ const choices=document.getElementById("choices");
+
+ q.c.map((choice, index)=>({choice,index}))
+  .sort(()=>Math.random()-0.5)
+  .forEach(({choice,index})=>{
+    const btn=document.createElement("button");
+    btn.className="choice";
+    btn.textContent=choice;
+    btn.onclick=()=>selectChoice(index);
+    choices.appendChild(btn);
+  });
+
+ nextBtn.style.display="none";
+ showing=false;
+}
+
+function selectChoice(i){
+ if(showing) return;
+ const q=quizData[current];
+ const exp=quizBox.querySelector(".explanation");
+
+ document.querySelectorAll(".choice").forEach(btn=>btn.disabled=true);
+
+ if(i===q.a) score++;
+
+ exp.innerHTML=`<strong>${i===q.a?"✅ Correct":"❌ Incorrect"}</strong><br>${q.e}`;
+ exp.style.display="block";
+ nextBtn.style.display="inline-block";
+ showing=true;
+}
+
+nextBtn.onclick=()=>{
+ current++;
+ if(current<quizData.length) showQuestion();
+ else showResult();
+};
+
+function showResult(){
+ const percent=Math.round(score/quizData.length*100);
+ quizBox.innerHTML=`<h3>Score: ${score}/${quizData.length} (${percent}%)</h3>`;
+}
+
+showQuestion();
+
+</script>
+</body>
+</html>
