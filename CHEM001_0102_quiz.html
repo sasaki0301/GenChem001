@@ -1,161 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lesson 2 Quiz – States of Matter and Phase Changes</title>
-
-<style>
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #e8f9f1, #f7faff);
-  margin: 0;
-  padding: 40px 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.quiz-container {
-  background: #fff;
-  padding: 40px;
-  border-radius: 16px;
-  max-width: 900px;
-  width: 100%;
-  text-align: center;
-}
-
-h2 { color: #136f63; }
-
-.question {
-  font-size: 1.3em;
-  margin-bottom: 20px;
-  color: #174ea6;
-}
-
-.choice {
-  display: block;
-  margin: 10px 0;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #e8ecf8;
-  cursor: pointer;
-}
-
-.choice:hover { background: #d3dbf8; }
-.choice.selected { background: #174ea6; color: #fff; }
-
-.explanation {
-  display: none;
-  margin-top: 10px;
-  background: #eef3ff;
-  padding: 12px;
-  border-radius: 8px;
-  text-align: left;
-}
-
-.next-btn {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #136f63;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 2 Quiz – States of Matter and Phase Changes</title>
+  <style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f9f1, #f7faff);
+    margin: 0;
+    padding: 40px 20px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .quiz-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 850px;
+    text-align: center;
+  }
+  h2 {
+    color: #136f63;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+  .progress-wrapper {
+    background: #e9f5ef;
+    border-radius: 8px;
+    height: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #136f63, #2b7de9);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .question {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #174ea6;
+    margin-bottom: 20px;
+  }
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .choice {
+    background: #e8ecf8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.05em;
+    transition: all 0.2s ease;
+  }
+  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
+  .next-btn {
+    background: #136f63;
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  .next-btn:hover { background: #0f5b52; }
+  .result {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #174ea6;
+    margin-top: 20px;
+  }
+  .stars {
+    font-size: 2.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .quiz-nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .quiz-btn {
+    background: #e8ecf8;
+    color: #174ea6;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .quiz-btn.primary { background: #136f63; color: #fff; }
+  .quiz-btn.primary:hover { background: #0f5b52; }
+  @media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+  </style>
 </head>
-
 <body>
-<div class="quiz-container">
-<h2>Lesson 2 Quiz: States of Matter and Phase Changes</h2>
-<div id="quizBox"></div>
-<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-</div>
+  <div class="quiz-container">
+    <h2>States of Matter and Phase Changes – Quiz</h2>
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+
+    <div id="quizBox"></div>
+    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+  </div>
 
 <script>
+const quizData = [
+  {q:"During melting, what happens to the temperature of a substance?",c:["It increases","It decreases","It remains constant","It fluctuates randomly"],a:2,e:"Temperature remains constant because energy is used to overcome intermolecular forces."},
 
-let quizData = [
-{q:"During melting, what happens to the temperature of a substance?",c:["It increases","It decreases","It remains constant","It fluctuates randomly"],a:2,e:"Temperature remains constant because energy is used to overcome intermolecular forces."},
+  {q:"Which process requires energy input?",c:["Freezing","Condensation","Melting","Deposition"],a:2,e:"Melting requires energy to break intermolecular forces."},
 
-{q:"Which process requires energy input?",c:["Freezing","Condensation","Melting","Deposition"],a:2,e:"Melting requires energy to break intermolecular forces."},
+  {q:"Why does boiling occur at a constant temperature?",c:["Particles stop moving","Energy increases kinetic energy","Energy breaks intermolecular forces","Heat is lost"],a:2,e:"Energy is used to separate particles, not increase temperature."},
 
-{q:"Why does boiling occur at a constant temperature?",c:["Particles stop moving","Energy increases kinetic energy","Energy breaks intermolecular forces","Heat is lost"],a:2,e:"Energy is used to separate particles, not increase temperature."},
+  {q:"Which state has particles with the highest kinetic energy?",c:["Solid","Liquid","Gas","All equal"],a:2,e:"Gas particles move fastest and have highest kinetic energy."},
 
-{q:"Which state has particles with the highest kinetic energy?",c:["Solid","Liquid","Gas","All equal"],a:2,e:"Gas particles move fastest and have highest kinetic energy."},
+  {q:"Which change involves particles becoming more ordered?",c:["Melting","Vaporization","Freezing","Sublimation"],a:2,e:"Freezing arranges particles into a structured solid."},
 
-{q:"Which change involves particles becoming more ordered?",c:["Melting","Vaporization","Freezing","Sublimation"],a:2,e:"Freezing arranges particles into a structured solid."},
+  {q:"Why can liquids flow but solids cannot?",c:["Liquids have weaker forces","Liquids have no particles","Solids have no energy","Liquids are heavier"],a:0,e:"Weaker forces allow particles to move past each other."},
 
-{q:"Why can liquids flow but solids cannot?",c:["Liquids have weaker forces","Liquids have no particles","Solids have no energy","Liquids are heavier"],a:0,e:"Weaker forces allow particles to move past each other."},
+  {q:"During a heating curve plateau, what is increasing?",c:["Temperature","Kinetic energy","Potential energy","Mass"],a:2,e:"Energy increases potential energy by overcoming forces."},
 
-{q:"During a heating curve plateau, what is increasing?",c:["Temperature","Kinetic energy","Potential energy","Mass"],a:2,e:"Energy increases potential energy by overcoming forces."},
+  {q:"Which process involves gas directly becoming solid?",c:["Condensation","Deposition","Sublimation","Freezing"],a:1,e:"Deposition is gas → solid."},
 
-{q:"Which process involves gas directly becoming solid?",c:["Condensation","Deposition","Sublimation","Freezing"],a:1,e:"Deposition is gas → solid."},
+  {q:"Why are gases easily compressible?",c:["Strong forces","Particles are close","Large empty spaces","Low energy"],a:2,e:"Gas particles are far apart."},
 
-{q:"Why are gases easily compressible?",c:["Strong forces","Particles are close","Large empty spaces","Low energy"],a:2,e:"Gas particles are far apart."},
+  {q:"Which statement is FALSE?",c:["Solids have fixed volume","Liquids have fixed shape","Gases fill containers","Liquids flow"],a:1,e:"Liquids do not have fixed shape."},
 
-{q:"Which statement is FALSE?",c:["Solids have fixed volume","Liquids have fixed shape","Gases fill containers","Liquids flow"],a:1,e:"Liquids do not have fixed shape."},
+  {q:"What happens to particle spacing during vaporization?",c:["Decreases","Remains same","Increases greatly","Becomes zero"],a:2,e:"Particles move far apart in gas."},
 
-{q:"What happens to particle spacing during vaporization?",c:["Decreases","Remains same","Increases greatly","Becomes zero"],a:2,e:"Particles move far apart in gas."},
+  {q:"Which explains condensation?",c:["Particles gain energy","Particles lose energy and come closer","Particles stop moving","Particles expand"],a:1,e:"Cooling reduces energy and brings particles closer."},
 
-{q:"Which explains condensation?",c:["Particles gain energy","Particles lose energy and come closer","Particles stop moving","Particles expand"],a:1,e:"Cooling reduces energy and brings particles closer."},
+  {q:"Why does temperature increase after a phase change is complete?",c:["Energy now increases kinetic energy","Forces increase","Particles shrink","Mass increases"],a:0,e:"Energy now increases particle motion."}
 
-{q:"Why does temperature increase after a phase change is complete?",c:["Energy now increases kinetic energy","Forces increase","Particles shrink","Mass increases"],a:0,e:"Energy now increases particle motion."}
 ];
 
-quizData.sort(() => Math.random() - 0.5);
+let current = 0, score = 0;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
 
-let current=0, score=0, showing=false;
-const quizBox=document.getElementById("quizBox");
-const nextBtn=document.getElementById("nextBtn");
-
-function showQuestion(){
- const q=quizData[current];
- quizBox.innerHTML=`<div class="question">${q.q}</div><div id="choices"></div><div class="explanation"></div>`;
- const choices=document.getElementById("choices");
-
- q.c.map((choice, index)=>({choice,index}))
-  .sort(()=>Math.random()-0.5)
-  .forEach(({choice,index})=>{
-    const btn=document.createElement("button");
-    btn.className="choice";
-    btn.textContent=choice;
-    btn.onclick=()=>selectChoice(index);
-    choices.appendChild(btn);
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+    <div class='choices'></div>
+    <div class='explanation' id='explanation'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
   });
-
- nextBtn.style.display="none";
- showing=false;
+  nextBtn.style.display = "none";
 }
 
-function selectChoice(i){
- if(showing) return;
- const q=quizData[current];
- const exp=quizBox.querySelector(".explanation");
-
- document.querySelectorAll(".choice").forEach(btn=>btn.disabled=true);
-
- if(i===q.a) score++;
-
- exp.innerHTML=`<strong>${i===q.a?"✅ Correct":"❌ Incorrect"}</strong><br>${q.e}`;
- exp.style.display="block";
- nextBtn.style.display="inline-block";
- showing=true;
+function selectChoice(i) {
+  const q = quizData[current];
+  const explanationBox = document.getElementById("explanation");
+  document.querySelectorAll(".choice").forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === q.a) btn.classList.add("correct");
+    if (idx === i && idx !== q.a) btn.classList.add("incorrect");
+  });
+  if (i === q.a) score++;
+  explanationBox.innerHTML = `<strong>Explanation:</strong> ${q.e}`;
+  explanationBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
 }
 
-nextBtn.onclick=()=>{
- current++;
- if(current<quizData.length) showQuestion();
- else showResult();
-};
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion(); else showResult();
+});
 
-function showResult(){
- const percent=Math.round(score/quizData.length*100);
- quizBox.innerHTML=`<h3>Score: ${score}/${quizData.length} (${percent}%)</h3>`;
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
 }
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn'>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+  window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+
+  document.getElementById("retryBtn").addEventListener("click", retryQuiz);
+  document.getElementById("backBtn").addEventListener("click", () => window.parent.postMessage({ type: "quizBack" }, "*"));
+  document.getElementById("nextLessonBtn").addEventListener("click", () => { if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*"); });
+}
+
+function retryQuiz() { current = 0; score = 0; showQuestion(); }
 
 showQuestion();
-
 </script>
 </body>
 </html>
