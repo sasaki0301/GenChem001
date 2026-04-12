@@ -138,7 +138,7 @@
 </head>
 <body>
   <div class="quiz-container">
-    <h2> – Quiz</h2>
+    <h2>Gathering Quantitative Figures – Quiz</h2>
     <div class="progress-text" id="progressText">Question 1 of 10</div>
     <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
@@ -148,6 +148,34 @@
 
 <script>
 const quizData = [
+
+{q:"A student records a mass of 25.0 g when the true value is 30.0 g. The measurement is:",c:["Accurate but not precise","Precise but not accurate","Both accurate and precise","Neither accurate nor precise"],a:1,e:"The measurement is consistently off from the true value, indicating precision but not accuracy."},
+
+{q:"Which situation best represents high precision but low accuracy?",c:["Measurements are close to the true value","Measurements are close to each other but far from true value","Measurements vary widely around the true value","Measurements are random"],a:1,e:"Precision refers to consistency, not correctness."},
+
+{q:"Which is most likely a systematic error?",c:["Random fluctuations in readings","A miscalibrated balance","Human estimation error","Environmental variation"],a:1,e:"Systematic errors consistently shift measurements in one direction."},
+
+{q:"Why are repeated measurements useful in experiments?",c:["They eliminate all errors","They increase precision","They guarantee accuracy","They remove systematic errors"],a:1,e:"Repeated measurements improve consistency and reliability."},
+
+{q:"A thermometer consistently reads 2°C higher than actual temperature. This is:",c:["Random error","Systematic error","Human error","Measurement uncertainty"],a:1,e:"A consistent offset indicates systematic error."},
+
+{q:"Which best describes measurement uncertainty?",c:["Mistakes in calculation","The exact value of a measurement","The range within which the true value lies","An error that can be eliminated"],a:2,e:"Uncertainty reflects the limits of measurement precision."},
+
+{q:"Which measurement is the most precise?",c:["10 g","10.0 g","10.00 g","10.000 g"],a:3,e:"More decimal places indicate greater precision."},
+
+{q:"If measurements are both accurate and precise, they are:",c:["Close to each other but far from true value","Far from each other and true value","Close to each other and true value","Randomly distributed"],a:2,e:"Accurate and precise means correct and consistent."},
+
+{q:"Which factor most affects accuracy?",c:["Number of trials","Instrument calibration","Measurement repetition","Data recording speed"],a:1,e:"Calibration ensures measurements are close to the true value."},
+
+{q:"Which situation shows random error?",c:["Scale always reads +5 g","Readings fluctuate slightly around true value","Measurement is consistently low","Instrument is misaligned"],a:1,e:"Random errors vary unpredictably."},
+
+{q:"Why can no measurement be completely exact?",c:["Instruments are always broken","Humans always make mistakes","All measurements have uncertainty","True values do not exist"],a:2,e:"Every measurement has inherent limitations."},
+
+{q:"A student records 5 trials with very similar values, but all are far from the true value. This indicates:",c:["High accuracy, low precision","Low accuracy, high precision","High accuracy and precision","Low accuracy and precision"],a:1,e:"Consistency without correctness indicates precision but not accuracy."},
+
+{q:"Which improvement would most likely increase accuracy?",c:["Repeating measurements","Using a properly calibrated instrument","Taking average values","Recording more decimal places"],a:1,e:"Accuracy depends on correctness relative to true value."},
+
+{q:"Which statement is TRUE about precision?",c:["It ensures correctness","It depends on calibration","It reflects consistency","It eliminates error"],a:2,e:"Precision refers to how close repeated measurements are."}
 
 ];
 
