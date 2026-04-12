@@ -61,6 +61,20 @@ h3 { color: #174ea6; }
   padding: 10px;
   border-radius: 6px;
 }
+.quiz-button {
+  background-color: #136f63;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quiz-button:hover {
+  background-color: #0f5b52;
+}
+  
 </style>
 </head>
 
@@ -223,7 +237,14 @@ function toggleAnswer(btn) {
   const ans = btn.nextElementSibling;
   ans.style.display = ans.style.display === "block" ? "none" : "block";
 }
+  
 </script>
 
+  <div style="text-align:center; margin-top: 30px;">
+  <button class="quiz-button" id="takeQuizBtn" data-quiz="CHEM001_02_L1">
+    Take the Quiz →
+  </button>
+</div>
+  
 </body>
 </html>
