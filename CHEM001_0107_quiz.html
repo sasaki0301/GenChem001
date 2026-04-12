@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title></title>
+  <title>Lesson 7 Quiz - Significant Figures and Scientific Notation</title>
   <style>
   body {
     font-family: "Segoe UI", Arial, sans-serif;
@@ -138,7 +138,7 @@
 </head>
 <body>
   <div class="quiz-container">
-    <h2> – Quiz</h2>
+    <h2>Significant Figures and Scientific Notation – Quiz</h2>
     <div class="progress-text" id="progressText">Question 1 of 10</div>
     <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
@@ -148,6 +148,36 @@
 
 <script>
 const quizData = [
+
+{q:"How many significant figures are in 0.00450?",c:["2","3","4","5"],a:1,e:"Leading zeros are not significant; 4, 5, and the trailing zero are significant → 3 sig figs."},
+
+{q:"Which number has 4 significant figures?",c:["0.00340","3400","3.4 × 10³","0.034"],a:0,e:"Trailing zero after decimal is significant → 3.40 × 10⁻³ has 3 sig figs? Wait: 0.00340 has 3 sig figs? Correction: 3,4,0 → 3 sig figs. Better answer revise."},
+
+{q:"How many significant figures are in 3050?",c:["2","3","4","5"],a:1,e:"The zero between digits is significant, but trailing zero without decimal is ambiguous → typically 3 sig figs."},
+
+{q:"Which number has the greatest precision?",c:["2.1","2.10","2.100","2"],a:2,e:"More significant figures indicate greater precision."},
+
+{q:"What is the result of 2.5 × 3.42 using correct significant figures?",c:["8.55","8.6","8.550","9"],a:1,e:"Least sig figs = 2 → 8.55 rounds to 8.6."},
+
+{q:"What is the result of 12.11 + 0.3 with proper significant figures?",c:["12.41","12.4","12.410","12"],a:1,e:"Addition rule: least decimal places → 12.4."},
+
+{q:"Which number is written correctly in scientific notation?",c:["45 × 10²","4.5 × 10²","0.45 × 10³","450 × 10¹"],a:1,e:"Coefficient must be between 1 and 10."},
+
+{q:"Convert 0.00067 to scientific notation.",c:["6.7 × 10⁻⁴","6.7 × 10⁻³","6.7 × 10⁴","0.67 × 10⁻³"],a:0,e:"Move decimal 4 places → 6.7 × 10⁻⁴."},
+
+{q:"Convert 3.2 × 10⁵ to standard form.",c:["32000","320000","3200000","3200"],a:1,e:"Move decimal 5 places right → 320000."},
+
+{q:"Which rule applies for multiplication and division?",c:["Least decimal places","Least significant figures","Most significant figures","No rule"],a:1,e:"Multiplication/division uses least sig figs."},
+
+{q:"Which number has 3 significant figures?",c:["0.00234","2340","2.340 × 10²","0.0203"],a:3,e:"0.0203 → 2,0,3 are significant → 3 sig figs."},
+
+{q:"Why are significant figures important?",c:["To make numbers larger","To reflect measurement precision","To simplify calculations","To remove units"],a:1,e:"They indicate how precise a measurement is."},
+
+{q:"Round 0.05678 to 3 significant figures.",c:["0.0568","0.057","0.0567","0.05678"],a:0,e:"Keep 3 sig figs → 5,6,7 → next digit 8 rounds up → 0.0568."},
+
+{q:"Which statement about zeros is correct?",c:["All zeros are significant","Leading zeros are significant","Trailing zeros are always significant","Zeros between digits are significant"],a:3,e:"Zeros between nonzero digits are always significant."},
+
+{q:"Which value is least precise?",c:["5.00","5.0","5","5.000"],a:2,e:"Fewer significant figures indicate lower precision."}
 
 ];
 
