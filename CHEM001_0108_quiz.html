@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title></title>
+  <title>Chapter 1 Test</title>
   <style>
   body {
     font-family: "Segoe UI", Arial, sans-serif;
@@ -138,7 +138,7 @@
 </head>
 <body>
   <div class="quiz-container">
-    <h2> – Quiz</h2>
+    <h2>Chapter 1 Test</h2>
     <div class="progress-text" id="progressText">Question 1 of 10</div>
     <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
@@ -148,6 +148,86 @@
 
 <script>
 const quizData = [
+
+/* PARTICLE NATURE */
+{q:"Which best explains why gases expand to fill their container?",c:["Particles are large","Particles move freely and are far apart","Particles are strongly attracted","Particles are fixed"],a:1,e:"Gas particles move freely and occupy available space."},
+
+{q:"Increasing temperature primarily affects:",c:["Particle size","Particle mass","Particle kinetic energy","Particle number"],a:2,e:"Temperature is proportional to kinetic energy."},
+
+{q:"Why are solids difficult to compress?",c:["Particles are large","Particles are tightly packed","Particles have no energy","Particles move fast"],a:1,e:"Very little empty space exists between particles."},
+
+/* STATES & PHASE CHANGES */
+{q:"During boiling, added energy is used to:",c:["Increase temperature","Increase kinetic energy","Break intermolecular forces","Decrease pressure"],a:2,e:"Energy separates particles rather than increasing temperature."},
+
+{q:"Which phase change releases energy?",c:["Melting","Vaporization","Condensation","Sublimation"],a:2,e:"Condensation releases energy as particles come closer."},
+
+{q:"Which state has the weakest intermolecular forces?",c:["Solid","Liquid","Gas","All equal"],a:2,e:"Gas particles interact minimally."},
+
+{q:"What increases during a phase change plateau?",c:["Temperature","Kinetic energy","Potential energy","Mass"],a:2,e:"Energy increases potential energy."},
+
+/* PROPERTIES OF MATTER */
+{q:"Which is a chemical property?",c:["Density","Color","Reactivity","Melting point"],a:2,e:"Reactivity involves chemical change."},
+
+{q:"Which is an intensive property?",c:["Mass","Volume","Density","Length"],a:2,e:"Density does not depend on amount."},
+
+{q:"Cutting a substance in half changes:",c:["Density","Mass","Boiling point","Color"],a:1,e:"Mass depends on quantity."},
+
+{q:"Which is a physical change?",c:["Burning wood","Rusting iron","Melting ice","Exploding gas"],a:2,e:"Melting does not change composition."},
+
+/* CLASSIFICATION OF MATTER */
+{q:"Which is a compound?",c:["O₂","NaCl","Air","Iron"],a:1,e:"NaCl consists of chemically bonded elements."},
+
+{q:"Which is a heterogeneous mixture?",c:["Saltwater","Air","Sand and water","Vinegar"],a:2,e:"Non-uniform composition."},
+
+{q:"Air is classified as:",c:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"],a:2,e:"Uniform mixture of gases."},
+
+{q:"Which requires chemical separation?",c:["Mixture","Solution","Compound","Suspension"],a:2,e:"Compounds require chemical methods."},
+
+{q:"Which best distinguishes mixtures from compounds?",c:["Color","Mass","Bonding","Volume"],a:2,e:"Compounds involve chemical bonds."},
+
+/* MEASUREMENT & ERROR */
+{q:"A measurement close to the true value is:",c:["Precise","Accurate","Random","Uncertain"],a:1,e:"Accuracy = closeness to true value."},
+
+{q:"Repeated similar values indicate:",c:["Accuracy","Precision","Error","Bias"],a:1,e:"Precision is consistency."},
+
+{q:"A miscalibrated instrument causes:",c:["Random error","Systematic error","Human error","No error"],a:1,e:"Systematic error shifts all results."},
+
+{q:"Why are repeated trials important?",c:["Eliminate all errors","Increase precision","Ensure accuracy","Reduce units"],a:1,e:"They improve consistency."},
+
+{q:"Which measurement is most precise?",c:["5","5.0","5.00","5.000"],a:3,e:"More sig figs = higher precision."},
+
+/* SI UNITS & CONVERSIONS */
+{q:"Which is the SI unit of temperature?",c:["Celsius","Kelvin","Fahrenheit","Joule"],a:1,e:"Kelvin is the SI unit."},
+
+{q:"Convert 2.5 km to meters.",c:["250 m","2500 m","25000 m","25 m"],a:1,e:"1 km = 1000 m → 2500 m."},
+
+{q:"Convert 0.002 kg to grams.",c:["0.2 g","2 g","20 g","200 g"],a:1,e:"Multiply by 1000 → 2 g."},
+
+{q:"Which prefix represents 10⁻⁶?",c:["milli","micro","nano","centi"],a:1,e:"Micro = 10⁻⁶."},
+
+{q:"Dimensional analysis works by:",c:["Changing numbers","Cancelling units","Estimating values","Ignoring units"],a:1,e:"Units cancel to give correct result."},
+
+{q:"Convert 60 minutes to seconds.",c:["360 s","600 s","3600 s","6000 s"],a:2,e:"60 × 60 = 3600 s."},
+
+/* SIGNIFICANT FIGURES */
+{q:"How many significant figures are in 0.0203?",c:["2","3","4","5"],a:1,e:"2,0,3 are significant → 3 sig figs."},
+
+{q:"Which has the most precision?",c:["3.1","3.10","3.100","3"],a:2,e:"More sig figs = more precise."},
+
+{q:"Result of 2.5 × 3.42 (sig figs)?",c:["8.55","8.6","8.550","9"],a:1,e:"Least sig figs = 2 → 8.6."},
+
+{q:"Which is correct scientific notation?",c:["45 × 10²","4.5 × 10²","0.45 × 10³","450 × 10¹"],a:1,e:"Coefficient must be 1–10."},
+
+{q:"Convert 0.00045 to scientific notation.",c:["4.5 × 10⁻⁴","4.5 × 10⁻³","4.5 × 10⁴","0.45 × 10⁻³"],a:0,e:"Move decimal 4 places."},
+
+{q:"Addition rule for sig figs:",c:["Least sig figs","Least decimal places","Most sig figs","No rule"],a:1,e:"Addition depends on decimal places."},
+
+{q:"Why are sig figs important?",c:["Increase numbers","Show precision","Simplify math","Remove units"],a:1,e:"They reflect measurement precision."},
+
+/* MIXED REASONING */
+{q:"Which combination is correct?",c:["High precision, low accuracy = close to true value","High accuracy, low precision = consistent but wrong","High precision, low accuracy = consistent but wrong","Low precision, high accuracy = random"],a:2,e:"Precision ≠ accuracy."},
+
+{q:"Which scenario shows both accurate and precise results?",c:["Values spread but near true","Values close to each other and true value","Values identical but far from true","Random values"],a:1,e:"Accurate and precise = correct and consistent."}
 
 ];
 
