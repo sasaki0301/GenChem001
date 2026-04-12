@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title></title>
+  <title>Lesson 3 Quiz – Properties of Matter</title>
   <style>
   body {
     font-family: "Segoe UI", Arial, sans-serif;
@@ -138,7 +138,7 @@
 </head>
 <body>
   <div class="quiz-container">
-    <h2> – Quiz</h2>
+    <h2>Properties of Matter – Quiz</h2>
     <div class="progress-text" id="progressText">Question 1 of 10</div>
     <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
@@ -148,6 +148,32 @@
 
 <script>
 const quizData = [
+  {q:"Which property can be observed without changing the identity of a substance?",c:["Flammability","Reactivity with acid","Density","Oxidation"],a:2,e:"Density is a physical property and does not change the substance."},
+
+  {q:"Burning gasoline is classified as:",c:["Physical property","Chemical property","Intensive property","Extensive property"],a:1,e:"Burning involves a chemical reaction that produces new substances."},
+
+  {q:"Which is an intensive property?",c:["Mass","Volume","Density","Length"],a:2,e:"Density does not depend on the amount of substance."},
+
+  {q:"Which situation describes a chemical property?",c:["Water boiling at 100°C","Iron rusting in air","Sugar dissolving in water","Copper conducting electricity"],a:1,e:"Rusting involves a chemical change."},
+
+  {q:"Which property would change if you cut a substance in half?",c:["Density","Color","Mass","Melting point"],a:2,e:"Mass depends on the amount of substance."},
+
+  {q:"A substance has a fixed density regardless of sample size. This property is:",c:["Extensive","Chemical","Intensive","Reactive"],a:2,e:"Density is an intensive property."},
+
+  {q:"Which is NOT a physical property?",c:["Boiling point","Color","Reactivity","State"],a:2,e:"Reactivity is a chemical property."},
+
+  {q:"Which best explains why density is useful for identification?",c:["It changes with temperature","It depends on mass","It is constant for a substance","It is easy to measure"],a:2,e:"Density is unique and constant for a substance."},
+
+  {q:"Which example represents an extensive property?",c:["Temperature","Density","Mass","Color"],a:2,e:"Mass depends on the amount of substance."},
+
+  {q:"A metal reacts violently with water. This describes:",c:["Physical property","Chemical property","Intensive property","Extensive property"],a:1,e:"Reactivity is a chemical property."},
+
+  {q:"Which scenario shows a physical change rather than a chemical property?",c:["Wood burning","Water freezing","Iron rusting","Gas exploding"],a:1,e:"Freezing does not change chemical identity."},
+
+  {q:"Two samples of the same substance have different masses but identical densities. This shows:",c:["Density is extensive","Mass is intensive","Density is intensive","Mass is constant"],a:2,e:"Density remains constant regardless of amount."},
+
+  {q:"Which property is most useful for distinguishing between two substances?",c:["Volume","Mass","Density","Shape"],a:2,e:"Density is a characteristic property."}
+  
 
 ];
 
@@ -235,209 +261,6 @@ function showResult() {
 function retryQuiz() { current = 0; score = 0; showQuestion(); }
 
 showQuestion();
-</script>
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lesson 3 Quiz – Properties of Matter</title>
-
-<style>
-/* (Same style from your template — unchanged) */
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #e8f9f1, #f7faff);
-  margin: 0;
-  padding: 40px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.quiz-container {
-  background: #fff;
-  border-radius: 18px;
-  padding: 40px 50px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-  width: 95%;
-  max-width: 850px;
-  text-align: center;
-}
-
-h2 { color: #136f63; }
-
-.progress-wrapper {
-  background: #e9f5ef;
-  border-radius: 8px;
-  height: 14px;
-  margin-bottom: 25px;
-}
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(to right, #136f63, #2b7de9);
-  width: 0%;
-}
-.progress-text {
-  text-align: right;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #174ea6;
-}
-
-.question {
-  font-size: 1.3em;
-  font-weight: 600;
-  color: #174ea6;
-  margin-bottom: 20px;
-}
-
-.choices {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.choice {
-  background: #e8ecf8;
-  border: none;
-  border-radius: 10px;
-  padding: 14px;
-  text-align: left;
-  cursor: pointer;
-}
-.choice.correct { background: #136f63; color: #fff; }
-.choice.incorrect { background: #e57373; color: #fff; }
-
-.explanation {
-  background: #eef3ff;
-  padding: 14px;
-  border-radius: 10px;
-  margin-top: 10px;
-  display: none;
-}
-
-.next-btn {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #136f63;
-  color: white;
-  border: none;
-  border-radius: 8px;
-}
-</style>
-</head>
-
-<body>
-<div class="quiz-container">
-<h2>Lesson 3 Quiz: Properties of Matter</h2>
-<div class="progress-text" id="progressText"></div>
-<div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
-
-<div id="quizBox"></div>
-<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-</div>
-
-<script>
-
-const quizData = [
-{q:"Which property can be observed without changing the identity of a substance?",c:["Flammability","Reactivity with acid","Density","Oxidation"],a:2,e:"Density is a physical property and does not change the substance."},
-
-{q:"Burning gasoline is classified as:",c:["Physical property","Chemical property","Intensive property","Extensive property"],a:1,e:"Burning involves a chemical reaction that produces new substances."},
-
-{q:"Which is an intensive property?",c:["Mass","Volume","Density","Length"],a:2,e:"Density does not depend on the amount of substance."},
-
-{q:"Which situation describes a chemical property?",c:["Water boiling at 100°C","Iron rusting in air","Sugar dissolving in water","Copper conducting electricity"],a:1,e:"Rusting involves a chemical change."},
-
-{q:"Which property would change if you cut a substance in half?",c:["Density","Color","Mass","Melting point"],a:2,e:"Mass depends on the amount of substance."},
-
-{q:"A substance has a fixed density regardless of sample size. This property is:",c:["Extensive","Chemical","Intensive","Reactive"],a:2,e:"Density is an intensive property."},
-
-{q:"Which is NOT a physical property?",c:["Boiling point","Color","Reactivity","State"],a:2,e:"Reactivity is a chemical property."},
-
-{q:"Which best explains why density is useful for identification?",c:["It changes with temperature","It depends on mass","It is constant for a substance","It is easy to measure"],a:2,e:"Density is unique and constant for a substance."},
-
-{q:"Which example represents an extensive property?",c:["Temperature","Density","Mass","Color"],a:2,e:"Mass depends on the amount of substance."},
-
-{q:"A metal reacts violently with water. This describes:",c:["Physical property","Chemical property","Intensive property","Extensive property"],a:1,e:"Reactivity is a chemical property."},
-
-{q:"Which scenario shows a physical change rather than a chemical property?",c:["Wood burning","Water freezing","Iron rusting","Gas exploding"],a:1,e:"Freezing does not change chemical identity."},
-
-{q:"Two samples of the same substance have different masses but identical densities. This shows:",c:["Density is extensive","Mass is intensive","Density is intensive","Mass is constant"],a:2,e:"Density remains constant regardless of amount."},
-
-{q:"Which property is most useful for distinguishing between two substances?",c:["Volume","Mass","Density","Shape"],a:2,e:"Density is a characteristic property."}
-];
-
-quizData.sort(()=>Math.random()-0.5);
-
-let current=0, score=0;
-const quizBox=document.getElementById("quizBox");
-const nextBtn=document.getElementById("nextBtn");
-const progressText=document.getElementById("progressText");
-const progressBar=document.getElementById("progressBar");
-
-function showQuestion(){
- const q=quizData[current];
- updateProgress();
-
- const shuffled = q.c.map((c,i)=>({c,i})).sort(()=>Math.random()-0.5);
-
- quizBox.innerHTML=`<div class="question">${q.q}</div><div class="choices"></div><div class="explanation"></div>`;
- const choicesDiv=quizBox.querySelector(".choices");
-
- shuffled.forEach(({c,i})=>{
-  const btn=document.createElement("button");
-  btn.className="choice";
-  btn.textContent=c;
-  btn.onclick=()=>selectChoice(i);
-  choicesDiv.appendChild(btn);
- });
-
- nextBtn.style.display="none";
-}
-
-function selectChoice(i){
- const q=quizData[current];
- const exp=quizBox.querySelector(".explanation");
-
- document.querySelectorAll(".choice").forEach((btn,idx)=>{
-  btn.disabled=true;
-  if(q.c.indexOf(btn.textContent)===q.a) btn.classList.add("correct");
-  if(idx===i && q.a!==q.c.indexOf(btn.textContent)) btn.classList.add("incorrect");
- });
-
- if(i===q.a) score++;
-
- exp.innerHTML=`<strong>Explanation:</strong> ${q.e}`;
- exp.style.display="block";
- nextBtn.style.display="inline-block";
-}
-
-nextBtn.onclick=()=>{
- current++;
- if(current<quizData.length) showQuestion();
- else showResult();
-};
-
-function updateProgress(){
- const percent=(current/quizData.length)*100;
- progressBar.style.width=percent+"%";
- progressText.textContent=`Question ${current+1} of ${quizData.length}`;
-}
-
-function showResult(){
- const percent=Math.round(score/quizData.length*100);
- quizBox.innerHTML=`<h3>Score: ${score}/${quizData.length} (${percent}%)</h3>`;
- nextBtn.style.display="none";
-}
-
-showQuestion();
-
 </script>
 </body>
 </html>
