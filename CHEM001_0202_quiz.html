@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[Lesson Title]</title>
+  <title>Calculating Average Atomic Mass</title>
   <style>
   body {
     font-family: "Segoe UI", Arial, sans-serif;
@@ -138,7 +138,7 @@
 </head>
 <body>
   <div class="quiz-container">
-    <h2>[Lesson Title] – Quiz</h2>
+    <h2>Calculating Average Atomic Mass – Quiz</h2>
     <div class="progress-text" id="progressText">Question 1 of 10</div>
     <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
@@ -148,6 +148,36 @@
 
 <script>
 const quizData = [
+
+{q:"Why is the atomic mass on the periodic table usually not a whole number?",c:["Atoms always have decimal masses","It is a weighted average of naturally occurring isotopes","Electrons add most of the mass","Atomic number changes over time"],a:1,e:"The periodic table atomic mass is a weighted average based on the masses and natural abundances of isotopes."},
+
+{q:"Which information is needed to calculate average atomic mass?",c:["Atomic number and charge","Mass number and electron count","Isotopic mass and percent abundance","Number of valence electrons"],a:2,e:"Average atomic mass uses each isotope’s mass and its fractional abundance."},
+
+{q:"What must be done to percent abundance before using it in the average atomic mass formula?",c:["Multiply it by 100","Convert it to a decimal","Round it to a whole number","Subtract it from the mass number"],a:1,e:"Percent abundance must be converted to fractional abundance, such as 75% = 0.75."},
+
+{q:"An element has two isotopes: 10 amu at 25% abundance and 12 amu at 75% abundance. What is the average atomic mass?",c:["10.5 amu","11.0 amu","11.5 amu","12.0 amu"],a:2,e:"Average mass = (10 × 0.25) + (12 × 0.75) = 2.5 + 9.0 = 11.5 amu."},
+
+{q:"An element has isotopes of 24 amu at 80% and 25 amu at 20%. What is its average atomic mass?",c:["24.0 amu","24.2 amu","24.5 amu","25.0 amu"],a:1,e:"Average mass = (24 × 0.80) + (25 × 0.20) = 19.2 + 5.0 = 24.2 amu."},
+
+{q:"If an element’s average atomic mass is closer to isotope A than isotope B, what does that usually suggest?",c:["Isotope A has lower abundance","Isotope A has higher abundance","Isotope B is unstable","Both isotopes have equal abundance"],a:1,e:"The average is pulled closer to the isotope with greater abundance."},
+
+{q:"An element has two isotopes: 35 amu at 60% and 37 amu at 40%. What is the average atomic mass?",c:["35.2 amu","35.8 amu","36.0 amu","36.6 amu"],a:1,e:"Average mass = (35 × 0.60) + (37 × 0.40) = 21.0 + 14.8 = 35.8 amu."},
+
+{q:"Which isotope contributes more to the average atomic mass?",c:["The isotope with the largest mass only","The isotope with the smallest mass only","The isotope with the greatest abundance","The isotope with the most electrons"],a:2,e:"Contribution depends strongly on abundance because abundance determines how much weight that isotope has in the average."},
+
+{q:"An element has isotopes 20 amu, 21 amu, and 22 amu with abundances 50%, 30%, and 20%. What is the average atomic mass?",c:["20.7 amu","21.0 amu","21.3 amu","22.0 amu"],a:0,e:"Average mass = (20 × 0.50) + (21 × 0.30) + (22 × 0.20) = 10 + 6.3 + 4.4 = 20.7 amu."},
+
+{q:"What does fractional abundance mean?",c:["The number of protons in an isotope","The percent abundance written as a decimal","The mass number divided by atomic number","The total number of isotopes"],a:1,e:"Fractional abundance is the decimal form of percent abundance, such as 40% = 0.40."},
+
+{q:"An isotope has 90% abundance. Its fractional abundance is:",c:["90","9.0","0.90","0.09"],a:2,e:"To convert percent to decimal, divide by 100. So 90% = 0.90."},
+
+{q:"Why is a weighted average used instead of a simple average?",c:["Isotopes do not occur in equal amounts","Atoms cannot be counted","Mass numbers are always wrong","All isotopes have the same abundance"],a:0,e:"A weighted average accounts for the fact that some isotopes are more common than others."},
+
+{q:"An element has two isotopes: 14 amu and 15 amu. The average atomic mass is 14.8 amu. Which isotope is more abundant?",c:["14 amu isotope","15 amu isotope","Both are equally abundant","Cannot be determined"],a:1,e:"Because 14.8 amu is closer to 15 amu, the 15 amu isotope is more abundant."},
+
+{q:"Which setup correctly calculates average atomic mass for isotopes 63 amu at 69% and 65 amu at 31%?",c:["(63 × 69) + (65 × 31)","(63 × 0.69) + (65 × 0.31)","(63 + 65) ÷ 2","(69 + 31) ÷ 2"],a:1,e:"Percent abundances must be converted to decimals before multiplying by isotope masses."},
+
+{q:"A calculated average atomic mass should be reported in:",c:["grams only","amu or atomic mass units","moles","percent"],a:1,e:"Atomic mass is commonly expressed in amu, also called atomic mass units."}
 
 ];
 
