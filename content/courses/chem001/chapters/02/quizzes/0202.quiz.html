@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculating Average Atomic Mass</title>
+  <style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f9f1, #f7faff);
+    margin: 0;
+    padding: 40px 20px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .quiz-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 850px;
+    text-align: center;
+  }
+  h2 {
+    color: #136f63;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+  .progress-wrapper {
+    background: #e9f5ef;
+    border-radius: 8px;
+    height: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #136f63, #2b7de9);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .question {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #174ea6;
+    margin-bottom: 20px;
+  }
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .choice {
+    background: #e8ecf8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.05em;
+    transition: all 0.2s ease;
+  }
+  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
+  .next-btn {
+    background: #136f63;
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  .next-btn:hover { background: #0f5b52; }
+  .result {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #174ea6;
+    margin-top: 20px;
+  }
+  .stars {
+    font-size: 2.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .quiz-nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .quiz-btn {
+    background: #e8ecf8;
+    color: #174ea6;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .quiz-btn.primary { background: #136f63; color: #fff; }
+  .quiz-btn.primary:hover { background: #0f5b52; }
+  @media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Calculating Average Atomic Mass – Quiz</h2>
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+
+    <div id="quizBox"></div>
+    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+  </div>
+
+<script>
+const quizData = [
+
+{q:"Why is the atomic mass on the periodic table usually not a whole number?",c:["Atoms always have decimal masses","It is a weighted average of naturally occurring isotopes","Electrons add most of the mass","Atomic number changes over time"],a:1,e:"The periodic table atomic mass is a weighted average based on the masses and natural abundances of isotopes."},
+
+{q:"Which information is needed to calculate average atomic mass?",c:["Atomic number and charge","Mass number and electron count","Isotopic mass and percent abundance","Number of valence electrons"],a:2,e:"Average atomic mass uses each isotope’s mass and its fractional abundance."},
+
+{q:"What must be done to percent abundance before using it in the average atomic mass formula?",c:["Multiply it by 100","Convert it to a decimal","Round it to a whole number","Subtract it from the mass number"],a:1,e:"Percent abundance must be converted to fractional abundance, such as 75% = 0.75."},
+
+{q:"An element has two isotopes: 10 amu at 25% abundance and 12 amu at 75% abundance. What is the average atomic mass?",c:["10.5 amu","11.0 amu","11.5 amu","12.0 amu"],a:2,e:"Average mass = (10 × 0.25) + (12 × 0.75) = 2.5 + 9.0 = 11.5 amu."},
+
+{q:"An element has isotopes of 24 amu at 80% and 25 amu at 20%. What is its average atomic mass?",c:["24.0 amu","24.2 amu","24.5 amu","25.0 amu"],a:1,e:"Average mass = (24 × 0.80) + (25 × 0.20) = 19.2 + 5.0 = 24.2 amu."},
+
+{q:"If an element’s average atomic mass is closer to isotope A than isotope B, what does that usually suggest?",c:["Isotope A has lower abundance","Isotope A has higher abundance","Isotope B is unstable","Both isotopes have equal abundance"],a:1,e:"The average is pulled closer to the isotope with greater abundance."},
+
+{q:"An element has two isotopes: 35 amu at 60% and 37 amu at 40%. What is the average atomic mass?",c:["35.2 amu","35.8 amu","36.0 amu","36.6 amu"],a:1,e:"Average mass = (35 × 0.60) + (37 × 0.40) = 21.0 + 14.8 = 35.8 amu."},
+
+{q:"Which isotope contributes more to the average atomic mass?",c:["The isotope with the largest mass only","The isotope with the smallest mass only","The isotope with the greatest abundance","The isotope with the most electrons"],a:2,e:"Contribution depends strongly on abundance because abundance determines how much weight that isotope has in the average."},
+
+{q:"An element has isotopes 20 amu, 21 amu, and 22 amu with abundances 50%, 30%, and 20%. What is the average atomic mass?",c:["20.7 amu","21.0 amu","21.3 amu","22.0 amu"],a:0,e:"Average mass = (20 × 0.50) + (21 × 0.30) + (22 × 0.20) = 10 + 6.3 + 4.4 = 20.7 amu."},
+
+{q:"What does fractional abundance mean?",c:["The number of protons in an isotope","The percent abundance written as a decimal","The mass number divided by atomic number","The total number of isotopes"],a:1,e:"Fractional abundance is the decimal form of percent abundance, such as 40% = 0.40."},
+
+{q:"An isotope has 90% abundance. Its fractional abundance is:",c:["90","9.0","0.90","0.09"],a:2,e:"To convert percent to decimal, divide by 100. So 90% = 0.90."},
+
+{q:"Why is a weighted average used instead of a simple average?",c:["Isotopes do not occur in equal amounts","Atoms cannot be counted","Mass numbers are always wrong","All isotopes have the same abundance"],a:0,e:"A weighted average accounts for the fact that some isotopes are more common than others."},
+
+{q:"An element has two isotopes: 14 amu and 15 amu. The average atomic mass is 14.8 amu. Which isotope is more abundant?",c:["14 amu isotope","15 amu isotope","Both are equally abundant","Cannot be determined"],a:1,e:"Because 14.8 amu is closer to 15 amu, the 15 amu isotope is more abundant."},
+
+{q:"Which setup correctly calculates average atomic mass for isotopes 63 amu at 69% and 65 amu at 31%?",c:["(63 × 69) + (65 × 31)","(63 × 0.69) + (65 × 0.31)","(63 + 65) ÷ 2","(69 + 31) ÷ 2"],a:1,e:"Percent abundances must be converted to decimals before multiplying by isotope masses."},
+
+{q:"A calculated average atomic mass should be reported in:",c:["grams only","amu or atomic mass units","moles","percent"],a:1,e:"Atomic mass is commonly expressed in amu, also called atomic mass units."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+  selected = i;
+  document.querySelectorAll(".choice").forEach((btn, idx) => {
+    btn.classList.toggle("selected", idx === i);
+    btn.disabled = true;
+  });
+  const q = quizData[current];
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>

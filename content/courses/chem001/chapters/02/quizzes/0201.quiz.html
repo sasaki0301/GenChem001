@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing Isotopic Symbol and Ionic Notation</title>
+  <style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f9f1, #f7faff);
+    margin: 0;
+    padding: 40px 20px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .quiz-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 850px;
+    text-align: center;
+  }
+  h2 {
+    color: #136f63;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+  .progress-wrapper {
+    background: #e9f5ef;
+    border-radius: 8px;
+    height: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #136f63, #2b7de9);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .question {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #174ea6;
+    margin-bottom: 20px;
+  }
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .choice {
+    background: #e8ecf8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.05em;
+    transition: all 0.2s ease;
+  }
+  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
+  .next-btn {
+    background: #136f63;
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  .next-btn:hover { background: #0f5b52; }
+  .result {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #174ea6;
+    margin-top: 20px;
+  }
+  .stars {
+    font-size: 2.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .quiz-nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .quiz-btn {
+    background: #e8ecf8;
+    color: #174ea6;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .quiz-btn.primary { background: #136f63; color: #fff; }
+  .quiz-btn.primary:hover { background: #0f5b52; }
+  @media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Writing Isotopic Symbol and Ionic Notation – Quiz</h2>
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+
+    <div id="quizBox"></div>
+    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+  </div>
+
+<script>
+const quizData = [
+
+{q:"Which particle determines the identity of an element?",c:["Neutron","Electron","Proton","Ion"],a:2,e:"The number of protons is the atomic number, and it identifies the element."},
+
+{q:"An atom has 11 protons. Which element is it?",c:["Carbon","Sodium","Magnesium","Neon"],a:1,e:"Atomic number 11 corresponds to sodium (Na)."},
+
+{q:"What does the mass number represent?",c:["Protons only","Electrons only","Protons plus neutrons","Neutrons plus electrons"],a:2,e:"Mass number is the total number of protons and neutrons in the nucleus."},
+
+{q:"How many neutrons are in ²³₁₁Na?",c:["11","12","23","34"],a:1,e:"Neutrons = mass number − atomic number = 23 − 11 = 12."},
+
+{q:"Which isotopic symbol correctly represents carbon-14?",c:["¹⁴₆C","⁶₁₄C","¹²₆C","¹⁴₇C"],a:0,e:"Carbon has atomic number 6, and carbon-14 has mass number 14."},
+
+{q:"An atom has 8 protons and 10 neutrons. What is its isotopic symbol?",c:["¹⁰₈O","¹⁸₈O","⁸₁₈O","¹⁸₁₀Ne"],a:1,e:"Atomic number 8 is oxygen. Mass number = 8 + 10 = 18, so the symbol is ¹⁸₈O."},
+
+{q:"Which statement about isotopes is correct?",c:["They have different numbers of protons","They have different numbers of neutrons","They have different atomic numbers","They are always ions"],a:1,e:"Isotopes of the same element have the same number of protons but different numbers of neutrons."},
+
+{q:"What happens when a neutral atom loses electrons?",c:["It becomes a negative ion","It becomes a positive ion","Its atomic number changes","Its mass number increases"],a:1,e:"Losing electrons leaves more protons than electrons, forming a positive ion or cation."},
+
+{q:"What is the charge of an ion with 13 protons and 10 electrons?",c:["3+","3−","10+","13−"],a:0,e:"Charge = protons − electrons = 13 − 10 = 3+, so the ion is positively charged."},
+
+{q:"What is the charge of an ion with 17 protons and 18 electrons?",c:["1+","1−","17+","18−"],a:1,e:"The atom has one more electron than proton, so its charge is 1−."},
+
+{q:"Which notation correctly represents an aluminum ion with 13 protons, 14 neutrons, and 10 electrons?",c:["²⁷₁₃Al³⁺","²⁷₁₄Al³⁺","¹³₂₇Al³⁻","²⁴₁₃Al³⁺"],a:0,e:"Mass number = 13 + 14 = 27. With 13 protons and 10 electrons, the charge is 3+."},
+
+{q:"Which pair represents isotopes of the same element?",c:["¹²₆C and ¹⁴₆C","²³₁₁Na and ²⁴₁₂Mg","¹⁶₈O and ¹⁶₇N","³⁵₁₇Cl and ³⁵₁₈Ar"],a:0,e:"Both have atomic number 6, so they are carbon atoms, but they have different mass numbers."},
+
+{q:"An ion is written as ³⁵₁₇Cl⁻. How many electrons does it have?",c:["16","17","18","35"],a:2,e:"Chlorine has 17 protons. A 1− charge means it gained one electron, so it has 18 electrons."},
+
+{q:"Which quantity changes when a neutral atom becomes an ion?",c:["Number of protons","Number of neutrons","Number of electrons","Atomic number"],a:2,e:"Ions form when atoms gain or lose electrons. The number of protons remains the same."},
+
+{q:"A particle has 20 protons, 20 neutrons, and 18 electrons. Which notation is correct?",c:["⁴⁰₂₀Ca²⁺","⁴⁰₂₀Ca²⁻","³⁸₂₀Ca²⁺","⁴⁰₁₈Ar²⁺"],a:0,e:"Atomic number 20 is calcium. Mass number = 20 + 20 = 40. Charge = 20 − 18 = 2+."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+  selected = i;
+  document.querySelectorAll(".choice").forEach((btn, idx) => {
+    btn.classList.toggle("selected", idx === i);
+    btn.disabled = true;
+  });
+  const q = quizData[current];
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>

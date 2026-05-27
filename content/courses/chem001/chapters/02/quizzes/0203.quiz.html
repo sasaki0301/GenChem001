@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Lesson Title]</title>
+  <style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f9f1, #f7faff);
+    margin: 0;
+    padding: 40px 20px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .quiz-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 850px;
+    text-align: center;
+  }
+  h2 {
+    color: #136f63;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+  .progress-wrapper {
+    background: #e9f5ef;
+    border-radius: 8px;
+    height: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #136f63, #2b7de9);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .question {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #174ea6;
+    margin-bottom: 20px;
+  }
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .choice {
+    background: #e8ecf8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.05em;
+    transition: all 0.2s ease;
+  }
+  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
+  .next-btn {
+    background: #136f63;
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  .next-btn:hover { background: #0f5b52; }
+  .result {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #174ea6;
+    margin-top: 20px;
+  }
+  .stars {
+    font-size: 2.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .quiz-nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .quiz-btn {
+    background: #e8ecf8;
+    color: #174ea6;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .quiz-btn.primary { background: #136f63; color: #fff; }
+  .quiz-btn.primary:hover { background: #0f5b52; }
+  @media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>[Lesson Title] – Quiz</h2>
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+
+    <div id="quizBox"></div>
+    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+  </div>
+
+<script>
+const quizData = [
+
+{q:"What determines the identity of an element?",c:["Number of neutrons","Number of electrons","Number of protons","Mass number"],a:2,e:"The number of protons is the atomic number, which identifies the element."},
+
+{q:"An atom has 12 protons. Which element is it?",c:["Carbon","Magnesium","Sodium","Aluminum"],a:1,e:"Atomic number 12 corresponds to magnesium."},
+
+{q:"What does the mass number represent?",c:["Protons only","Protons plus neutrons","Electrons plus neutrons","Protons plus electrons"],a:1,e:"Mass number is the total number of protons and neutrons."},
+
+{q:"How many neutrons are in ²⁷₁₃Al?",c:["13","14","27","40"],a:1,e:"Neutrons = mass number − atomic number = 27 − 13 = 14."},
+
+{q:"Which pair represents isotopes of the same element?",c:["¹²₆C and ¹⁴₆C","²³₁₁Na and ²⁴₁₂Mg","¹⁶₈O and ¹⁶₇N","³⁵₁₇Cl and ³⁵₁₈Ar"],a:0,e:"Isotopes have the same atomic number but different mass numbers."},
+
+{q:"Which statement correctly describes isotopes?",c:["Same protons, different neutrons","Different protons, same neutrons","Same electrons, different protons","Different elements with same mass"],a:0,e:"Isotopes are atoms of the same element with different numbers of neutrons."},
+
+{q:"Which isotopic symbol represents carbon-14?",c:["¹⁴₆C","⁶₁₄C","¹²₆C","¹⁴₇N"],a:0,e:"Carbon has atomic number 6, and carbon-14 has mass number 14."},
+
+{q:"An atom has 17 protons and 18 neutrons. What is its isotopic symbol?",c:["³⁵₁₇Cl","¹⁷₃₅Cl","³⁵₁₈Ar","¹⁸₁₇Cl"],a:0,e:"Atomic number 17 is chlorine. Mass number = 17 + 18 = 35."},
+
+{q:"What happens when a neutral atom gains electrons?",c:["It becomes a cation","It becomes an anion","Its atomic number increases","Its mass number increases"],a:1,e:"Gaining electrons gives the atom a negative charge, forming an anion."},
+
+{q:"What happens when a neutral atom loses electrons?",c:["It becomes positive","It becomes negative","Its protons decrease","Its neutrons increase"],a:0,e:"Losing electrons leaves more protons than electrons, producing a positive ion."},
+
+{q:"What is the charge of an ion with 20 protons and 18 electrons?",c:["2+","2−","18+","20−"],a:0,e:"Charge = protons − electrons = 20 − 18 = 2+."},
+
+{q:"What is the charge of an ion with 16 protons and 18 electrons?",c:["2+","2−","16+","18−"],a:1,e:"The ion has two more electrons than protons, giving it a 2− charge."},
+
+{q:"How many electrons are in Cl⁻ if chlorine has 17 protons?",c:["16","17","18","35"],a:2,e:"A 1− charge means chlorine gained one electron, so it has 18 electrons."},
+
+{q:"Which notation correctly represents calcium-40 with a 2+ charge?",c:["⁴⁰₂₀Ca²⁺","²⁰₄₀Ca²⁺","⁴⁰₂₂Ca²⁺","⁴²₂₀Ca²⁻"],a:0,e:"Calcium has atomic number 20, mass number 40, and a 2+ charge."},
+
+{q:"Which particle changes when an atom becomes an ion?",c:["Proton","Neutron","Electron","Nucleus"],a:2,e:"Ions form when atoms gain or lose electrons."},
+
+{q:"Why does the atomic mass on the periodic table usually have decimals?",c:["Atoms lose electrons naturally","It is a weighted average of isotopes","Protons have decimal charges","Neutrons are unstable"],a:1,e:"Periodic table atomic mass reflects the weighted average of naturally occurring isotopes."},
+
+{q:"Which information is required to calculate average atomic mass?",c:["Isotopic mass and abundance","Charge and electrons","Atomic number and ion charge","Protons and electrons only"],a:0,e:"Average atomic mass requires each isotope’s mass and fractional abundance."},
+
+{q:"What is the fractional abundance of 75%?",c:["75","7.5","0.75","0.075"],a:2,e:"Percent is converted to decimal by dividing by 100, so 75% = 0.75."},
+
+{q:"An element has isotopes 10 amu at 20% and 12 amu at 80%. What is the average atomic mass?",c:["10.4 amu","11.0 amu","11.6 amu","12.0 amu"],a:2,e:"Average = (10 × 0.20) + (12 × 0.80) = 2.0 + 9.6 = 11.6 amu."},
+
+{q:"An element has isotopes 24 amu at 75% and 26 amu at 25%. What is the average atomic mass?",c:["24.0 amu","24.5 amu","25.0 amu","26.0 amu"],a:1,e:"Average = (24 × 0.75) + (26 × 0.25) = 18 + 6.5 = 24.5 amu."},
+
+{q:"An element has isotopes 35 amu at 60% and 37 amu at 40%. What is the average atomic mass?",c:["35.4 amu","35.8 amu","36.0 amu","36.4 amu"],a:1,e:"Average = (35 × 0.60) + (37 × 0.40) = 21 + 14.8 = 35.8 amu."},
+
+{q:"Why is weighted average used instead of simple average?",c:["Isotopes occur in different abundances","All isotopes have equal mass","Atoms cannot be measured","Mass numbers are always inaccurate"],a:0,e:"Weighted average accounts for the fact that some isotopes are more common than others."},
+
+{q:"If the average atomic mass is closer to one isotope’s mass, what does that suggest?",c:["That isotope is less abundant","That isotope is more abundant","That isotope is charged","That isotope has more electrons"],a:1,e:"The average is pulled closer to the isotope with greater natural abundance."},
+
+{q:"Which isotope is more abundant if the average atomic mass of an element with isotopes 14 amu and 15 amu is 14.8 amu?",c:["14 amu isotope","15 amu isotope","Both are equal","Cannot be determined"],a:1,e:"14.8 amu is closer to 15 amu, so the 15 amu isotope is more abundant."},
+
+{q:"Which setup is correct for isotopes 63 amu at 69% and 65 amu at 31%?",c:["(63 × 69) + (65 × 31)","(63 × 0.69) + (65 × 0.31)","(63 + 65) ÷ 2","(69 + 31) ÷ 2"],a:1,e:"Percent abundances must be converted to decimals before multiplication."},
+
+{q:"Which statement about atomic number is true?",c:["It changes when ions form","It equals protons","It equals protons plus neutrons","It equals electrons plus neutrons"],a:1,e:"Atomic number is the number of protons."},
+
+{q:"Which statement about ions is correct?",c:["Ions form by changing protons","Ions form by changing neutrons","Ions form by gaining or losing electrons","Ions always have no charge"],a:2,e:"Ions are charged particles formed by electron transfer."},
+
+{q:"A particle has 13 protons, 14 neutrons, and 10 electrons. Which notation is correct?",c:["²⁷₁₃Al³⁺","²⁷₁₄Si³⁺","²³₁₃Al³⁻","²⁷₁₃Al³⁻"],a:0,e:"Mass = 13 + 14 = 27. Charge = 13 − 10 = 3+."},
+
+{q:"A particle has 8 protons, 10 neutrons, and 10 electrons. Which notation is correct?",c:["¹⁸₈O²⁻","¹⁸₈O²⁺","¹⁶₈O²⁻","¹⁸₁₀Ne²⁻"],a:0,e:"Mass = 8 + 10 = 18. Charge = 8 − 10 = 2−."},
+
+{q:"Which is the best summary of Chapter 2?",c:["Matter is classified only by physical state","Atoms are identified by protons, isotopes differ by neutrons, and ions differ by electrons","Atomic mass is always a whole number","Electrons determine the element identity"],a:1,e:"Chapter 2 focuses on atomic number, isotopes, ions, and average atomic mass."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+  selected = i;
+  document.querySelectorAll(".choice").forEach((btn, idx) => {
+    btn.classList.toggle("selected", idx === i);
+    btn.disabled = true;
+  });
+  const q = quizData[current];
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>

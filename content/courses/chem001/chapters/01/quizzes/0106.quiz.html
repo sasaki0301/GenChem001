@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 6 Quiz - Scientific Measurement and SI Units</title>
+  <style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f9f1, #f7faff);
+    margin: 0;
+    padding: 40px 20px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .quiz-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 850px;
+    text-align: center;
+  }
+  h2 {
+    color: #136f63;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+  .progress-wrapper {
+    background: #e9f5ef;
+    border-radius: 8px;
+    height: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #136f63, #2b7de9);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .question {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #174ea6;
+    margin-bottom: 20px;
+  }
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .choice {
+    background: #e8ecf8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.05em;
+    transition: all 0.2s ease;
+  }
+  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
+  .next-btn {
+    background: #136f63;
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  .next-btn:hover { background: #0f5b52; }
+  .result {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #174ea6;
+    margin-top: 20px;
+  }
+  .stars {
+    font-size: 2.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .quiz-nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .quiz-btn {
+    background: #e8ecf8;
+    color: #174ea6;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .quiz-btn.primary { background: #136f63; color: #fff; }
+  .quiz-btn.primary:hover { background: #0f5b52; }
+  @media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Scientific Measurement and SI Units – Quiz</h2>
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+
+    <div id="quizBox"></div>
+    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+  </div>
+
+<script>
+const quizData = [
+
+{q:"Which is the correct SI unit for mass?",c:["gram","kilogram","milligram","ton"],a:1,e:"The SI base unit for mass is the kilogram (kg)."},  
+
+{q:"Convert 0.75 km to meters.",c:["75 m","750 m","7500 m","0.0075 m"],a:1,e:"1 km = 1000 m → 0.75 × 1000 = 750 m."},
+
+{q:"Which prefix represents 10⁻³?",c:["kilo","centi","milli","micro"],a:2,e:"Milli represents 10⁻³."},
+
+{q:"Which conversion factor is correct for converting cm to m?",c:["1 cm = 100 m","1 m = 100 cm","1 cm = 0.01 m","1 m = 0.01 cm"],a:2,e:"1 cm = 0.01 m."},
+
+{q:"Convert 2500 g to kilograms.",c:["0.25 kg","2.5 kg","25 kg","250 kg"],a:1,e:"Divide by 1000 → 2500 g = 2.5 kg."},
+
+{q:"Which unit is derived from SI base units?",c:["meter","second","newton","kelvin"],a:2,e:"Newton (N) is a derived unit (kg·m/s²)."},
+
+{q:"Convert 5.0 × 10³ mL to liters.",c:["5 L","0.5 L","50 L","500 L"],a:0,e:"1000 mL = 1 L → 5000 mL = 5 L."},
+
+{q:"Which prefix represents 10⁶?",c:["mega","kilo","micro","nano"],a:0,e:"Mega represents 10⁶."},
+
+{q:"Convert 3.2 cm to meters.",c:["0.032 m","0.32 m","320 m","0.0032 m"],a:0,e:"Divide by 100 → 3.2 cm = 0.032 m."},
+
+{q:"Which is the correct setup for converting 100 cm to meters?",c:["100 × (100 m / 1 cm)","100 × (1 m / 100 cm)","100 ÷ (100 m)","100 × (1 cm / 100 m)"],a:1,e:"Use a factor that cancels cm and leaves meters."},
+
+{q:"Convert 2 hours to seconds.",c:["7200 s","120 s","3600 s","1800 s"],a:0,e:"2 × 3600 = 7200 seconds."},
+
+{q:"Which best explains dimensional analysis?",c:["Changing numbers only","Cancelling units using conversion factors","Estimating values","Rounding numbers"],a:1,e:"Dimensional analysis ensures units cancel properly."},
+
+{q:"Convert 0.005 kg to grams.",c:["0.5 g","5 g","50 g","500 g"],a:1,e:"Multiply by 1000 → 0.005 kg = 5 g."},
+
+{q:"Which unit would be most appropriate for measuring the length of a laboratory table?",c:["millimeter","meter","kilometer","micrometer"],a:1,e:"Meters are suitable for everyday object lengths."},
+
+{q:"A measurement must always include:",c:["A number only","A unit only","Both number and unit","Neither"],a:2,e:"A measurement requires both value and unit."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+  selected = i;
+  document.querySelectorAll(".choice").forEach((btn, idx) => {
+    btn.classList.toggle("selected", idx === i);
+    btn.disabled = true;
+  });
+  const q = quizData[current];
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
