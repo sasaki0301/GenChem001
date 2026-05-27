@@ -1,0 +1,12 @@
+{
+  "courseId": "chem001",
+  "subjectId": "CHEM001",
+  "title": "General Chemistry 1",
+  "repository": "sasaki0301/GenChem001",
+  "version": "0.1.0",
+  "access": "free",
+  "contentRoot": "content/courses/chem001",
+  "lessonPathPattern": "chapters/{chapter}/lessons/{lesson}.html",
+  "quizPathPattern": "chapters/{chapter}/quizzes/{lesson}.quiz.html",
+  "rootHtmlPreserved": true
+}
