@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Calculating the Amounts of Substances</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+<h1>Counting Atoms and Molecules</h1>
+
+<div class="key-box">
+<strong>Real-World Scenario</strong><br><br>
+
+A pharmaceutical company produces billions of molecules of a medicine in a single tablet. Scientists cannot count these molecules individually, yet they must know exactly how many particles are present to ensure the medicine works properly.
+
+Chemists use the mole concept and Avogadro's number to determine the number of atoms, molecules, and formula units in a sample.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Convert between moles and particles.</li>
+<li>Determine the number of atoms, molecules, and formula units in a sample.</li>
+<li>Interpret chemical formulas when counting atoms.</li>
+<li>Calculate the total number of atoms in compounds.</li>
+<li>Solve multi-step particle-counting problems.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Particles in Chemistry</h2>
+
+<p>
+The term <strong>particle</strong> refers to the smallest representative unit of a substance.
+</p>
+
+<table>
+<tr>
+<th>Type of Substance</th>
+<th>Particle Counted</th>
+</tr>
+
+<tr>
+<td>Element (Fe, Cu, Au)</td>
+<td>Atoms</td>
+</tr>
+
+<tr>
+<td>Molecular Compound (H₂O, CO₂)</td>
+<td>Molecules</td>
+</tr>
+
+<tr>
+<td>Ionic Compound (NaCl, CaCl₂)</td>
+<td>Formula Units</td>
+</tr>
+</table>
+
+<div class="key-box">
+Regardless of the type of particle, one mole always contains:
+<br><br>
+<strong>6.022 × 10²³ particles</strong>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Converting Moles to Particles</h2>
+
+<p>
+To determine the number of particles in a sample, multiply the number of moles by Avogadro's number.
+</p>
+
+<div class="formula">
+Number of Particles = Moles × 6.022 × 10²³
+</div>
+
+<div class="example-box">
+<h3>Worked Example 1</h3>
+
+<p>
+How many molecules are present in 2.50 mol of CO₂?
+</p>
+
+<p><strong>Step 1:</strong> Write the conversion factor.</p>
+
+<div class="formula">
+1 mol = 6.022 × 10²³ molecules
+</div>
+
+<p><strong>Step 2:</strong> Multiply.</p>
+
+<div class="formula">
+2.50 × 6.022 × 10²³
+</div>
+
+<p><strong>Answer:</strong></p>
+
+<div class="formula">
+1.51 × 10²⁴ molecules
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Converting Particles to Moles</h2>
+
+<p>
+To convert particles back to moles, divide by Avogadro's number.
+</p>
+
+<div class="formula">
+Moles = Particles ÷ 6.022 × 10²³
+</div>
+
+<div class="example-box">
+<h3>Worked Example 2</h3>
+
+<p>
+How many moles are represented by 3.011 × 10²³ molecules of NH₃?
+</p>
+
+<p><strong>Step 1:</strong> Apply the formula.</p>
+
+<div class="formula">
+3.011 × 10²³ ÷ 6.022 × 10²³
+</div>
+
+<p><strong>Answer:</strong></p>
+
+<div class="formula">
+0.500 mol NH₃
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Counting Atoms in Chemical Formulas</h2>
+
+<p>
+Chemical formulas tell us how many atoms of each element are present in one molecule or formula unit.
+</p>
+
+<table>
+<tr>
+<th>Formula</th>
+<th>Atoms Present</th>
+<th>Total Atoms</th>
+</tr>
+
+<tr>
+<td>H₂O</td>
+<td>2 H + 1 O</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>CO₂</td>
+<td>1 C + 2 O</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>NH₃</td>
+<td>1 N + 3 H</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>C₆H₁₂O₆</td>
+<td>6 C + 12 H + 6 O</td>
+<td>24</td>
+</tr>
+</table>
+
+<div class="key-box">
+Subscripts indicate the number of atoms of each element present in one molecule.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Counting Total Atoms from Moles</h2>
+
+<p>
+Sometimes we need to determine the total number of atoms, not just molecules.
+</p>
+
+<div class="example-box">
+<h3>Worked Example 3</h3>
+
+<p>
+How many oxygen atoms are present in 2.00 mol of H₂O?
+</p>
+
+<p>
+Step 1: Calculate molecules.
+</p>
+
+<div class="formula">
+2.00 × 6.022 × 10²³
+=
+1.204 × 10²⁴ molecules
+</div>
+
+<p>
+Step 2: Determine atoms per molecule.
+</p>
+
+<p>
+Each H₂O molecule contains 1 oxygen atom.
+</p>
+
+<p>
+Answer:
+</p>
+
+<div class="formula">
+1.204 × 10²⁴ oxygen atoms
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Counting Atoms in Compounds</h2>
+
+<div class="example-box">
+<h3>Worked Example 4</h3>
+
+<p>
+How many hydrogen atoms are present in 1.00 mol of H₂O?
+</p>
+
+<p>
+Step 1: Calculate molecules.
+</p>
+
+<div class="formula">
+1.00 mol × 6.022 × 10²³
+=
+6.022 × 10²³ molecules
+</div>
+
+<p>
+Step 2: Each water molecule contains 2 hydrogen atoms.
+</p>
+
+<div class="formula">
+2 × 6.022 × 10²³
+=
+1.204 × 10²⁴ hydrogen atoms
+</div>
+
+<p><strong>Answer:</strong></p>
+
+<div class="formula">
+1.204 × 10²⁴ hydrogen atoms
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Particle Counting Strategy</h2>
+
+<div class="key-box">
+When solving particle-counting problems:
+<br><br>
+
+1. Identify what is being counted.
+<br>
+2. Convert between moles and particles using Avogadro's number.
+<br>
+3. Use subscripts to determine atoms per molecule.
+<br>
+4. Multiply by the number of atoms required.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Common Mistakes</h2>
+
+<div class="key-box">
+<ul>
+<li>Confusing molecules with atoms.</li>
+<li>Ignoring subscripts in chemical formulas.</li>
+<li>Forgetting that ionic compounds contain formula units instead of molecules.</li>
+<li>Using multiplication instead of division when converting particles to moles.</li>
+<li>Not accounting for multiple atoms of an element within a molecule.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> How many molecules are present in 0.250 mol of CO₂?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+0.250 × 6.022 × 10²³
+=
+1.51 × 10²³ molecules
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> How many atoms are present in one molecule of CH₄?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+1 carbon atom + 4 hydrogen atoms
+
+<div class="formula">
+5 total atoms
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> How many oxygen atoms are present in one molecule of CO₂?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+Each molecule contains:
+
+<div class="formula">
+2 oxygen atoms
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> How many formula units are present in 3.00 mol of NaCl?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+3.00 × 6.022 × 10²³
+=
+1.807 × 10²⁴ formula units
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> How many total atoms are present in one molecule of C₂H₆?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+2 carbon atoms + 6 hydrogen atoms
+
+<div class="formula">
+8 total atoms
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>One mole contains 6.022 × 10²³ particles.</li>
+<li>Particles may be atoms, molecules, or formula units depending on the substance.</li>
+<li>Moles and particles can be converted using Avogadro's number.</li>
+<li>Chemical formulas indicate how many atoms are present in a molecule or formula unit.</li>
+<li>Subscripts must be considered when counting atoms.</li>
+<li>Particle-counting problems often require multiple conversion steps.</li>
+</ul>
+
+</div>
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
