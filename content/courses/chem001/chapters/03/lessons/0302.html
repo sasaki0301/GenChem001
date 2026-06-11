@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Calculating the Amounts of Substances</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+</style>
+</head>
+
+<body>
+
+<h1>Calculating the Amounts of Substances</h1>
+
+<div class="key-box">
+<strong>Real-World Scenario</strong><br><br>
+A laboratory technician needs to prepare a chemical solution using a specific amount of substance. The technician cannot count atoms or molecules directly, so the amount must be calculated using moles, mass, and molar mass.
+
+In chemistry, calculating the amount of substance allows us to connect what we measure in the laboratory to the number of particles present in a sample.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+<ul>
+<li>Define amount of substance in terms of moles.</li>
+<li>Explain the relationship between mass, molar mass, and moles.</li>
+<li>Calculate moles from mass and molar mass.</li>
+<li>Calculate mass from moles and molar mass.</li>
+<li>Solve multi-step problems involving amount of substance.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Amount of Substance</h2>
+
+<p>
+The <strong>amount of substance</strong> tells how many particles are present in a sample. In chemistry, this amount is measured in <strong>moles</strong>.
+</p>
+
+<p>
+One mole contains Avogadro’s number of particles:
+</p>
+
+<div class="formula">
+1 mol = 6.022 × 10<sup>23</sup> particles
+</div>
+
+<div class="key-box">
+The mole allows chemists to count particles by measuring mass.
+</div>
+
+<p>
+This is important because atoms and molecules are too small to count one by one. Instead, chemists use mass and molar mass to determine how many moles are present.
+</p>
+</div>
+
+<div class="section">
+<h2>Mass, Moles, and Molar Mass</h2>
+
+<p>
+The relationship among mass, moles, and molar mass is one of the most important tools in chemistry calculations.
+</p>
+
+<table>
+<tr>
+<th>Quantity</th>
+<th>Symbol</th>
+<th>Common Unit</th>
+</tr>
+<tr>
+<td>Mass</td>
+<td>m</td>
+<td>grams (g)</td>
+</tr>
+<tr>
+<td>Amount of Substance</td>
+<td>n</td>
+<td>moles (mol)</td>
+</tr>
+<tr>
+<td>Molar Mass</td>
+<td>M</td>
+<td>grams per mole (g/mol)</td>
+</tr>
+</table>
+
+<div class="formula">
+n = m / M
+</div>
+
+<div class="key-box">
+<strong>Meaning:</strong> Moles are calculated by dividing the given mass by the molar mass.
+</div>
+
+<p>
+You can also rearrange the formula:
+</p>
+
+<div class="formula">
+m = n × M
+</div>
+
+<p>
+Use this when you need to calculate the mass of a substance from a given number of moles.
+</p>
+</div>
+
+<div class="section">
+<h2>Understanding Molar Mass</h2>
+
+<p>
+<strong>Molar mass</strong> is the mass of one mole of a substance. It is usually obtained from the periodic table.
+</p>
+
+<div class="example-box">
+<h3>Examples</h3>
+<ul>
+<li>Carbon (C): 12.01 g/mol</li>
+<li>Oxygen (O): 16.00 g/mol</li>
+<li>Sodium (Na): 22.99 g/mol</li>
+<li>Water (H₂O): 18.02 g/mol</li>
+</ul>
+</div>
+
+<p>
+For elements, the molar mass is taken directly from the periodic table. For compounds, the molar mass is found by adding the molar masses of all atoms in the formula.
+</p>
+</div>
+
+<div class="section">
+<h2>Worked Example 1: Finding Moles from Mass</h2>
+
+<div class="example-box">
+A sample contains 24.0 g of carbon. How many moles of carbon are present?
+</div>
+
+<p><strong>Step 1:</strong> Identify the given values.</p>
+
+<p>
+Mass = 24.0 g<br>
+Molar mass of carbon = 12.01 g/mol
+</p>
+
+<p><strong>Step 2:</strong> Use the formula.</p>
+
+<div class="formula">
+n = m / M
+</div>
+
+<p><strong>Step 3:</strong> Substitute values.</p>
+
+<div class="formula">
+n = 24.0 g / 12.01 g/mol
+</div>
+
+<p><strong>Step 4:</strong> Solve.</p>
+
+<div class="formula">
+n = 2.00 mol
+</div>
+
+<div class="key-box">
+Answer: 24.0 g of carbon is approximately 2.00 mol of carbon.
+</div>
+</div>
+
+<div class="section">
+<h2>Worked Example 2: Finding Mass from Moles</h2>
+
+<div class="example-box">
+How many grams are in 0.500 mol of sodium chloride (NaCl)?
+</div>
+
+<p><strong>Step 1:</strong> Determine molar mass.</p>
+
+<p>
+Na = 22.99 g/mol<br>
+Cl = 35.45 g/mol
+</p>
+
+<div class="formula">
+Molar mass of NaCl = 22.99 + 35.45 = 58.44 g/mol
+</div>
+
+<p><strong>Step 2:</strong> Use the formula.</p>
+
+<div class="formula">
+m = n × M
+</div>
+
+<p><strong>Step 3:</strong> Substitute values.</p>
+
+<div class="formula">
+m = 0.500 mol × 58.44 g/mol
+</div>
+
+<p><strong>Step 4:</strong> Solve.</p>
+
+<div class="formula">
+m = 29.22 g
+</div>
+
+<div class="key-box">
+Answer: 0.500 mol of NaCl has a mass of 29.22 g.
+</div>
+</div>
+
+<div class="section">
+<h2>Worked Example 3: Compound Sample</h2>
+
+<div class="example-box">
+A sample contains 36.04 g of water (H₂O). How many moles of water are present?
+</div>
+
+<p><strong>Step 1:</strong> Calculate molar mass of H₂O.</p>
+
+<p>
+Hydrogen = 1.01 g/mol<br>
+Oxygen = 16.00 g/mol
+</p>
+
+<div class="formula">
+Molar mass of H₂O = (2 × 1.01) + 16.00 = 18.02 g/mol
+</div>
+
+<p><strong>Step 2:</strong> Use the formula.</p>
+
+<div class="formula">
+n = m / M
+</div>
+
+<p><strong>Step 3:</strong> Substitute values.</p>
+
+<div class="formula">
+n = 36.04 g / 18.02 g/mol
+</div>
+
+<p><strong>Step 4:</strong> Solve.</p>
+
+<div class="formula">
+n = 2.00 mol
+</div>
+
+<div class="key-box">
+Answer: 36.04 g of water is equal to 2.00 mol of H₂O.
+</div>
+</div>
+
+<div class="section">
+<h2>Common Mistakes</h2>
+
+<div class="key-box">
+<ul>
+<li>Using atomic number instead of molar mass.</li>
+<li>Forgetting to calculate the molar mass of a compound before solving.</li>
+<li>Using grams when the problem asks for moles.</li>
+<li>Forgetting that units should cancel properly.</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+<p><strong>1.</strong> How many moles are in 48.0 g of oxygen gas (O₂)?</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">
+<p><strong>Step 1:</strong> Find molar mass of O₂.</p>
+<div class="formula">O₂ = 2 × 16.00 = 32.00 g/mol</div>
+
+<p><strong>Step 2:</strong> Use n = m / M.</p>
+<div class="formula">n = 48.0 / 32.00 = 1.50 mol</div>
+
+<p><strong>Answer:</strong> 1.50 mol of O₂</p>
+</div>
+</div>
+
+<div class="activity">
+<p><strong>2.</strong> What is the mass of 3.00 mol of CO₂?</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">
+<p><strong>Step 1:</strong> Find molar mass of CO₂.</p>
+<div class="formula">CO₂ = 12.01 + (2 × 16.00) = 44.01 g/mol</div>
+
+<p><strong>Step 2:</strong> Use m = n × M.</p>
+<div class="formula">m = 3.00 × 44.01 = 132.03 g</div>
+
+<p><strong>Answer:</strong> 132.03 g of CO₂</p>
+</div>
+</div>
+
+<div class="activity">
+<p><strong>3.</strong> A student has 10.0 g of calcium carbonate (CaCO₃). Estimate the number of moles present.</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">
+<p><strong>Step 1:</strong> Find molar mass of CaCO₃.</p>
+<div class="formula">CaCO₃ = 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol</div>
+
+<p><strong>Step 2:</strong> Use n = m / M.</p>
+<div class="formula">n = 10.0 / 100.09 = 0.0999 mol</div>
+
+<p><strong>Answer:</strong> approximately 0.100 mol of CaCO₃</p>
+</div>
+</div>
+
+<div class="activity">
+<p><strong>4.</strong> Why must molar mass be written in g/mol?</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">
+Molar mass tells how many grams are present in one mole of a substance. The unit g/mol allows grams to cancel when calculating moles.
+</div>
+</div>
+
+<div class="activity">
+<p><strong>5.</strong> Which has more moles: 10 g of carbon or 10 g of sodium? Explain.</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">
+Carbon has more moles because it has a smaller molar mass.
+<br><br>
+Carbon: 10 / 12.01 ≈ 0.833 mol<br>
+Sodium: 10 / 22.99 ≈ 0.435 mol
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>The mole measures the amount of substance.</li>
+<li>Molar mass connects grams and moles.</li>
+<li>To find moles, divide mass by molar mass.</li>
+<li>To find mass, multiply moles by molar mass.</li>
+<li>For compounds, calculate molar mass before solving.</li>
+<li>Unit cancellation helps confirm that the calculation is set up correctly.</li>
+</ul>
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+<button class="quiz-button" id="takeQuizBtn" data-quiz="CHEM001_03_L2">
+Take the Quiz →
+</button>
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+
+</body>
+</html>
