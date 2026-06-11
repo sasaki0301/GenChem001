@@ -1,157 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[Lesson Title]</title>
-  <style>
-  body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #e8f9f1, #f7faff);
-    margin: 0;
-    padding: 40px 20px;
-    color: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  .quiz-container {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 40px 50px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-    width: 95%;
-    max-width: 850px;
-    text-align: center;
-  }
-  h2 {
-    color: #136f63;
-    margin-bottom: 25px;
-    font-size: 1.8em;
-  }
-  .progress-wrapper {
-    background: #e9f5ef;
-    border-radius: 8px;
-    height: 14px;
-    width: 100%;
-    margin-bottom: 25px;
-    overflow: hidden;
-  }
-  .progress-bar {
-    height: 100%;
-    background: linear-gradient(to right, #136f63, #2b7de9);
-    width: 0%;
-    transition: width 0.4s ease;
-  }
-  .progress-text {
-    text-align: right;
-    font-size: 0.95em;
-    color: #174ea6;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-  .question {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #174ea6;
-    margin-bottom: 20px;
-  }
-  .choices {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .choice {
-    background: #e8ecf8;
-    border: none;
-    border-radius: 10px;
-    padding: 14px 18px;
-    cursor: pointer;
-    text-align: left;
-    font-size: 1.05em;
-    transition: all 0.2s ease;
-  }
-  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.correct { background: #136f63; color: #fff; }
-  .choice.incorrect { background: #e57373; color: #fff; }
-  .explanation {
-    background: #eef3ff;
-    border-radius: 10px;
-    padding: 14px 18px;
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-    color: #174ea6;
-    display: none;
-  }
-  .next-btn {
-    background: #136f63;
-    color: #fff;
-    border: none;
-    padding: 12px 26px;
-    border-radius: 10px;
-    font-size: 1.05em;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-  }
-  .next-btn:hover { background: #0f5b52; }
-  .result {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #174ea6;
-    margin-top: 20px;
-  }
-  .stars {
-    font-size: 2.5em;
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
-  .quiz-nav {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .quiz-btn {
-    background: #e8ecf8;
-    color: #174ea6;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 0.95em;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .quiz-btn.primary { background: #136f63; color: #fff; }
-  .quiz-btn.primary:hover { background: #0f5b52; }
-  @media (max-width: 600px) {
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Mole Concept and Avogadro’s Number</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
     .quiz-container { padding: 25px; }
     .question { font-size: 1.1em; }
     .stars { font-size: 2em; }
   }
-  </style>
-</head>
-<body>
-  <div class="quiz-container">
-    <h2>[Lesson Title] – Quiz</h2>
-    <div class="progress-text" id="progressText">Question 1 of 10</div>
-    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
-    <div id="quizBox"></div>
-    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-  </div>
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>The Mole Concept and Avogadro’s Number - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
 
 <script>
 const quizData = [
 
-];
+{q:"What is the primary purpose of the mole in chemistry?",c:["To measure temperature","To count very small particles conveniently","To determine atomic charge","To measure volume"],a:1,e:"The mole is a counting unit that allows chemists to work with extremely large numbers of particles."},
 
-let current = 0, score = 0;
+{q:"One mole of any substance contains:",c:["12 particles","100 particles","6.022 × 10²³ particles","1.000 × 10²³ particles"],a:2,e:"One mole contains Avogadro's number, which is 6.022 × 10²³ particles."},
+
+{q:"Avogadro's number represents:",c:["The mass of one mole","The number of particles in one mole","The atomic mass of carbon","The number of elements in the periodic table"],a:1,e:"Avogadro's number defines the number of representative particles in one mole."},
+
+{q:"Which statement best describes a mole?",c:["A unit of mass","A unit of volume","A counting unit","A type of particle"],a:2,e:"Like a dozen represents 12 objects, a mole represents 6.022 × 10²³ particles."},
+
+{q:"What type of particles are counted in one mole of H₂O?",c:["Atoms","Electrons","Molecules","Formula units"],a:2,e:"Water is a molecular compound, so its representative particles are molecules."},
+
+{q:"What type of particles are counted in one mole of NaCl?",c:["Atoms","Molecules","Formula units","Electrons"],a:2,e:"Ionic compounds are counted in terms of formula units."},
+
+{q:"How many particles are present in 2.00 mol of helium atoms?",c:["3.011 × 10²³","6.022 × 10²³","1.204 × 10²⁴","2.408 × 10²⁴"],a:2,e:"2.00 mol × 6.022 × 10²³ particles/mol = 1.204 × 10²⁴ particles."},
+
+{q:"How many molecules are present in 0.500 mol of CO₂?",c:["3.011 × 10²³","6.022 × 10²³","1.204 × 10²⁴","5.00 × 10²²"],a:0,e:"0.500 mol × 6.022 × 10²³ = 3.011 × 10²³ molecules."},
+
+{q:"How many moles are represented by 1.204 × 10²⁴ atoms?",c:["0.500 mol","1.00 mol","2.00 mol","4.00 mol"],a:2,e:"1.204 × 10²⁴ ÷ 6.022 × 10²³ = 2.00 mol."},
+
+{q:"Which contains the greatest number of particles?",c:["0.50 mol","1.00 mol","2.00 mol","All contain the same number"],a:2,e:"More moles correspond to more particles."},
+
+{q:"Why is the mole concept important in chemistry?",c:["It measures temperature","It connects microscopic particles to measurable quantities","It identifies elements","It determines atomic structure"],a:1,e:"The mole allows chemists to relate particle counts to laboratory measurements."},
+
+{q:"Which contains exactly 6.022 × 10²³ particles?",c:["0.5 mol","1 mol","2 mol","10 mol"],a:1,e:"By definition, one mole contains Avogadro's number of particles."},
+
+{q:"A sample contains 3.011 × 10²³ molecules of NH₃. How many moles does it contain?",c:["0.25 mol","0.50 mol","1.00 mol","2.00 mol"],a:1,e:"3.011 × 10²³ ÷ 6.022 × 10²³ = 0.50 mol."},
+
+{q:"Which statement is TRUE?",c:["One mole of every substance has the same mass","One mole of every substance contains the same number of particles","One mole always contains molecules","One mole only applies to elements"],a:1,e:"The number of particles is constant for all substances, but masses vary."},
+
+{q:"One mole of carbon atoms and one mole of oxygen molecules have:",c:["The same mass","The same number of particles","The same chemical properties","The same number of atoms per particle"],a:1,e:"Every mole contains 6.022 × 10²³ representative particles regardless of substance."}
+
+];
+let current = 0, score = 0, selected = null, showingExplanation = false;
 const quizBox = document.getElementById("quizBox");
 const nextBtn = document.getElementById("nextBtn");
 const progressText = document.getElementById("progressText");
@@ -162,8 +123,9 @@ function showQuestion() {
   updateProgress();
   quizBox.innerHTML = `
     <div class='question'>${q.q}</div>
+	${q.svg || ""}
     <div class='choices'></div>
-    <div class='explanation' id='explanation'></div>
+    <div class='explanation' id='explanationBox'></div>
   `;
   const choicesContainer = quizBox.querySelector(".choices");
   q.c.forEach((choice, i) => {
@@ -174,25 +136,42 @@ function showQuestion() {
     choicesContainer.appendChild(btn);
   });
   nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
 }
 
 function selectChoice(i) {
+  if (showingExplanation) return;
+
   const q = quizData[current];
-  const explanationBox = document.getElementById("explanation");
-  document.querySelectorAll(".choice").forEach((btn, idx) => {
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
     btn.disabled = true;
-    if (idx === q.a) btn.classList.add("correct");
-    if (idx === i && idx !== q.a) btn.classList.add("incorrect");
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
   });
-  if (i === q.a) score++;
-  explanationBox.innerHTML = `<strong>Explanation:</strong> ${q.e}`;
-  explanationBox.style.display = "block";
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
   nextBtn.style.display = "inline-block";
+  showingExplanation = true;
 }
 
 nextBtn.addEventListener("click", () => {
   current++;
-  if (current < quizData.length) showQuestion(); else showResult();
+  if (current < quizData.length) showQuestion();
+  else showResult();
 });
 
 function updateProgress() {
@@ -208,31 +187,63 @@ function getStarRating(percent) {
   else return "☆☆☆";
 }
 
+let resultSent = false;
+
 function showResult() {
   progressBar.style.width = "100%";
   progressText.textContent = "Quiz Completed";
+
   const percent = Math.round((score / quizData.length) * 100);
   const passed = percent >= 80;
 
   quizBox.innerHTML = `
     <div class='stars'>${getStarRating(percent)}</div>
     <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
     <div class='quiz-nav'>
-      <button class='quiz-btn' id='backBtn'>⬅ Back</button>
-      <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
-      <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
     </div>
   `;
 
   nextBtn.style.display = "none";
-  window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
 
-  document.getElementById("retryBtn").addEventListener("click", retryQuiz);
-  document.getElementById("backBtn").addEventListener("click", () => window.parent.postMessage({ type: "quizBack" }, "*"));
-  document.getElementById("nextLessonBtn").addEventListener("click", () => { if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*"); });
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
 }
 
-function retryQuiz() { current = 0; score = 0; showQuestion(); }
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
 
 showQuestion();
 </script>
