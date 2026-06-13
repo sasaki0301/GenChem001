@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Calculating Amounts of Reactants and Products</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+
+<h1>Calculating Amounts of Reactants and Products</h1>
+
+<div class="key-box">
+<strong>Real-World Scenario</strong><br><br>
+
+A chemical engineer needs to determine how much ammonia can be produced from a given amount of nitrogen gas. A pharmaceutical manufacturer needs to know exactly how much reactant is required to produce a specific quantity of medicine.
+
+These questions are answered using <strong>stoichiometry</strong>, the branch of chemistry that deals with quantitative relationships in chemical reactions.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Explain the meaning of stoichiometry.</li>
+<li>Interpret mole ratios from balanced chemical equations.</li>
+<li>Perform mole-to-mole calculations.</li>
+<li>Perform mass-to-mass calculations.</li>
+<li>Perform mass-to-mole and mole-to-mass calculations.</li>
+<li>Apply stoichiometric reasoning to chemical reactions.</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>What is Stoichiometry?</h2>
+
+<p>
+Stoichiometry is the calculation of the quantities of reactants consumed and products formed during chemical reactions.
+</p>
+
+<div class="key-box">
+Stoichiometry uses the coefficients in a balanced chemical equation to establish quantitative relationships between substances.
+</div>
+
+<p>
+A balanced chemical equation acts like a recipe. Just as a recipe specifies how much of each ingredient is needed, a balanced equation specifies how much of each substance participates in a reaction.
+</p>
+
+</div>
+
+<div class="section">
+<h2>The Importance of Balanced Equations</h2>
+
+<p>
+Every stoichiometric calculation begins with a balanced chemical equation.
+</p>
+
+<div class="example-box">
+
+<h3>Example</h3>
+
+<div class="formula">
+N₂ + 3H₂ → 2NH₃
+</div>
+
+</div>
+
+<p>
+This equation tells us that:
+</p>
+
+<ul>
+<li>1 mole of N₂ reacts with 3 moles of H₂</li>
+<li>1 mole of N₂ produces 2 moles of NH₃</li>
+<li>3 moles of H₂ produce 2 moles of NH₃</li>
+</ul>
+
+<div class="key-box">
+The coefficients in a balanced equation represent mole ratios.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Mole Ratios</h2>
+
+<p>
+A mole ratio is a conversion factor derived from the coefficients of a balanced chemical equation.
+</p>
+
+<div class="example-box">
+
+<div class="formula">
+N₂ + 3H₂ → 2NH₃
+</div>
+
+<p>
+Possible mole ratios:
+</p>
+
+<ul>
+<li>1 mol N₂ : 3 mol H₂</li>
+<li>1 mol N₂ : 2 mol NH₃</li>
+<li>3 mol H₂ : 2 mol NH₃</li>
+<li>2 mol NH₃ : 1 mol N₂</li>
+</ul>
+
+</div>
+
+<p>
+These mole ratios are the foundation of all stoichiometric calculations.
+</p>
+
+</div>
+
+<div class="section">
+<h2>General Stoichiometry Roadmap</h2>
+
+<div class="key-box">
+
+Most stoichiometry problems follow this sequence:
+
+<br><br>
+
+1. Write and balance the equation.
+<br>
+2. Convert the given quantity to moles.
+<br>
+3. Apply the appropriate mole ratio.
+<br>
+4. Convert to the desired unit.
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Mole-to-Mole Calculations</h2>
+
+<p>
+The simplest stoichiometric calculation involves converting between moles of different substances.
+</p>
+
+<div class="example-box">
+
+<h3>Worked Example 1</h3>
+
+<p>
+How many moles of NH₃ can be produced from 5.00 mol of N₂?
+</p>
+
+<div class="formula">
+N₂ + 3H₂ → 2NH₃
+</div>
+
+<p><strong>Step 1:</strong> Identify the mole ratio.</p>
+
+<div class="formula">
+2 mol NH₃
+──────────
+1 mol N₂
+</div>
+
+<p><strong>Step 2:</strong> Apply the ratio.</p>
+
+<div class="formula">
+5.00 mol N₂ ×
+2 mol NH₃
+──────────
+1 mol N₂
+</div>
+
+<div class="formula">
+=
+10.0 mol NH₃
+</div>
+
+<p><strong>Answer:</strong> 10.0 mol NH₃</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Mass-to-Mass Calculations</h2>
+
+<p>
+Most laboratory measurements involve mass rather than moles. Therefore, mass-to-mass stoichiometry is one of the most useful applications of chemistry.
+</p>
+
+<div class="key-box">
+Mass-to-Mass Problems:
+
+Mass → Moles → Mole Ratio → Moles → Mass
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 2</h2>
+
+<div class="example-box">
+
+<p>
+How many grams of water are produced when 4.00 g of hydrogen reacts completely with oxygen?
+</p>
+
+<div class="formula">
+2H₂ + O₂ → 2H₂O
+</div>
+
+<p><strong>Step 1:</strong> Convert grams H₂ to moles.</p>
+
+<div class="formula">
+4.00 g ÷ 2.02 g/mol
+=
+1.98 mol H₂
+</div>
+
+<p><strong>Step 2:</strong> Apply mole ratio.</p>
+
+<div class="formula">
+1.98 mol H₂ ×
+2 mol H₂O
+──────────
+2 mol H₂
+=
+1.98 mol H₂O
+</div>
+
+<p><strong>Step 3:</strong> Convert moles H₂O to grams.</p>
+
+<div class="formula">
+1.98 × 18.02
+=
+35.7 g H₂O
+</div>
+
+<p><strong>Answer:</strong> 35.7 g H₂O</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Mole-to-Mass Calculations</h2>
+
+<p>
+Sometimes the given quantity is already expressed in moles, and the desired answer is mass.
+</p>
+
+<div class="example-box">
+
+<h3>Worked Example 3</h3>
+
+<p>
+How many grams of CO₂ are produced from 3.00 mol of CH₄?
+</p>
+
+<div class="formula">
+CH₄ + 2O₂ → CO₂ + 2H₂O
+</div>
+
+<p><strong>Step 1:</strong> Apply the mole ratio.</p>
+
+<div class="formula">
+3.00 mol CH₄ ×
+1 mol CO₂
+──────────
+1 mol CH₄
+=
+3.00 mol CO₂
+</div>
+
+<p><strong>Step 2:</strong> Convert to grams.</p>
+
+<div class="formula">
+3.00 × 44.01
+=
+132.03 g CO₂
+</div>
+
+<p><strong>Answer:</strong> 132.03 g CO₂</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Mass-to-Mole Calculations</h2>
+
+<p>
+In some problems, the given quantity is mass, while the answer is requested in moles.
+</p>
+
+<div class="example-box">
+
+<h3>Worked Example 4</h3>
+
+<p>
+How many moles of oxygen are needed to react completely with 16.0 g of methane?
+</p>
+
+<div class="formula">
+CH₄ + 2O₂ → CO₂ + 2H₂O
+</div>
+
+<p><strong>Step 1:</strong> Convert methane to moles.</p>
+
+<div class="formula">
+16.0 ÷ 16.05
+=
+0.997 mol CH₄
+</div>
+
+<p><strong>Step 2:</strong> Apply mole ratio.</p>
+
+<div class="formula">
+0.997 ×
+2 mol O₂
+──────────
+1 mol CH₄
+=
+1.99 mol O₂
+</div>
+
+<p><strong>Answer:</strong> 1.99 mol O₂</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Visual Stoichiometry Map</h2>
+
+<div class="key-box">
+
+<div style="text-align:center">
+
+Mass
+↓ (Molar Mass)
+
+Moles
+↓ (Mole Ratio)
+
+Moles
+↓ (Molar Mass)
+
+Mass
+
+</div>
+
+</div>
+
+<p>
+Almost every stoichiometry problem follows this pathway.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Common Mistakes</h2>
+
+<div class="key-box">
+
+<ul>
+<li>Using an unbalanced chemical equation.</li>
+<li>Using atomic masses instead of molar masses.</li>
+<li>Applying the wrong mole ratio.</li>
+<li>Skipping the conversion to moles.</li>
+<li>Confusing coefficients with subscripts.</li>
+<li>Using the inverse mole ratio.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Using the equation N₂ + 3H₂ → 2NH₃, how many moles of NH₃ are produced from 4.00 mol N₂?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+4.00 ×
+2
+=
+8.00 mol NH₃
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> Using 2H₂ + O₂ → 2H₂O, how many moles of H₂O are produced from 6.00 mol H₂?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+6.00 mol H₂O
+</div>
+
+The mole ratio is 2:2 or 1:1.
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> How many grams of CO₂ are produced from 1.00 mol CO₂?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+1.00 × 44.01
+=
+44.01 g CO₂
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> Why must every stoichiometric calculation begin with a balanced equation?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+Because the coefficients provide the mole ratios needed for calculations.
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> Which conversion factor connects two substances in a chemical equation?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+The mole ratio derived from the balanced equation.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>Stoichiometry studies quantitative relationships in chemical reactions.</li>
+<li>Balanced equations provide mole ratios between substances.</li>
+<li>Mole ratios are used to convert between reactants and products.</li>
+<li>Most stoichiometric calculations require converting quantities to moles first.</li>
+<li>Mass-to-mass problems combine molar mass calculations and mole ratios.</li>
+<li>Stoichiometry is widely used in laboratory, industrial, environmental, and pharmaceutical applications.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
