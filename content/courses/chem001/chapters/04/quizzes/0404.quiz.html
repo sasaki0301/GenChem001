@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Exploring Limiting Reactant and Percent Yield</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 5 Assessment: Rotational Motion and Gravitation</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What is a limiting reactant?",c:["The reactant with the greatest mass","The reactant that remains after the reaction","The reactant consumed completely first","The product formed in the smallest amount"],a:2,e:"The limiting reactant is consumed first and determines the maximum amount of product that can be formed."},
+
+{q:"What is an excess reactant?",c:["The reactant consumed first","The reactant remaining after the reaction stops","The reactant with the smallest coefficient","The product formed in excess"],a:1,e:"The excess reactant remains after the limiting reactant has been completely consumed."},
+
+{q:"Which substance determines the maximum amount of product that can be formed?",c:["Excess reactant","Catalyst","Limiting reactant","Product"],a:2,e:"The limiting reactant controls how much product can be produced."},
+
+{q:"What is theoretical yield?",c:["The amount of product actually collected","The maximum amount of product predicted by stoichiometry","The amount of excess reactant remaining","The percentage of product recovered"],a:1,e:"Theoretical yield is the maximum possible product calculated from the balanced equation."},
+
+{q:"What is actual yield?",c:["The maximum possible product","The amount of product actually obtained","The amount of reactant consumed","The percentage of product formed"],a:1,e:"Actual yield is the amount of product obtained from the experiment or process."},
+
+{q:"Which yield is usually larger?",c:["Actual yield","Theoretical yield","They are always equal","Cannot be determined"],a:1,e:"Actual yield is usually less than theoretical yield because of losses and inefficiencies."},
+
+{q:"Percent yield is a measure of:",c:["Reaction speed","Reaction efficiency","Reaction temperature","Reaction type"],a:1,e:"Percent yield indicates how efficiently a reaction produces the desired product."},
+
+{q:"Which formula is used to calculate percent yield?",c:["(Theoretical Yield ÷ Actual Yield) × 100","(Actual Yield ÷ Theoretical Yield) × 100","Actual Yield − Theoretical Yield","Actual Yield + Theoretical Yield"],a:1,e:"Percent yield compares the actual yield to the theoretical yield."},
+
+{q:"A reaction has an actual yield of 45 g and a theoretical yield of 50 g. What is the percent yield?",c:["80%","85%","90%","95%"],a:2,e:"(45 ÷ 50) × 100 = 90%."},
+
+{q:"A reaction has a theoretical yield of 120 g and an actual yield of 96 g. What is the percent yield?",c:["75%","80%","85%","90%"],a:1,e:"(96 ÷ 120) × 100 = 80%."},
+
+{q:"Why is actual yield usually less than theoretical yield?",c:["Matter is destroyed","Products are often lost and reactions may be incomplete","The balanced equation is incorrect","Reactants disappear"],a:1,e:"Product losses and incomplete reactions reduce actual yield."},
+
+{q:"In the reaction N₂ + 3H₂ → 2NH₃, if 2.0 mol N₂ and 4.0 mol H₂ are available, which is the limiting reactant?",c:["N₂","H₂","NH₃","Neither"],a:1,e:"4.0 mol H₂ can produce only 2.67 mol NH₃, making H₂ the limiting reactant."},
+
+{q:"In the reaction N₂ + 3H₂ → 2NH₃, if 2.0 mol N₂ and 10.0 mol H₂ are available, which is the limiting reactant?",c:["N₂","H₂","NH₃","Neither"],a:0,e:"2.0 mol N₂ requires only 6.0 mol H₂, so nitrogen is limiting."},
+
+{q:"What is the best way to identify a limiting reactant?",c:["Choose the reactant with the smallest mass","Choose the reactant with the smallest coefficient","Calculate the amount of product each reactant can produce","Choose the reactant with the smallest molar mass"],a:2,e:"The limiting reactant is the one that produces the smaller amount of product."},
+
+{q:"Which statement is TRUE regarding limiting reactants?",c:["The reactant with the smallest mass is always limiting","The reactant with the smallest coefficient is always limiting","The limiting reactant depends on stoichiometric ratios","The excess reactant determines product yield"],a:2,e:"The limiting reactant is determined using stoichiometric relationships, not simply the amount present."},
+
+{q:"A reaction has a percent yield of 100%. What does this mean?",c:["The reaction did not occur","Actual yield equals theoretical yield","No reactants were consumed","The reaction was very slow"],a:1,e:"A 100% yield means the actual yield matched the theoretical prediction."},
+
+{q:"Can percent yield be greater than 100%?",c:["Never","Always","Sometimes due to impurities or measurement errors","Only for decomposition reactions"],a:2,e:"Impurities or measurement errors can make the measured product mass appear greater than expected."},
+
+{q:"Which industrial goal is directly related to maximizing percent yield?",c:["Increasing waste","Reducing product quality","Improving production efficiency","Increasing reaction temperature only"],a:2,e:"Higher percent yields mean more efficient use of resources and lower waste."},
+
+{q:"A chemist calculates a theoretical yield of 75 g and obtains 60 g experimentally. What is the percent yield?",c:["70%","75%","80%","85%"],a:2,e:"(60 ÷ 75) × 100 = 80%."},
+
+{q:"Which statement best summarizes the relationship among limiting reactant, theoretical yield, and percent yield?",c:["Limiting reactants determine theoretical yield, while percent yield measures how closely actual results match it","Percent yield determines the limiting reactant","Theoretical yield determines reaction type","Actual yield determines the balanced equation"],a:0,e:"The limiting reactant sets the maximum product possible, and percent yield measures how efficiently that amount was obtained."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
