@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Mole-to-Mole and Mass-to-Mass Stoichiometry</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+<h1>Exploring Limiting Reactant and Percent Yield</h1>
+
+<div class="key-box">
+<strong>Real-World Scenario</strong><br><br>
+
+A pharmaceutical company combines two reactants to produce a medicine. Although the reaction is designed to produce 100 g of product, only 85 g is actually obtained.
+
+Why didn't the reaction produce the expected amount?
+
+In real chemical reactions, one reactant is often used up first, stopping the reaction. In addition, some product may be lost during processing. Chemists use the concepts of <strong>limiting reactants</strong>, <strong>theoretical yield</strong>, and <strong>percent yield</strong> to understand and predict reaction efficiency.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Identify the limiting reactant in a chemical reaction.</li>
+<li>Determine the excess reactant.</li>
+<li>Calculate theoretical yield.</li>
+<li>Calculate percent yield.</li>
+<li>Interpret reaction efficiency using percent yield.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>What is a Limiting Reactant?</h2>
+
+<p>
+A <strong>limiting reactant</strong> is the reactant that is completely consumed first in a chemical reaction.
+</p>
+
+<div class="key-box">
+The limiting reactant determines the maximum amount of product that can be formed.
+</div>
+
+<p>
+Once the limiting reactant is used up, the reaction stops even if other reactants remain.
+</p>
+
+<div class="example-box">
+<h3>Cookie Analogy</h3>
+
+<p>
+Suppose one batch of cookies requires:
+</p>
+
+<ul>
+<li>2 eggs</li>
+<li>3 cups of flour</li>
+</ul>
+
+<p>
+If you have:
+</p>
+
+<ul>
+<li>10 eggs</li>
+<li>9 cups flour</li>
+</ul>
+
+<p>
+The flour runs out first, so flour is the limiting ingredient.
+</p>
+
+<p>
+The same idea applies to chemical reactions.
+</p>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Limiting vs Excess Reactant</h2>
+
+<table>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>Limiting Reactant</td>
+<td>Reactant consumed completely first</td>
+</tr>
+
+<tr>
+<td>Excess Reactant</td>
+<td>Reactant remaining after the reaction stops</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+Only the limiting reactant determines the amount of product formed.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Determining the Limiting Reactant</h2>
+
+<p>
+The most reliable method is to calculate how much product each reactant can produce.
+</p>
+
+<p>
+The reactant that produces the smaller amount of product is the limiting reactant.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 1</h2>
+
+<div class="example-box">
+
+<p>
+Consider the reaction:
+</p>
+
+<div class="formula">
+N₂ + 3H₂ → 2NH₃
+</div>
+
+<p>
+Suppose we have:
+</p>
+
+<ul>
+<li>2.0 mol N₂</li>
+<li>4.0 mol H₂</li>
+</ul>
+
+<p><strong>Step 1:</strong> Determine NH₃ from N₂.</p>
+
+<div class="formula">
+<div class="equation-line">
+<span>2.0 mol N₂ ×</span>
+
+<span class="fraction">
+<span class="fraction-top">2 mol NH₃</span>
+<span class="fraction-bottom">1 mol N₂</span>
+</span>
+
+<span>= 4.0 mol NH₃</span>
+</div>
+</div>
+
+<p><strong>Step 2:</strong> Determine NH₃ from H₂.</p>
+
+<div class="formula">
+<div class="equation-line">
+<span>4.0 mol H₂ ×</span>
+
+<span class="fraction">
+<span class="fraction-top">2 mol NH₃</span>
+<span class="fraction-bottom">3 mol H₂</span>
+</span>
+
+<span>= 2.67 mol NH₃</span>
+</div>
+</div>
+
+<p>
+Because H₂ produces the smaller amount of NH₃, hydrogen is the limiting reactant.
+</p>
+
+<div class="key-box">
+Limiting Reactant: H₂
+<br>
+Maximum Product: 2.67 mol NH₃
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Theoretical Yield</h2>
+
+<p>
+The <strong>theoretical yield</strong> is the maximum amount of product that can be produced based on stoichiometric calculations.
+</p>
+
+<div class="key-box">
+Theoretical Yield = Maximum possible product predicted by chemistry
+</div>
+
+<p>
+Theoretical yield assumes:
+</p>
+
+<ul>
+<li>Perfect reaction conditions</li>
+<li>No side reactions</li>
+<li>No product loss</li>
+<li>100% conversion of limiting reactant</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Actual Yield</h2>
+
+<p>
+The <strong>actual yield</strong> is the amount of product actually obtained in the laboratory or industrial process.
+</p>
+
+<div class="key-box">
+Actual Yield = Product actually collected
+</div>
+
+<p>
+Actual yield is almost always lower than theoretical yield because of product losses and incomplete reactions.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Percent Yield</h2>
+
+<p>
+Percent yield measures the efficiency of a reaction.
+</p>
+
+<div class="formula">
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">Actual Yield</span>
+<span class="fraction-bottom">Theoretical Yield</span>
+</span>
+
+<span>× 100%</span>
+
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 2</h2>
+
+<div class="example-box">
+
+<p>
+A reaction has:
+</p>
+
+<ul>
+<li>Theoretical Yield = 50.0 g</li>
+<li>Actual Yield = 42.5 g</li>
+</ul>
+
+<p>
+Calculate the percent yield.
+</p>
+
+<div class="formula">
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">42.5 g</span>
+<span class="fraction-bottom">50.0 g</span>
+</span>
+
+<span>× 100</span>
+
+<span>= 85.0%</span>
+
+</div>
+</div>
+
+<div class="key-box">
+Percent Yield = 85.0%
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Why Percent Yield is Usually Less Than 100%</h2>
+
+<ul>
+<li>Incomplete reactions</li>
+<li>Product losses during separation</li>
+<li>Side reactions producing unwanted products</li>
+<li>Experimental errors</li>
+<li>Impurities in reactants</li>
+</ul>
+
+<div class="key-box">
+Most industrial processes aim for the highest percent yield possible because higher yields reduce waste and increase profit.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Industrial Applications</h2>
+
+<table>
+<tr>
+<th>Industry</th>
+<th>Application</th>
+</tr>
+
+<tr>
+<td>Pharmaceuticals</td>
+<td>Maximizing medicine production</td>
+</tr>
+
+<tr>
+<td>Petroleum</td>
+<td>Improving fuel production efficiency</td>
+</tr>
+
+<tr>
+<td>Food Processing</td>
+<td>Reducing raw material waste</td>
+</tr>
+
+<tr>
+<td>Manufacturing</td>
+<td>Optimizing chemical processes</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Common Mistakes</h2>
+
+<div class="key-box">
+
+<ul>
+<li>Assuming the reactant with the smallest amount is always limiting.</li>
+<li>Failing to compare product amounts from each reactant.</li>
+<li>Using actual yield instead of theoretical yield in stoichiometric calculations.</li>
+<li>Forgetting to multiply by 100 when calculating percent yield.</li>
+<li>Using an unbalanced equation.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> What is the limiting reactant?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+The reactant that is completely consumed first and determines the maximum amount of product formed.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> What is an excess reactant?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+A reactant that remains after the reaction stops.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> What is theoretical yield?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+The maximum amount of product predicted by stoichiometric calculations.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> Calculate percent yield if actual yield is 72 g and theoretical yield is 80 g.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">72</span>
+<span class="fraction-bottom">80</span>
+</span>
+
+<span>× 100</span>
+
+<span>= 90%</span>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> Why are actual yields usually lower than theoretical yields?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Because of incomplete reactions, side reactions, product losses, and experimental limitations.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>The limiting reactant is consumed first and determines product formation.</li>
+<li>The excess reactant remains after the reaction ends.</li>
+<li>Theoretical yield is the maximum predicted product.</li>
+<li>Actual yield is the amount of product actually obtained.</li>
+<li>Percent yield measures reaction efficiency.</li>
+<li>Limiting reactant and percent yield calculations are essential in laboratory and industrial chemistry.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
+  
