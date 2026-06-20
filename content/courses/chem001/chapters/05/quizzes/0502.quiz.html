@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gas Laws</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Gas Laws - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"Which gas law describes the inverse relationship between pressure and volume when temperature and amount of gas remain constant?",c:["Charles's Law","Gay-Lussac's Law","Boyle's Law","Avogadro's Law"],a:2,e:"Boyle's Law states that pressure and volume are inversely proportional."},
+
+{q:"According to Boyle's Law, what happens to the pressure of a gas if its volume is reduced by half while temperature remains constant?",c:["Pressure is reduced by half","Pressure doubles","Pressure remains unchanged","Pressure becomes zero"],a:1,e:"Pressure and volume are inversely proportional."},
+
+{q:"Which gas law describes the direct relationship between volume and temperature?",c:["Boyle's Law","Charles's Law","Avogadro's Law","Ideal Gas Law"],a:1,e:"Charles's Law states that volume is directly proportional to temperature."},
+
+{q:"Why must temperature always be converted to Kelvin when using gas law equations?",c:["Kelvin is the SI unit for pressure","Gas laws require absolute temperature","Kelvin values are always larger","Atmospheric pressure is based on Kelvin"],a:1,e:"Gas laws are based on absolute temperature measurements."},
+
+{q:"What is the Kelvin temperature equivalent of 27°C?",c:["246 K","273 K","300 K","327 K"],a:2,e:"27 + 273 = 300 K."},
+
+{q:"Which gas law explains why a balloon expands when heated at constant pressure?",c:["Boyle's Law","Charles's Law","Gay-Lussac's Law","Avogadro's Law"],a:1,e:"As temperature increases, volume increases."},
+
+{q:"According to Gay-Lussac's Law, what happens to the pressure of a gas if its temperature increases while volume remains constant?",c:["Pressure decreases","Pressure remains constant","Pressure increases","Pressure becomes zero"],a:2,e:"Pressure and temperature are directly proportional."},
+
+{q:"A gas occupies 8.0 L at 2.0 atm. What volume will it occupy at 4.0 atm if temperature remains constant?",c:["2.0 L","4.0 L","8.0 L","16.0 L"],a:1,e:"Using Boyle's Law: V₂ = (2.0 × 8.0)/4.0 = 4.0 L."},
+
+{q:"A balloon occupies 3.0 L at 300 K. What volume will it occupy at 600 K if pressure remains constant?",c:["1.5 L","3.0 L","6.0 L","9.0 L"],a:2,e:"Using Charles's Law: doubling temperature doubles volume."},
+
+{q:"Which gas law relates volume directly to the number of moles of gas?",c:["Boyle's Law","Charles's Law","Gay-Lussac's Law","Avogadro's Law"],a:3,e:"Avogadro's Law states that volume is directly proportional to moles."},
+
+{q:"If the number of moles of a gas doubles while temperature and pressure remain constant, what happens to the volume?",c:["It halves","It doubles","It remains constant","It quadruples"],a:1,e:"According to Avogadro's Law, volume is directly proportional to moles."},
+
+{q:"A gas has a pressure of 1.20 atm at 300 K. What pressure will it have at 450 K if volume remains constant?",c:["0.80 atm","1.20 atm","1.80 atm","2.40 atm"],a:2,e:"P₂ = (1.20 × 450)/300 = 1.80 atm."},
+
+{q:"Which pair of variables has an inverse relationship?",c:["Volume and Temperature","Pressure and Temperature","Volume and Moles","Pressure and Volume"],a:3,e:"Boyle's Law describes an inverse relationship between pressure and volume."},
+
+{q:"A gas occupies 5.0 L at 1.0 mol. What volume will it occupy at 2.5 mol if temperature and pressure remain constant?",c:["2.0 L","5.0 L","10.0 L","12.5 L"],a:3,e:"V₂ = (5.0 × 2.5)/1.0 = 12.5 L."},
+
+{q:"Which variable must remain constant for Boyle's Law to apply?",c:["Pressure and temperature","Volume and moles","Temperature and moles","Pressure and volume"],a:2,e:"Boyle's Law assumes constant temperature and amount of gas."},
+
+{q:"Which variable must remain constant for Charles's Law to apply?",c:["Pressure and moles","Volume and pressure","Temperature and moles","Pressure and temperature"],a:0,e:"Charles's Law assumes pressure and moles remain constant."},
+
+{q:"A gas occupies 10.0 L at 500 K. What volume will it occupy at 250 K if pressure remains constant?",c:["2.5 L","5.0 L","10.0 L","20.0 L"],a:1,e:"Halving the Kelvin temperature halves the volume."},
+
+{q:"Which statement about Avogadro's Law is correct?",c:["Pressure and moles are inversely proportional","Volume and moles are directly proportional","Temperature and moles are inversely proportional","Volume and pressure are directly proportional"],a:1,e:"As moles increase, volume increases proportionally."},
+
+{q:"A sealed aerosol can is left in a hot car. Which gas law best explains why the pressure inside increases?",c:["Boyle's Law","Charles's Law","Gay-Lussac's Law","Avogadro's Law"],a:2,e:"Temperature increases while volume remains nearly constant, increasing pressure."},
+
+{q:"Which statement best summarizes the four gas laws studied in this lesson?",c:["Gas laws describe how pressure, volume, temperature, and moles are related","Gas laws only apply to ideal gases","Gas laws determine chemical reaction rates","Gas laws explain atomic structure"],a:0,e:"The gas laws describe quantitative relationships among the major gas variables."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
