@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Writing Electron Configuration of Atoms</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+
+<h1>Writing Electron Configuration of Atoms</h1>
+
+<div class="key-box">
+<strong>Real-World Scenario</strong><br><br>
+
+Why is sodium highly reactive while neon is chemically stable? Why do metals conduct electricity while noble gases rarely react?
+
+The answers lie in how electrons are arranged around the nucleus. Electron configuration describes the distribution of electrons among energy levels, sublevels, and orbitals. Understanding electron configuration allows chemists to predict an element's chemical behavior, bonding patterns, and position in the periodic table.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Explain the Aufbau Principle.</li>
+<li>Apply the Pauli Exclusion Principle.</li>
+<li>Apply Hund's Rule.</li>
+<li>Write electron configurations of atoms.</li>
+<li>Use noble gas shorthand notation.</li>
+<li>Identify valence electrons from electron configurations.</li>
+<li>Relate electron configuration to periodic table position.</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>What is Electron Configuration?</h2>
+
+<p>
+Electron configuration describes how electrons are distributed among the energy levels, sublevels, and orbitals of an atom.
+</p>
+
+<div class="example-box">
+
+<h3>Example</h3>
+
+<p>
+Hydrogen contains one electron.
+</p>
+
+<div class="formula">
+1s¹
+</div>
+
+<p>
+This means the single electron occupies the 1s orbital.
+</p>
+
+</div>
+
+<div class="key-box">
+Electron configuration acts like an address showing where electrons are located within an atom.
+</div>
+
+</div>
+
+<div class="section">
+<h2>The Aufbau Principle</h2>
+
+<p>
+The Aufbau Principle states that electrons occupy the lowest available energy orbitals before filling higher-energy orbitals.
+</p>
+
+<div class="key-box">
+Electrons fill orbitals from lowest energy to highest energy.
+</div>
+
+<p>
+The filling order is determined experimentally and follows a predictable pattern.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Orbital Filling Order</h2>
+
+<div class="key-box">
+
+1s
+
+<br>
+
+2s
+
+<br>
+
+2p
+
+<br>
+
+3s
+
+<br>
+
+3p
+
+<br>
+
+4s
+
+<br>
+
+3d
+
+<br>
+
+4p
+
+<br>
+
+5s
+
+<br>
+
+4d
+
+<br>
+
+5p
+
+<br>
+
+6s
+
+<br>
+
+4f
+
+<br>
+
+5d
+
+<br>
+
+6p
+
+<br>
+
+7s
+
+</div>
+
+<p>
+Students often memorize this sequence using the diagonal rule.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Maximum Electrons per Sublevel</h2>
+
+<table>
+<tr>
+<th>Sublevel</th>
+<th>Maximum Electrons</th>
+</tr>
+
+<tr>
+<td>s</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>p</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>d</td>
+<td>10</td>
+</tr>
+
+<tr>
+<td>f</td>
+<td>14</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>The Pauli Exclusion Principle</h2>
+
+<p>
+Wolfgang Pauli proposed that no two electrons within an atom can possess the same set of four quantum numbers.
+</p>
+
+<div class="key-box">
+An orbital can contain at most two electrons, and those electrons must have opposite spins.
+</div>
+
+<div class="example-box">
+
+<h3>Allowed</h3>
+
+<div class="formula">
+↑↓
+</div>
+
+<h3>Not Allowed</h3>
+
+<div class="formula">
+↑↑
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Hund's Rule</h2>
+
+<p>
+Hund's Rule states that electrons occupy orbitals singly before pairing.
+</p>
+
+<div class="key-box">
+Electrons spread out among equal-energy orbitals whenever possible.
+</div>
+
+<div class="example-box">
+
+<h3>Correct Filling of 2p³</h3>
+
+<div class="formula">
+↑ &nbsp; ↑ &nbsp; ↑
+</div>
+
+<h3>Incorrect Filling</h3>
+
+<div class="formula">
+↑↓ &nbsp; ↑ &nbsp; _
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Writing Electron Configurations Step-by-Step</h2>
+
+<p>
+To write an electron configuration:
+</p>
+
+<ol>
+<li>Determine the atomic number.</li>
+<li>Determine the total number of electrons.</li>
+<li>Fill orbitals according to the Aufbau Principle.</li>
+<li>Apply the Pauli Exclusion Principle.</li>
+<li>Apply Hund's Rule.</li>
+</ol>
+
+</div>
+
+<div class="section">
+<h2>Example 1: Carbon</h2>
+
+<div class="example-box">
+
+<p>
+Carbon has atomic number 6.
+</p>
+
+<p>
+Therefore, it contains 6 electrons.
+</p>
+
+<p>
+Fill orbitals in order:
+</p>
+
+<div class="formula">
+1s² 2s² 2p²
+</div>
+
+<p>
+Orbital diagram:
+</p>
+
+<div class="formula">
+1s &nbsp; ↑↓
+
+<br><br>
+
+2s &nbsp; ↑↓
+
+<br><br>
+
+2p &nbsp; ↑ &nbsp; ↑ &nbsp; _
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Example 2: Oxygen</h2>
+
+<div class="example-box">
+
+<p>
+Oxygen has atomic number 8.
+</p>
+
+<div class="formula">
+1s² 2s² 2p⁴
+</div>
+
+<p>
+Orbital diagram:
+</p>
+
+<div class="formula">
+2p &nbsp; ↑↓ &nbsp; ↑ &nbsp; ↑
+</div>
+
+<p>
+Notice that Hund's Rule is followed before pairing occurs.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Example 3: Sodium</h2>
+
+<div class="example-box">
+
+<p>
+Sodium has atomic number 11.
+</p>
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s¹
+</div>
+
+<p>
+The outermost electron occupies the 3s orbital.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Example 4: Chlorine</h2>
+
+<div class="example-box">
+
+<p>
+Chlorine has atomic number 17.
+</p>
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s² 3p⁵
+</div>
+
+<p>
+The valence shell contains seven electrons.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Noble Gas Shorthand Notation</h2>
+
+<p>
+For larger atoms, electron configurations can become lengthy.
+</p>
+
+<p>
+Chemists simplify configurations using noble gas notation.
+</p>
+
+<div class="example-box">
+
+<h3>Sodium</h3>
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s¹
+</div>
+
+can be written as
+
+<div class="formula">
+[Ne] 3s¹
+</div>
+
+</div>
+
+<div class="example-box">
+
+<h3>Calcium</h3>
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s² 3p⁶ 4s²
+</div>
+
+becomes
+
+<div class="formula">
+[Ar] 4s²
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Valence Electrons</h2>
+
+<p>
+Valence electrons are the electrons in the highest occupied principal energy level.
+</p>
+
+<div class="key-box">
+Valence electrons largely determine chemical properties and bonding behavior.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Example: Determining Valence Electrons</h2>
+
+<div class="example-box">
+
+<p>
+Magnesium:
+</p>
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s²
+</div>
+
+<p>
+Highest energy level = n = 3
+</p>
+
+<p>
+Valence electrons = 2
+</p>
+
+</div>
+
+<div class="example-box">
+
+<p>
+Phosphorus:
+</p>
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s² 3p³
+</div>
+
+<p>
+Valence electrons = 5
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Electron Configuration and the Periodic Table</h2>
+
+<table>
+<tr>
+<th>Block</th>
+<th>Ending Sublevel</th>
+</tr>
+
+<tr>
+<td>s-block</td>
+<td>s</td>
+</tr>
+
+<tr>
+<td>p-block</td>
+<td>p</td>
+</tr>
+
+<tr>
+<td>d-block</td>
+<td>d</td>
+</tr>
+
+<tr>
+<td>f-block</td>
+<td>f</td>
+</tr>
+
+</table>
+
+<p>
+An element's electron configuration directly determines its position in the periodic table.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Predicting Chemical Behavior</h2>
+
+<div class="example-box">
+
+<p>
+Sodium:
+</p>
+
+<div class="formula">
+[Ne] 3s¹
+</div>
+
+<p>
+One valence electron → tends to lose one electron → forms Na⁺
+</p>
+
+</div>
+
+<div class="example-box">
+
+<p>
+Chlorine:
+</p>
+
+<div class="formula">
+[Ne] 3s² 3p⁵
+</div>
+
+<p>
+Seven valence electrons → tends to gain one electron → forms Cl⁻
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Media and Interactive Resources</h2>
+
+<div class="visual-box">
+
+<iframe
+height="450"
+src="https://www.youtube.com/embed/rz4Dd1I_fX0"
+title="Electron Configuration Tutorial"
+allowfullscreen>
+</iframe>
+
+<p class="caption">
+Video: Writing Electron Configurations Step-by-Step
+</p>
+
+</div>
+
+<div class="visual-box">
+
+<iframe
+height="600"
+src="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html">
+</iframe>
+
+<p class="caption">
+Interactive Simulation: Build atoms and observe electron arrangements.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Common Misconceptions</h2>
+
+<div class="key-box">
+
+<ul>
+<li>Electrons do not fill orbitals randomly.</li>
+<li>Orbitals fill according to energy, not shell number alone.</li>
+<li>Valence electrons are not always equal to total electrons.</li>
+<li>Hund's Rule requires single occupation before pairing.</li>
+<li>An orbital can hold only two electrons with opposite spins.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Write the electron configuration of lithium (Z = 3).</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+1s² 2s¹
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> How many electrons can occupy a p sublevel?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+6 electrons
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> What principle states that electrons occupy the lowest available energy orbitals first?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Aufbau Principle
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> What is the noble gas shorthand configuration of sodium?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+[Ne] 3s¹
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> How many valence electrons does sulfur have?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+6 valence electrons
+<br>
+Electron configuration:
+1s² 2s² 2p⁶ 3s² 3p⁴
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>6.</strong> Write the electron configuration of magnesium (Z = 12).</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+1s² 2s² 2p⁶ 3s²
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>7.</strong> How many valence electrons does chlorine have?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+7 valence electrons
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>8.</strong> Write the noble gas shorthand notation for calcium.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+[Ar] 4s²
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>Electron configuration describes how electrons are distributed in an atom.</li>
+<li>The Aufbau Principle governs orbital filling order.</li>
+<li>The Pauli Exclusion Principle limits each orbital to two electrons with opposite spins.</li>
+<li>Hund's Rule requires orbitals to fill singly before pairing.</li>
+<li>Noble gas notation simplifies long electron configurations.</li>
+<li>Valence electrons determine many chemical properties.</li>
+<li>Electron configurations explain periodic trends and chemical behavior.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
