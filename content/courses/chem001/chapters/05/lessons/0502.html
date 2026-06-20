@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Gas Laws</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+
+<h1>Gas Laws</h1>
+
+<div class="key-box">
+<strong>Real-World Scenario</strong><br><br>
+
+Why does a syringe become harder to push when the opening is blocked? Why does a balloon shrink when placed in a freezer? Why do vehicle tire pressures increase on hot days?
+
+These everyday observations are explained by gas laws. Gas laws describe the mathematical relationships among pressure, volume, temperature, and the amount of gas. Understanding these relationships allows scientists and engineers to predict gas behavior in laboratories, industrial systems, engines, refrigeration units, weather forecasting, and aerospace applications.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Explain the relationships among pressure, volume, temperature, and amount of gas.</li>
+<li>Apply Boyle's Law.</li>
+<li>Apply Charles's Law.</li>
+<li>Apply Gay-Lussac's Law.</li>
+<li>Apply Avogadro's Law.</li>
+<li>Solve gas law problems using appropriate formulas.</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>The Four Variables of Gases</h2>
+
+<p>
+Gas behavior can be described using four major variables:
+</p>
+
+<table>
+<tr>
+<th>Variable</th>
+<th>Symbol</th>
+<th>Common Units</th>
+</tr>
+
+<tr>
+<td>Pressure</td>
+<td>P</td>
+<td>atm, kPa, mmHg</td>
+</tr>
+
+<tr>
+<td>Volume</td>
+<td>V</td>
+<td>L, mL</td>
+</tr>
+
+<tr>
+<td>Temperature</td>
+<td>T</td>
+<td>K (Kelvin)</td>
+</tr>
+
+<tr>
+<td>Amount of Gas</td>
+<td>n</td>
+<td>mol</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+Gas laws examine how one variable changes when another variable changes.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Temperature Must Be in Kelvin</h2>
+
+<p>
+All gas law calculations involving temperature must use the Kelvin scale.
+</p>
+
+<div class="formula">
+K = °C + 273.15
+</div>
+
+<div class="example-box">
+
+<h3>Examples</h3>
+
+<div class="formula">
+25°C = 298 K
+</div>
+
+<br>
+
+<div class="formula">
+0°C = 273 K
+</div>
+
+<br>
+
+<div class="formula">
+100°C = 373 K
+</div>
+
+</div>
+
+<div class="key-box">
+Never substitute Celsius values directly into gas law equations.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Boyle's Law</h2>
+
+<p>
+In 1662, Robert Boyle discovered that pressure and volume are inversely related when temperature and the amount of gas remain constant.
+</p>
+
+<div class="key-box">
+As volume decreases, pressure increases.
+<br><br>
+As volume increases, pressure decreases.
+</div>
+
+<div class="formula">
+P₁V₁ = P₂V₂
+</div>
+
+<table>
+<tr>
+<th>Variable Held Constant</th>
+<th>Relationship</th>
+</tr>
+
+<tr>
+<td>Temperature and moles</td>
+<td>Pressure ∝ 1/Volume</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Boyle's Law Example</h2>
+
+<div class="example-box">
+
+<p>
+A gas occupies 4.0 L at 1.5 atm. What volume will it occupy at 3.0 atm?
+</p>
+
+<p><strong>Given:</strong></p>
+
+<ul>
+<li>P₁ = 1.5 atm</li>
+<li>V₁ = 4.0 L</li>
+<li>P₂ = 3.0 atm</li>
+<li>V₂ = ?</li>
+</ul>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span>V₂ =</span>
+
+<span class="fraction">
+<span class="fraction-top">P₁V₁</span>
+<span class="fraction-bottom">P₂</span>
+</span>
+
+</div>
+
+</div>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span>V₂ =</span>
+
+<span class="fraction">
+<span class="fraction-top">(1.5)(4.0)</span>
+<span class="fraction-bottom">3.0</span>
+</span>
+
+<span>= 2.0 L</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Charles's Law</h2>
+
+<p>
+Jacques Charles discovered that volume and temperature are directly proportional when pressure and the amount of gas remain constant.
+</p>
+
+<div class="key-box">
+As temperature increases, volume increases.
+<br><br>
+As temperature decreases, volume decreases.
+</div>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">V₁</span>
+<span class="fraction-bottom">T₁</span>
+</span>
+
+<span>=</span>
+
+<span class="fraction">
+<span class="fraction-top">V₂</span>
+<span class="fraction-bottom">T₂</span>
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Charles's Law Example</h2>
+
+<div class="example-box">
+
+<p>
+A balloon occupies 3.0 L at 300 K. What volume will it occupy at 450 K?
+</p>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span>V₂ =</span>
+
+<span class="fraction">
+<span class="fraction-top">V₁T₂</span>
+<span class="fraction-bottom">T₁</span>
+</span>
+
+</div>
+
+</div>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span>V₂ =</span>
+
+<span class="fraction">
+<span class="fraction-top">(3.0)(450)</span>
+<span class="fraction-bottom">300</span>
+</span>
+
+<span>= 4.5 L</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Gay-Lussac's Law</h2>
+
+<p>
+Joseph Gay-Lussac found that pressure and temperature are directly proportional when volume and the amount of gas remain constant.
+</p>
+
+<div class="key-box">
+As temperature increases, pressure increases.
+<br><br>
+As temperature decreases, pressure decreases.
+</div>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">P₁</span>
+<span class="fraction-bottom">T₁</span>
+</span>
+
+<span>=</span>
+
+<span class="fraction">
+<span class="fraction-top">P₂</span>
+<span class="fraction-bottom">T₂</span>
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Gay-Lussac's Law Example</h2>
+
+<div class="example-box">
+
+<p>
+A gas has a pressure of 1.20 atm at 300 K. What pressure will it have at 450 K?
+</p>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span>P₂ =</span>
+
+<span class="fraction">
+<span class="fraction-top">P₁T₂</span>
+<span class="fraction-bottom">T₁</span>
+</span>
+
+</div>
+
+</div>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span>P₂ =</span>
+
+<span class="fraction">
+<span class="fraction-top">(1.20)(450)</span>
+<span class="fraction-bottom">300</span>
+</span>
+
+<span>= 1.80 atm</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Avogadro's Law</h2>
+
+<p>
+Amedeo Avogadro proposed that equal volumes of gases at the same temperature and pressure contain equal numbers of particles.
+</p>
+
+<div class="key-box">
+Volume is directly proportional to the number of moles.
+</div>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">V₁</span>
+<span class="fraction-bottom">n₁</span>
+</span>
+
+<span>=</span>
+
+<span class="fraction">
+<span class="fraction-top">V₂</span>
+<span class="fraction-bottom">n₂</span>
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Avogadro's Law Example</h2>
+
+<div class="example-box">
+
+<p>
+A gas occupies 5.0 L and contains 0.50 mol. What volume will it occupy if the amount increases to 1.50 mol?
+</p>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span>V₂ =</span>
+
+<span class="fraction">
+<span class="fraction-top">V₁n₂</span>
+<span class="fraction-bottom">n₁</span>
+</span>
+
+</div>
+
+</div>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span>V₂ =</span>
+
+<span class="fraction">
+<span class="fraction-top">(5.0)(1.50)</span>
+<span class="fraction-bottom">0.50</span>
+</span>
+
+<span>= 15.0 L</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Summary of Gas Laws</h2>
+
+<table>
+<tr>
+<th>Gas Law</th>
+<th>Variables</th>
+<th>Relationship</th>
+</tr>
+
+<tr>
+<td>Boyle's Law</td>
+<td>Pressure and Volume</td>
+<td>Inverse</td>
+</tr>
+
+<tr>
+<td>Charles's Law</td>
+<td>Volume and Temperature</td>
+<td>Direct</td>
+</tr>
+
+<tr>
+<td>Gay-Lussac's Law</td>
+<td>Pressure and Temperature</td>
+<td>Direct</td>
+</tr>
+
+<tr>
+<td>Avogadro's Law</td>
+<td>Volume and Moles</td>
+<td>Direct</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Visualizing Gas Law Relationships</h2>
+
+<div class="key-box">
+
+<strong>Boyle's Law</strong><br>
+Pressure ↑ → Volume ↓
+
+<br><br>
+
+<strong>Charles's Law</strong><br>
+Temperature ↑ → Volume ↑
+
+<br><br>
+
+<strong>Gay-Lussac's Law</strong><br>
+Temperature ↑ → Pressure ↑
+
+<br><br>
+
+<strong>Avogadro's Law</strong><br>
+Moles ↑ → Volume ↑
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Media and Interactive Resources</h2>
+
+<div class="visual-box">
+
+<iframe
+height="450"
+src="https://www.youtube.com/embed/i6xa3Y7j8jM"
+title="Gas Laws Overview"
+allowfullscreen>
+</iframe>
+
+<p class="caption">
+Video: Understanding Boyle's, Charles's, Gay-Lussac's, and Avogadro's Laws
+</p>
+
+</div>
+
+<div class="visual-box">
+
+<iframe
+height="600"
+src="https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html">
+</iframe>
+
+<p class="caption">
+Interactive Simulation: Observe how pressure, volume, temperature, and amount affect gas behavior.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Common Mistakes</h2>
+
+<div class="key-box">
+
+<ul>
+<li>Using Celsius instead of Kelvin.</li>
+<li>Forgetting which variables remain constant.</li>
+<li>Confusing direct and inverse relationships.</li>
+<li>Substituting values into the wrong gas law formula.</li>
+<li>Failing to check units before calculations.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> A gas occupies 8.0 L at 2.0 atm. What volume will it occupy at 4.0 atm?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+V₂ = 4.0 L
+</div>
+
+Pressure doubles, so volume is reduced by half.
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> Why must Kelvin be used in gas law calculations?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Gas laws are based on absolute temperature. Using Celsius can produce incorrect results.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> According to Charles's Law, what happens to volume when temperature increases?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Volume increases because volume and temperature are directly proportional.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> According to Gay-Lussac's Law, what happens to pressure when temperature increases at constant volume?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Pressure increases because pressure and temperature are directly proportional.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> A gas occupies 6.0 L at 1.0 mol. What volume will it occupy at 2.0 mol?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+V₂ = 12.0 L
+</div>
+
+Doubling the number of moles doubles the volume.
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>6.</strong> Which gas law explains why a balloon expands when heated?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Charles's Law
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>Gas laws describe relationships among pressure, volume, temperature, and amount of gas.</li>
+<li>Boyle's Law relates pressure and volume inversely.</li>
+<li>Charles's Law relates volume and temperature directly.</li>
+<li>Gay-Lussac's Law relates pressure and temperature directly.</li>
+<li>Avogadro's Law relates volume and number of moles directly.</li>
+<li>Temperature must always be expressed in Kelvin for gas law calculations.</li>
+<li>Gas laws allow scientists and engineers to predict gas behavior in real-world systems.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
