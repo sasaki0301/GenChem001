@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 7 Assessment: Periodic Table and Trends</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 7 Assessment: Periodic Table and Trends</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What information is directly provided by an element's atomic number?",c:["Number of neutrons","Number of protons","Mass number","Valence electrons"],a:1,e:"The atomic number equals the number of protons in the nucleus."},
+
+{q:"A neutral sulfur atom has an atomic number of 16. How many electrons does it contain?",c:["8","16","32","48"],a:1,e:"A neutral atom contains equal numbers of protons and electrons."},
+
+{q:"Which statement correctly describes a group in the periodic table?",c:["A horizontal row","A vertical column","A diagonal arrangement","A collection of isotopes"],a:1,e:"Groups are vertical columns of elements with similar properties."},
+
+{q:"Elements within the same group generally have the same number of:",c:["Neutrons","Energy levels","Valence electrons","Protons"],a:2,e:"Valence electrons largely determine chemical behavior."},
+
+{q:"Which category best describes silicon?",c:["Metal","Nonmetal","Metalloid","Noble Gas"],a:2,e:"Silicon is a metalloid and an important semiconductor."},
+
+{q:"Which family contains elements with one valence electron?",c:["Halogens","Noble Gases","Alkali Metals","Alkaline Earth Metals"],a:2,e:"Group 1 elements possess one valence electron."},
+
+{q:"Which family contains elements with seven valence electrons?",c:["Group 1","Group 2","Group 16","Group 17"],a:3,e:"Halogens belong to Group 17."},
+
+{q:"Why are noble gases generally unreactive?",c:["They have no electrons","They contain only neutrons","Their valence shells are filled","They are metals"],a:2,e:"Filled valence shells make noble gases very stable."},
+
+{q:"An element belongs to Group 2. What ion will it most likely form?",c:["+1","+2","-1","-2"],a:1,e:"Group 2 elements typically lose two electrons."},
+
+{q:"An element belongs to Group 16. How many valence electrons does it possess?",c:["4","5","6","7"],a:2,e:"Group 16 elements have six valence electrons."},
+
+{q:"Oxygen has an atomic number of 8 and a mass number of 16. How many neutrons does it contain?",c:["8","16","24","32"],a:0,e:"Neutrons = Mass Number − Atomic Number = 16 − 8 = 8."},
+
+{q:"Which element would most likely form a 3− ion?",c:["Al","Na","P","Mg"],a:2,e:"Phosphorus tends to gain three electrons to complete its octet."},
+
+{q:"What does the period number indicate?",c:["Number of protons","Number of neutrons","Highest occupied energy level","Valence electron count"],a:2,e:"The period number corresponds to the highest occupied principal energy level."},
+
+{q:"Which element is both a metalloid and commonly used in computer chips?",c:["Na","Si","Cl","Ne"],a:1,e:"Silicon is the most widely used semiconductor."},
+
+{q:"Which statement best demonstrates the predictive power of the periodic table?",c:["It only lists atomic masses","It predicts chemical behavior and reactivity","It eliminates laboratory work","It identifies isotopes only"],a:1,e:"The periodic table allows prediction of many atomic and chemical properties."},
+
+{q:"Which periodic trend generally decreases across a period?",c:["Ionization Energy","Electronegativity","Atomic Radius","Electron Affinity"],a:2,e:"Atomic radius decreases due to increasing nuclear attraction."},
+
+{q:"Which periodic trend generally increases across a period?",c:["Atomic Radius","Metallic Character","Ionization Energy","Shielding"],a:2,e:"Ionization energy generally increases across a period."},
+
+{q:"Why does atomic radius decrease across a period?",c:["More energy levels are added","Nuclear charge increases","Shielding increases dramatically","Atoms lose protons"],a:1,e:"Increasing nuclear charge pulls electrons closer."},
+
+{q:"Why does atomic radius increase down a group?",c:["Atoms gain more protons only","Additional energy levels are added","Electrons disappear","Nuclear attraction increases"],a:1,e:"Additional occupied shells increase atomic size."},
+
+{q:"Which element has the largest atomic radius?",c:["Li","Na","K","F"],a:2,e:"Atomic radius increases down Group 1."},
+
+{q:"Arrange the following in order of increasing atomic radius: Cl, Mg, Na.",c:["Na < Mg < Cl","Mg < Na < Cl","Cl < Mg < Na","Cl < Na < Mg"],a:2,e:"Atomic radius decreases across Period 3 from left to right."},
+
+{q:"When a sodium atom forms Na⁺, its size:",c:["Increases","Remains the same","Decreases","Doubles"],a:2,e:"Cations are smaller than their parent atoms."},
+
+{q:"Which species is largest?",c:["Cl","Cl⁻","Na⁺","Ne"],a:1,e:"Anions are generally larger than their neutral atoms."},
+
+{q:"Ionization energy is the energy required to:",c:["Add an electron","Remove an electron","Add a proton","Break a bond"],a:1,e:"Ionization energy measures resistance to electron removal."},
+
+{q:"Which element has the highest ionization energy among these?",c:["Na","Mg","Al","Cl"],a:3,e:"Ionization energy increases across a period."},
+
+{q:"Why does ionization energy decrease down a group?",c:["Atoms become smaller","Valence electrons are farther from the nucleus","Protons disappear","Shielding decreases"],a:1,e:"Distance and shielding reduce nuclear attraction."},
+
+{q:"Electron affinity describes an atom's tendency to:",c:["Lose neutrons","Gain electrons","Lose protons","Increase size"],a:1,e:"Electron affinity measures attraction for incoming electrons."},
+
+{q:"Which family generally exhibits the strongest electron affinity?",c:["Group 1","Group 2","Halogens","Noble Gases"],a:2,e:"Halogens strongly attract electrons to complete an octet."},
+
+{q:"Electronegativity measures:",c:["Atomic size","Ability to attract shared electrons","Ability to lose protons","Nuclear stability"],a:1,e:"Electronegativity describes attraction for bonding electrons."},
+
+{q:"Which element has the highest electronegativity?",c:["O","Cl","F","N"],a:2,e:"Fluorine is the most electronegative element."},
+
+{q:"Electronegativity generally ______ across a period and ______ down a group.",c:["Increases, decreases","Decreases, increases","Increases, increases","Decreases, decreases"],a:0,e:"This trend follows increasing effective nuclear charge."},
+
+{q:"Metallic character generally increases in which direction?",c:["Across a period","Up a group","Down a group","Toward fluorine"],a:2,e:"Atoms lower in a group lose electrons more easily."},
+
+{q:"Which element exhibits the strongest metallic character?",c:["Li","Na","K","Cl"],a:2,e:"Metallic character increases down Group 1."},
+
+{q:"Which alkali metal is expected to be the most reactive?",c:["Li","Na","K","Rb"],a:3,e:"Reactivity increases down Group 1 as ionization energy decreases."},
+
+{q:"Which halogen is expected to be the most reactive?",c:["F","Cl","Br","I"],a:0,e:"Fluorine most strongly attracts electrons."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
