@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Using the Periodic Table to Identify Atom Properties</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Using the Periodic Table to Identify Atom Properties - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What information does the atomic number of an element provide?",c:["Number of neutrons","Number of protons","Mass number","Number of valence electrons"],a:1,e:"The atomic number is equal to the number of protons in an atom."},
+
+{q:"A neutral phosphorus atom has an atomic number of 15. How many electrons does it contain?",c:["8","15","30","31"],a:1,e:"A neutral atom has equal numbers of protons and electrons."},
+
+{q:"Which statement correctly describes a period in the periodic table?",c:["A vertical column of elements","A horizontal row of elements","A family of similar ions","A group of isotopes"],a:1,e:"Periods are horizontal rows in the periodic table."},
+
+{q:"Elements within the same group generally have similar chemical properties because they have the same:",c:["Atomic mass","Number of neutrons","Number of valence electrons","Number of energy levels"],a:2,e:"Valence electrons largely determine chemical behavior."},
+
+{q:"Which category of elements is generally a good conductor of electricity and heat?",c:["Nonmetals","Metalloids","Metals","Noble gases"],a:2,e:"Metals are good conductors of heat and electricity."},
+
+{q:"Which element is classified as a metalloid?",c:["Sodium","Chlorine","Silicon","Neon"],a:2,e:"Silicon is one of the most important metalloids."},
+
+{q:"Which family contains the most reactive metals?",c:["Alkaline Earth Metals","Halogens","Transition Metals","Alkali Metals"],a:3,e:"Alkali metals are highly reactive due to their single valence electron."},
+
+{q:"How many valence electrons do Group 2 elements possess?",c:["1","2","6","8"],a:1,e:"Group 2 elements have two valence electrons."},
+
+{q:"Which family contains the most reactive nonmetals?",c:["Alkali Metals","Halogens","Noble Gases","Transition Metals"],a:1,e:"Halogens readily gain electrons and are highly reactive."},
+
+{q:"Why are noble gases generally unreactive?",c:["They lack electrons","They have complete valence shells","They have very large nuclei","They contain no neutrons"],a:1,e:"A complete valence shell provides exceptional stability."},
+
+{q:"Which group contains elements that commonly form +1 ions?",c:["Group 1","Group 2","Group 16","Group 17"],a:0,e:"Alkali metals lose one electron to form +1 ions."},
+
+{q:"Which group contains elements that commonly form -1 ions?",c:["Group 1","Group 2","Group 16","Group 17"],a:3,e:"Halogens gain one electron to form -1 ions."},
+
+{q:"An element belongs to Group 16. How many valence electrons does it have?",c:["4","5","6","7"],a:2,e:"Group 16 elements possess six valence electrons."},
+
+{q:"An element belongs to Group 15. What ion is it most likely to form?",c:["+1","+2","-2","-3"],a:3,e:"Group 15 elements often gain three electrons to complete an octet."},
+
+{q:"Which statement best describes metalloids?",c:["Excellent conductors","Poor conductors only","Properties intermediate between metals and nonmetals","Completely unreactive"],a:2,e:"Metalloids exhibit both metallic and nonmetallic characteristics."},
+
+{q:"An oxygen atom has an atomic number of 8 and a mass number of 16. How many neutrons does it contain?",c:["8","16","24","32"],a:0,e:"Neutrons = Mass Number − Atomic Number = 16 − 8 = 8."},
+
+{q:"A sodium atom has an atomic number of 11 and a mass number of 23. How many neutrons does it contain?",c:["11","12","23","34"],a:1,e:"23 − 11 = 12 neutrons."},
+
+{q:"Which family contains elements with seven valence electrons?",c:["Group 1","Group 2","Group 17","Group 18"],a:2,e:"Halogens have seven valence electrons."},
+
+{q:"Which element would most likely form a 2+ ion?",c:["Na","Mg","Cl","Ne"],a:1,e:"Magnesium belongs to Group 2 and commonly forms Mg²⁺."},
+
+{q:"Which element would most likely form a 3− ion?",c:["P","Mg","Na","Al"],a:0,e:"Phosphorus belongs to Group 15 and commonly forms P³⁻."},
+
+{q:"How many valence electrons does chlorine have?",c:["5","6","7","8"],a:2,e:"Chlorine belongs to Group 17."},
+
+{q:"Which of the following elements is most likely to gain electrons during bonding?",c:["Na","Mg","Al","Cl"],a:3,e:"Chlorine is a nonmetal and tends to gain electrons."},
+
+{q:"Which of the following elements is most likely to lose electrons during bonding?",c:["O","Cl","Na","S"],a:2,e:"Sodium is a metal and readily loses one electron."},
+
+{q:"An element belongs to Period 4. What does this indicate?",c:["It has four valence electrons","It has four protons","Its highest occupied energy level is n = 4","It forms a 4+ ion"],a:2,e:"The period number corresponds to the highest occupied energy level."},
+
+{q:"Which element belongs to the noble gas family?",c:["Cl","Ne","Na","Mg"],a:1,e:"Neon is a Group 18 noble gas."},
+
+{q:"Which statement correctly compares metals and nonmetals?",c:["Metals gain electrons while nonmetals lose electrons","Both always gain electrons","Metals generally lose electrons while nonmetals generally gain electrons","Both always lose electrons"],a:2,e:"Metals tend to form cations, while nonmetals tend to form anions."},
+
+{q:"An atom contains 17 protons and 17 electrons. Which element is it?",c:["Oxygen","Chlorine","Phosphorus","Sulfur"],a:1,e:"The atomic number determines the element. Atomic number 17 is chlorine."},
+
+{q:"An atom belongs to Group 2 and Period 3. Which element is it?",c:["Na","Mg","Al","Ca"],a:1,e:"Magnesium is located in Group 2, Period 3."},
+
+{q:"Which element is classified as both a semiconductor and a metalloid?",c:["Copper","Silicon","Chlorine","Neon"],a:1,e:"Silicon is a metalloid widely used in electronics."},
+
+{q:"Which statement best demonstrates the predictive power of the periodic table?",c:["It only lists element names","It allows scientists to predict chemical properties and reactivity","It shows only atomic masses","It replaces laboratory experiments entirely"],a:1,e:"The periodic table reveals patterns that help predict element behavior."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
