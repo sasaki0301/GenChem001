@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Chapter 5: Gases</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+
+<h1>Chapter Summary: Gases</h1>
+
+<div class="key-box">
+<strong>Chapter Big Idea</strong><br><br>
+
+Gases behave differently from solids and liquids because their particles are constantly moving, widely separated, and experience minimal attractive forces. The behavior of gases can be explained using the Kinetic Molecular Theory and predicted quantitatively using gas laws.
+
+This chapter explored the properties of gases, the relationships among pressure, volume, temperature, and amount of gas, and the mathematical models used to predict gas behavior in real-world applications.
+</div>
+
+<div class="section">
+<h2>1. Properties of Gases</h2>
+
+<p>
+Gases differ significantly from solids and liquids because of the motion and arrangement of their particles.
+</p>
+
+<table>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>No Definite Shape</td>
+<td>Gases take the shape of their container</td>
+</tr>
+
+<tr>
+<td>No Definite Volume</td>
+<td>Gases expand to fill available space</td>
+</tr>
+
+<tr>
+<td>Compressibility</td>
+<td>Gases can be compressed significantly</td>
+</tr>
+
+<tr>
+<td>Low Density</td>
+<td>Particles are far apart</td>
+</tr>
+
+<tr>
+<td>Diffusion</td>
+<td>Spontaneous mixing of gas particles</td>
+</tr>
+
+<tr>
+<td>Effusion</td>
+<td>Escape of gas through a tiny opening</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+The unique behavior of gases results from the large distances between particles and their constant motion.
+</div>
+
+</div>
+
+<div class="section">
+<h2>2. Kinetic Molecular Theory (KMT)</h2>
+
+<p>
+The Kinetic Molecular Theory explains gas behavior based on particle motion.
+</p>
+
+<div class="key-box">
+
+Major Assumptions of KMT:
+
+<ol>
+<li>Gases consist of tiny particles.</li>
+<li>Particles move in constant random motion.</li>
+<li>Collisions are elastic.</li>
+<li>Particles occupy negligible volume.</li>
+<li>There are minimal attractive forces between particles.</li>
+<li>Average kinetic energy depends on temperature.</li>
+</ol>
+
+</div>
+
+<p>
+KMT explains why gases expand, diffuse, exert pressure, and respond to changes in temperature.
+</p>
+
+</div>
+
+<div class="section">
+<h2>3. Gas Pressure</h2>
+
+<p>
+Gas pressure results from collisions of gas particles with the walls of a container.
+</p>
+
+<div class="key-box">
+Pressure is the force exerted per unit area.
+</div>
+
+<p>
+Pressure increases when:
+</p>
+
+<ul>
+<li>Temperature increases</li>
+<li>More gas particles are added</li>
+<li>Volume decreases</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>4. The Four Variables of Gases</h2>
+
+<table>
+<tr>
+<th>Variable</th>
+<th>Symbol</th>
+<th>Common Units</th>
+</tr>
+
+<tr>
+<td>Pressure</td>
+<td>P</td>
+<td>atm, kPa, mmHg</td>
+</tr>
+
+<tr>
+<td>Volume</td>
+<td>V</td>
+<td>L, mL</td>
+</tr>
+
+<tr>
+<td>Temperature</td>
+<td>T</td>
+<td>K</td>
+</tr>
+
+<tr>
+<td>Amount of Gas</td>
+<td>n</td>
+<td>mol</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+All gas laws describe relationships among these four variables.
+</div>
+
+</div>
+
+<div class="section">
+<h2>5. Temperature and the Kelvin Scale</h2>
+
+<p>
+Gas law calculations require temperature to be expressed in Kelvin.
+</p>
+
+<div class="formula">
+K = °C + 273.15
+</div>
+
+<div class="example-box">
+
+<h3>Examples</h3>
+
+<div class="formula">
+0°C = 273 K
+</div>
+
+<br>
+
+<div class="formula">
+25°C = 298 K
+</div>
+
+<br>
+
+<div class="formula">
+100°C = 373 K
+</div>
+
+</div>
+
+<div class="key-box">
+Never use Celsius values directly in gas law equations.
+</div>
+
+</div>
+
+<div class="section">
+<h2>6. Boyle's Law</h2>
+
+<p>
+Boyle's Law describes the relationship between pressure and volume when temperature and moles remain constant.
+</p>
+
+<div class="formula">
+P₁V₁ = P₂V₂
+</div>
+
+<div class="key-box">
+Pressure and volume are inversely proportional.
+</div>
+
+<table>
+<tr>
+<th>Change</th>
+<th>Result</th>
+</tr>
+
+<tr>
+<td>Pressure ↑</td>
+<td>Volume ↓</td>
+</tr>
+
+<tr>
+<td>Pressure ↓</td>
+<td>Volume ↑</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>7. Charles's Law</h2>
+
+<p>
+Charles's Law describes the relationship between volume and temperature when pressure and moles remain constant.
+</p>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">V₁</span>
+<span class="fraction-bottom">T₁</span>
+</span>
+
+<span>=</span>
+
+<span class="fraction">
+<span class="fraction-top">V₂</span>
+<span class="fraction-bottom">T₂</span>
+</span>
+
+</div>
+
+</div>
+
+<div class="key-box">
+Volume and temperature are directly proportional.
+</div>
+
+</div>
+
+<div class="section">
+<h2>8. Gay-Lussac's Law</h2>
+
+<p>
+Gay-Lussac's Law describes the relationship between pressure and temperature when volume and moles remain constant.
+</p>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">P₁</span>
+<span class="fraction-bottom">T₁</span>
+</span>
+
+<span>=</span>
+
+<span class="fraction">
+<span class="fraction-top">P₂</span>
+<span class="fraction-bottom">T₂</span>
+</span>
+
+</div>
+
+</div>
+
+<div class="key-box">
+Pressure and temperature are directly proportional.
+</div>
+
+</div>
+
+<div class="section">
+<h2>9. Avogadro's Law</h2>
+
+<p>
+Avogadro's Law describes the relationship between volume and the number of moles.
+</p>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">V₁</span>
+<span class="fraction-bottom">n₁</span>
+</span>
+
+<span>=</span>
+
+<span class="fraction">
+<span class="fraction-top">V₂</span>
+<span class="fraction-bottom">n₂</span>
+</span>
+
+</div>
+
+</div>
+
+<div class="key-box">
+Volume and number of moles are directly proportional.
+</div>
+
+</div>
+
+<div class="section">
+<h2>10. Summary of Individual Gas Laws</h2>
+
+<table>
+<tr>
+<th>Gas Law</th>
+<th>Variables</th>
+<th>Relationship</th>
+</tr>
+
+<tr>
+<td>Boyle's Law</td>
+<td>P and V</td>
+<td>Inverse</td>
+</tr>
+
+<tr>
+<td>Charles's Law</td>
+<td>V and T</td>
+<td>Direct</td>
+</tr>
+
+<tr>
+<td>Gay-Lussac's Law</td>
+<td>P and T</td>
+<td>Direct</td>
+</tr>
+
+<tr>
+<td>Avogadro's Law</td>
+<td>V and n</td>
+<td>Direct</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>11. The Combined Gas Law</h2>
+
+<p>
+The Combined Gas Law combines Boyle's, Charles's, and Gay-Lussac's Laws into a single equation.
+</p>
+
+<div class="formula">
+
+<div class="equation-line">
+
+<span class="fraction">
+<span class="fraction-top">P₁V₁</span>
+<span class="fraction-bottom">T₁</span>
+</span>
+
+<span>=</span>
+
+<span class="fraction">
+<span class="fraction-top">P₂V₂</span>
+<span class="fraction-bottom">T₂</span>
+</span>
+
+</div>
+
+</div>
+
+<div class="key-box">
+Use the Combined Gas Law when pressure, volume, and temperature all change while the number of moles remains constant.
+</div>
+
+</div>
+
+<div class="section">
+<h2>12. The Ideal Gas Law</h2>
+
+<p>
+The Ideal Gas Law combines all major gas variables into one equation.
+</p>
+
+<div class="formula">
+PV = nRT
+</div>
+
+<table>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>P</td>
+<td>Pressure</td>
+</tr>
+
+<tr>
+<td>V</td>
+<td>Volume</td>
+</tr>
+
+<tr>
+<td>n</td>
+<td>Moles</td>
+</tr>
+
+<tr>
+<td>R</td>
+<td>Gas Constant</td>
+</tr>
+
+<tr>
+<td>T</td>
+<td>Temperature (K)</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+The Ideal Gas Law is used when pressure, volume, temperature, and moles are involved.
+</div>
+
+</div>
+
+<div class="section">
+<h2>13. Standard Temperature and Pressure (STP)</h2>
+
+<table>
+<tr>
+<th>Variable</th>
+<th>Value</th>
+</tr>
+
+<tr>
+<td>Temperature</td>
+<td>273 K (0°C)</td>
+</tr>
+
+<tr>
+<td>Pressure</td>
+<td>1 atm</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+At STP:
+<br><br>
+1 mole of an ideal gas occupies approximately 22.4 L.
+</div>
+
+<div class="formula">
+1 mol gas = 22.4 L at STP
+</div>
+
+</div>
+
+<div class="section">
+<h2>Real-World Applications of Gas Laws</h2>
+
+<table>
+<tr>
+<th>Application</th>
+<th>Gas Law Concept</th>
+</tr>
+
+<tr>
+<td>Bicycle Pumps</td>
+<td>Boyle's Law</td>
+</tr>
+
+<tr>
+<td>Hot-Air Balloons</td>
+<td>Charles's Law</td>
+</tr>
+
+<tr>
+<td>Vehicle Tire Pressure</td>
+<td>Gay-Lussac's Law</td>
+</tr>
+
+<tr>
+<td>Inflating Balloons</td>
+<td>Avogadro's Law</td>
+</tr>
+
+<tr>
+<td>Scuba Diving</td>
+<td>Combined Gas Law</td>
+</tr>
+
+<tr>
+<td>Industrial Gas Storage</td>
+<td>Ideal Gas Law</td>
+</tr>
+
+<tr>
+<td>Weather Balloons</td>
+<td>Combined and Ideal Gas Laws</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Chapter Mastery Check</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Why are gases highly compressible?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Because large empty spaces exist between gas particles.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> What causes gas pressure?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Collisions of gas particles with container walls.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> Which gas law describes the inverse relationship between pressure and volume?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Boyle's Law
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> Which gas law uses the equation PV = nRT?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Ideal Gas Law
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> What volume does one mole of an ideal gas occupy at STP?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+22.4 L
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>6.</strong> Why must Kelvin be used in gas law calculations?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Gas laws require absolute temperature measurements.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Chapter Summary</h2>
+
+<ul>
+<li>Gases have no definite shape or volume and are highly compressible.</li>
+<li>The Kinetic Molecular Theory explains gas behavior through particle motion.</li>
+<li>Gas pressure results from collisions between particles and container walls.</li>
+<li>Boyle's Law describes the inverse relationship between pressure and volume.</li>
+<li>Charles's Law describes the direct relationship between volume and temperature.</li>
+<li>Gay-Lussac's Law describes the direct relationship between pressure and temperature.</li>
+<li>Avogadro's Law describes the direct relationship between volume and moles.</li>
+<li>The Combined Gas Law relates pressure, volume, and temperature.</li>
+<li>The Ideal Gas Law combines pressure, volume, temperature, and moles into one equation.</li>
+<li>At STP, one mole of an ideal gas occupies approximately 22.4 L.</li>
+<li>Gas laws are widely applied in science, engineering, medicine, meteorology, and industry.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Assessment →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
