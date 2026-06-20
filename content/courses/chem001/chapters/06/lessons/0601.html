@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Visualizing the Quantum Mechanical Model and Assigning Quantum Numbers</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+
+<h1>Visualizing the Quantum Mechanical Model and Assigning Quantum Numbers</h1>
+
+<div class="key-box">
+<strong>Real-World Scenario</strong><br><br>
+
+Modern technologies such as smartphones, computer processors, LED displays, solar panels, MRI machines, and semiconductor devices all depend on our understanding of how electrons behave inside atoms.
+
+Scientists once imagined electrons orbiting the nucleus like planets around the Sun. However, experiments revealed that electrons behave much differently. Today, the Quantum Mechanical Model provides the most accurate description of atomic structure and electron behavior.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Describe the evolution of atomic models.</li>
+<li>Explain the Quantum Mechanical Model of the atom.</li>
+<li>Differentiate energy levels, sublevels, and orbitals.</li>
+<li>Describe the wave-particle nature of electrons.</li>
+<li>Interpret electron probability distributions.</li>
+<li>Assign the four quantum numbers to electrons.</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Why Atomic Models Changed Over Time</h2>
+
+<p>
+Atomic theory evolved as scientists gathered new evidence from experiments. Each new model improved our understanding of atomic structure.
+</p>
+
+<table>
+<tr>
+<th>Scientist</th>
+<th>Model</th>
+<th>Key Idea</th>
+</tr>
+
+<tr>
+<td>John Dalton</td>
+<td>Solid Sphere Model</td>
+<td>Atoms are indivisible particles.</td>
+</tr>
+
+<tr>
+<td>J.J. Thomson</td>
+<td>Plum Pudding Model</td>
+<td>Electrons exist within positive matter.</td>
+</tr>
+
+<tr>
+<td>Ernest Rutherford</td>
+<td>Nuclear Model</td>
+<td>Atoms contain a dense positive nucleus.</td>
+</tr>
+
+<tr>
+<td>Niels Bohr</td>
+<td>Planetary Model</td>
+<td>Electrons occupy fixed energy levels.</td>
+</tr>
+
+<tr>
+<td>Schrödinger & Heisenberg</td>
+<td>Quantum Mechanical Model</td>
+<td>Electrons occupy probability regions called orbitals.</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Limitations of the Bohr Model</h2>
+
+<p>
+The Bohr Model successfully explained hydrogen but failed to accurately describe atoms with multiple electrons.
+</p>
+
+<div class="example-box">
+
+<h3>Bohr Model Successes</h3>
+
+<ul>
+<li>Explained hydrogen emission spectra.</li>
+<li>Introduced energy levels.</li>
+<li>Showed electrons occupy specific energies.</li>
+</ul>
+
+</div>
+
+<div class="example-box">
+
+<h3>Bohr Model Limitations</h3>
+
+<ul>
+<li>Could not explain complex atoms.</li>
+<li>Could not accurately describe electron motion.</li>
+<li>Ignored wave-like behavior of electrons.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Wave-Particle Nature of Electrons</h2>
+
+<p>
+Experiments revealed that electrons exhibit both particle-like and wave-like behavior.
+</p>
+
+<div class="key-box">
+Electrons behave as particles when interacting with matter and as waves when moving through space.
+</div>
+
+<p>
+This concept is known as <strong>wave-particle duality</strong>.
+</p>
+
+<div class="example-box">
+
+<h3>Evidence</h3>
+
+<ul>
+<li>Electrons have measurable mass and charge.</li>
+<li>Electrons produce diffraction patterns similar to light waves.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Heisenberg's Uncertainty Principle</h2>
+
+<p>
+Werner Heisenberg discovered that it is impossible to know both the exact position and exact momentum of an electron at the same time.
+</p>
+
+<div class="key-box">
+The more precisely we know an electron's position, the less precisely we know its momentum.
+</div>
+
+<p>
+Because of this limitation, scientists describe electron locations using probabilities rather than exact paths.
+</p>
+
+</div>
+
+<div class="section">
+<h2>The Quantum Mechanical Model</h2>
+
+<p>
+The Quantum Mechanical Model is the modern model of atomic structure.
+</p>
+
+<div class="key-box">
+Electrons do not travel in fixed circular paths. Instead, they occupy regions of high probability called orbitals.
+</div>
+
+<p>
+An orbital represents the region where an electron is most likely to be found.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Energy Levels, Sublevels, and Orbitals</h2>
+
+<p>
+The Quantum Mechanical Model organizes electrons into energy levels, sublevels, and orbitals.
+</p>
+
+<table>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>Principal Energy Level</td>
+<td>Main electron shell (n)</td>
+</tr>
+
+<tr>
+<td>Sublevel</td>
+<td>s, p, d, or f regions within a shell</td>
+</tr>
+
+<tr>
+<td>Orbital</td>
+<td>Specific probability region containing up to 2 electrons</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>The Four Types of Sublevels</h2>
+
+<table>
+<tr>
+<th>Sublevel</th>
+<th>Orbitals</th>
+<th>Maximum Electrons</th>
+</tr>
+
+<tr>
+<td>s</td>
+<td>1</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>p</td>
+<td>3</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>d</td>
+<td>5</td>
+<td>10</td>
+</tr>
+
+<tr>
+<td>f</td>
+<td>7</td>
+<td>14</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Orbital Shapes</h2>
+
+<div class="key-box">
+
+s orbital → spherical
+
+<br><br>
+
+p orbitals → dumbbell-shaped
+
+<br><br>
+
+d orbitals → clover-shaped (mostly)
+
+<br><br>
+
+f orbitals → complex multi-lobed shapes
+
+</div>
+
+<p>
+Different orbital shapes arise from different electron probability distributions.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Quantum Numbers</h2>
+
+<p>
+Each electron in an atom can be described using four quantum numbers.
+</p>
+
+<div class="key-box">
+Quantum numbers function like an "electron address," identifying where an electron is likely to be found.
+</div>
+
+</div>
+
+<div class="section">
+<h2>1. Principal Quantum Number (n)</h2>
+
+<p>
+The principal quantum number describes the main energy level occupied by an electron.
+</p>
+
+<table>
+<tr>
+<th>n Value</th>
+<th>Energy Level</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>First shell</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Second shell</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Third shell</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Fourth shell</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+Larger n values correspond to higher energy and greater distance from the nucleus.
+</div>
+
+</div>
+
+<div class="section">
+<h2>2. Angular Momentum Quantum Number (l)</h2>
+
+<p>
+The angular momentum quantum number identifies the sublevel.
+</p>
+
+<table>
+<tr>
+<th>l Value</th>
+<th>Sublevel</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td>s</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>p</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>d</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>f</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>3. Magnetic Quantum Number (m<sub>l</sub>)</h2>
+
+<p>
+The magnetic quantum number identifies a specific orbital within a sublevel.
+</p>
+
+<table>
+<tr>
+<th>Sublevel</th>
+<th>Possible m<sub>l</sub> Values</th>
+</tr>
+
+<tr>
+<td>s</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>p</td>
+<td>-1, 0, +1</td>
+</tr>
+
+<tr>
+<td>d</td>
+<td>-2, -1, 0, +1, +2</td>
+</tr>
+
+<tr>
+<td>f</td>
+<td>-3 to +3</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>4. Spin Quantum Number (m<sub>s</sub>)</h2>
+
+<p>
+The spin quantum number describes electron spin orientation.
+</p>
+
+<table>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>+½</td>
+<td>Spin Up ↑</td>
+</tr>
+
+<tr>
+<td>-½</td>
+<td>Spin Down ↓</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+Each orbital can contain at most two electrons with opposite spins.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Example Quantum Number Assignment</h2>
+
+<div class="example-box">
+
+<p>
+Consider an electron in a 3p orbital.
+</p>
+
+Possible quantum numbers:
+</p>
+
+<ul>
+<li>n = 3</li>
+<li>l = 1 (p sublevel)</li>
+<li>m<sub>l</sub> = -1, 0, or +1</li>
+<li>m<sub>s</sub> = +½ or -½</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>How Quantum Numbers Work Together</h2>
+
+<div class="key-box">
+
+n → identifies energy level
+
+<br><br>
+
+l → identifies sublevel
+
+<br><br>
+
+m<sub>l</sub> → identifies orbital
+
+<br><br>
+
+m<sub>s</sub> → identifies electron spin
+
+</div>
+
+<p>
+Together, these four quantum numbers uniquely describe an electron within an atom.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Real-World Applications</h2>
+
+<table>
+<tr>
+<th>Field</th>
+<th>Application</th>
+</tr>
+
+<tr>
+<td>Semiconductors</td>
+<td>Computer chips and processors</td>
+</tr>
+
+<tr>
+<td>LED Technology</td>
+<td>Electronic displays</td>
+</tr>
+
+<tr>
+<td>Lasers</td>
+<td>Optical communication systems</td>
+</tr>
+
+<tr>
+<td>Medicine</td>
+<td>MRI and spectroscopy</td>
+</tr>
+
+<tr>
+<td>Materials Science</td>
+<td>Design of advanced materials</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Media and Interactive Resources</h2>
+
+<div class="visual-box">
+
+<iframe
+height="450"
+src="https://www.youtube.com/embed/Q8KQf4vqD7s"
+title="Quantum Mechanical Model"
+allowfullscreen>
+</iframe>
+
+<p class="caption">
+Video: Introduction to the Quantum Mechanical Model and Orbitals
+</p>
+
+</div>
+
+<div class="visual-box">
+
+<iframe
+height="600"
+src="https://phet.colorado.edu/sims/html/models-of-the-hydrogen-atom/latest/models-of-the-hydrogen-atom_en.html">
+</iframe>
+
+<p class="caption">
+Interactive Simulation: Explore the evolution of atomic models and electron behavior.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Common Misconceptions</h2>
+
+<div class="key-box">
+
+<ul>
+<li>Electrons do not orbit the nucleus like planets.</li>
+<li>Orbitals are probability regions, not physical paths.</li>
+<li>Quantum numbers describe electrons, not entire atoms.</li>
+<li>The Bohr Model is historically important but not the modern atomic model.</li>
+<li>Electron positions can only be predicted probabilistically.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Why did scientists replace the Bohr Model with the Quantum Mechanical Model?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+The Bohr Model could not accurately explain atoms containing multiple electrons and did not account for the wave nature of electrons.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> What is an orbital?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+An orbital is a region of high probability where an electron is likely to be found.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> Which quantum number identifies the principal energy level?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+The principal quantum number (n).
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> What sublevel corresponds to l = 2?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+The d sublevel.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> How many electrons can occupy a single orbital?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+A maximum of two electrons with opposite spins.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>6.</strong> What are the possible m<sub>s</sub> values?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
++½ and -½.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>The Quantum Mechanical Model is the modern description of atomic structure.</li>
+<li>Electrons exhibit wave-particle duality.</li>
+<li>Orbitals represent probability regions where electrons are likely to be found.</li>
+<li>Energy levels contain sublevels and orbitals.</li>
+<li>The four quantum numbers describe an electron's location and behavior.</li>
+<li>Quantum mechanics forms the foundation of modern chemistry, electronics, and materials science.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
