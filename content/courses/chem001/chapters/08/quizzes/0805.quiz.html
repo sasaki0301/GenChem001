@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 8 Assessment: Chemical Bonding</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 8 Assessment: Chemical Bonding</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"Why do most atoms form chemical bonds?",c:["To increase their atomic mass","To become more stable by achieving a lower-energy electron configuration","To increase the number of protons","To become radioactive"],a:1,e:"Atoms form chemical bonds to achieve a more stable electron configuration."},
+
+{q:"According to the Octet Rule, atoms generally tend to:",c:["Have eight protons","Gain, lose, or share electrons until they have eight valence electrons","Always gain electrons","Always lose electrons"],a:1,e:"The Octet Rule explains the tendency of atoms to achieve eight valence electrons."},
+
+{q:"Which pair of elements is most likely to form an ionic compound?",c:["Carbon and Oxygen","Hydrogen and Chlorine","Potassium and Bromine","Nitrogen and Fluorine"],a:2,e:"Potassium is a metal while bromine is a nonmetal."},
+
+{q:"Which pair of elements is most likely to form a covalent compound?",c:["Calcium and Chlorine","Magnesium and Oxygen","Phosphorus and Fluorine","Lithium and Sulfur"],a:2,e:"Both phosphorus and fluorine are nonmetals."},
+
+{q:"Which process best describes ionic bonding?",c:["Sharing electrons equally","Sharing electrons unequally","Transfer of electrons","Transfer of protons"],a:2,e:"Ionic bonding results from electron transfer."},
+
+{q:"Which process best describes covalent bonding?",c:["Electron transfer","Electron sharing","Proton transfer","Neutron transfer"],a:1,e:"Covalent bonds are formed by sharing electrons."},
+
+{q:"Which ion is formed when calcium loses two electrons?",c:["Ca⁺","Ca²⁺","Ca²⁻","Ca⁻"],a:1,e:"Calcium commonly forms Ca²⁺."},
+
+{q:"Which ion is formed when sulfur gains two electrons?",c:["S⁺","S²⁺","S⁻","S²⁻"],a:3,e:"Sulfur gains two electrons to complete its octet."},
+
+{q:"Which compound is ionic?",c:["NH₃","SO₂","MgCl₂","CH₄"],a:2,e:"Magnesium is a metal and chlorine is a nonmetal."},
+
+{q:"Which compound is covalent?",c:["Li₂O","NaBr","PCl₅","CaF₂"],a:2,e:"Phosphorus and chlorine are both nonmetals."},
+
+{q:"Which property is typical of ionic compounds?",c:["Low melting point","Poor electrical conductivity in solution","Conduct electricity when molten or dissolved","Always exist as gases"],a:2,e:"Mobile ions allow ionic compounds to conduct electricity."},
+
+{q:"Which property is typical of covalent compounds?",c:["Contain mobile ions","Generally poor electrical conductors","Always solids","Always have high melting points"],a:1,e:"Most covalent compounds lack mobile charged particles."},
+
+{q:"Which molecule contains a triple bond?",c:["CO₂","HCN","H₂O","SO₂"],a:1,e:"HCN contains a carbon-nitrogen triple bond."},
+
+{q:"How many shared electron pairs are present in a double bond?",c:["1","2","3","4"],a:1,e:"A double bond consists of two shared electron pairs."},
+
+{q:"Which molecule is an example of an incomplete octet?",c:["CH₄","NH₃","BF₃","CO₂"],a:2,e:"Boron in BF₃ has only six valence electrons."},
+
+{q:"Which molecule follows the expanded octet rule?",c:["CH₄","CO₂","PCl₅","NH₃"],a:2,e:"Phosphorus in PCl₅ accommodates ten electrons."},
+
+{q:"Which step should always be performed first when drawing a Lewis structure?",c:["Determine geometry","Count total valence electrons","Choose the central atom","Add lone pairs"],a:1,e:"Counting valence electrons is always the first step."},
+
+{q:"Which atom is usually selected as the central atom?",c:["Hydrogen","The most electronegative atom","The least electronegative atom except hydrogen","The largest atom"],a:2,e:"The least electronegative atom (excluding hydrogen) is generally the central atom."},
+
+{q:"Which molecule has one lone pair on the central atom?",c:["CH₄","PCl₃","CO₂","BF₃"],a:1,e:"Phosphorus in PCl₃ has one lone pair."},
+
+{q:"Which molecule has two lone pairs on the central atom?",c:["CH₄","NH₃","H₂O","SO₃"],a:2,e:"Oxygen in water has two lone pairs."},
+
+{q:"According to VSEPR Theory, electron pairs:",c:["Attract one another","Repel one another","Remain stationary","Form ionic bonds"],a:1,e:"Electron pairs repel and arrange themselves as far apart as possible."},
+
+{q:"Which molecule has a trigonal planar geometry?",c:["SO₃","SO₂","NH₃","CH₄"],a:0,e:"SO₃ has three electron groups and no lone pairs."},
+
+{q:"Which molecule has a tetrahedral geometry?",c:["CO₂","CH₄","SO₂","BF₃"],a:1,e:"Methane has four bonding groups around carbon."},
+
+{q:"Which molecule has a bent geometry?",c:["BeCl₂","CO₂","SO₂","BF₃"],a:2,e:"SO₂ has one lone pair on sulfur, producing a bent shape."},
+
+{q:"Which molecule has a linear geometry?",c:["XeF₂","SO₂","PCl₃","NH₃"],a:0,e:"XeF₂ has a linear molecular geometry."},
+
+{q:"What primarily determines bond polarity?",c:["Atomic mass","Electronegativity difference","Bond length","Atomic radius"],a:1,e:"Bond polarity depends on differences in electronegativity."},
+
+{q:"Which bond is nonpolar?",c:["H—Cl","C—O","Cl—Cl","O—H"],a:2,e:"Identical atoms share electrons equally."},
+
+{q:"Which molecule is polar?",c:["CCl₄","SO₂","CO₂","SO₃"],a:1,e:"The bent geometry of SO₂ creates a net dipole."},
+
+{q:"Which molecule is nonpolar because of its symmetry?",c:["HCN","NH₃","SO₂","CCl₄"],a:3,e:"CCl₄ is tetrahedral and symmetrical."},
+
+{q:"Why is CO₂ nonpolar despite having polar bonds?",c:["Carbon is nonpolar","The molecule is symmetrical and the dipoles cancel","Oxygen has no electronegativity","It contains ionic bonds"],a:1,e:"Linear symmetry causes the dipoles to cancel."},
+
+{q:"Why is NH₃ polar?",c:["It contains nitrogen","It has ionic bonds","Its trigonal pyramidal geometry prevents dipole cancellation","Hydrogen is highly electronegative"],a:2,e:"The lone pair creates an asymmetric shape."},
+
+{q:"A molecule has polar bonds but no net dipole moment. Which statement best explains this?",c:["The bonds are actually nonpolar","The molecule is symmetrical and the dipoles cancel","The molecule is ionic","The molecule has no valence electrons"],a:1,e:"Molecular symmetry causes bond dipoles to cancel."},
+
+{q:"Which solvent would best dissolve an ionic compound?",c:["Hexane","Benzene","Water","Carbon tetrachloride"],a:2,e:"Water is highly polar and stabilizes ions."},
+
+{q:"A chemist analyzes CCl₄. Which conclusion is correct?",c:["It contains nonpolar bonds","It is polar because chlorine is electronegative","It contains polar bonds but is a nonpolar molecule","It is ionic"],a:2,e:"Its tetrahedral symmetry causes dipole cancellation."},
+
+{q:"A compound is found to conduct electricity only when molten. Which type of bonding is most likely present?",c:["Covalent","Hydrogen bonding","Metallic","Ionic"],a:3,e:"Molten ionic compounds contain mobile ions that conduct electricity."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
