@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chemical Bonding Exercises</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chemical Bonding Exercises - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"Which compound is correctly classified as ionic?",c:["SO₃","PCl₅","Li₂O","CCl₄"],a:2,e:"Lithium is a metal and oxygen is a nonmetal, forming an ionic compound."},
+
+{q:"Which compound is correctly classified as covalent?",c:["MgBr₂","CaO","NO₂","KCl"],a:2,e:"Nitrogen and oxygen are both nonmetals, so NO₂ is covalent."},
+
+{q:"Which element commonly forms a 2− ion?",c:["Na","Mg","S","Al"],a:2,e:"Sulfur belongs to Group 16 and commonly gains two electrons."},
+
+{q:"Which element commonly forms a 3+ ion?",c:["Al","Ca","F","K"],a:0,e:"Aluminum loses three electrons to form Al³⁺."},
+
+{q:"Which species requires resonance structures when drawing its Lewis structure?",c:["CH₄","SO₂","H₂","CCl₄"],a:1,e:"SO₂ has equivalent resonance structures due to delocalized electrons."},
+
+{q:"Which molecule contains a carbon-nitrogen triple bond?",c:["CO₂","HCN","NH₃","NO₂"],a:1,e:"HCN contains a C≡N triple bond."},
+
+{q:"Which molecule has a central atom with one lone pair?",c:["CH₄","PCl₃","CO₂","CCl₄"],a:1,e:"Phosphorus in PCl₃ has one lone pair."},
+
+{q:"Which molecule follows the expanded octet rule?",c:["CH₄","NH₃","PCl₅","CO₂"],a:2,e:"Phosphorus can accommodate more than eight electrons in Period 3."},
+
+{q:"Which molecule has a linear molecular geometry?",c:["SO₂","BeCl₂","PCl₃","OF₂"],a:1,e:"BeCl₂ has two bonding groups and no lone pairs."},
+
+{q:"Which molecule has a trigonal bipyramidal geometry?",c:["SO₃","PCl₅","BF₃","NH₃"],a:1,e:"Five electron groups produce a trigonal bipyramidal geometry."},
+
+{q:"Which molecule has a seesaw geometry?",c:["XeF₂","SF₄","CO₂","CH₄"],a:1,e:"SF₄ has five electron groups with one lone pair."},
+
+{q:"Which molecule has a trigonal planar geometry?",c:["SO₃","SO₂","NH₃","H₂O"],a:0,e:"SO₃ has three bonding groups and no lone pairs."},
+
+{q:"Which molecule is nonpolar because of its symmetrical linear geometry?",c:["HCN","SO₂","BeCl₂","OF₂"],a:2,e:"BeCl₂ is linear with identical terminal atoms, so the dipoles cancel."},
+
+{q:"Which molecule is polar because its molecular geometry is bent?",c:["SO₃","CO₂","SO₂","CCl₄"],a:2,e:"SO₂ has a bent geometry that produces a net dipole."},
+
+{q:"Which molecule is nonpolar despite containing polar bonds?",c:["HCN","PCl₃","CCl₄","OF₂"],a:2,e:"CCl₄ is tetrahedral and symmetrical, causing the dipoles to cancel."},
+
+{q:"Which molecule is polar because of a lone pair on the central atom?",c:["BF₃","SO₃","PCl₃","BeCl₂"],a:2,e:"The lone pair on phosphorus creates an asymmetric electron distribution."},
+
+{q:"A molecule has three bonding groups and no lone pairs around the central atom. Which molecular geometry is expected?",c:["Bent","Trigonal planar","Tetrahedral","Linear"],a:1,e:"Three electron groups produce a trigonal planar geometry."},
+
+{q:"A molecule has five electron groups with one lone pair. Which molecular geometry is expected?",c:["Trigonal bipyramidal","Seesaw","Square pyramidal","Bent"],a:1,e:"Five electron groups with one lone pair produce a seesaw geometry."},
+
+{q:"Why is HCN classified as a polar molecule?",c:["It contains a triple bond","Its ends are different, producing a net dipole","Carbon is highly electronegative","Hydrogen always forms polar molecules"],a:1,e:"Although linear, HCN has different atoms at each end, so the dipoles do not cancel."},
+
+{q:"Which substance would dissolve most readily in water?",c:["CCl₄","CH₄","NH₃","CS₂"],a:2,e:"Ammonia is polar and forms hydrogen bonds with water."},
+
+{q:"Which substance would be the best solvent for grease?",c:["Water","Ammonia","Hexane","Ethanol"],a:2,e:"Grease is nonpolar, so it dissolves best in nonpolar solvents like hexane."},
+
+{q:"An engineer needs a compound that will conduct electricity when dissolved in water. Which is the best choice?",c:["CCl₄","Na₂SO₄","CH₄","CO₂"],a:1,e:"Na₂SO₄ dissociates into ions, allowing electrical conductivity."},
+
+{q:"A chemist synthesizes XeF₂. Which statement is correct?",c:["It is bent and polar","It is linear and nonpolar","It is tetrahedral and polar","It is trigonal planar and nonpolar"],a:1,e:"XeF₂ has a linear molecular geometry because its three lone pairs occupy equatorial positions."},
+
+{q:"Which statement correctly explains why SO₃ is nonpolar?",c:["Its bonds are nonpolar","Its trigonal planar geometry is symmetrical, causing dipole cancellation","It contains only sulfur atoms","It is ionic"],a:1,e:"The three identical S–O bond dipoles cancel because of symmetry."},
+
+{q:"Why does SO₂ have a net dipole moment while SO₃ does not?",c:["SO₂ contains more oxygen atoms","SO₂ is bent whereas SO₃ is trigonal planar and symmetrical","SO₃ has ionic bonds","SO₂ has no lone pairs"],a:1,e:"The bent geometry of SO₂ prevents dipole cancellation."},
+
+{q:"Which sequence correctly analyzes an unfamiliar molecule?",c:["Determine geometry → classify bond type → draw Lewis structure","Draw Lewis structure → determine electron groups → identify geometry → determine polarity","Determine polarity → count electrons","Count protons → identify isotopes"],a:1,e:"This sequence follows the proper workflow for molecular analysis."},
+
+{q:"A molecule contains four bonding pairs and no lone pairs on the central atom. It is most likely:",c:["Bent and polar","Tetrahedral and possibly nonpolar if symmetrical","Linear and nonpolar","Trigonal pyramidal and polar"],a:1,e:"Four bonding groups produce a tetrahedral geometry."},
+
+{q:"Which compound would most likely have the highest melting point?",c:["HCN","SO₂","Li₂O","CCl₄"],a:2,e:"Li₂O is ionic, and strong electrostatic attractions give ionic compounds high melting points."},
+
+{q:"A student claims that every molecule with polar bonds must also be a polar molecule. Which example disproves this claim?",c:["SO₂","PCl₃","CCl₄","HCN"],a:2,e:"CCl₄ contains polar C–Cl bonds, but its symmetrical tetrahedral shape makes the molecule nonpolar."},
+
+{q:"A chemical engineer is choosing a solvent for dissolving an ionic salt in an industrial process. Which solvent would be the most suitable?",c:["Hexane","Carbon tetrachloride","Water","Benzene"],a:2,e:"Water is highly polar and stabilizes ions through ion-dipole interactions, making it an excellent solvent for ionic compounds."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>  
