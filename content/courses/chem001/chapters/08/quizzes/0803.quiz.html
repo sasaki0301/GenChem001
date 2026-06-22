@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Differentiating Polar and Nonpolar Compounds</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Differentiating Polar and Nonpolar Compounds - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What primarily determines whether a covalent bond is polar or nonpolar?",c:["Atomic mass","Number of neutrons","Difference in electronegativity","Number of lone pairs"],a:2,e:"Bond polarity depends on the difference in electronegativity between the bonded atoms."},
+
+{q:"Electronegativity is best defined as:",c:["The ability of an atom to lose electrons","The ability of an atom to attract shared electrons","The number of valence electrons","The energy required to remove an electron"],a:1,e:"Electronegativity measures an atom's attraction for shared bonding electrons."},
+
+{q:"Which bond is most likely to be nonpolar?",c:["H—Cl","O—H","Cl—Cl","C—O"],a:2,e:"Atoms with identical electronegativities share electrons equally."},
+
+{q:"Which bond is most likely to be polar covalent?",c:["N—N","Cl—Cl","H—F","O—O"],a:2,e:"Hydrogen and fluorine have a large electronegativity difference, producing a polar covalent bond."},
+
+{q:"What symbol represents a partial positive charge?",c:["δ⁻","δ⁺","+","−"],a:1,e:"δ⁺ represents a partial positive charge caused by unequal electron sharing."},
+
+{q:"In a polar bond, the electron density is greater around the:",c:["Less electronegative atom","More electronegative atom","Atom with fewer protons","Larger atom"],a:1,e:"The more electronegative atom attracts the shared electrons more strongly."},
+
+{q:"What is a dipole moment?",c:["A type of covalent bond","The separation of partial positive and partial negative charges in a bond or molecule","The number of lone pairs","The energy stored in a chemical bond"],a:1,e:"A dipole moment results from unequal distribution of electrons."},
+
+{q:"A molecule can contain polar bonds but still be nonpolar if:",c:["It contains hydrogen","The bond angles are all 90°","The bond dipoles cancel because of symmetry","It has double bonds"],a:2,e:"Molecular symmetry can cancel individual bond dipoles."},
+
+{q:"Which statement correctly distinguishes bond polarity from molecular polarity?",c:["They are always identical","Bond polarity depends on one bond, while molecular polarity depends on the entire molecule","Bond polarity applies only to ionic compounds","Molecular polarity depends only on electronegativity"],a:1,e:"Molecular polarity depends on both bond polarity and molecular geometry."},
+
+{q:"Which molecule is nonpolar because its bond dipoles cancel?",c:["SO₂","H₂O","NH₃","CCl₄"],a:3,e:"CCl₄ has a symmetrical tetrahedral geometry, so its dipoles cancel."},
+
+{q:"Which molecule is polar because of its bent geometry?",c:["CO₂","SO₂","BeCl₂","CS₂"],a:1,e:"SO₂ has a bent geometry, producing a net dipole moment."},
+
+{q:"Which molecule is polar because of a lone pair on the central atom?",c:["BF₃","SO₃","PCl₃","CCl₄"],a:2,e:"The lone pair on phosphorus makes PCl₃ asymmetrical."},
+
+{q:"Which molecule is nonpolar despite having polar bonds?",c:["HCN","OF₂","SO₃","NH₃"],a:2,e:"SO₃ is trigonal planar and symmetrical, causing the bond dipoles to cancel."},
+
+{q:"Why is HCN classified as a polar molecule?",c:["It contains hydrogen","It has ionic bonds","Its two ends are different, producing a net dipole","Carbon always forms polar molecules"],a:2,e:"HCN is linear, but the atoms at each end are different, so the dipoles do not cancel."},
+
+{q:"Which molecule is expected to have the largest net dipole moment?",c:["CH₄","CCl₄","NH₃","BF₃"],a:2,e:"NH₃ is trigonal pyramidal and has a net molecular dipole."},
+
+{q:"A molecule has a linear geometry with identical atoms bonded to both sides of the central atom. It is most likely:",c:["Polar","Nonpolar","Ionic","Metallic"],a:1,e:"Symmetrical linear molecules have canceling dipoles."},
+
+{q:"Which statement best explains why OF₂ is polar?",c:["It is linear","It contains ionic bonds","Its bent geometry prevents dipole cancellation","Fluorine has no electronegativity"],a:2,e:"The bent geometry produces a net molecular dipole."},
+
+{q:"Which factor is NOT required to determine molecular polarity?",c:["Lewis structure","Molecular geometry","Bond polarity","Atomic mass"],a:3,e:"Atomic mass does not determine molecular polarity."},
+
+{q:"Which sequence correctly determines whether a molecule is polar?",c:["Determine molar mass → classify bond","Draw Lewis structure → determine geometry → identify bond polarity → check if dipoles cancel","Count protons → determine geometry","Identify atomic number only"],a:1,e:"This is the proper procedure for determining molecular polarity."},
+
+{q:"Which molecule would most likely dissolve best in water?",c:["CCl₄","CH₄","NH₃","CS₂"],a:2,e:"Water is polar and generally dissolves other polar molecules."},
+
+{q:"Which pair of substances is expected to be the most soluble in one another?",c:["Water and oil","Water and NH₃","Water and CCl₄","Oil and NaCl"],a:1,e:"Polar substances tend to dissolve other polar substances."},
+
+{q:"Why does cooking oil not mix well with water?",c:["Oil is ionic","Water is nonpolar","Oil is nonpolar while water is polar","Oil has a higher density"],a:2,e:"Polar and nonpolar substances generally do not mix."},
+
+{q:"A chemist compares CO₂ and SO₂. Both contain polar bonds. Why is only SO₂ polar?",c:["CO₂ has more oxygen atoms","CO₂ is symmetrical while SO₂ is bent","CO₂ is ionic","SO₂ contains hydrogen"],a:1,e:"CO₂ is linear and symmetrical, while SO₂ has a bent geometry."},
+
+{q:"Which molecule would have the strongest attraction to a polar solvent?",c:["CH₄","CCl₄","NH₃","BF₃"],a:2,e:"Polar molecules interact strongly with polar solvents."},
+
+{q:"Which statement correctly describes CCl₄?",c:["It contains nonpolar bonds","It is polar because chlorine is highly electronegative","It has polar bonds but is a nonpolar molecule","It is ionic"],a:2,e:"Its tetrahedral symmetry causes the bond dipoles to cancel."},
+
+{q:"A molecule is trigonal planar with three identical surrounding atoms. What is its most likely polarity?",c:["Polar","Nonpolar","Ionic","Depends only on bond length"],a:1,e:"A symmetrical trigonal planar molecule has no net dipole."},
+
+{q:"Which molecule is most likely to have both polar bonds and a net molecular dipole?",c:["SO₂","SO₃","BeCl₂","CCl₄"],a:0,e:"SO₂ has polar bonds and an asymmetrical bent geometry."},
+
+{q:"A student claims that every molecule containing polar bonds must be polar. Why is this incorrect?",c:["Some molecules contain no electrons","Molecular geometry can cause bond dipoles to cancel","Only ionic compounds are polar","Bond polarity depends on temperature"],a:1,e:"Symmetrical molecules can have canceling bond dipoles, making the overall molecule nonpolar."},
+
+{q:"An engineer is selecting a solvent for dissolving grease and oils. Which type of solvent would generally be most effective?",c:["A highly polar solvent","A nonpolar solvent","An ionic compound","Distilled water"],a:1,e:"Grease and oils are nonpolar, so they dissolve best in nonpolar solvents ('like dissolves like')."},
+
+{q:"Which conclusion best summarizes the relationship between molecular geometry and polarity?",c:["Geometry has no effect on polarity","Geometry determines whether bond dipoles cancel or reinforce one another","Only electronegativity determines polarity","Only lone pairs determine polarity"],a:1,e:"Molecular geometry is essential because it determines the vector sum of all bond dipoles."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
