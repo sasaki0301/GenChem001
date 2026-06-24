@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Investigating Properties of Hydrocarbons</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Investigating Properties of Hydrocarbons - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What elements are found in all hydrocarbons?",c:["Carbon and oxygen","Carbon and hydrogen","Hydrogen and nitrogen","Carbon, oxygen, and hydrogen"],a:1,e:"Hydrocarbons are organic compounds composed exclusively of carbon and hydrogen atoms."},
+
+{q:"Which statement best defines a hydrocarbon?",c:["A compound containing carbon and oxygen only","A compound containing only carbon and hydrogen","A compound containing carbon and nitrogen","Any compound containing carbon"],a:1,e:"Hydrocarbons contain only carbon and hydrogen atoms."},
+
+{q:"Which type of carbon skeleton contains one or more side branches attached to the main chain?",c:["Straight-chain","Ring","Branched-chain","Aromatic"],a:2,e:"Branched hydrocarbons contain side chains connected to the main carbon chain."},
+
+{q:"Which hydrocarbon is classified as saturated?",c:["Ethene","Ethyne","Propane","Benzene"],a:2,e:"Propane contains only single carbon-carbon bonds, making it a saturated hydrocarbon."},
+
+{q:"What distinguishes unsaturated hydrocarbons from saturated hydrocarbons?",c:["They contain oxygen atoms.","They contain at least one double or triple bond.","They are always aromatic.","They contain nitrogen atoms."],a:1,e:"Unsaturated hydrocarbons contain carbon-carbon double or triple bonds."},
+
+{q:"Which hydrocarbon family contains only single carbon-carbon bonds?",c:["Alkenes","Alkynes","Aromatic hydrocarbons","Alkanes"],a:3,e:"Alkanes are saturated hydrocarbons containing only single bonds."},
+
+{q:"The general formula CₙH₂ₙ₊₂ corresponds to which hydrocarbon family?",c:["Alkenes","Alkynes","Alkanes","Aromatic hydrocarbons"],a:2,e:"The general formula for alkanes is CₙH₂ₙ₊₂."},
+
+{q:"Which hydrocarbon belongs to the alkene family?",c:["Methane","Ethene","Ethyne","Propane"],a:1,e:"Ethene contains one carbon-carbon double bond, making it an alkene."},
+
+{q:"What is the general formula for alkenes?",c:["CₙH₂ₙ₊₂","CₙH₂ₙ","CₙH₂ₙ₋₂","C₆H₆"],a:1,e:"Alkenes generally follow the formula CₙH₂ₙ."},
+
+{q:"Which hydrocarbon contains a carbon-carbon triple bond?",c:["Ethane","Ethene","Ethyne","Benzene"],a:2,e:"Ethyne (acetylene) contains a triple bond."},
+
+{q:"The general formula CₙH₂ₙ₋₂ represents:",c:["Alkanes","Alkenes","Alkynes","Cycloalkanes"],a:2,e:"Alkynes generally follow the formula CₙH₂ₙ₋₂."},
+
+{q:"Which hydrocarbon family contains one or more benzene rings?",c:["Alkanes","Alkenes","Alkynes","Aromatic hydrocarbons"],a:3,e:"Aromatic hydrocarbons contain benzene rings with delocalized electrons."},
+
+{q:"Which of the following is an aromatic hydrocarbon?",c:["Propene","Methane","Benzene","Butyne"],a:2,e:"Benzene is the simplest aromatic hydrocarbon."},
+
+{q:"Which hydrocarbon is commonly used as cooking fuel in LPG?",c:["Propane","Ethene","Benzene","Acetylene"],a:0,e:"Propane is one of the major components of LPG."},
+
+{q:"Which hydrocarbon is widely used in plastic production?",c:["Ethene","Methane","Acetylene","Benzene"],a:0,e:"Ethene is polymerized to produce polyethylene."},
+
+{q:"Which hydrocarbon is commonly used for oxy-acetylene welding?",c:["Methane","Ethene","Ethyne","Propane"],a:2,e:"Ethyne (acetylene) burns at very high temperatures, making it useful for welding."},
+
+{q:"Which property is common to most hydrocarbons?",c:["They dissolve easily in water.","They are generally nonpolar.","They are highly conductive.","They are ionic compounds."],a:1,e:"Hydrocarbons are nonpolar molecules."},
+
+{q:"Why are hydrocarbons generally insoluble in water?",c:["They contain too many carbon atoms.","They are nonpolar while water is polar.","They are ionic compounds.","They react immediately with water."],a:1,e:"Nonpolar hydrocarbons do not dissolve well in polar water."},
+
+{q:"As the size of a hydrocarbon molecule increases, its boiling point generally:",c:["Decreases","Remains constant","Increases","Becomes zero"],a:2,e:"Larger hydrocarbons experience stronger intermolecular forces, increasing boiling point."},
+
+{q:"Which reaction produces carbon dioxide, water, and heat from hydrocarbons?",c:["Polymerization","Substitution","Combustion","Neutralization"],a:2,e:"Combustion is the burning of hydrocarbons in oxygen."},
+
+{q:"Complete combustion of methane produces:",c:["CO and H₂","CO₂ and H₂O","C and H₂","CO₂ and H₂"],a:1,e:"Complete combustion produces carbon dioxide and water."},
+
+{q:"Incomplete combustion of hydrocarbons may produce which harmful gas?",c:["Nitrogen","Oxygen","Carbon monoxide","Hydrogen"],a:2,e:"Carbon monoxide is a toxic product of incomplete combustion."},
+
+{q:"Which hydrocarbon family readily undergoes addition reactions because of multiple bonds?",c:["Alkanes","Alkenes and alkynes","Aromatic hydrocarbons only","Cycloalkanes"],a:1,e:"Double and triple bonds are reactive and participate in addition reactions."},
+
+{q:"Crude oil is best described as:",c:["A pure hydrocarbon","A mixture of many hydrocarbons","A single aromatic compound","An inorganic compound"],a:1,e:"Petroleum contains a complex mixture of hydrocarbons."},
+
+{q:"Which petroleum fraction is primarily used to fuel automobiles?",c:["Bitumen","Lubricating oil","Gasoline","Wax"],a:2,e:"Gasoline is the primary fuel used in most automobiles."},
+
+{q:"Which petroleum fraction is commonly used for road construction?",c:["Diesel","Gasoline","Bitumen","LPG"],a:2,e:"Bitumen is widely used for paving roads."},
+
+{q:"Burning fossil fuels contributes directly to:",c:["Formation of proteins","Climate change through CO₂ emissions","Production of oxygen","Reduction of greenhouse gases"],a:1,e:"Combustion releases carbon dioxide, a greenhouse gas."},
+
+{q:"A hydrocarbon has the molecular formula C₅H₁₂. To which family does it belong?",c:["Alkane","Alkene","Alkyne","Aromatic"],a:0,e:"C₅H₁₂ follows the alkane formula CₙH₂ₙ₊₂."},
+
+{q:"A hydrocarbon has the formula C₄H₈. It most likely belongs to which family?",c:["Alkane","Alkene","Alkyne","Aromatic"],a:1,e:"C₄H₈ follows the alkene formula CₙH₂ₙ."},
+
+{q:"An engineer needs a fuel that burns efficiently to power vehicle engines. Why are hydrocarbons suitable for this application?",c:["They are highly soluble in water.","They release large amounts of energy during combustion.","They conduct electricity well.","They are chemically inert."],a:1,e:"Hydrocarbons are excellent fuels because combustion releases significant amounts of energy."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
