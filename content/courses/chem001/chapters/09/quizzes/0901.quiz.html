@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Comparing Some Properties of Organic and Inorganic Compounds</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Comparing Some Properties of Organic and Inorganic Compounds - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What is the primary focus of Organic Chemistry?",c:["Study of metals and minerals","Study of carbon-containing compounds","Study of radioactive elements","Study of acids and bases"],a:1,e:"Organic Chemistry primarily studies compounds containing carbon, especially those with carbon-hydrogen bonds."},
+
+{q:"Which scientist disproved the Vital Force Theory by synthesizing urea in the laboratory?",c:["John Dalton","Antoine Lavoisier","Friedrich Wöhler","Dmitri Mendeleev"],a:2,e:"In 1828, Friedrich Wöhler synthesized urea from ammonium cyanate, disproving the Vital Force Theory."},
+
+{q:"According to modern chemistry, organic compounds are primarily characterized by:",c:["Containing metals","Containing carbon and usually carbon-hydrogen bonds","Being produced only by living organisms","Being soluble in water"],a:1,e:"Most organic compounds contain carbon bonded to hydrogen."},
+
+{q:"Which property makes carbon capable of forming millions of different compounds?",c:["High density","Ability to form four covalent bonds","High melting point","Ability to lose four electrons"],a:1,e:"Carbon has four valence electrons, allowing it to form four stable covalent bonds."},
+
+{q:"What is catenation?",c:["The ability of carbon to gain electrons","The ability of carbon atoms to bond with one another","The ability of carbon to become ionic","The ability of carbon to conduct electricity"],a:1,e:"Catenation is carbon's ability to bond with itself, forming chains, branches, and rings."},
+
+{q:"Which carbon skeleton represents a branched-chain hydrocarbon?",c:["C—C—C—C","A six-membered ring","A straight chain with one or more side branches","A carbon dioxide molecule"],a:2,e:"Branched chains contain one or more carbon side branches attached to the main chain."},
+
+{q:"Which of the following is classified as an organic compound?",c:["NaCl","H₂O","C₂H₅OH","CaCO₃"],a:2,e:"Ethanol (C₂H₅OH) is an organic compound containing carbon-hydrogen bonds."},
+
+{q:"Which compound is classified as inorganic even though it contains carbon?",c:["Glucose","Methane","Carbon dioxide","Polyethylene"],a:2,e:"Carbon dioxide is considered an inorganic carbon-containing compound."},
+
+{q:"Which compound is another example of an inorganic carbon-containing compound?",c:["Acetic acid","Propane","Sodium bicarbonate","Ethanol"],a:2,e:"NaHCO₃ (sodium bicarbonate) is classified as an inorganic compound."},
+
+{q:"Organic compounds are generally composed of which type of chemical bonding?",c:["Metallic","Ionic","Covalent","Nuclear"],a:2,e:"Most organic compounds are held together by covalent bonds."},
+
+{q:"Compared with inorganic compounds, organic compounds generally have:",c:["Higher melting points","Higher electrical conductivity","Lower melting and boiling points","Greater hardness"],a:2,e:"Organic compounds usually have lower melting and boiling points because they are molecular compounds."},
+
+{q:"Which property is typical of many organic compounds?",c:["Excellent electrical conductivity","Highly soluble in water","Poor electrical conductivity","Always ionic"],a:2,e:"Organic compounds generally lack mobile charged particles and conduct electricity poorly."},
+
+{q:"Which pair correctly matches an organic compound with its common use?",c:["Glucose – Road construction","Polyethylene – Plastic products","NaCl – Fuel","Water – Plastic manufacturing"],a:1,e:"Polyethylene is widely used to manufacture plastics."},
+
+{q:"Which inorganic compound is commonly used as a food seasoning?",c:["Acetic acid","NaCl","Glucose","Propane"],a:1,e:"Sodium chloride (table salt) is commonly used as a seasoning."},
+
+{q:"Which compound is commonly used as a disinfectant and alcoholic beverage ingredient?",c:["Methane","Ethanol","Ammonia","Carbon dioxide"],a:1,e:"Ethanol is used in disinfectants and alcoholic beverages."},
+
+{q:"Why is calcium carbonate classified as inorganic?",c:["It contains calcium","It has ionic bonds only","It lacks carbon-hydrogen bonds","It cannot react chemically"],a:2,e:"Although it contains carbon, CaCO₃ does not contain carbon-hydrogen bonds."},
+
+{q:"Which statement best explains why carbon is called the 'element of life'?",c:["It is the most abundant element on Earth","It forms the structural framework of biological molecules","It has the highest atomic mass","It is always found in living organisms only"],a:1,e:"Carbon forms the backbone of carbohydrates, proteins, lipids, and nucleic acids."},
+
+{q:"Which of the following is most likely an organic polymer?",c:["Polyethylene","Calcium carbonate","Sodium chloride","Sulfuric acid"],a:0,e:"Polyethylene is a synthetic organic polymer made from ethene."},
+
+{q:"A chemist discovers a compound containing carbon, hydrogen, and oxygen that is used as fuel and forms covalent bonds. How should the compound most likely be classified?",c:["Metallic compound","Organic compound","Inorganic salt","Mineral"],a:1,e:"Carbon-hydrogen compounds with covalent bonding are generally classified as organic compounds."},
+
+{q:"Which characteristic best distinguishes most organic compounds from inorganic compounds?",c:["Presence of oxygen","Presence of carbon-hydrogen bonds","Ability to dissolve in water","Presence of ionic bonds"],a:1,e:"The presence of carbon-hydrogen bonds is the defining feature of most organic compounds."},
+
+{q:"Which of the following compounds would most likely have the lowest electrical conductivity?",c:["Molten NaCl","Copper","Ethanol","Aqueous KCl"],a:2,e:"Ethanol is a covalent molecular compound and does not produce mobile ions."},
+
+{q:"Which application primarily involves inorganic compounds?",c:["Manufacture of plastics","Production of proteins","Construction using cement","Production of ethanol"],a:2,e:"Cement is composed mainly of inorganic compounds such as calcium silicates."},
+
+{q:"Which statement about carbon is FALSE?",c:["Carbon can form single, double, and triple bonds.","Carbon can bond with itself to form long chains.","Carbon can form four covalent bonds.","Carbon commonly forms ionic bonds with hydrogen."],a:3,e:"Carbon forms covalent—not ionic—bonds with hydrogen."},
+
+{q:"A researcher compares ethanol and sodium chloride. Which statement is correct?",c:["Both are inorganic compounds.","Both primarily contain ionic bonds.","Ethanol is organic while sodium chloride is inorganic.","Sodium chloride is organic while ethanol is inorganic."],a:2,e:"Ethanol is an organic covalent compound, whereas NaCl is an inorganic ionic compound."},
+
+{q:"Why are millions of organic compounds possible even though carbon is only one element?",c:["Carbon atoms continuously change into other elements.","Carbon can form stable chains, rings, and multiple bonds with itself and other elements.","Carbon has the highest atomic number.","Carbon easily loses four electrons."],a:1,e:"Carbon's tetravalency and catenation make an enormous variety of molecular structures possible."},
+
+{q:"A material scientist wants a lightweight polymer for packaging. Which type of compound will most likely be selected?",c:["Organic polymer","Metal alloy","Ceramic","Ionic crystal"],a:0,e:"Most packaging plastics are organic polymers such as polyethylene and polypropylene."},
+
+{q:"Which of the following best represents the importance of Organic Chemistry?",c:["It studies only fuels.","It studies compounds important only to living organisms.","It explains the structure, properties, and applications of carbon-containing compounds used in medicine, engineering, agriculture, and industry.","It replaces inorganic chemistry."],a:2,e:"Organic Chemistry has broad applications across science, engineering, medicine, agriculture, and industry."},
+
+{q:"A newly discovered compound is composed only of carbon and hydrogen atoms arranged in a long chain. Based on this information alone, it is most likely:",c:["An inorganic salt","An organic compound","A metal","An oxide"],a:1,e:"Compounds composed only of carbon and hydrogen are organic compounds known as hydrocarbons."},
+
+{q:"Which pair is correctly classified?",c:["Glucose – Inorganic; Ammonia – Organic","Propane – Organic; Calcium Carbonate – Inorganic","Carbon dioxide – Organic; Ethanol – Inorganic","Sodium chloride – Organic; Polyethylene – Inorganic"],a:1,e:"Propane is an organic hydrocarbon, while calcium carbonate is an inorganic compound."},
+
+{q:"An engineer is selecting materials for manufacturing plastic containers. Which property of carbon makes these materials possible?",c:["Its high density","Its ability to form long covalent chains and stable polymers","Its metallic conductivity","Its radioactive nature"],a:1,e:"Carbon's ability to form long chains through catenation allows the formation of polymers such as plastics."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
