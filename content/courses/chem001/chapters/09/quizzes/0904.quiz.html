@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 9 Assessment: Organic Chemistry (Introduction)</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 9 Assessment: Organic Chemistry (Introduction)</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What is the primary focus of Organic Chemistry?",c:["Study of metals","Study of carbon-containing compounds","Study of minerals","Study of radioactive substances"],a:1,e:"Organic Chemistry focuses on compounds containing carbon, particularly those with carbon-hydrogen bonds."},
+
+{q:"Which scientist disproved the Vital Force Theory by synthesizing urea?",c:["John Dalton","Friedrich Wöhler","Antoine Lavoisier","Robert Boyle"],a:1,e:"Friedrich Wöhler synthesized urea from ammonium cyanate in 1828."},
+
+{q:"Why is carbon capable of forming millions of different compounds?",c:["It has the highest atomic number.","It forms four covalent bonds and exhibits catenation.","It is the lightest element.","It forms only ionic bonds."],a:1,e:"Carbon's tetravalency and ability to bond with itself produce enormous molecular diversity."},
+
+{q:"Which of the following is classified as an organic compound?",c:["NaCl","CH₄","CaCO₃","CO₂"],a:1,e:"Methane is an organic hydrocarbon."},
+
+{q:"Which carbon-containing compound is classified as inorganic?",c:["Glucose","Ethanol","Carbon dioxide","Propane"],a:2,e:"Carbon dioxide is one of the common inorganic carbon-containing compounds."},
+
+{q:"Organic compounds generally contain which type of bonding?",c:["Metallic","Ionic","Covalent","Nuclear"],a:2,e:"Organic compounds are primarily composed of covalent bonds."},
+
+{q:"Which property is generally true of organic compounds?",c:["High electrical conductivity","Mostly ionic","Generally poor electrical conductors","Always soluble in water"],a:2,e:"Organic compounds usually lack mobile ions."},
+
+{q:"What elements are found in all hydrocarbons?",c:["Carbon and oxygen","Carbon and hydrogen","Hydrogen and nitrogen","Carbon and sulfur"],a:1,e:"Hydrocarbons contain only carbon and hydrogen atoms."},
+
+{q:"Which hydrocarbon family contains only single carbon-carbon bonds?",c:["Alkenes","Alkynes","Aromatic hydrocarbons","Alkanes"],a:3,e:"Alkanes are saturated hydrocarbons."},
+
+{q:"The general formula CₙH₂ₙ corresponds to:",c:["Alkanes","Alkenes","Alkynes","Aromatic hydrocarbons"],a:1,e:"Alkenes contain one carbon-carbon double bond."},
+
+{q:"Which hydrocarbon contains a triple bond?",c:["Ethane","Ethene","Ethyne","Benzene"],a:2,e:"Ethyne (acetylene) contains a carbon-carbon triple bond."},
+
+{q:"Which hydrocarbon family contains benzene?",c:["Alkanes","Alkenes","Alkynes","Aromatic hydrocarbons"],a:3,e:"Benzene is the simplest aromatic hydrocarbon."},
+
+{q:"Which hydrocarbon is commonly used as cooking fuel in LPG?",c:["Propane","Ethene","Benzene","Ethyne"],a:0,e:"Propane is one of the major components of LPG."},
+
+{q:"Which hydrocarbon is primarily used to manufacture polyethylene?",c:["Methane","Ethene","Ethyne","Propane"],a:1,e:"Ethene is polymerized to produce polyethylene."},
+
+{q:"Hydrocarbons are generally insoluble in water because they are:",c:["Polar","Nonpolar","Ionic","Acidic"],a:1,e:"Water is polar while hydrocarbons are nonpolar."},
+
+{q:"Complete combustion of hydrocarbons produces:",c:["CO and H₂","CO₂ and H₂O","Carbon only","Hydrogen only"],a:1,e:"Complete combustion forms carbon dioxide and water."},
+
+{q:"Incomplete combustion may produce which toxic gas?",c:["Hydrogen","Nitrogen","Carbon monoxide","Oxygen"],a:2,e:"Carbon monoxide is highly poisonous."},
+
+{q:"Crude oil is best described as:",c:["A pure compound","A mixture of hydrocarbons","An inorganic mineral","A polymer"],a:1,e:"Petroleum is a complex mixture of hydrocarbons."},
+
+{q:"Which petroleum fraction is commonly used for road construction?",c:["Gasoline","Diesel","Bitumen","Kerosene"],a:2,e:"Bitumen is used for paving roads."},
+
+{q:"Which environmental issue is directly associated with burning fossil fuels?",c:["Acid-base neutralization","Climate change","Radioactivity","Ozone formation"],a:1,e:"Combustion releases greenhouse gases such as carbon dioxide."},
+
+{q:"What is a functional group?",c:["A hydrocarbon family","A specific atom or group of atoms responsible for a compound's properties","A carbon chain","A molecular formula"],a:1,e:"Functional groups determine the chemical behavior of organic compounds."},
+
+{q:"Which functional group is found in alcohols?",c:["–NH₂","–OH","–COOH","–CHO"],a:1,e:"Alcohols contain the hydroxyl group."},
+
+{q:"Which functional group is found in ethers?",c:["–O–","–OH","–CHO","–COOH"],a:0,e:"Ethers contain an oxygen atom between two carbon groups."},
+
+{q:"Which functional group characterizes aldehydes?",c:["–COOH","–CHO","–NH₂","–OH"],a:1,e:"Aldehydes contain a terminal carbonyl group."},
+
+{q:"Which functional group characterizes ketones?",c:["Internal carbonyl","Hydroxyl","Amino","Carboxyl"],a:0,e:"Ketones contain an internal carbonyl group."},
+
+{q:"Which functional group is responsible for the acidity of vinegar?",c:["Alcohol","Carboxylic Acid","Ketone","Ether"],a:1,e:"Acetic acid contains the carboxyl group."},
+
+{q:"Which functional group commonly produces fruity odors?",c:["Alcohol","Amine","Ester","Amide"],a:2,e:"Many esters have pleasant fruity aromas."},
+
+{q:"Which functional group is generally basic?",c:["Carboxylic Acid","Amide","Amine","Ketone"],a:2,e:"Amines contain nitrogen and are generally basic."},
+
+{q:"Which functional group forms the peptide bonds in proteins?",c:["Alcohol","Amide","Ether","Ketone"],a:1,e:"Proteins are linked together by amide (peptide) bonds."},
+
+{q:"Which compound contains an alcohol functional group?",c:["Acetone","Ethanol","Acetic Acid","Ethyl Acetate"],a:1,e:"Ethanol contains the hydroxyl group."},
+
+{q:"Which compound contains a ketone functional group?",c:["Acetone","Methanol","Formaldehyde","Acetic Acid"],a:0,e:"Acetone contains an internal carbonyl group."},
+
+{q:"Which compound contains a carboxylic acid functional group?",c:["Acetic Acid","Diethyl Ether","Methylamine","Acetone"],a:0,e:"Acetic acid contains the –COOH group."},
+
+{q:"A compound has the formula CH₃CH₂OH. Which functional group does it contain?",c:["Alcohol","Ketone","Amine","Ester"],a:0,e:"CH₃CH₂OH is ethanol."},
+
+{q:"A compound has the formula CH₃COCH₃. Which functional group is present?",c:["Alcohol","Ketone","Aldehyde","Ether"],a:1,e:"CH₃COCH₃ is acetone, a ketone."},
+
+{q:"A chemist discovers an unknown compound that contains a carbon-carbon double bond. It most likely belongs to which hydrocarbon family?",c:["Alkane","Alkene","Alkyne","Aromatic"],a:1,e:"Double bonds characterize alkenes."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
