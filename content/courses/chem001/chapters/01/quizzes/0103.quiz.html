@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 3 Quiz – Properties of Matter</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 1 – Lesson 3 Quiz: Scientific Notation</title>
+
+<style>
   body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #e8f9f1, #f7faff);
@@ -16,6 +17,7 @@
     justify-content: center;
     min-height: 100vh;
   }
+
   .quiz-container {
     background: #ffffff;
     border-radius: 18px;
@@ -25,10 +27,26 @@
     max-width: 850px;
     text-align: center;
   }
+
+  * { box-sizing: border-box; }
+  .choice:focus-visible, button:focus-visible { outline: 3px solid #ad7115; outline-offset: 3px; }
+  .choice.correct { background: #e1ecff; color: #123c80; border: 2px solid #174ea6; }
+  .choice.incorrect { background: #fde9ed; color: #8a1d2a; border: 2px solid #b22b3b; }
+  .choice:disabled { opacity: 1; cursor: default; }
+  .quiz-btn:disabled { opacity: .5; cursor: not-allowed; }
   h2 {
     color: #136f63;
     margin-bottom: 25px;
     font-size: 1.8em;
+  }
+
+  /* Progress */
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
   }
   .progress-wrapper {
     background: #e9f5ef;
@@ -44,13 +62,8 @@
     width: 0%;
     transition: width 0.4s ease;
   }
-  .progress-text {
-    text-align: right;
-    font-size: 0.95em;
-    color: #174ea6;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
+
+  /* Question */
   .question {
     font-size: 1.3em;
     font-weight: 600;
@@ -61,31 +74,32 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
   .choice {
     background: #e8ecf8;
     border: none;
     border-radius: 10px;
     padding: 14px 18px;
-    cursor: pointer;
     text-align: left;
+    cursor: pointer;
     font-size: 1.05em;
-    transition: all 0.2s ease;
+    transition: 0.2s;
   }
   .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.correct { background: #136f63; color: #fff; }
-  .choice.incorrect { background: #e57373; color: #fff; }
+  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
+
   .explanation {
     background: #eef3ff;
     border-radius: 10px;
     padding: 14px 18px;
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-    color: #174ea6;
+    margin-top: 10px;
     display: none;
+    text-align: left;
+    font-size: 1.05em;
   }
+
+  /* Buttons */
   .next-btn {
     background: #136f63;
     color: #fff;
@@ -93,28 +107,31 @@
     padding: 12px 26px;
     border-radius: 10px;
     font-size: 1.05em;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
     transition: 0.2s;
+    margin-top: 15px;
   }
   .next-btn:hover { background: #0f5b52; }
+
+  /* Result */
   .result {
     font-size: 1.4em;
     font-weight: bold;
     color: #174ea6;
-    margin-top: 20px;
+    margin-top: 12px;
   }
   .stars {
     font-size: 2.5em;
     margin-top: 10px;
-    margin-bottom: 5px;
   }
+
   .quiz-nav {
     margin-top: 25px;
     display: flex;
     justify-content: center;
+    gap: 12px;
     flex-wrap: wrap;
-    gap: 10px;
   }
   .quiz-btn {
     background: #e8ecf8;
@@ -122,60 +139,158 @@
     border: none;
     border-radius: 8px;
     padding: 10px 20px;
-    font-size: 0.95em;
     cursor: pointer;
-    transition: all 0.2s ease;
+    font-size: 0.95em;
+    transition: 0.2s;
   }
   .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
   .quiz-btn.primary { background: #136f63; color: #fff; }
   .quiz-btn.primary:hover { background: #0f5b52; }
-  @media (max-width: 600px) {
+
+  @media(max-width:600px){
     .quiz-container { padding: 25px; }
-    .question { font-size: 1.1em; }
+    .question { font-size: 1.15em; }
     .stars { font-size: 2em; }
   }
-  </style>
+.choice.correct { background: #e1ecff; color: #123c80; border: 2px solid #174ea6; }
+.choice.incorrect { background: #fde9ed; color: #8a1d2a; border: 2px solid #b22b3b; }
+</style>
 </head>
-<body>
-  <div class="quiz-container">
-    <h2>Properties of Matter – Quiz</h2>
-    <div class="progress-text" id="progressText">Question 1 of 10</div>
-    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
-    <div id="quizBox"></div>
-    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-  </div>
+<body>
+
+<div class="quiz-container">
+  <h2>Lesson 3 Quiz – Scientific Notation</h2>
+
+  <p>10 questions · Pass: 8/10 (80% required). Choose one answer; your first choice is final. Read the explanation before continuing.</p>
+  <div id="progressText" class="progress-text">Question 1 of 10</div>
+  <div class="progress-wrapper"><div id="progressBar" class="progress-bar"></div></div>
+
+  <div id="quizBox"></div>
+  <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+</div>
 
 <script>
+/* ============================
+     QUIZ DATA
+============================= */
+
 const quizData = [
-  {q:"Which property can be observed without changing the identity of a substance?",c:["Flammability","Reactivity with acid","Density","Oxidation"],a:2,e:"Density is a physical property and does not change the substance."},
-
-  {q:"Burning gasoline is classified as:",c:["Physical property","Chemical property","Intensive property","Extensive property"],a:1,e:"Burning involves a chemical reaction that produces new substances."},
-
-  {q:"Which is an intensive property?",c:["Mass","Volume","Density","Length"],a:2,e:"Density does not depend on the amount of substance."},
-
-  {q:"Which situation describes a chemical property?",c:["Water boiling at 100°C","Iron rusting in air","Sugar dissolving in water","Copper conducting electricity"],a:1,e:"Rusting involves a chemical change."},
-
-  {q:"Which property would change if you cut a substance in half?",c:["Density","Color","Mass","Melting point"],a:2,e:"Mass depends on the amount of substance."},
-
-  {q:"A substance has a fixed density regardless of sample size. This property is:",c:["Extensive","Chemical","Intensive","Reactive"],a:2,e:"Density is an intensive property."},
-
-  {q:"Which is NOT a physical property?",c:["Boiling point","Color","Reactivity","State"],a:2,e:"Reactivity is a chemical property."},
-
-  {q:"Which best explains why density is useful for identification?",c:["It changes with temperature","It depends on mass","It is constant for a substance","It is easy to measure"],a:2,e:"Density is unique and constant for a substance."},
-
-  {q:"Which example represents an extensive property?",c:["Temperature","Density","Mass","Color"],a:2,e:"Mass depends on the amount of substance."},
-
-  {q:"A metal reacts violently with water. This describes:",c:["Physical property","Chemical property","Intensive property","Extensive property"],a:1,e:"Reactivity is a chemical property."},
-
-  {q:"Which scenario shows a physical change rather than a chemical property?",c:["Wood burning","Water freezing","Iron rusting","Gas exploding"],a:1,e:"Freezing does not change chemical identity."},
-
-  {q:"Two samples of the same substance have different masses but identical densities. This shows:",c:["Density is extensive","Mass is intensive","Density is intensive","Mass is constant"],a:2,e:"Density remains constant regardless of amount."},
-
-  {q:"Which property is most useful for distinguishing between two substances?",c:["Volume","Mass","Density","Shape"],a:2,e:"Density is a characteristic property."}
-  
-
+  {
+    "q": "Which expression is written in normalized scientific notation?",
+    "c": [
+      "32 × 10⁴",
+      "0.32 × 10⁶",
+      "3.2 × 10⁵",
+      "320 × 10³"
+    ],
+    "a": 2,
+    "e": "In normalized scientific notation the coefficient’s magnitude is at least 1 and less than 10. The coefficient 3.2 meets this requirement."
+  },
+  {
+    "q": "What are the coefficient and exponent in 6.4 × 10⁻³?",
+    "c": [
+      "Coefficient 6.4; exponent −3",
+      "Coefficient −6.4; exponent 3",
+      "Coefficient 10; exponent 6.4",
+      "Coefficient 6.4; exponent 3"
+    ],
+    "a": 0,
+    "e": "The coefficient is 6.4, and the exponent on 10 is −3. The value itself is positive."
+  },
+  {
+    "q": "Write 0.0000720 in scientific notation while retaining the reported digits.",
+    "c": [
+      "7.20 × 10⁻⁴",
+      "7.20 × 10⁻⁵",
+      "7.20 × 10⁵",
+      "72.0 × 10⁻⁵"
+    ],
+    "a": 1,
+    "e": "Move the decimal five places to the right to obtain 7.20, so the exponent is −5. The trailing zero is retained."
+  },
+  {
+    "q": "A measurement is 3.46 × 10⁻³ g. What is its value in ordinary form?",
+    "c": [
+      "0.000346 g",
+      "0.00346 g",
+      "0.0346 g",
+      "3460 g"
+    ],
+    "a": 1,
+    "e": "A power of 10⁻³ moves the decimal three places to the left: 0.00346 g."
+  },
+  {
+    "q": "A calculator displays 5.8E7. What value does this represent?",
+    "c": [
+      "5.8 × 10⁻⁷",
+      "5.8 × 7",
+      "5.8 × 10⁷",
+      "58 × 10⁷"
+    ],
+    "a": 2,
+    "e": "On a scientific calculator, E7 represents “× 10⁷.”"
+  },
+  {
+    "q": "What is (2.0 × 10⁻³)(4.0 × 10⁵), reported in normalized scientific notation?",
+    "c": [
+      "8.0 × 10⁻⁸",
+      "8.0 × 10²",
+      "6.0 × 10²",
+      "8.0 × 10⁸"
+    ],
+    "a": 1,
+    "e": "Multiply the coefficients (2.0 × 4.0 = 8.0) and add exponents (−3 + 5 = 2), giving 8.0 × 10²."
+  },
+  {
+    "q": "What is (9.0 × 10⁷) ÷ (3.0 × 10²)?",
+    "c": [
+      "3.0 × 10⁵",
+      "3.0 × 10⁹",
+      "6.0 × 10⁵",
+      "3.0 × 10⁻⁵"
+    ],
+    "a": 0,
+    "e": "Divide coefficients: 9.0 ÷ 3.0 = 3.0. Subtract exponents: 7 − 2 = 5."
+  },
+  {
+    "q": "Evaluate (4.0 × 10³)(3.0 × 10⁴), expressing the result in normalized scientific notation.",
+    "c": [
+      "12 × 10⁷",
+      "1.2 × 10⁷",
+      "1.2 × 10⁸",
+      "1.2 × 10¹²"
+    ],
+    "a": 2,
+    "e": "The product is 12 × 10⁷. Normalize the coefficient by moving the decimal one place left and increasing the exponent by one: 1.2 × 10⁸."
+  },
+  {
+    "q": "What is 5.0 × 10⁴ + 3.0 × 10³, reported to the appropriate place value?",
+    "c": [
+      "8.0 × 10⁷",
+      "8.0 × 10⁴",
+      "5.3 × 10⁴",
+      "5.03 × 10⁴"
+    ],
+    "a": 2,
+    "e": "Rewrite 3.0 × 10³ as 0.30 × 10⁴. The sum is 5.30 × 10⁴, rounded to 5.3 × 10⁴ using the least precise place."
+  },
+  {
+    "q": "What is 6.8 × 10⁵ − 2.0 × 10⁴, reported to the appropriate place value?",
+    "c": [
+      "4.8 × 10¹",
+      "6.6 × 10⁵",
+      "6.78 × 10⁵",
+      "4.8 × 10⁵"
+    ],
+    "a": 1,
+    "e": "Rewrite 2.0 × 10⁴ as 0.20 × 10⁵. Subtract to obtain 6.60 × 10⁵, then report to the least precise place: 6.6 × 10⁵."
+  }
 ];
+
+/* ============================
+       QUIZ LOGIC
+============================= */
 
 let current = 0, score = 0, selected = null, showingExplanation = false;
 const quizBox = document.getElementById("quizBox");
@@ -189,7 +304,7 @@ function showQuestion() {
   quizBox.innerHTML = `
     <div class='question'>${q.q}</div>
     <div class='choices'></div>
-    <div class='explanation' id='explanationBox'></div>
+    <div class='explanation' id='explanationBox' role='status' aria-live='polite'></div>
   `;
   const choicesContainer = quizBox.querySelector(".choices");
   q.c.forEach((choice, i) => {
@@ -209,6 +324,8 @@ function selectChoice(i) {
   selected = i;
   document.querySelectorAll(".choice").forEach((btn, idx) => {
     btn.classList.toggle("selected", idx === i);
+    if (idx === quizData[current].a) btn.classList.add("correct");
+    if (idx === i && i !== quizData[current].a) btn.classList.add("incorrect");
     btn.disabled = true;
   });
   const q = quizData[current];
@@ -217,7 +334,7 @@ function selectChoice(i) {
 
   if (correct) score++;
 
-  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br><strong>Correct answer:</strong> ${q.c[q.a]}<br>${q.e}`;
   expBox.style.display = "block";
   nextBtn.style.display = "inline-block";
   showingExplanation = true;
@@ -254,7 +371,7 @@ function showResult() {
   quizBox.innerHTML = `
     <div class='stars'>${getStarRating(percent)}</div>
     <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Sending your result to LearnTrack...</p>
     <div class='quiz-nav'>
       <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
       <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
@@ -276,8 +393,8 @@ function showResult() {
     const nextLessonBtn = document.getElementById("nextLessonBtn");
 
     if (status) status.textContent = passed
-      ? "Progress sent. You may proceed after it is saved."
-      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+      ? "Result sent to LearnTrack. You may proceed."
+      : "Result sent to LearnTrack. Retake the quiz to meet the 80% target.";
 
     if (backBtn) backBtn.disabled = false;
     if (retryBtn) retryBtn.disabled = false;
@@ -301,6 +418,7 @@ function retryQuiz() {
 }
 
 showQuestion();
+
 </script>
 </body>
 </html>
