@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 6 Quiz - Scientific Measurement and SI Units</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 1 Assessment: Scientific Measurement and Data</title>
+
+<style>
   body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #e8f9f1, #f7faff);
@@ -16,6 +17,7 @@
     justify-content: center;
     min-height: 100vh;
   }
+
   .quiz-container {
     background: #ffffff;
     border-radius: 18px;
@@ -25,10 +27,26 @@
     max-width: 850px;
     text-align: center;
   }
+
+  * { box-sizing: border-box; }
+  .choice:focus-visible, button:focus-visible { outline: 3px solid #ad7115; outline-offset: 3px; }
+  .choice.correct { background: #e1ecff; color: #123c80; border: 2px solid #174ea6; }
+  .choice.incorrect { background: #fde9ed; color: #8a1d2a; border: 2px solid #b22b3b; }
+  .choice:disabled { opacity: 1; cursor: default; }
+  .quiz-btn:disabled { opacity: .5; cursor: not-allowed; }
   h2 {
     color: #136f63;
     margin-bottom: 25px;
     font-size: 1.8em;
+  }
+
+  /* Progress */
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
   }
   .progress-wrapper {
     background: #e9f5ef;
@@ -44,13 +62,8 @@
     width: 0%;
     transition: width 0.4s ease;
   }
-  .progress-text {
-    text-align: right;
-    font-size: 0.95em;
-    color: #174ea6;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
+
+  /* Question */
   .question {
     font-size: 1.3em;
     font-weight: 600;
@@ -61,31 +74,32 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
   .choice {
     background: #e8ecf8;
     border: none;
     border-radius: 10px;
     padding: 14px 18px;
-    cursor: pointer;
     text-align: left;
+    cursor: pointer;
     font-size: 1.05em;
-    transition: all 0.2s ease;
+    transition: 0.2s;
   }
   .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.correct { background: #136f63; color: #fff; }
-  .choice.incorrect { background: #e57373; color: #fff; }
+  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
+
   .explanation {
     background: #eef3ff;
     border-radius: 10px;
     padding: 14px 18px;
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-    color: #174ea6;
+    margin-top: 10px;
     display: none;
+    text-align: left;
+    font-size: 1.05em;
   }
+
+  /* Buttons */
   .next-btn {
     background: #136f63;
     color: #fff;
@@ -93,28 +107,31 @@
     padding: 12px 26px;
     border-radius: 10px;
     font-size: 1.05em;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
     transition: 0.2s;
+    margin-top: 15px;
   }
   .next-btn:hover { background: #0f5b52; }
+
+  /* Result */
   .result {
     font-size: 1.4em;
     font-weight: bold;
     color: #174ea6;
-    margin-top: 20px;
+    margin-top: 12px;
   }
   .stars {
     font-size: 2.5em;
     margin-top: 10px;
-    margin-bottom: 5px;
   }
+
   .quiz-nav {
     margin-top: 25px;
     display: flex;
     justify-content: center;
+    gap: 12px;
     flex-wrap: wrap;
-    gap: 10px;
   }
   .quiz-btn {
     background: #e8ecf8;
@@ -122,64 +139,268 @@
     border: none;
     border-radius: 8px;
     padding: 10px 20px;
-    font-size: 0.95em;
     cursor: pointer;
-    transition: all 0.2s ease;
+    font-size: 0.95em;
+    transition: 0.2s;
   }
   .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
   .quiz-btn.primary { background: #136f63; color: #fff; }
   .quiz-btn.primary:hover { background: #0f5b52; }
-  @media (max-width: 600px) {
+
+  @media(max-width:600px){
     .quiz-container { padding: 25px; }
-    .question { font-size: 1.1em; }
+    .question { font-size: 1.15em; }
     .stars { font-size: 2em; }
   }
-  </style>
+.choice.correct { background: #e1ecff; color: #123c80; border: 2px solid #174ea6; }
+.choice.incorrect { background: #fde9ed; color: #8a1d2a; border: 2px solid #b22b3b; }
+</style>
 </head>
-<body>
-  <div class="quiz-container">
-    <h2>Scientific Measurement and SI Units – Quiz</h2>
-    <div class="progress-text" id="progressText">Question 1 of 10</div>
-    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
-    <div id="quizBox"></div>
-    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-  </div>
+<body>
+
+<div class="quiz-container">
+  <h2>Chapter 1 Assessment – Scientific Measurement and Data</h2>
+
+  <p>20 questions · Pass: 16/20 (80% required). Choose one answer; your first choice is final. Read the explanation before continuing.</p>
+  <div id="progressText" class="progress-text">Question 1 of 20</div>
+  <div class="progress-wrapper"><div id="progressBar" class="progress-bar"></div></div>
+
+  <div id="quizBox"></div>
+  <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+</div>
 
 <script>
+/* ============================
+     QUIZ DATA
+============================= */
+
 const quizData = [
-
-{q:"Which is the correct SI unit for mass?",c:["gram","kilogram","milligram","ton"],a:1,e:"The SI base unit for mass is the kilogram (kg)."},  
-
-{q:"Convert 0.75 km to meters.",c:["75 m","750 m","7500 m","0.0075 m"],a:1,e:"1 km = 1000 m → 0.75 × 1000 = 750 m."},
-
-{q:"Which prefix represents 10⁻³?",c:["kilo","centi","milli","micro"],a:2,e:"Milli represents 10⁻³."},
-
-{q:"Which conversion factor is correct for converting cm to m?",c:["1 cm = 100 m","1 m = 100 cm","1 cm = 0.01 m","1 m = 0.01 cm"],a:2,e:"1 cm = 0.01 m."},
-
-{q:"Convert 2500 g to kilograms.",c:["0.25 kg","2.5 kg","25 kg","250 kg"],a:1,e:"Divide by 1000 → 2500 g = 2.5 kg."},
-
-{q:"Which unit is derived from SI base units?",c:["meter","second","newton","kelvin"],a:2,e:"Newton (N) is a derived unit (kg·m/s²)."},
-
-{q:"Convert 5.0 × 10³ mL to liters.",c:["5 L","0.5 L","50 L","500 L"],a:0,e:"1000 mL = 1 L → 5000 mL = 5 L."},
-
-{q:"Which prefix represents 10⁶?",c:["mega","kilo","micro","nano"],a:0,e:"Mega represents 10⁶."},
-
-{q:"Convert 3.2 cm to meters.",c:["0.032 m","0.32 m","320 m","0.0032 m"],a:0,e:"Divide by 100 → 3.2 cm = 0.032 m."},
-
-{q:"Which is the correct setup for converting 100 cm to meters?",c:["100 × (100 m / 1 cm)","100 × (1 m / 100 cm)","100 ÷ (100 m)","100 × (1 cm / 100 m)"],a:1,e:"Use a factor that cancels cm and leaves meters."},
-
-{q:"Convert 2 hours to seconds.",c:["7200 s","120 s","3600 s","1800 s"],a:0,e:"2 × 3600 = 7200 seconds."},
-
-{q:"Which best explains dimensional analysis?",c:["Changing numbers only","Cancelling units using conversion factors","Estimating values","Rounding numbers"],a:1,e:"Dimensional analysis ensures units cancel properly."},
-
-{q:"Convert 0.005 kg to grams.",c:["0.5 g","5 g","50 g","500 g"],a:1,e:"Multiply by 1000 → 0.005 kg = 5 g."},
-
-{q:"Which unit would be most appropriate for measuring the length of a laboratory table?",c:["millimeter","meter","kilometer","micrometer"],a:1,e:"Meters are suitable for everyday object lengths."},
-
-{q:"A measurement must always include:",c:["A number only","A unit only","Both number and unit","Neither"],a:2,e:"A measurement requires both value and unit."}
-
+  {
+    "q": "A student measures a pebble as 32.4 g. Which property and instrument are represented?",
+    "c": [
+      "Volume measured with a ruler",
+      "Mass measured with a balance",
+      "Weight measured with a graduated cylinder",
+      "Density measured with a thermometer"
+    ],
+    "a": 1,
+    "e": "Grams express mass, which is measured with a balance."
+  },
+  {
+    "q": "An empty container has a mass of 17.2 g; the container and sample together have a mass of 45.7 g. What is the sample mass?",
+    "c": [
+      "28.5 g",
+      "45.7 g",
+      "62.9 g",
+      "27.5 g"
+    ],
+    "a": 0,
+    "e": "Subtract the container’s mass: 45.7 − 17.2 = 28.5 g."
+  },
+  {
+    "q": "A rectangular block measures 5.0 cm × 2.0 cm × 3.0 cm. What is its volume?",
+    "c": [
+      "10 cm³",
+      "15 cm³",
+      "30 cm³",
+      "30 cm²"
+    ],
+    "a": 2,
+    "e": "Multiply the dimensions: 5.0 × 2.0 × 3.0 = 30 cm³."
+  },
+  {
+    "q": "A student wants to measure an irregular solid by water displacement. Which practice is appropriate?",
+    "c": [
+      "Use a solid that dissolves in water",
+      "Read the water level from above",
+      "Submerge a suitable solid completely and remove trapped bubbles",
+      "Use the final water reading as the solid’s volume"
+    ],
+    "a": 2,
+    "e": "A suitable solid must be fully submerged without trapped bubbles. Its volume is the change in the water reading."
+  },
+  {
+    "q": "A solid has a mass of 36.0 g and a volume of 12.0 cm³. What is its density?",
+    "c": [
+      "0.333 g/cm³",
+      "3.00 g/cm³",
+      "24.0 g/cm³",
+      "432 g/cm³"
+    ],
+    "a": 1,
+    "e": "Density = mass ÷ volume = 36.0 ÷ 12.0 = 3.00 g/cm³."
+  },
+  {
+    "q": "A solid has a mass of 18.0 g. Water rises from 16.0 mL to 22.0 mL when it is fully submerged. What is the density?",
+    "c": [
+      "0.33 g/mL",
+      "0.82 g/mL",
+      "3.0 g/mL",
+      "6.0 g/mL"
+    ],
+    "a": 2,
+    "e": "The volume is 22.0 − 16.0 = 6.0 mL. Density = 18.0 ÷ 6.0 = 3.0 g/mL."
+  },
+  {
+    "q": "Object A has a mass of 40 g and a volume of 100 cm³; object B has a mass of 30 g and a volume of 10 cm³. Which is denser?",
+    "c": [
+      "A, because it has more mass",
+      "B, because its mass per unit volume is greater",
+      "They have equal densities because both are solids",
+      "Their densities cannot be calculated without their shapes"
+    ],
+    "a": 1,
+    "e": "A has density 0.40 g/cm³ and B has density 3 g/cm³. B is denser even though its total mass is smaller."
+  },
+  {
+    "q": "An object’s overall density is 0.70 g/mL. What is expected when it is placed in water of density 1.0 g/mL?",
+    "c": [
+      "It floats because its overall density is lower than water’s",
+      "It sinks because its overall density is lower than water’s",
+      "It floats only if its mass is greater than 1 g",
+      "It must remain completely submerged because it is a solid"
+    ],
+    "a": 0,
+    "e": "An object with an overall density less than the liquid’s density is expected to float."
+  },
+  {
+    "q": "Which expression writes 0.0000580 in normalized scientific notation while retaining the reported digits?",
+    "c": [
+      "5.80 × 10⁻⁴",
+      "5.80 × 10⁻⁵",
+      "5.80 × 10⁵",
+      "58.0 × 10⁻⁵"
+    ],
+    "a": 1,
+    "e": "Move the decimal five places right to obtain 5.80, giving 5.80 × 10⁻⁵. The final zero is retained."
+  },
+  {
+    "q": "What is 3.6 × 10⁻³ in ordinary form?",
+    "c": [
+      "0.00036",
+      "0.0036",
+      "0.036",
+      "3600"
+    ],
+    "a": 1,
+    "e": "Move the decimal three places to the left: 3.6 × 10⁻³ = 0.0036."
+  },
+  {
+    "q": "What is (3.0 × 10⁴)(2.0 × 10⁻²)?",
+    "c": [
+      "6.0 × 10⁻⁸",
+      "6.0 × 10²",
+      "5.0 × 10²",
+      "6.0 × 10⁶"
+    ],
+    "a": 1,
+    "e": "Multiply coefficients and add exponents: 3.0 × 2.0 = 6.0 and 4 + (−2) = 2."
+  },
+  {
+    "q": "What is 7.0 × 10⁴ − 2.0 × 10³, reported to the appropriate place value?",
+    "c": [
+      "5.0 × 10¹",
+      "5.0 × 10⁴",
+      "6.8 × 10⁴",
+      "6.98 × 10⁴"
+    ],
+    "a": 2,
+    "e": "Rewrite 2.0 × 10³ as 0.20 × 10⁴. The difference is 6.80 × 10⁴, reported to the least precise place as 6.8 × 10⁴."
+  },
+  {
+    "q": "How many significant figures are in 0.006020?",
+    "c": [
+      "Two",
+      "Three",
+      "Four",
+      "Six"
+    ],
+    "a": 2,
+    "e": "The leading zeros are not significant. The digits 6, 0, 2, and the final zero are significant: four in total."
+  },
+  {
+    "q": "Which notation shows the value 4,300 to three significant figures?",
+    "c": [
+      "4.3 × 10³",
+      "4.30 × 10³",
+      "4.300 × 10³",
+      "43 × 10²"
+    ],
+    "a": 1,
+    "e": "The coefficient 4.30 contains three significant figures."
+  },
+  {
+    "q": "Calculate 3.2 cm × 2.15 cm and report the result using the multiplication rule.",
+    "c": [
+      "6.880 cm²",
+      "6.88 cm²",
+      "6.9 cm²",
+      "7 cm²"
+    ],
+    "a": 2,
+    "e": "The unrounded product is 6.88 cm². The factor 3.2 has two significant figures, so report 6.9 cm²."
+  },
+  {
+    "q": "A sample and container together have a mass of 28.36 g; the container has a mass of 8.2 g. What is the sample mass, reported to the appropriate place?",
+    "c": [
+      "20.16 g",
+      "20.2 g",
+      "20.1 g",
+      "20 g"
+    ],
+    "a": 1,
+    "e": "28.36 − 8.2 = 20.16 g. Round to the tenths place, giving 20.2 g."
+  },
+  {
+    "q": "A reference mass is 10.00 g. A group records 9.59 g, 9.60 g, and 9.61 g. What is the best description?",
+    "c": [
+      "The readings are tightly grouped, but their mean is far below the reference",
+      "The readings are widely spread, but their mean equals the reference",
+      "Every reading equals the reference",
+      "The readings show that no bias is possible"
+    ],
+    "a": 0,
+    "e": "The range is 0.02 g and the mean is 9.60 g, which is 0.40 g below the reference."
+  },
+  {
+    "q": "A reference value is 20.00 mL. Measurements are 19.70, 20.00, and 20.30 mL. What can be concluded?",
+    "c": [
+      "The mean equals the reference, but the individual readings are spread out",
+      "All three measurements equal the reference",
+      "The mean is 19.70 mL",
+      "The data prove the instrument has a constant positive offset"
+    ],
+    "a": 0,
+    "e": "The mean is 20.00 mL, but the range is 0.60 mL. A close mean does not imply that each reading is close."
+  },
+  {
+    "q": "A balance consistently reads 0.20 g above a reference mass. What is the best first response?",
+    "c": [
+      "Record more digits after the decimal",
+      "Average the readings without inspecting the balance",
+      "Check the zero setting and calibration against a suitable standard",
+      "Assume the sample’s mass changes with each trial"
+    ],
+    "a": 2,
+    "e": "A consistent offset suggests possible systematic bias. Checking zero and calibration helps investigate the cause."
+  },
+  {
+    "q": "The accepted mass is 50.0 g and the measured mass is 49.0 g. What is the percent error?",
+    "c": [
+      "1%",
+      "2%",
+      "4%",
+      "49%"
+    ],
+    "a": 1,
+    "e": "Percent error = |49.0 − 50.0| ÷ 50.0 × 100% = 2%."
+  }
 ];
+
+/* ============================
+       QUIZ LOGIC
+============================= */
 
 let current = 0, score = 0, selected = null, showingExplanation = false;
 const quizBox = document.getElementById("quizBox");
@@ -193,7 +414,7 @@ function showQuestion() {
   quizBox.innerHTML = `
     <div class='question'>${q.q}</div>
     <div class='choices'></div>
-    <div class='explanation' id='explanationBox'></div>
+    <div class='explanation' id='explanationBox' role='status' aria-live='polite'></div>
   `;
   const choicesContainer = quizBox.querySelector(".choices");
   q.c.forEach((choice, i) => {
@@ -213,6 +434,8 @@ function selectChoice(i) {
   selected = i;
   document.querySelectorAll(".choice").forEach((btn, idx) => {
     btn.classList.toggle("selected", idx === i);
+    if (idx === quizData[current].a) btn.classList.add("correct");
+    if (idx === i && i !== quizData[current].a) btn.classList.add("incorrect");
     btn.disabled = true;
   });
   const q = quizData[current];
@@ -221,7 +444,7 @@ function selectChoice(i) {
 
   if (correct) score++;
 
-  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br><strong>Correct answer:</strong> ${q.c[q.a]}<br>${q.e}`;
   expBox.style.display = "block";
   nextBtn.style.display = "inline-block";
   showingExplanation = true;
@@ -258,7 +481,7 @@ function showResult() {
   quizBox.innerHTML = `
     <div class='stars'>${getStarRating(percent)}</div>
     <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Sending your result to LearnTrack...</p>
     <div class='quiz-nav'>
       <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
       <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
@@ -280,8 +503,8 @@ function showResult() {
     const nextLessonBtn = document.getElementById("nextLessonBtn");
 
     if (status) status.textContent = passed
-      ? "Progress sent. You may proceed after it is saved."
-      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+      ? "Result sent to LearnTrack. You may proceed."
+      : "Result sent to LearnTrack. Retake the quiz to meet the 80% target.";
 
     if (backBtn) backBtn.disabled = false;
     if (retryBtn) retryBtn.disabled = false;
@@ -305,6 +528,7 @@ function retryQuiz() {
 }
 
 showQuestion();
+
 </script>
 </body>
 </html>
