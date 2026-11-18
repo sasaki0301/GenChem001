@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 4 Quiz: Classifying Matter</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 1 – Lesson 4 Quiz: Significant Figures</title>
+
+<style>
   body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #e8f9f1, #f7faff);
@@ -16,6 +17,7 @@
     justify-content: center;
     min-height: 100vh;
   }
+
   .quiz-container {
     background: #ffffff;
     border-radius: 18px;
@@ -25,10 +27,26 @@
     max-width: 850px;
     text-align: center;
   }
+
+  * { box-sizing: border-box; }
+  .choice:focus-visible, button:focus-visible { outline: 3px solid #ad7115; outline-offset: 3px; }
+  .choice.correct { background: #e1ecff; color: #123c80; border: 2px solid #174ea6; }
+  .choice.incorrect { background: #fde9ed; color: #8a1d2a; border: 2px solid #b22b3b; }
+  .choice:disabled { opacity: 1; cursor: default; }
+  .quiz-btn:disabled { opacity: .5; cursor: not-allowed; }
   h2 {
     color: #136f63;
     margin-bottom: 25px;
     font-size: 1.8em;
+  }
+
+  /* Progress */
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
   }
   .progress-wrapper {
     background: #e9f5ef;
@@ -44,13 +62,8 @@
     width: 0%;
     transition: width 0.4s ease;
   }
-  .progress-text {
-    text-align: right;
-    font-size: 0.95em;
-    color: #174ea6;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
+
+  /* Question */
   .question {
     font-size: 1.3em;
     font-weight: 600;
@@ -61,31 +74,32 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
   .choice {
     background: #e8ecf8;
     border: none;
     border-radius: 10px;
     padding: 14px 18px;
-    cursor: pointer;
     text-align: left;
+    cursor: pointer;
     font-size: 1.05em;
-    transition: all 0.2s ease;
+    transition: 0.2s;
   }
   .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.correct { background: #136f63; color: #fff; }
-  .choice.incorrect { background: #e57373; color: #fff; }
+  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
+
   .explanation {
     background: #eef3ff;
     border-radius: 10px;
     padding: 14px 18px;
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-    color: #174ea6;
+    margin-top: 10px;
     display: none;
+    text-align: left;
+    font-size: 1.05em;
   }
+
+  /* Buttons */
   .next-btn {
     background: #136f63;
     color: #fff;
@@ -93,28 +107,31 @@
     padding: 12px 26px;
     border-radius: 10px;
     font-size: 1.05em;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
     transition: 0.2s;
+    margin-top: 15px;
   }
   .next-btn:hover { background: #0f5b52; }
+
+  /* Result */
   .result {
     font-size: 1.4em;
     font-weight: bold;
     color: #174ea6;
-    margin-top: 20px;
+    margin-top: 12px;
   }
   .stars {
     font-size: 2.5em;
     margin-top: 10px;
-    margin-bottom: 5px;
   }
+
   .quiz-nav {
     margin-top: 25px;
     display: flex;
     justify-content: center;
+    gap: 12px;
     flex-wrap: wrap;
-    gap: 10px;
   }
   .quiz-btn {
     background: #e8ecf8;
@@ -122,57 +139,158 @@
     border: none;
     border-radius: 8px;
     padding: 10px 20px;
-    font-size: 0.95em;
     cursor: pointer;
-    transition: all 0.2s ease;
+    font-size: 0.95em;
+    transition: 0.2s;
   }
   .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
   .quiz-btn.primary { background: #136f63; color: #fff; }
   .quiz-btn.primary:hover { background: #0f5b52; }
-  @media (max-width: 600px) {
+
+  @media(max-width:600px){
     .quiz-container { padding: 25px; }
-    .question { font-size: 1.1em; }
+    .question { font-size: 1.15em; }
     .stars { font-size: 2em; }
   }
-  </style>
+.choice.correct { background: #e1ecff; color: #123c80; border: 2px solid #174ea6; }
+.choice.incorrect { background: #fde9ed; color: #8a1d2a; border: 2px solid #b22b3b; }
+</style>
 </head>
-<body>
-  <div class="quiz-container">
-    <h2>Classifying Matter – Quiz</h2>
-    <div class="progress-text" id="progressText">Question 1 of 10</div>
-    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
 
-    <div id="quizBox"></div>
-    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-  </div>
+<body>
+
+<div class="quiz-container">
+  <h2>Lesson 4 Quiz – Significant Figures</h2>
+
+  <p>10 questions · Pass: 8/10 (80% required). Choose one answer; your first choice is final. Read the explanation before continuing.</p>
+  <div id="progressText" class="progress-text">Question 1 of 10</div>
+  <div class="progress-wrapper"><div id="progressBar" class="progress-bar"></div></div>
+
+  <div id="quizBox"></div>
+  <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+</div>
 
 <script>
+/* ============================
+     QUIZ DATA
+============================= */
+
 const quizData = [
-  {q:"Which is a pure substance?",c:["Saltwater","Air","Oxygen gas","Milk"],a:2,e:"Oxygen is a single element with fixed composition."},
-
-  {q:"Which best describes a compound?",c:["Physically mixed substances","Single type of atom","Chemically bonded elements","Uniform mixture"],a:2,e:"Compounds are formed by chemical bonding."},
-
-  {q:"Which is a heterogeneous mixture?",c:["Saltwater","Air","Sand in water","Vinegar"],a:2,e:"Sand and water are not uniform."},
-
-  {q:"Which is homogeneous?",c:["Oil and water","Saltwater","Soil","Granite"],a:1,e:"Saltwater appears uniform throughout."},
-
-  {q:"Why can mixtures be separated physically?",c:["They are bonded chemically","They have fixed ratios","Components retain identity","They are elements"],a:2,e:"Mixture components are not chemically bonded."},
-
-  {q:"Which is NOT a compound?",c:["H₂O","CO₂","NaCl","O₂"],a:3,e:"O₂ is an element, not a compound."},
-
-  {q:"Which is an element?",c:["Water","Carbon dioxide","Iron","Salt"],a:2,e:"Iron is made of only one type of atom."},
-  
-  {q:"Which best distinguishes compounds from mixtures?",c:["Color","Mass","Chemical bonding","Volume"],a:2,e:"Compounds involve chemical bonds."},
-
-  {q:"Air is best classified as:",c:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"],a:2,e:"Air is a uniform mixture of gases."},
-
-  {q:"Which is true about compounds?",c:["Variable composition","Separated physically","Fixed ratio of elements","Not chemically bonded"],a:2,e:"Compounds have fixed composition."},
-
-  {q:"A mixture that appears uniform but contains multiple substances is:",c:["Compound","Element","Homogeneous mixture","Heterogeneous mixture"],a:2,e:"Uniform mixtures are homogeneous."},
-
-  {q:"Which is hardest to separate?",c:["Mixture","Compound","Solution","Suspension"],a:1,e:"Compounds require chemical separation."}
-
+  {
+    "q": "How many significant figures are in the measurement 0.004070 g?",
+    "c": [
+      "Two",
+      "Three",
+      "Four",
+      "Six"
+    ],
+    "a": 2,
+    "e": "The leading zeros do not count. The digits 4, 0, 7, and the final zero are significant, giving four significant figures."
+  },
+  {
+    "q": "Which expression represents 7,200 using exactly three significant figures?",
+    "c": [
+      "7.2 × 10³",
+      "7.20 × 10³",
+      "7.200 × 10³",
+      "72 × 10²"
+    ],
+    "a": 1,
+    "e": "The coefficient 7.20 has three significant figures; scientific notation makes the intended precision clear."
+  },
+  {
+    "q": "A student writes a measured mass as 6.20 g rather than 6.2 g. What does the extra zero communicate?",
+    "c": [
+      "The mass is ten times larger",
+      "The mass is reported to the hundredths place",
+      "The measurement is necessarily accurate",
+      "The zero is only a placeholder and has no significance"
+    ],
+    "a": 1,
+    "e": "The final zero is significant: 6.20 g is reported to the hundredths place. More reported digits alone do not guarantee accuracy."
+  },
+  {
+    "q": "Round 0.006358 to three significant figures, using the rule that 5 or greater rounds the retained digit up.",
+    "c": [
+      "0.00635",
+      "0.00636",
+      "0.0064",
+      "0.006358"
+    ],
+    "a": 1,
+    "e": "The first three significant digits are 6, 3, and 5. The next digit is 8, so round up to 0.00636."
+  },
+  {
+    "q": "Calculate 5.2 cm × 3.14 cm and report the result using the multiplication rule.",
+    "c": [
+      "16.328 cm²",
+      "16.33 cm²",
+      "16 cm²",
+      "20 cm²"
+    ],
+    "a": 2,
+    "e": "The unrounded product is 16.328 cm². The factor 5.2 has two significant figures, so report 16 cm²."
+  },
+  {
+    "q": "A sample has a mass of 14.28 g and a volume of 4.0 mL. What is its density, reported with the appropriate significant figures?",
+    "c": [
+      "3.570 g/mL",
+      "3.57 g/mL",
+      "3.6 g/mL",
+      "4 g/mL"
+    ],
+    "a": 2,
+    "e": "14.28 ÷ 4.0 = 3.57 g/mL. The volume has two significant figures, so the result is 3.6 g/mL."
+  },
+  {
+    "q": "Report the result of 12.36 g + 1.4 g using the addition rule.",
+    "c": [
+      "13.76 g",
+      "13.8 g",
+      "13.7 g",
+      "14 g"
+    ],
+    "a": 1,
+    "e": "The unrounded sum is 13.76 g. The least precise input is reported to the tenths place, so the answer is 13.8 g."
+  },
+  {
+    "q": "A container and sample have a mass of 27.85 g. The empty container has a mass of 9.3 g. What is the sample mass, reported correctly?",
+    "c": [
+      "18.55 g",
+      "18.6 g",
+      "18.5 g",
+      "19 g"
+    ],
+    "a": 1,
+    "e": "27.85 − 9.3 = 18.55 g. Round to the tenths place, following the course rounding rule: 18.6 g."
+  },
+  {
+    "q": "Eight identical beads have a measured combined mass of 20.0 g. What is the calculated mass of one bead?",
+    "c": [
+      "3 g",
+      "2.5 g",
+      "2.50 g",
+      "2.5000 g"
+    ],
+    "a": 2,
+    "e": "20.0 g ÷ 8 = 2.50 g per bead. The count of eight is exact, so the measured mass limits the answer to three significant figures."
+  },
+  {
+    "q": "A container and sample have a mass of 24.36 g, the empty container has a mass of 10.2 g, and the sample volume is 4.00 mL. Calculate the density, retaining guard digits until the end.",
+    "c": [
+      "3.54 g/mL",
+      "3.55 g/mL",
+      "3.540 g/mL",
+      "3.5 g/mL"
+    ],
+    "a": 0,
+    "e": "The unrounded mass difference is 14.16 g, limited to the tenths place. Retain guard digits: 14.16 ÷ 4.00 = 3.54 g/mL, reported to three significant figures."
+  }
 ];
+
+/* ============================
+       QUIZ LOGIC
+============================= */
 
 let current = 0, score = 0, selected = null, showingExplanation = false;
 const quizBox = document.getElementById("quizBox");
@@ -186,7 +304,7 @@ function showQuestion() {
   quizBox.innerHTML = `
     <div class='question'>${q.q}</div>
     <div class='choices'></div>
-    <div class='explanation' id='explanationBox'></div>
+    <div class='explanation' id='explanationBox' role='status' aria-live='polite'></div>
   `;
   const choicesContainer = quizBox.querySelector(".choices");
   q.c.forEach((choice, i) => {
@@ -206,6 +324,8 @@ function selectChoice(i) {
   selected = i;
   document.querySelectorAll(".choice").forEach((btn, idx) => {
     btn.classList.toggle("selected", idx === i);
+    if (idx === quizData[current].a) btn.classList.add("correct");
+    if (idx === i && i !== quizData[current].a) btn.classList.add("incorrect");
     btn.disabled = true;
   });
   const q = quizData[current];
@@ -214,7 +334,7 @@ function selectChoice(i) {
 
   if (correct) score++;
 
-  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br><strong>Correct answer:</strong> ${q.c[q.a]}<br>${q.e}`;
   expBox.style.display = "block";
   nextBtn.style.display = "inline-block";
   showingExplanation = true;
@@ -251,7 +371,7 @@ function showResult() {
   quizBox.innerHTML = `
     <div class='stars'>${getStarRating(percent)}</div>
     <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Sending your result to LearnTrack...</p>
     <div class='quiz-nav'>
       <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
       <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
@@ -273,8 +393,8 @@ function showResult() {
     const nextLessonBtn = document.getElementById("nextLessonBtn");
 
     if (status) status.textContent = passed
-      ? "Progress sent. You may proceed after it is saved."
-      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+      ? "Result sent to LearnTrack. You may proceed."
+      : "Result sent to LearnTrack. Retake the quiz to meet the 80% target.";
 
     if (backBtn) backBtn.disabled = false;
     if (retryBtn) retryBtn.disabled = false;
@@ -298,6 +418,7 @@ function retryQuiz() {
 }
 
 showQuestion();
+
 </script>
 </body>
 </html>
