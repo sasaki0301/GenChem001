@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 2 Summary: The Periodic Table and Electron Arrangement</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .diagram {
+                display: flex;
+                gap: 22px;
+                align-items: flex-end;
+                flex-wrap: wrap;
+                padding: 15px;
+                background: #fff;
+                border: 1px solid #d8e5e8;
+                border-radius: 8px;
+            }
+            .subshell {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            .orbital-row {
+                display: flex;
+                gap: 5px;
+            }
+            .orbital {
+                min-width: 44px;
+                height: 43px;
+                border: 2px solid #174ea6;
+                border-radius: 4px;
+                background: #f7faff;
+                text-align: center;
+                line-height: 39px;
+                color: #174ea6;
+                font-size: 24px;
+                font-weight: 700;
+            }
+            .orbital-label {
+                font-weight: 700;
+                color: #136f63;
+                font-size: 0.85em;
+            }
+            .trend-layout {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .trend-visual {
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 12px;
+                padding: 14px;
+            }
+            .trend-visual svg {
+                display: block;
+                width: 100%;
+                max-width: 450px;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 700px) {
+                .trend-layout {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 2 · Summary</div>
+                <h1>The Periodic Table and Electron Arrangement</h1>
+                <p>
+                    Review how scientists organized the elements, how the modern table reveals patterns, and how
+                    electrons are represented in subshells and orbital diagrams.
+                </p>
+                <nav aria-label="Summary sections">
+                    <a href="#overview">Overview</a><a href="#history">History</a><a href="#table">Periodic table</a
+                    ><a href="#trends">Trends</a><a href="#electrons">Electron arrangement</a
+                    ><a href="#integrated">Worked review</a><a href="#practice">Practice</a>
+                </nav>
+            </header>
+            <section class="card" id="overview">
+                <h2>Chapter overview</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Lesson</th>
+                                <th>What to review</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1. Historical classification</td>
+                                <td>Döbereiner, Newlands, Mendeleev, and Moseley.</td>
+                            </tr>
+                            <tr>
+                                <td>2. Groups and periods</td>
+                                <td>Atomic number, element families, rows, and columns.</td>
+                            </tr>
+                            <tr>
+                                <td>3. Periodic trends</td>
+                                <td>General patterns in atomic radius and relative atomic mass.</td>
+                            </tr>
+                            <tr>
+                                <td>4. Energy levels and orbitals</td>
+                                <td>Shells, subshells, orbital capacities, and allowed energy states.</td>
+                            </tr>
+                            <tr>
+                                <td>5. Electron configuration</td>
+                                <td>Notation and the introductory Aufbau filling guide.</td>
+                            </tr>
+                            <tr>
+                                <td>6. Orbital diagrams</td>
+                                <td>Aufbau, Pauli’s principle, Hund’s rule, and unpaired electrons.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="card" id="history">
+                <h2>1. How the periodic table developed</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Scientist</th>
+                                <th>Contribution</th>
+                                <th>Limit or development</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Döbereiner</td>
+                                <td>
+                                    Noticed selected triads of similar elements with an approximate atomic-mass
+                                    relationship.
+                                </td>
+                                <td>Only some elements fitted the triad pattern.</td>
+                            </tr>
+                            <tr>
+                                <td>Newlands</td>
+                                <td>
+                                    Proposed the Law of Octaves after observing recurring properties in a mass-ordered
+                                    sequence.
+                                </td>
+                                <td>The pattern did not fit all known elements.</td>
+                            </tr>
+                            <tr>
+                                <td>Mendeleev</td>
+                                <td>
+                                    Arranged elements mainly by atomic mass and properties; left gaps and predicted
+                                    missing elements.
+                                </td>
+                                <td>Some placements did not follow strict increasing-mass order.</td>
+                            </tr>
+                            <tr>
+                                <td>Moseley</td>
+                                <td>Provided evidence for atomic number as the organizing principle.</td>
+                                <td>The modern table is ordered by increasing atomic number.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    Mendeleev’s prediction of <strong>eka-silicon</strong> was later compared with the properties of
+                    discovered germanium. Agreement provided evidence supporting the predictive value of the table.
+                </p>
+            </section>
+            <section class="card" id="table">
+                <h2>2. Read the modern periodic table</h2>
+                <div class="grid">
+                    <div>
+                        <h3>Group</h3>
+                        <p>
+                            A <strong>vertical column</strong>, numbered 1–18. Members often have related chemical
+                            properties.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Period</h3>
+                        <p>A <strong>horizontal row</strong>, numbered 1–7. Atomic number increases across the row.</p>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Family</th>
+                                <th>Group</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alkali metals</td>
+                                <td>1, excluding hydrogen</td>
+                                <td>Li, Na, K</td>
+                            </tr>
+                            <tr>
+                                <td>Alkaline earth metals</td>
+                                <td>2</td>
+                                <td>Be, Mg, Ca</td>
+                            </tr>
+                            <tr>
+                                <td>Halogens</td>
+                                <td>17</td>
+                                <td>F, Cl, Br</td>
+                            </tr>
+                            <tr>
+                                <td>Noble gases</td>
+                                <td>18</td>
+                                <td>He, Ne, Ar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    Atomic number is the <strong>number of protons</strong> and determines an element’s position. For
+                    example, chlorine is in group 17, period 3, and has atomic number 17. Hydrogen is a nonmetal, even
+                    though it is usually placed above group 1.
+                </p>
+            </section>
+            <section class="card" id="trends">
+                <h2>3. Compare periodic trends</h2>
+                <p>
+                    The arrows show directions of <strong>general increase</strong>; they are guides, not scales or
+                    rules without exceptions.
+                </p>
+                <div class="trend-layout">
+                    <div class="trend-visual">
+                        <h3>Atomic radius</h3>
+                        <svg
+                            viewBox="0 0 360 190"
+                            role="img"
+                            aria-label="Atomic radius generally increases left across a period and downward within a group."
+                        >
+                            <rect x="80" y="24" width="215" height="100" rx="8" fill="#fff" stroke="#9fbfc7" />
+                            <text x="188" y="80" text-anchor="middle" font-size="16" fill="#24323d">
+                                Periodic table
+                            </text>
+                            <line x1="245" y1="145" x2="130" y2="145" stroke="#136f63" stroke-width="5" />
+                            <polygon points="119,145 133,137 133,153" fill="#136f63" />
+                            <line x1="45" y1="40" x2="45" y2="115" stroke="#136f63" stroke-width="5" />
+                            <polygon points="45,126 37,112 53,112" fill="#136f63" />
+                            <text x="188" y="177" text-anchor="middle" font-size="14" fill="#136f63">
+                                Generally increases left and down
+                            </text>
+                        </svg>
+                    </div>
+                    <div class="trend-visual">
+                        <h3>Relative atomic mass</h3>
+                        <svg
+                            viewBox="0 0 360 190"
+                            role="img"
+                            aria-label="Relative atomic mass generally increases right across a period and downward within a group, with exceptions."
+                        >
+                            <rect x="65" y="24" width="215" height="100" rx="8" fill="#fff" stroke="#9fbfc7" />
+                            <text x="172" y="80" text-anchor="middle" font-size="16" fill="#24323d">
+                                Periodic table
+                            </text>
+                            <line x1="110" y1="145" x2="225" y2="145" stroke="#174ea6" stroke-width="5" />
+                            <polygon points="236,145 222,137 222,153" fill="#174ea6" />
+                            <line x1="315" y1="40" x2="315" y2="115" stroke="#174ea6" stroke-width="5" />
+                            <polygon points="315,126 307,112 323,112" fill="#174ea6" />
+                            <text x="172" y="177" text-anchor="middle" font-size="14" fill="#174ea6">
+                                Generally increases right and down*
+                            </text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Direction</th>
+                                <th>Atomic radius</th>
+                                <th>Relative atomic mass</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Left to right across a period</td>
+                                <td>Generally decreases as effective nuclear attraction increases.</td>
+                                <td>Generally increases, with exceptions.</td>
+                            </tr>
+                            <tr>
+                                <td>Down a group</td>
+                                <td>Generally increases as occupied shells and shielding increase.</td>
+                                <td>Generally increases.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="note">
+                    <strong>Comparisons need care:</strong> Use neutral atomic radii measured with consistent
+                    definitions. Diagonal position alone may be inconclusive. Tellurium and iodine illustrate an
+                    atomic-mass exception: Te comes first by atomic number even though its listed relative atomic mass
+                    is slightly greater.
+                </div>
+            </section>
+            <section class="card" id="electrons">
+                <h2>4. Shells, subshells, and orbitals</h2>
+                <p>
+                    A <strong>shell</strong> groups orbitals with principal quantum number n. A
+                    <strong>subshell</strong> is labeled s, p, d, or f in this course. An <strong>orbital</strong> is
+                    described by a wavefunction and an electron probability distribution; it is not a fixed circular
+                    path.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subshell</th>
+                                <th>Orbitals</th>
+                                <th>Maximum electrons</th>
+                                <th>First allowed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>s</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1s</td>
+                            </tr>
+                            <tr>
+                                <td>p</td>
+                                <td>3</td>
+                                <td>6</td>
+                                <td>2p</td>
+                            </tr>
+                            <tr>
+                                <td>d</td>
+                                <td>5</td>
+                                <td>10</td>
+                                <td>3d</td>
+                            </tr>
+                            <tr>
+                                <td>f</td>
+                                <td>7</td>
+                                <td>14</td>
+                                <td>4f</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    The maximum number of electrons in shell n is <strong>2n²</strong>; for n = 3, the maximum is 18.
+                    This is capacity, not a statement that the shell is full or a universal filling order.
+                </p>
+                <p>
+                    Allowed atomic energy states are discrete. A photon emitted during a transition from a higher to a
+                    lower state carries energy equal to the difference:
+                    <strong>E<sub>photon</sub> = E<sub>higher</sub> − E<sub>lower</sub> = hν</strong>. In the simplified
+                    hydrogen model, orbitals with the same n share an energy; multielectron subshell energies can differ
+                    and overlap.
+                </p>
+                <h3>Electron configuration</h3>
+                <p>
+                    For a neutral atom, electron count equals atomic number. In 3p⁴, 3 is the shell, p is the subshell,
+                    and 4 is the number of electrons in that subshell.
+                </p>
+                <p class="formula">First 20 neutral atoms: 1s → 2s → 2p → 3s → 3p → 4s</p>
+                <p>
+                    This introductory ground-state filling guide has limits beyond the first 20 elements; some
+                    configurations are exceptions and ions require additional care.
+                </p>
+            </section>
+            <section class="card" id="integrated">
+                <h2>5. Worked review: oxygen</h2>
+                <p>
+                    Neutral oxygen has atomic number 8, so it has <strong>8 electrons</strong>. Its ground-state
+                    configuration is:
+                </p>
+                <p class="formula">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>4</sup></p>
+                <p>The total is 2 + 2 + 4 = 8. Draw one box for 1s, one for 2s, and three for 2p:</p>
+                <div
+                    class="diagram"
+                    role="group"
+                    aria-label="Oxygen ground-state diagram: paired electrons in 1s and 2s, and one pair plus two parallel unpaired electrons in 2p."
+                >
+                    <div class="subshell">
+                        <div class="orbital-row">
+                            <span class="orbital" aria-label="two electrons, opposite spins">↑↓</span>
+                        </div>
+                        <span class="orbital-label">1s</span>
+                    </div>
+                    <div class="subshell">
+                        <div class="orbital-row">
+                            <span class="orbital" aria-label="two electrons, opposite spins">↑↓</span>
+                        </div>
+                        <span class="orbital-label">2s</span>
+                    </div>
+                    <div class="subshell">
+                        <div class="orbital-row">
+                            <span class="orbital" aria-label="two electrons, opposite spins">↑↓</span
+                            ><span class="orbital" aria-label="one electron">↑</span
+                            ><span class="orbital" aria-label="one electron">↑</span>
+                        </div>
+                        <span class="orbital-label">2p</span>
+                    </div>
+                </div>
+                <p>
+                    Each box represents an orbital and each arrow an electron. Oxygen has
+                    <strong>two unpaired electrons</strong> in its ground-state 2p arrangement. Any one of the three
+                    equal-energy p boxes may be drawn as the paired box.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rule</th>
+                                <th>How to check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Aufbau</td>
+                                <td>
+                                    For the stated scope, use the introductory lower-energy ground-state filling
+                                    sequence.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pauli exclusion</td>
+                                <td>At most two electrons share an orbital, with opposite spins if paired.</td>
+                            </tr>
+                            <tr>
+                                <td>Hund’s rule</td>
+                                <td>
+                                    In a ground state, equal-energy orbitals are singly occupied with parallel spins
+                                    before pairing.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="small">
+                    An arrangement that is not the ground state is not automatically impossible: some arrangements can
+                    represent excited states.
+                </p>
+            </section>
+            <section class="card" id="practice">
+                <h2>6. Review and practice</h2>
+                <p>
+                    Choose an answer and select <strong>Check answer</strong>. These activities do not record an
+                    assessment score.
+                </p>
+                <div class="practice" data-quiz="triad">
+                    <h3>Review 1 · Historical patterns</h3>
+                    <fieldset>
+                        <legend>What was the central idea of Döbereiner’s triads?</legend>
+                        <label
+                            ><input type="radio" name="triad" value="a" />Selected groups of three elements had similar
+                            properties and an approximate mass relationship</label
+                        ><label><input type="radio" name="triad" value="b" />All elements had the same mass</label
+                        ><label
+                            ><input type="radio" name="triad" value="c" />Elements were ordered by number of
+                            neutrons</label
+                        ><label
+                            ><input type="radio" name="triad" value="d" />Every eighth element was always
+                            identical</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="mendeleev">
+                    <h3>Review 2 · Predictions</h3>
+                    <fieldset>
+                        <legend>Why did Mendeleev leave gaps in his table?</legend>
+                        <label
+                            ><input type="radio" name="mendeleev" value="a" />To leave space for undiscovered elements
+                            suggested by patterns</label
+                        ><label
+                            ><input type="radio" name="mendeleev" value="b" />To arrange the elements
+                            alphabetically</label
+                        ><label
+                            ><input type="radio" name="mendeleev" value="c" />Because every group had the same atomic
+                            mass</label
+                        ><label
+                            ><input type="radio" name="mendeleev" value="d" />Because he already knew each element’s
+                            proton count</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="group">
+                    <h3>Review 3 · Groups and periods</h3>
+                    <fieldset>
+                        <legend>Chlorine is in group 17 and period 3. Which statement describes its location?</legend>
+                        <label><input type="radio" name="group" value="a" />Column 17 and row 3</label
+                        ><label><input type="radio" name="group" value="b" />Row 17 and column 3</label
+                        ><label><input type="radio" name="group" value="c" />Column 3 and row 17</label
+                        ><label><input type="radio" name="group" value="d" />Column 17 and row 17</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="family">
+                    <h3>Review 4 · Element families</h3>
+                    <fieldset>
+                        <legend>Which pair belongs to the halogen family?</legend>
+                        <label><input type="radio" name="family" value="a" />Li and Na</label
+                        ><label><input type="radio" name="family" value="b" />F and Cl</label
+                        ><label><input type="radio" name="family" value="c" />He and Ne</label
+                        ><label><input type="radio" name="family" value="d" />Mg and Ca</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="radius">
+                    <h3>Review 5 · Atomic radius</h3>
+                    <fieldset>
+                        <legend>Which neutral atom is generally larger: Li or Na, both in group 1?</legend>
+                        <label><input type="radio" name="radius" value="a" />Li</label
+                        ><label><input type="radio" name="radius" value="b" />Na</label
+                        ><label><input type="radio" name="radius" value="c" />They must have the same radius</label
+                        ><label><input type="radio" name="radius" value="d" />Their atomic numbers are equal</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="mass">
+                    <h3>Review 6 · Mass and order</h3>
+                    <fieldset>
+                        <legend>
+                            Tellurium has atomic number 52 and a slightly greater listed relative atomic mass than
+                            iodine, atomic number 53. Why does Te appear first?
+                        </legend>
+                        <label><input type="radio" name="mass" value="a" />The table is ordered by atomic number</label
+                        ><label
+                            ><input type="radio" name="mass" value="b" />The table is ordered by decreasing atomic
+                            mass</label
+                        ><label
+                            ><input type="radio" name="mass" value="c" />Te and I are isotopes of the same
+                            element</label
+                        ><label><input type="radio" name="mass" value="d" />Te has more protons than I</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="subshell">
+                    <h3>Review 7 · Allowed subshells</h3>
+                    <fieldset>
+                        <legend>Which set lists the allowed subshells for n = 3?</legend>
+                        <label><input type="radio" name="subshell" value="a" />3s only</label
+                        ><label><input type="radio" name="subshell" value="b" />3s and 3p</label
+                        ><label><input type="radio" name="subshell" value="c" />3s, 3p, and 3d</label
+                        ><label><input type="radio" name="subshell" value="d" />3s, 3p, 3d, and 3f</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="capacity">
+                    <h3>Review 8 · Subshell capacity</h3>
+                    <fieldset>
+                        <legend>What is the maximum number of electrons in a p subshell?</legend>
+                        <label><input type="radio" name="capacity" value="a" />2</label
+                        ><label><input type="radio" name="capacity" value="b" />3</label
+                        ><label><input type="radio" name="capacity" value="c" />6</label
+                        ><label><input type="radio" name="capacity" value="d" />10</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="quantum">
+                    <h3>Review 9 · Energy transition</h3>
+                    <fieldset>
+                        <legend>
+                            An electron moves from a higher allowed energy state to a lower one and emits a photon. What
+                            determines the photon’s energy?
+                        </legend>
+                        <label
+                            ><input type="radio" name="quantum" value="a" />The difference between the two energy
+                            states</label
+                        ><label><input type="radio" name="quantum" value="b" />The number of neutrons alone</label
+                        ><label
+                            ><input type="radio" name="quantum" value="c" />Any value independent of the states</label
+                        ><label><input type="radio" name="quantum" value="d" />The volume of the atom</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="config">
+                    <h3>Review 10 · Electron configuration</h3>
+                    <fieldset>
+                        <legend>Which is the ground-state configuration of neutral oxygen (atomic number 8)?</legend>
+                        <label><input type="radio" name="config" value="a" />1s² 2s² 2p⁴</label
+                        ><label><input type="radio" name="config" value="b" />1s² 2s² 2p⁶</label
+                        ><label><input type="radio" name="config" value="c" />1s² 2p⁶</label
+                        ><label><input type="radio" name="config" value="d" />1s² 2s² 3p⁴</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="aufbau">
+                    <h3>Review 11 · Filling order</h3>
+                    <fieldset>
+                        <legend>
+                            In the introductory filling sequence for the first 20 neutral elements, which subshell fills
+                            after 3p?
+                        </legend>
+                        <label><input type="radio" name="aufbau" value="a" />2p</label
+                        ><label><input type="radio" name="aufbau" value="b" />3d</label
+                        ><label><input type="radio" name="aufbau" value="c" />4s</label
+                        ><label><input type="radio" name="aufbau" value="d" />4p</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="pauli">
+                    <h3>Review 12 · Pauli exclusion principle</h3>
+                    <fieldset>
+                        <legend>How can two electrons occupy the same orbital?</legend>
+                        <label><input type="radio" name="pauli" value="a" />With opposite spins</label
+                        ><label><input type="radio" name="pauli" value="b" />With the same spin</label
+                        ><label><input type="radio" name="pauli" value="c" />Only if they are in different shells</label
+                        ><label><input type="radio" name="pauli" value="d" />Only if the orbital is a p subshell</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="hund">
+                    <h3>Review 13 · Hund’s rule</h3>
+                    <fieldset>
+                        <legend>For a ground-state 2p³ arrangement, how are the electrons placed?</legend>
+                        <label
+                            ><input type="radio" name="hund" value="a" />One in each p orbital with parallel
+                            spins</label
+                        ><label><input type="radio" name="hund" value="b" />All three in one orbital</label
+                        ><label
+                            ><input type="radio" name="hund" value="c" />One pair and one single, with the third orbital
+                            empty</label
+                        ><label
+                            ><input type="radio" name="hund" value="d" />One electron in the entire 2p subshell</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="unpaired">
+                    <h3>Review 14 · Orbital diagrams</h3>
+                    <fieldset>
+                        <legend>How many unpaired electrons are in the ground-state 2p⁴ arrangement?</legend>
+                        <label><input type="radio" name="unpaired" value="a" />0</label
+                        ><label><input type="radio" name="unpaired" value="b" />1</label
+                        ><label><input type="radio" name="unpaired" value="c" />2</label
+                        ><label><input type="radio" name="unpaired" value="d" />4</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Connect table and configuration</h3>
+                    <p>
+                        Neutral sodium has atomic number 11, is in group 1 and period 3, and has configuration 1s² 2s²
+                        2p⁶ 3s¹. Explain its electron count and draw its orbital diagram.
+                    </p>
+                    <details>
+                        <summary>Show one possible answer</summary>
+                        <p>
+                            The superscripts add to 11, matching the 11 electrons of neutral sodium. Draw paired arrows
+                            in the 1s and 2s boxes, pairs in all three 2p boxes, and one arrow in the 3s box. Sodium has
+                            <strong>one unpaired electron</strong> in this ground-state diagram.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="checklist">
+                <h2>7. Before the chapter assessment</h2>
+                <ul>
+                    <li>I can compare historical systems and explain how Mendeleev’s predictions were tested.</li>
+                    <li>I can locate groups and periods and identify major families.</li>
+                    <li>I can describe general radius and atomic-mass trends and recognize limitations.</li>
+                    <li>I can distinguish shells, subshells, and orbitals and use their capacities.</li>
+                    <li>I can write and check configurations and orbital diagrams for the neutral examples studied.</li>
+                    <li>I can apply Aufbau, Pauli, and Hund to ground-state representations.</li>
+                </ul>
+                <p class="small">
+                    This chapter summary brings together the original LearnTrack lessons developed using the supplied
+                    Chemistry I teacher’s guides as references.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take Chapter 2 Assessment →</button>
+                <p class="notice" id="quizNotice" role="status"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                triad: {
+                    answer: "a",
+                    explanation:
+                        "Döbereiner identified selected groups of three similar elements; the middle atomic mass was approximately the average of the other two in certain triads.",
+                },
+                mendeleev: {
+                    answer: "a",
+                    explanation:
+                        "Mendeleev used patterns in masses and properties to predict missing elements and their properties.",
+                },
+                group: { answer: "a", explanation: "A group is a vertical column; a period is a horizontal row." },
+                family: { answer: "b", explanation: "Fluorine and chlorine are halogens in group 17." },
+                radius: {
+                    answer: "b",
+                    explanation:
+                        "Na lies below Li in the group and generally has a larger atomic radius because of its additional occupied shell.",
+                },
+                mass: {
+                    answer: "a",
+                    explanation:
+                        "Atomic number determines the modern order. Te has 52 protons and I has 53, even though their listed relative masses are reversed.",
+                },
+                subshell: { answer: "c", explanation: "The n = 3 shell contains 3s, 3p, and 3d; 3f is not allowed." },
+                capacity: {
+                    answer: "c",
+                    explanation:
+                        "A p subshell contains three orbitals and each holds at most two electrons: 3 × 2 = 6.",
+                },
+                quantum: {
+                    answer: "a",
+                    explanation:
+                        "The emitted photon’s energy equals the energy difference between the initial and final states.",
+                },
+                config: {
+                    answer: "a",
+                    explanation:
+                        "The configuration 1s² 2s² 2p⁴ follows the introductory order and contains eight electrons.",
+                },
+                aufbau: {
+                    answer: "c",
+                    explanation:
+                        "For the first 20 neutral elements the sequence continues 3p → 4s. Filling and ion configurations beyond this scope require additional care.",
+                },
+                pauli: {
+                    answer: "a",
+                    explanation: "An orbital can hold at most two electrons, with opposite spins when paired.",
+                },
+                hund: {
+                    answer: "a",
+                    explanation:
+                        "In the ground state, electrons occupy the three equal-energy p orbitals singly with parallel spins before pairing.",
+                },
+                unpaired: {
+                    answer: "c",
+                    explanation:
+                        "Ground-state 2p⁴ has one paired orbital and two singly occupied orbitals, so two electrons are unpaired.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter2_assessment.html" }, "*");
+                if (window.parent === window)
+                    document.getElementById("quizNotice").textContent =
+                        "Open this summary inside LearnTrack to launch the assessment.";
+            });
+        </script>
+    </body>
+</html>
