@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 2 Lesson 5: Electron Configuration</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .sequence {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 16px;
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+                border-radius: 10px;
+            }
+            .sequence span {
+                background: white;
+                border: 1px solid #8ab8aa;
+                border-radius: 8px;
+                padding: 8px 12px;
+                color: #174ea6;
+                font-weight: 700;
+            }
+            .sequence .arrow {
+                border: 0;
+                background: transparent;
+                padding: 0;
+                color: #136f63;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 2 · Lesson 5</div>
+                <h1>Electron Configuration: The Aufbau Principle</h1>
+                <p>
+                    How can a short sequence such as 1s² 2s² 2p⁶ describe an atom’s electrons? Learn to read the
+                    notation and build ground-state configurations step by step.
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#goals">Objectives</a><a href="#notation">Notation</a><a href="#aufbau">Filling guide</a
+                    ><a href="#examples">Examples</a><a href="#validation">Check answers</a
+                    ><a href="#practice">Practice</a><a href="#video">Video</a>
+                </nav>
+            </header>
+            <section class="card" id="goals">
+                <h2>Learning objectives</h2>
+                <p>By the end of this lesson, you should be able to:</p>
+                <ul>
+                    <li>Interpret the numbers, letters, and superscripts in electron-configuration notation.</li>
+                    <li>Determine the electron count of a neutral atom from its atomic number.</li>
+                    <li>
+                        Apply an introductory Aufbau filling sequence to write ground-state configurations for the first
+                        20 elements.
+                    </li>
+                    <li>
+                        Validate electron counts, allowed subshells, subshell capacities, and the introductory
+                        ground-state order.
+                    </li>
+                </ul>
+                <div class="note">
+                    <strong>Recall Lesson 4:</strong> The maximum subshell capacities are s², p⁶, d¹⁰, and f¹⁴. These
+                    are capacities, not the number of electrons every subshell must contain.
+                </div>
+            </section>
+            <section class="card" id="notation">
+                <h2>1. What does electron configuration show?</h2>
+                <p>
+                    An <strong>electron configuration</strong> summarizes how an atom’s electrons are distributed among
+                    subshells. A <strong>ground-state configuration</strong> describes a lowest-energy arrangement of
+                    the atom, subject to quantum rules. An atom can also have excited states with different
+                    arrangements.
+                </p>
+                <div class="worked">
+                    <h3>Read the term 3p<sup>4</sup></h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Part</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Principal energy level or shell, n = 3</td>
+                                </tr>
+                                <tr>
+                                    <td>p</td>
+                                    <td>The p subshell within that shell</td>
+                                </tr>
+                                <tr>
+                                    <td>⁴</td>
+                                    <td>Four electrons in the 3p subshell</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        The superscript counts electrons in the <em>whole subshell</em>, not in one orbital. A p
+                        subshell has three orbitals.
+                    </p>
+                </div>
+                <p>
+                    For a <strong>neutral atom</strong>, the number of electrons equals the atomic number because the
+                    numbers of protons and electrons are equal. For example, neutral oxygen has atomic number 8 and
+                    therefore 8 electrons. Ions have different electron counts and are outside the main scope of this
+                    lesson.
+                </p>
+            </section>
+            <section class="card" id="aufbau">
+                <h2>2. The Aufbau principle</h2>
+                <p>
+                    <strong>Aufbau</strong> means “building up.” As an introductory method for predicting many
+                    ground-state configurations, place electrons in lower-energy available orbitals before higher-energy
+                    ones, while respecting the rules that govern electron occupancy.
+                </p>
+                <h3>Filling guide for the first 20 neutral elements</h3>
+                <div
+                    class="sequence"
+                    role="img"
+                    aria-label="Introductory filling order for neutral atoms through calcium: 1s, 2s, 2p, 3s, 3p, 4s"
+                >
+                    <span>1s</span><span class="arrow">→</span><span>2s</span><span class="arrow">→</span><span>2p</span
+                    ><span class="arrow">→</span><span>3s</span><span class="arrow">→</span><span>3p</span
+                    ><span class="arrow">→</span><span>4s</span>
+                </div>
+                <p>
+                    Use the sequence above for the first 20 neutral elements, hydrogen through calcium. The 4s subshell
+                    comes after 3p in this introductory sequence; shell number alone does not always determine the
+                    filling order.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subshell type</th>
+                                <th>Orbitals</th>
+                                <th>Maximum electrons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>s</td>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>p</td>
+                                <td>3</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>d</td>
+                                <td>5</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>f</td>
+                                <td>7</td>
+                                <td>14</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="note">
+                    <strong>Scope and exceptions:</strong> For many introductory neutral-atom predictions, 4s is placed
+                    before 3d. Beyond the first 20 elements, subshell energies are close and can change with occupancy;
+                    some ground-state configurations, including chromium and copper, differ from the simplest filling
+                    prediction. Ion configurations require additional care.
+                </div>
+                <p>
+                    The <strong>Pauli exclusion principle</strong> limits each orbital to two electrons with opposite
+                    spins. <strong>Hund’s rule</strong> describes how electrons occupy orbitals of equal energy before
+                    pairing. We will apply both to orbital-box diagrams in Lesson 6.
+                </p>
+            </section>
+            <section class="card" id="examples">
+                <h2>3. Write a ground-state configuration</h2>
+                <ol>
+                    <li>Identify the element’s atomic number and count electrons for the neutral atom.</li>
+                    <li>
+                        Follow the filling sequence and assign electrons without exceeding each subshell’s capacity.
+                    </li>
+                    <li>Stop when all electrons have been placed.</li>
+                    <li>Add the superscripts and check that the total matches the electron count.</li>
+                </ol>
+                <div class="worked">
+                    <h3>Example 1 · Oxygen, atomic number 8</h3>
+                    <p>Neutral oxygen has 8 electrons. Fill 1s with 2 and 2s with 2; place the remaining 4 in 2p.</p>
+                    <p class="formula">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>4</sup></p>
+                    <p>
+                        Check: 2 + 2 + 4 = <strong>8 electrons</strong>. The 2p subshell is not full; it can hold up to
+                        6.
+                    </p>
+                </div>
+                <div class="worked">
+                    <h3>Example 2 · Chlorine, atomic number 17</h3>
+                    <p>
+                        Neutral chlorine has 17 electrons. The first 10 occupy 1s² 2s² 2p⁶. Add 2 in 3s, then place the
+                        remaining 5 in 3p.
+                    </p>
+                    <p class="formula">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>5</sup></p>
+                    <p>Check: 2 + 2 + 6 + 2 + 5 = <strong>17 electrons</strong>.</p>
+                </div>
+                <div class="worked">
+                    <h3>Example 3 · Calcium, atomic number 20</h3>
+                    <p>
+                        The first 18 electrons form the same configuration as argon. The remaining two occupy 4s in the
+                        introductory sequence.
+                    </p>
+                    <p class="formula">
+                        1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> 4s<sup>2</sup>
+                    </p>
+                    <p>Check: 2 + 2 + 6 + 2 + 6 + 2 = <strong>20 electrons</strong>.</p>
+                </div>
+                <h3>Noble-gas shorthand</h3>
+                <p>
+                    Use the preceding noble gas in brackets to represent its complete electron configuration, then add
+                    the remaining electrons. For calcium, <strong>[Ar] 4s<sup>2</sup></strong> represents 18 + 2 = 20
+                    electrons. For chlorine, <strong>[Ne] 3s<sup>2</sup> 3p<sup>5</sup></strong> represents 10 + 2 + 5 =
+                    17 electrons.
+                </p>
+            </section>
+            <section class="card" id="validation">
+                <h2>4. Check a proposed configuration</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Check</th>
+                                <th>Ask yourself</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Electron count</td>
+                                <td>Do the superscripts total the number of electrons in the stated atom?</td>
+                            </tr>
+                            <tr>
+                                <td>Allowed labels</td>
+                                <td>Does the subshell exist? For example, 2p exists but 2d does not.</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity</td>
+                                <td>Does each subshell stay at or below its maximum, such as p⁶?</td>
+                            </tr>
+                            <tr>
+                                <td>Ground-state sequence</td>
+                                <td>
+                                    For the first 20 neutral elements, were lower-energy subshells filled in the
+                                    introductory order?
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="worked">
+                    <h3>Example · Identify the error</h3>
+                    <p>
+                        A student writes sodium (11 electrons) as 1s² 2s² 2p⁶ 3p¹. The electron count is 11 and the
+                        capacities are allowed, but the order is wrong for sodium’s ground state: 3s comes before 3p.
+                        The corrected configuration is <strong>1s² 2s² 2p⁶ 3s¹</strong>.
+                    </p>
+                    <p>
+                        Having the correct total alone does not guarantee the ground-state arrangement. An arrangement
+                        that is not the ground state is not necessarily impossible; some arrangements may describe
+                        excited states.
+                    </p>
+                </div>
+            </section>
+            <section class="card" id="practice">
+                <h2>5. Practice and drills</h2>
+                <p>
+                    Choose an answer, then select <strong>Check answer</strong>. These activities do not record a quiz
+                    score.
+                </p>
+                <div class="practice" data-quiz="notation">
+                    <h3>Practice 1 · Read a term</h3>
+                    <fieldset>
+                        <legend>In 3p⁴, what does the superscript 4 represent?</legend>
+                        <label><input type="radio" name="notation" value="a" />The shell number</label
+                        ><label
+                            ><input type="radio" name="notation" value="b" />The number of electrons in the 3p
+                            subshell</label
+                        ><label><input type="radio" name="notation" value="c" />The number of p orbitals</label
+                        ><label><input type="radio" name="notation" value="d" />The atomic number</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="neutral">
+                    <h3>Practice 2 · Count electrons</h3>
+                    <fieldset>
+                        <legend>
+                            A neutral oxygen atom has atomic number 8. How many electrons must its configuration
+                            contain?
+                        </legend>
+                        <label><input type="radio" name="neutral" value="a" />6</label
+                        ><label><input type="radio" name="neutral" value="b" />8</label
+                        ><label><input type="radio" name="neutral" value="c" />10</label
+                        ><label><input type="radio" name="neutral" value="d" />16</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="capacity">
+                    <h3>Practice 3 · Check capacity</h3>
+                    <fieldset>
+                        <legend>Which term exceeds the maximum capacity of its subshell?</legend>
+                        <label><input type="radio" name="capacity" value="a" />2s²</label
+                        ><label><input type="radio" name="capacity" value="b" />2p⁶</label
+                        ><label><input type="radio" name="capacity" value="c" />3p⁷</label
+                        ><label><input type="radio" name="capacity" value="d" />3s²</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="order">
+                    <h3>Practice 4 · Check filling order</h3>
+                    <fieldset>
+                        <legend>
+                            In the introductory ground-state order for the first 20 elements, which subshell fills
+                            immediately after 3p?
+                        </legend>
+                        <label><input type="radio" name="order" value="a" />3d</label
+                        ><label><input type="radio" name="order" value="b" />4s</label
+                        ><label><input type="radio" name="order" value="c" />4p</label
+                        ><label><input type="radio" name="order" value="d" />2p</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="carbon">
+                    <h3>Practice 5 · Write a configuration</h3>
+                    <fieldset>
+                        <legend>
+                            Which is the ground-state electron configuration of neutral carbon (atomic number 6)?
+                        </legend>
+                        <label><input type="radio" name="carbon" value="a" />1s² 2s² 2p²</label
+                        ><label><input type="radio" name="carbon" value="b" />1s² 2s² 2p⁶</label
+                        ><label><input type="radio" name="carbon" value="c" />1s² 2p⁴</label
+                        ><label><input type="radio" name="carbon" value="d" />1s² 2s¹ 2p³</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="magnesium">
+                    <h3>Practice 6 · Apply the sequence</h3>
+                    <fieldset>
+                        <legend>
+                            Which is the ground-state configuration of neutral magnesium (atomic number 12)?
+                        </legend>
+                        <label><input type="radio" name="magnesium" value="a" />1s² 2s² 2p⁶ 3s²</label
+                        ><label><input type="radio" name="magnesium" value="b" />1s² 2s² 2p⁶ 3p²</label
+                        ><label><input type="radio" name="magnesium" value="c" />1s² 2s² 2p⁵ 3s³</label
+                        ><label><input type="radio" name="magnesium" value="d" />1s² 2s² 2p⁶</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="argon">
+                    <h3>Practice 7 · Count electrons</h3>
+                    <fieldset>
+                        <legend>How many electrons are represented by 1s² 2s² 2p⁶ 3s² 3p⁶?</legend>
+                        <label><input type="radio" name="argon" value="a" />12</label
+                        ><label><input type="radio" name="argon" value="b" />16</label
+                        ><label><input type="radio" name="argon" value="c" />18</label
+                        ><label><input type="radio" name="argon" value="d" />20</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="calcium">
+                    <h3>Practice 8 · Use shorthand</h3>
+                    <fieldset>
+                        <legend>
+                            Which shorthand is the ground-state configuration of neutral calcium (atomic number 20)?
+                        </legend>
+                        <label><input type="radio" name="calcium" value="a" />[Ar] 4s²</label
+                        ><label><input type="radio" name="calcium" value="b" />[Ne] 3s²</label
+                        ><label><input type="radio" name="calcium" value="c" />[Ar] 3d²</label
+                        ><label><input type="radio" name="calcium" value="d" />[He] 2s²</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="validate">
+                    <h3>Practice 9 · Diagnose an error</h3>
+                    <fieldset>
+                        <legend>
+                            A student writes neutral sodium (atomic number 11) as 1s² 2s² 2p⁶ 3p¹. Which revision is
+                            needed for its ground state?
+                        </legend>
+                        <label><input type="radio" name="validate" value="a" />Replace 3p¹ with 3s¹</label
+                        ><label><input type="radio" name="validate" value="b" />Replace 2p⁶ with 2p⁷</label
+                        ><label><input type="radio" name="validate" value="c" />Remove 1s²</label
+                        ><label><input type="radio" name="validate" value="d" />Change 3p¹ to 3p³</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="scope">
+                    <h3>Practice 10 · Interpret the model</h3>
+                    <fieldset>
+                        <legend>Why should the filling guide be used with care beyond the first 20 elements?</legend>
+                        <label
+                            ><input type="radio" name="scope" value="a" />Some ground-state configurations are
+                            exceptions to a simple sequence</label
+                        ><label><input type="radio" name="scope" value="b" />Electrons no longer occupy orbitals</label
+                        ><label
+                            ><input type="radio" name="scope" value="c" />Atomic number no longer counts protons</label
+                        ><label
+                            ><input type="radio" name="scope" value="d" />All d subshells can hold only two
+                            electrons</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Explain your checks</h3>
+                    <p>
+                        A student proposes 1s² 2s² 2p⁶ 3s² 3p⁴ for neutral sulfur (atomic number 16). Is the count and
+                        introductory ground-state order correct? Explain.
+                    </p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            Yes. The superscripts add to 2 + 2 + 6 + 2 + 4 = <strong>16 electrons</strong>. All
+                            subshells are allowed, their capacities are respected, and the first-20 filling order is
+                            followed.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="video">
+                <h2>6. Watch: The Aufbau principle</h2>
+                <p>
+                    Khan Academy’s discussion introduces the Aufbau principle and its use in predicting configurations.
+                    Focus on the first 20 elements; the video also discusses why the simple rule has limitations for
+                    later elements.
+                </p>
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/Zersl0Ji3P0"
+                        title="The Aufbau principle | AP Chemistry | Khan Academy"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <p>
+                    <a href="https://www.youtube.com/watch?v=Zersl0Ji3P0" target="_blank" rel="noopener noreferrer"
+                        >Open “The Aufbau principle” on YouTube</a
+                    >
+                    if the embedded video does not load.
+                </p>
+            </section>
+            <section class="card" id="takeaways">
+                <h2>7. Key terms and takeaways</h2>
+                <ul>
+                    <li>
+                        <strong>Electron configuration:</strong> a summary of electrons distributed among subshells.
+                    </li>
+                    <li><strong>Neutral atom:</strong> electron count equals atomic number.</li>
+                    <li>
+                        <strong>Superscript:</strong> the number of electrons in a subshell, not in a single orbital.
+                    </li>
+                    <li><strong>Aufbau guide for the first 20:</strong> 1s → 2s → 2p → 3s → 3p → 4s.</li>
+                    <li>
+                        <strong>Validation:</strong> check electron count, allowed subshells, capacity, and ground-state
+                        order.
+                    </li>
+                    <li><strong>Next:</strong> use orbital boxes to apply Pauli’s principle and Hund’s rule.</li>
+                </ul>
+                <p class="small">
+                    Reference: supplied Chemistry I teacher’s guide on Electron Configuration. Explanations, examples,
+                    and activities developed for LearnTrack.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                notation: {
+                    answer: "b",
+                    explanation:
+                        "The superscript gives the number of electrons in that subshell. Here 3p contains four electrons.",
+                },
+                neutral: {
+                    answer: "b",
+                    explanation:
+                        "A neutral atom has equal numbers of electrons and protons. Atomic number 8 means eight protons and eight electrons.",
+                },
+                capacity: {
+                    answer: "c",
+                    explanation: "A p subshell holds at most six electrons, so 3p⁷ is not allowed.",
+                },
+                order: {
+                    answer: "b",
+                    explanation: "For neutral atoms through calcium, the introductory order continues 3p → 4s.",
+                },
+                carbon: { answer: "a", explanation: "Carbon has six electrons: 1s² + 2s² + 2p² gives 2 + 2 + 2 = 6." },
+                magnesium: {
+                    answer: "a",
+                    explanation: "After 1s² 2s² 2p⁶, the remaining two electrons occupy 3s: 12 electrons total.",
+                },
+                argon: {
+                    answer: "c",
+                    explanation:
+                        "Add the superscripts: 2 + 2 + 6 + 2 + 6 = 18. This is neutral argon’s ground-state configuration.",
+                },
+                calcium: {
+                    answer: "a",
+                    explanation: "Argon represents 18 electrons; adding 4s² gives calcium’s 20 electrons.",
+                },
+                validate: {
+                    answer: "a",
+                    explanation:
+                        "The electron count is 11, but 3s fills before 3p in the introductory ground-state sequence.",
+                },
+                scope: {
+                    answer: "a",
+                    explanation:
+                        "Subshell energies are close and can change with electron arrangement; some elements have configurations that differ from the simplest prediction.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter2_lesson5_quiz.html" }, "*");
+                if (window.parent === window)
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+            });
+        </script>
+    </body>
+</html>
