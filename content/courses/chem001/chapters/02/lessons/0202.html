@@ -1,263 +1,806 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<title>Calculating Average Atomic Mass</title>
-
-<style>
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #fafafa;
-  color: #222;
-  padding: 24px;
-  line-height: 1.8;
-  font-size: 20px;
-}
-
-h1 { color: #136f63; }
-h2 { color: #136f63; margin-top: 1.4em; }
-h3 { color: #174ea6; }
-
-.section { margin-bottom: 30px; }
-
-.key-box {
-  background: #e8f7f5;
-  border-left: 6px solid #136f63;
-  padding: 14px;
-  border-radius: 8px;
-  margin: 16px 0;
-}
-
-.example-box {
-  background: #fff;
-  border-left: 5px solid #2b7de9;
-  padding: 14px;
-  border-radius: 8px;
-  margin: 16px 0;
-}
-
-.activity {
-  background: #fff;
-  padding: 14px;
-  border-radius: 10px;
-  margin: 14px 0;
-}
-
-.toggle-btn {
-  background: #136f63;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.answer {
-  display: none;
-  margin-top: 10px;
-  background: #eef3ff;
-  padding: 10px;
-  border-radius: 6px;
-}
-
-.quiz-button {
-  background-color: #136f63;
-  color: white;
-  padding: 12px 22px;
-  border-radius: 10px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.quiz-button:hover {
-  background-color: #0f5b52;
-}
-</style>
-</head>
-
-<body>
-
-<h1>Calculating Average Atomic Mass</h1>
-
-<!-- OBJECTIVES -->
-<div class="section">
-<h2>Learning Objectives</h2>
-<ul>
-<li>Understand isotopic abundance</li>
-<li>Calculate average atomic mass using weighted averages</li>
-<li>Interpret atomic mass values from the periodic table</li>
-</ul>
-</div>
-
-<!-- CONCEPT -->
-<div class="section">
-<h2>1. What is Average Atomic Mass?</h2>
-
-<p>
-Most elements exist as a mixture of isotopes. Because of this, the atomic mass shown on the periodic table is not a whole number—it is a weighted average.
-</p>
-
-<div class="key-box">
-<strong>Key Idea:</strong> Average atomic mass = sum of (isotope mass × fractional abundance)
-</div>
-
-<p>
-Abundance must be expressed as a decimal (not percent).
-</p>
-
-</div>
-
-<!-- FORMULA -->
-<div class="section">
-<h2>2. Formula</h2>
-
-<div class="example-box">
-<p>
-Average Atomic Mass =
-<br>
-(m₁ × f₁) + (m₂ × f₂) + (m₃ × f₃) + ...
-</p>
-
-<ul>
-<li>m = isotopic mass</li>
-<li>f = fractional abundance (decimal form)</li>
-</ul>
-</div>
-
-</div>
-
-<!-- STEP BY STEP -->
-<div class="section">
-<h2>3. Step-by-Step Example</h2>
-
-<div class="example-box">
-
-<p><strong>Problem:</strong></p>
-<p>
-An element has two isotopes:
-<br>
-Isotope A: mass = 10 amu, abundance = 20%
-<br>
-Isotope B: mass = 12 amu, abundance = 80%
-</p>
-
-<p><strong>Step 1:</strong> Convert % to decimal</p>
-<ul>
-<li>20% → 0.20</li>
-<li>80% → 0.80</li>
-</ul>
-
-<p><strong>Step 2:</strong> Multiply</p>
-<ul>
-<li>10 × 0.20 = 2.0</li>
-<li>12 × 0.80 = 9.6</li>
-</ul>
-
-<p><strong>Step 3:</strong> Add</p>
-<p>2.0 + 9.6 = <strong>11.6 amu</strong></p>
-
-</div>
-
-</div>
-
-<!-- CONCEPT CHECK -->
-<div class="section">
-<h2>Concept Check</h2>
-
-<div class="activity">
-<p>Why is atomic mass usually not a whole number?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">Because it is a weighted average of isotopes.</div>
-</div>
-
-</div>
-
-<!-- DRILLS -->
-<div class="section">
-<h2>Practice Drills</h2>
-
-<div class="activity">
-<p>
-An element has:
-<br>
-Mass = 24 amu (75%)
-<br>
-Mass = 26 amu (25%)
-<br>
-Find the average atomic mass.
-</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-(24 × 0.75) + (26 × 0.25) = 18 + 6.5 = <strong>24.5 amu</strong>
-</div>
-</div>
-
-<div class="activity">
-<p>
-An element has three isotopes:
-<br>
-10 amu (50%), 11 amu (30%), 12 amu (20%)
-</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-(10×0.5)+(11×0.3)+(12×0.2)=5+3.3+2.4= <strong>10.7 amu</strong>
-</div>
-</div>
-
-</div>
-
-<!-- CHALLENGE -->
-<div class="section">
-<h2>Checkpoint (Challenge)</h2>
-
-<div class="activity">
-<p>
-An element has:
-<br>
-Isotope X: 35 amu (60%)
-<br>
-Isotope Y: 37 amu (40%)
-<br>
-</p>
-
-<p>
-1. Calculate the average atomic mass.
-<br>
-2. Which isotope contributes more to the average and why?
-</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-(35×0.6)+(37×0.4)=21+14.8= <strong>35.8 amu</strong>
-<br><br>
-Isotope X contributes more because it has higher abundance.
-</div>
-
-</div>
-
-</div>
-
-<!-- QUIZ BUTTON -->
-<div style="text-align:center; margin-top:30px;">
-<button class="quiz-button" id="takeQuizBtn" data-quiz="CHEM001_02_L2">
-Take the Quiz →
-</button>
-</div>
-
-<script>
-function toggleAnswer(btn) {
-  const ans = btn.nextElementSibling;
-  ans.style.display = ans.style.display === "block" ? "none" : "block";
-}
-
-document.getElementById("takeQuizBtn").addEventListener("click", (e) => {
-  const quizId = e.target.dataset.quiz;
-  window.parent.postMessage({ type: "openQuiz", quiz: quizId }, "*");
-});
-</script>
-
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 2 Lesson 2: Groups, Families, and Periods</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .periodic-scroll {
+                overflow-x: auto;
+                padding: 12px 0;
+            }
+            .periodic-grid {
+                display: grid;
+                grid-template-columns: 50px repeat(18, 50px);
+                gap: 3px;
+                min-width: 1004px;
+            }
+            .gridhead,
+            .periodlabel {
+                text-align: center;
+                color: #174ea6;
+                font-weight: 700;
+                font-size: 13px;
+            }
+            .element {
+                min-height: 49px;
+                border: 1px solid #94bdba;
+                border-radius: 5px;
+                background: #f0f5f8;
+                text-align: center;
+                line-height: 1.15;
+                padding: 3px;
+            }
+            .element small {
+                display: block;
+                text-align: left;
+                font-size: 10px;
+            }
+            .element b {
+                font-size: 18px;
+            }
+            .alkali {
+                background: #fde4ce;
+            }
+            .earth {
+                background: #fff1c8;
+            }
+            .halo {
+                background: #dbeffc;
+            }
+            .noble {
+                background: #e6ddf9;
+            }
+            .legend span {
+                display: inline-block;
+                padding: 4px 9px;
+                border-radius: 5px;
+                margin: 4px;
+                font-size: 0.78em;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 2 · Lesson 2</div>
+                <h1>The Periodic Table: Groups, Families, and Periods</h1>
+                <p>
+                    The periodic table is a map of the elements. Its rows and columns reveal patterns and help us locate
+                    elements efficiently.
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#goals">Objectives</a><a href="#map">Visual map</a><a href="#groups">Groups</a
+                    ><a href="#periods">Periods</a><a href="#practice">Practice</a><a href="#video">Video</a>
+                </nav>
+            </header>
+            <section class="card" id="goals">
+                <h2>Learning objectives</h2>
+                <p>By the end of this lesson, you should be able to:</p>
+                <ul>
+                    <li>Explain how the modern periodic table is arranged by atomic number.</li>
+                    <li>Locate groups and periods and identify an element’s position.</li>
+                    <li>Recognize selected element families and compare elements in the same group or period.</li>
+                    <li>Interpret the basic information in an element tile.</li>
+                </ul>
+                <div class="note">
+                    <strong>Our sequence:</strong> This lesson focuses on the table’s structure. Atomic radius and
+                    atomic-mass patterns will be explored in Lesson 3.
+                </div>
+            </section>
+            <section class="card" id="map">
+                <h2>1. Read the periodic-table map</h2>
+                <p>
+                    Elements are arranged by increasing <strong>atomic number</strong>, which is the number of protons
+                    in the nucleus. A <strong>group</strong> is a vertical column; a <strong>period</strong> is a
+                    horizontal row. Modern groups are numbered 1–18, and periods are numbered 1–7.
+                </p>
+                <div class="worked">
+                    <h3>Visual guide · First three periods</h3>
+                    <p>
+                        The numbered headings are <strong>groups</strong>; the numbers on the left are
+                        <strong>periods</strong>. Scroll horizontally on a small screen. This is a partial table:
+                        periods 4–7 and most transition elements are omitted.
+                    </p>
+                    <div
+                        class="periodic-scroll"
+                        role="region"
+                        aria-label="First three periods of the periodic table"
+                        tabindex="0"
+                    >
+                        <div
+                            class="periodic-grid"
+                            role="table"
+                            aria-label="Partial periodic table showing groups and periods"
+                        >
+                            <div class="gridhead">Period</div>
+                            <div class="gridhead">1</div>
+                            <div class="gridhead">2</div>
+                            <div class="gridhead">3</div>
+                            <div class="gridhead">4</div>
+                            <div class="gridhead">5</div>
+                            <div class="gridhead">6</div>
+                            <div class="gridhead">7</div>
+                            <div class="gridhead">8</div>
+                            <div class="gridhead">9</div>
+                            <div class="gridhead">10</div>
+                            <div class="gridhead">11</div>
+                            <div class="gridhead">12</div>
+                            <div class="gridhead">13</div>
+                            <div class="gridhead">14</div>
+                            <div class="gridhead">15</div>
+                            <div class="gridhead">16</div>
+                            <div class="gridhead">17</div>
+                            <div class="gridhead">18</div>
+                            <div class="periodlabel">1</div>
+                            <div class="element other" role="cell" aria-label="H, atomic number 1, group 1, period 1">
+                                <small>1</small><b>H</b>
+                            </div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="element noble" role="cell" aria-label="He, atomic number 2, group 18, period 1">
+                                <small>2</small><b>He</b>
+                            </div>
+                            <div class="periodlabel">2</div>
+                            <div class="element alkali" role="cell" aria-label="Li, atomic number 3, group 1, period 2">
+                                <small>3</small><b>Li</b>
+                            </div>
+                            <div class="element earth" role="cell" aria-label="Be, atomic number 4, group 2, period 2">
+                                <small>4</small><b>Be</b>
+                            </div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="element other" role="cell" aria-label="B, atomic number 5, group 13, period 2">
+                                <small>5</small><b>B</b>
+                            </div>
+                            <div class="element other" role="cell" aria-label="C, atomic number 6, group 14, period 2">
+                                <small>6</small><b>C</b>
+                            </div>
+                            <div class="element other" role="cell" aria-label="N, atomic number 7, group 15, period 2">
+                                <small>7</small><b>N</b>
+                            </div>
+                            <div class="element other" role="cell" aria-label="O, atomic number 8, group 16, period 2">
+                                <small>8</small><b>O</b>
+                            </div>
+                            <div class="element halo" role="cell" aria-label="F, atomic number 9, group 17, period 2">
+                                <small>9</small><b>F</b>
+                            </div>
+                            <div
+                                class="element noble"
+                                role="cell"
+                                aria-label="Ne, atomic number 10, group 18, period 2"
+                            >
+                                <small>10</small><b>Ne</b>
+                            </div>
+                            <div class="periodlabel">3</div>
+                            <div
+                                class="element alkali"
+                                role="cell"
+                                aria-label="Na, atomic number 11, group 1, period 3"
+                            >
+                                <small>11</small><b>Na</b>
+                            </div>
+                            <div class="element earth" role="cell" aria-label="Mg, atomic number 12, group 2, period 3">
+                                <small>12</small><b>Mg</b>
+                            </div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div class="blank" aria-hidden="true"></div>
+                            <div
+                                class="element other"
+                                role="cell"
+                                aria-label="Al, atomic number 13, group 13, period 3"
+                            >
+                                <small>13</small><b>Al</b>
+                            </div>
+                            <div
+                                class="element other"
+                                role="cell"
+                                aria-label="Si, atomic number 14, group 14, period 3"
+                            >
+                                <small>14</small><b>Si</b>
+                            </div>
+                            <div class="element other" role="cell" aria-label="P, atomic number 15, group 15, period 3">
+                                <small>15</small><b>P</b>
+                            </div>
+                            <div class="element other" role="cell" aria-label="S, atomic number 16, group 16, period 3">
+                                <small>16</small><b>S</b>
+                            </div>
+                            <div class="element halo" role="cell" aria-label="Cl, atomic number 17, group 17, period 3">
+                                <small>17</small><b>Cl</b>
+                            </div>
+                            <div
+                                class="element noble"
+                                role="cell"
+                                aria-label="Ar, atomic number 18, group 18, period 3"
+                            >
+                                <small>18</small><b>Ar</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <span class="alkali">Group 1: alkali metals*</span
+                        ><span class="earth">Group 2: alkaline earth metals</span
+                        ><span class="halo">Group 17: halogens</span><span class="noble">Group 18: noble gases</span>
+                    </div>
+                    <p class="small">
+                        *Hydrogen is a nonmetal and is not an alkali metal. Gray tiles represent other elements. Empty
+                        positions in these first three rows indicate that no element occupies that group–period
+                        position.
+                    </p>
+                </div>
+                <div class="note">
+                    A full periodic table has 18 groups. The lanthanides and actinides are often shown as two detached
+                    rows to save space; they belong within periods 6 and 7.
+                </div>
+                <h3>Read an element tile</h3>
+                <p>
+                    In the map, chlorine is shown as <strong>17 Cl</strong>. Cl is its chemical symbol and 17 is its
+                    atomic number: every chlorine atom has 17 protons. Many full tables also show the element’s name and
+                    relative atomic mass. Atomic number and relative atomic mass are different quantities.
+                </p>
+            </section>
+            <section class="card" id="groups">
+                <h2>2. Groups and families</h2>
+                <p>
+                    A group is a vertical column. Elements in the same group often have related chemical properties; for
+                    many main-group elements, this is related to the arrangement of outer electrons. There are
+                    exceptions, so use “often” and “generally” rather than assuming identical behavior.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Family</th>
+                                <th>Group</th>
+                                <th>Examples</th>
+                                <th>General description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alkali metals</td>
+                                <td>1, excluding hydrogen</td>
+                                <td>Li, Na, K</td>
+                                <td>Reactive metals; often form +1 ions in common compounds.</td>
+                            </tr>
+                            <tr>
+                                <td>Alkaline earth metals</td>
+                                <td>2</td>
+                                <td>Be, Mg, Ca</td>
+                                <td>Metals; often form +2 ions in common compounds.</td>
+                            </tr>
+                            <tr>
+                                <td>Halogens</td>
+                                <td>17</td>
+                                <td>F, Cl, Br</td>
+                                <td>Reactive nonmetals; some commonly form −1 ions.</td>
+                            </tr>
+                            <tr>
+                                <td>Noble gases</td>
+                                <td>18</td>
+                                <td>He, Ne, Ar</td>
+                                <td>Gases that are relatively unreactive under ordinary conditions.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="note">
+                    <strong>Hydrogen’s special placement:</strong> It is usually placed above group 1 but is a nonmetal
+                    with distinctive properties. Helium belongs in group 18 because of its chemical behavior, although
+                    its outer electron arrangement differs from that of the other noble gases.
+                </div>
+                <p>
+                    Groups 3–12 occupy the central part of the full table and include the transition metals. The
+                    lanthanides and actinides are commonly displayed below the main body.
+                </p>
+            </section>
+            <section class="card" id="periods">
+                <h2>3. Periods: moving across a row</h2>
+                <p>
+                    A period runs horizontally. As you move from left to right through a period, atomic number
+                    increases. Properties also change across the row; they do not remain identical.
+                </p>
+                <div class="worked">
+                    <h3>Example · Period 3</h3>
+                    <p>Na → Mg → Al → Si → P → S → Cl → Ar</p>
+                    <p>
+                        All eight elements lie in period 3. Sodium and magnesium are metals; chlorine and argon are
+                        nonmetals. Their different columns mean they belong to different groups.
+                    </p>
+                </div>
+                <h3>Worked example · Locate chlorine</h3>
+                <ol>
+                    <li>Find <strong>Cl</strong> in the partial table.</li>
+                    <li>Trace upward to the column heading: <strong>group 17</strong>.</li>
+                    <li>Trace left to the row label: <strong>period 3</strong>.</li>
+                    <li>Group 17 is the <strong>halogen</strong> family.</li>
+                </ol>
+                <div class="note">
+                    Element properties vary in patterns, but we need to specify which property and direction. In Lesson
+                    3 we will compare atomic radius and atomic mass across periods and down groups.
+                </div>
+            </section>
+            <section class="card" id="practice">
+                <h2>4. Practice and drills</h2>
+                <p>
+                    Use the visual guide above. Select an answer and choose <strong>Check answer</strong>. Practice
+                    responses do not record a quiz score.
+                </p>
+                <div class="practice" data-quiz="locate">
+                    <h3>Practice 1 · Locate an element</h3>
+                    <fieldset>
+                        <legend>In the diagram, where is magnesium (Mg)?</legend>
+                        <label><input type="radio" name="locate" value="a" />Group 2, period 3</label
+                        ><label><input type="radio" name="locate" value="b" />Group 3, period 2</label
+                        ><label><input type="radio" name="locate" value="c" />Group 2, period 2</label
+                        ><label><input type="radio" name="locate" value="d" />Group 12, period 3</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="families">
+                    <h3>Practice 2 · Identify a family</h3>
+                    <fieldset>
+                        <legend>Which pair appears in the same group?</legend>
+                        <label><input type="radio" name="families" value="a" />Li and Na</label
+                        ><label><input type="radio" name="families" value="b" />Na and Mg</label
+                        ><label><input type="radio" name="families" value="c" />C and O</label
+                        ><label><input type="radio" name="families" value="d" />F and Ne</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="period">
+                    <h3>Practice 3 · Follow a row</h3>
+                    <fieldset>
+                        <legend>Which pair is in the same period?</legend>
+                        <label><input type="radio" name="period" value="a" />F and Cl</label
+                        ><label><input type="radio" name="period" value="b" />Na and Mg</label
+                        ><label><input type="radio" name="period" value="c" />He and Ne</label
+                        ><label><input type="radio" name="period" value="d" />Li and Na</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="number">
+                    <h3>Practice 4 · Read an element tile</h3>
+                    <fieldset>
+                        <legend>An element tile shows atomic number 17. What does 17 identify?</legend>
+                        <label><input type="radio" name="number" value="a" />The number of protons</label
+                        ><label
+                            ><input type="radio" name="number" value="b" />The number of neutrons in every atom</label
+                        ><label><input type="radio" name="number" value="c" />The total mass in grams</label
+                        ><label><input type="radio" name="number" value="d" />The group number</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="halogen">
+                    <h3>Practice 5 · Find a family</h3>
+                    <fieldset>
+                        <legend>Which family contains fluorine and chlorine?</legend>
+                        <label><input type="radio" name="halogen" value="a" />Noble gases</label
+                        ><label><input type="radio" name="halogen" value="b" />Alkaline earth metals</label
+                        ><label><input type="radio" name="halogen" value="c" />Halogens</label
+                        ><label><input type="radio" name="halogen" value="d" />Alkali metals</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="hydrogen">
+                    <h3>Practice 6 · Recognize an exception</h3>
+                    <fieldset>
+                        <legend>Hydrogen is placed above group 1. Which statement is best?</legend>
+                        <label
+                            ><input type="radio" name="hydrogen" value="a" />Hydrogen is a nonmetal with distinctive
+                            properties</label
+                        ><label><input type="radio" name="hydrogen" value="b" />Hydrogen is an alkali metal</label
+                        ><label><input type="radio" name="hydrogen" value="c" />Hydrogen belongs in period 3</label
+                        ><label><input type="radio" name="hydrogen" value="d" />Hydrogen has two protons</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="compare">
+                    <h3>Practice 7 · Compare a location</h3>
+                    <fieldset>
+                        <legend>
+                            A learner says neon and chlorine are in the same group because both are nonmetals. What is
+                            the best correction?
+                        </legend>
+                        <label><input type="radio" name="compare" value="a" />Ne is group 18 and Cl is group 17</label
+                        ><label><input type="radio" name="compare" value="b" />Both are in group 1</label
+                        ><label><input type="radio" name="compare" value="c" />Ne is period 3 and Cl is period 2</label
+                        ><label><input type="radio" name="compare" value="d" />A group is a horizontal row</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Explain a comparison</h3>
+                    <p>
+                        Chlorine (Cl) and fluorine (F) are in group 17. Chlorine and sodium (Na) are in period 3.
+                        Explain what each shared location tells you.
+                    </p>
+                    <details>
+                        <summary>Show one possible answer</summary>
+                        <p>
+                            Cl and F share a vertical group and belong to the halogen family, so they have some related
+                            chemical properties. Cl and Na share a horizontal period, but they are in different groups
+                            and do not have the same family properties.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="video">
+                <h2>5. Watch: The periodic table</h2>
+                <p>
+                    Khan Academy’s discussion introduces element information, periods, groups, and major families. The
+                    discussion of periods and groups begins at approximately <strong>4:15</strong>.
+                </p>
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/CtTmUlp3bBo"
+                        title="The periodic table | Chemistry | Khan Academy"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <p>
+                    <a href="https://www.youtube.com/watch?v=CtTmUlp3bBo" target="_blank" rel="noopener noreferrer"
+                        >Open “The periodic table | Chemistry | Khan Academy” on YouTube</a
+                    >
+                    if the embedded video does not load.
+                </p>
+                <p class="small">
+                    The video also introduces valence electrons and the octet rule. We will study electron arrangement
+                    and bonding in later lessons.
+                </p>
+            </section>
+            <section class="card" id="takeaways">
+                <h2>6. Key terms and takeaways</h2>
+                <ul>
+                    <li><strong>Atomic number:</strong> the number of protons; the basis of the table’s order.</li>
+                    <li>
+                        <strong>Group:</strong> a vertical column numbered 1–18; members often have related chemical
+                        properties.
+                    </li>
+                    <li><strong>Period:</strong> a horizontal row numbered 1–7.</li>
+                    <li>
+                        <strong>Families:</strong> recognize alkali metals, alkaline earth metals, halogens, and noble
+                        gases by group.
+                    </li>
+                    <li>
+                        <strong>Element tile:</strong> use the atomic number and chemical symbol to identify the
+                        element.
+                    </li>
+                </ul>
+                <p class="small">
+                    Reference: supplied Chemistry I guide on Periodic Table: Families, Periods, and Trends.
+                    Explanations, visual guide, and practice developed for LearnTrack.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                locate: { answer: "a", explanation: "Mg is in the second column and third row: group 2, period 3." },
+                families: {
+                    answer: "a",
+                    explanation: "Li and Na occupy group 1, although they are in different periods.",
+                },
+                period: { answer: "b", explanation: "Na and Mg are both in period 3." },
+                number: { answer: "a", explanation: "Atomic number is the number of protons. Element 17 is chlorine." },
+                halogen: { answer: "c", explanation: "Fluorine and chlorine are halogens in group 17." },
+                hydrogen: {
+                    answer: "a",
+                    explanation:
+                        "Hydrogen is a nonmetal and has distinctive behavior even though it is usually placed above group 1.",
+                },
+                compare: {
+                    answer: "a",
+                    explanation:
+                        "Neon is in group 18; chlorine is in group 17. They are both nonmetals but not in the same column.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter2_lesson2_quiz.html" }, "*");
+                if (window.parent === window)
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+            });
+        </script>
+    </body>
 </html>
