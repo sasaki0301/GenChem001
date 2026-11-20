@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Chapter 2 – Lesson 4 Quiz: Energy Levels and Orbitals</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --red: #a82332;
+                --ink: #24323d;
+                --muted: #536575;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background: linear-gradient(135deg, #e8f9f1, #f7faff);
+                margin: 0;
+                padding: 32px 20px;
+                color: var(--ink);
+                min-height: 100vh;
+                line-height: 1.6;
+                font-size: 18px;
+            }
+            .quiz-container {
+                background: #fff;
+                border-radius: 18px;
+                padding: 34px 40px;
+                box-shadow: 0 8px 28px #00000012;
+                width: 100%;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            .eyebrow {
+                font-size: 0.75em;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--green);
+            }
+            h1 {
+                color: var(--green);
+                font-size: clamp(1.5rem, 3.5vw, 2rem);
+                line-height: 1.25;
+                margin: 10px 0 12px;
+            }
+            h2 {
+                line-height: 1.45;
+            }
+            h3 {
+                line-height: 1.4;
+            }
+            .instructions {
+                font-size: 0.9em;
+                color: var(--muted);
+                margin: 0 0 22px;
+            }
+            .instructions strong {
+                color: var(--ink);
+            }
+            .progress-text {
+                font-size: 0.85em;
+                color: var(--blue);
+                font-weight: 600;
+                margin: 0 0 8px;
+            }
+            .progress-wrapper {
+                background: #e9f5ef;
+                border-radius: 8px;
+                height: 12px;
+                width: 100%;
+                margin-bottom: 24px;
+                overflow: hidden;
+            }
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(to right, var(--green), #2b7de9);
+                width: 0;
+                transition: width 0.25s ease;
+            }
+            .question {
+                font-size: 1.18em;
+                color: var(--blue);
+                margin: 0 0 20px;
+            }
+            .choices {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .choice {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+                padding: 14px 16px;
+                border: 2px solid transparent;
+                border-radius: 10px;
+                background: #eef1fb;
+                color: var(--ink);
+                text-align: left;
+                font: inherit;
+                line-height: 1.5;
+                cursor: pointer;
+                overflow-wrap: anywhere;
+            }
+            .letter {
+                font-weight: 750;
+                color: var(--blue);
+                flex-shrink: 0;
+            }
+            .choice-body {
+                flex: 1;
+                min-width: 0;
+            }
+            .choice-label {
+                display: block;
+            }
+            .choice:hover:not(:disabled) {
+                background: #dfe7fb;
+                border-color: #a9bde4;
+            }
+            .choice:disabled {
+                cursor: default;
+                opacity: 1;
+            }
+            .choice.correct {
+                background: #e7efff;
+                border-color: var(--blue);
+                color: #113e83;
+            }
+            .choice.incorrect {
+                background: #fdecef;
+                border-color: var(--red);
+                color: #8c1d29;
+            }
+            .choice.incorrect .letter {
+                color: var(--red);
+            }
+            .choice-status {
+                font-size: 0.8em;
+                font-weight: 750;
+                display: block;
+                margin-top: 7px;
+            }
+            .choice-status:empty {
+                display: none;
+            }
+            .explanation {
+                padding: 18px;
+                border: 1px solid #b9cee9;
+                border-left: 5px solid var(--blue);
+                border-radius: 10px;
+                background: #f2f6ff;
+                margin: 18px 0;
+            }
+            .explanation.incorrect-feedback {
+                border-left-color: var(--red);
+            }
+            .explanation h3 {
+                font-size: 1em;
+                margin: 0 0 8px;
+            }
+            .explanation p {
+                margin: 8px 0;
+            }
+            .correct-answer {
+                font-weight: 700;
+                color: var(--blue);
+            }
+            .small {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            button {
+                touch-action: manipulation;
+            }
+            .next-btn,
+            .quiz-btn {
+                border: 0;
+                border-radius: 9px;
+                padding: 12px 22px;
+                font:
+                    650 0.95em "Segoe UI",
+                    Arial,
+                    sans-serif;
+                cursor: pointer;
+                min-height: 46px;
+            }
+            .next-btn,
+            .quiz-btn.primary {
+                background: var(--green);
+                color: #fff;
+            }
+            .next-btn:hover:not(:disabled),
+            .quiz-btn.primary:hover:not(:disabled) {
+                background: #0f5b52;
+            }
+            .next-row {
+                text-align: right;
+            }
+            .quiz-btn {
+                background: #e8ecf8;
+                color: var(--blue);
+            }
+            .quiz-btn:hover:not(:disabled) {
+                background: #d7e1f8;
+            }
+            .quiz-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            .quiz-nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 24px 0;
+            }
+            .quiz-result-panel {
+                text-align: center;
+            }
+            .quiz-result-panel h2 {
+                color: var(--blue);
+                font-size: 1.45em;
+                margin: 12px 0;
+            }
+            .stars {
+                color: #a56a00;
+                font-size: 2.4em;
+                letter-spacing: 6px;
+                line-height: 1.3;
+            }
+            .result-status {
+                font-weight: 700;
+            }
+            .save-status {
+                font-size: 0.85em;
+                background: #f1f6fa;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 0.9em;
+            }
+            caption {
+                text-align: left;
+                font-weight: 700;
+                color: var(--green);
+                margin-bottom: 8px;
+            }
+            th,
+            td {
+                padding: 11px 12px;
+                border-bottom: 1px solid #dde5ed;
+                text-align: left;
+            }
+            thead th {
+                background: #f2f6fd;
+                color: var(--blue);
+            }
+            details {
+                margin: 12px 0;
+                border: 1px solid #d7e1e9;
+                border-radius: 9px;
+                padding: 12px 16px;
+            }
+            summary {
+                cursor: pointer;
+                font-weight: 650;
+                color: var(--green);
+            }
+            .review-question {
+                font-weight: 650;
+            }
+            .review-choice {
+                font-size: 0.9em;
+            }
+            .review-answer {
+                border-left: 4px solid var(--blue);
+                padding-left: 12px;
+            }
+            .review-section h3 {
+                color: var(--green);
+            }
+            .review-section p {
+                margin: 10px 0;
+            }
+            .footer-note {
+                font-size: 0.8em;
+                color: var(--muted);
+                text-align: center;
+                margin: 20px 0 0;
+            }
+            [hidden] {
+                display: none !important;
+            }
+            :focus-visible {
+                outline: 3px solid #b36c0c;
+                outline-offset: 4px;
+            }
+            .question:focus,
+            .quiz-result-panel h2:focus {
+                outline: none;
+            }
+            .evidence {
+                margin: 0 0 20px;
+            }
+            .evidence table {
+                margin-top: 0;
+            }
+            .evidence caption {
+                font-size: 0.85em;
+                color: var(--muted);
+                font-weight: 400;
+            }
+            .evidence td,
+            .evidence th {
+                vertical-align: top;
+            }
+            @media (max-width: 600px) {
+                body {
+                    padding: 16px 10px;
+                    font-size: 17px;
+                }
+                .quiz-container {
+                    padding: 24px 18px;
+                    border-radius: 14px;
+                }
+                .choice {
+                    padding: 12px;
+                    gap: 10px;
+                }
+                .quiz-nav {
+                    flex-direction: column;
+                }
+                .quiz-nav button {
+                    width: 100%;
+                }
+                .question {
+                    font-size: 1.1em;
+                }
+                .next-btn {
+                    width: 100%;
+                }
+                th,
+                td {
+                    padding: 9px 8px;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    scroll-behavior: auto !important;
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="quiz-container" aria-labelledby="quizTitle">
+            <div class="eyebrow">LearnTrack · Chemistry I · Chapter 2 · Lesson 4</div>
+            <h1 id="quizTitle">Energy Levels and Orbitals — Lesson Quiz</h1>
+            <p class="instructions" id="instructions">
+                <strong>10 questions · Pass: 8/10 (80%).</strong> Choose one answer. Your first choice is final for that
+                question; read the feedback before continuing. Each question is worth one point.
+            </p>
+            <p class="progress-text" id="progressText">Question 1 of 10 · 0 answered</p>
+            <div
+                class="progress-wrapper"
+                id="progressMeter"
+                role="progressbar"
+                aria-label="Questions answered"
+                aria-valuemin="0"
+                aria-valuemax="10"
+                aria-valuenow="0"
+            >
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="quizBox"></div>
+            <div class="next-row">
+                <button type="button" id="nextBtn" class="next-btn" hidden disabled>Next Question →</button>
+            </div>
+            <p class="footer-note">Stars: 100% = 3 · 90% = 2 · 80% = 1 · below 80% = 0</p>
+            <noscript><p>This quiz requires JavaScript to show questions and record your choices.</p></noscript>
+        </main>
+        <script>
+            "use strict";
+            // Fixed order: 3 easy, 5 moderate, 2 difficult items. Difficulty is an editorial estimate.
+            // Integration contract retained: quizResult {score, passed}, quizBack, quizNextLesson.
+            const quizData = [
+{
+    "id": "c2l4q01",
+    "topic": "Shells and subshells",
+    "difficulty": "Easy",
+    "q": "In the label 3p, what does the number 3 identify?",
+    "c": [
+        "The principal energy level, or shell",
+        "The number of electrons in the orbital",
+        "The number of protons in the atom",
+        "The number of lobes in every p orbital"
+    ],
+    a: 0,
+    "e": "The number in 3p identifies shell n = 3; p identifies the subshell type.",
+    "why": [
+        "This choice is correct.",
+        "The label does not specify how many electrons occupy it.",
+        "The principal quantum number is not the atomic number.",
+        "The number is the principal energy level, not a lobe count."
+    ]
+},
+{
+    "id": "c2l4q02",
+    "topic": "Orbitals",
+    "difficulty": "Easy",
+    "q": "Which statement best describes an atomic orbital?",
+    "c": [
+        "A fixed circular track followed by an electron",
+        "A quantum description with a probability distribution for an electron’s location",
+        "A particle found inside the nucleus",
+        "A shell that always contains eight electrons"
+    ],
+    a: 1,
+    "e": "An orbital is described by a wavefunction; its probability distribution helps predict where an electron may be found.",
+    "why": [
+        "An orbital is not a fixed planetary path.",
+        "This choice is correct.",
+        "An orbital describes an electron state, not a nuclear particle.",
+        "An orbital is not an always-full shell."
+    ]
+},
+{
+    "id": "c2l4q03",
+    "topic": "Orbital capacity",
+    "difficulty": "Easy",
+    "q": "What is the maximum number of electrons in one orbital?",
+    "c": [
+        "One",
+        "Three",
+        "Two, with opposite spins",
+        "Six, with the same spin"
+    ],
+    a: 2,
+    "e": "One orbital can hold at most two electrons, which have opposite spins.",
+    "why": [
+        "An orbital can hold up to two electrons.",
+        "Three exceeds the capacity of one orbital.",
+        "This choice is correct.",
+        "Six is the capacity of a p subshell, not one orbital."
+    ]
+},
+{
+    "id": "c2l4q04",
+    "topic": "Shells and subshells",
+    "difficulty": "Moderate",
+    "q": "Which set lists all allowed subshells in the n = 3 shell?",
+    "c": [
+        "3s, 3p, and 3d",
+        "3s and 3p only",
+        "3s, 3p, 3d, and 3f",
+        "3p and 3d only"
+    ],
+    a: 0,
+    "e": "For n = 3, the allowed subshells are 3s, 3p, and 3d; 3f is not allowed.",
+    "why": [
+        "This choice is correct.",
+        "The n = 3 shell also includes a 3d subshell.",
+        "An f subshell first occurs at n = 4.",
+        "The 3s subshell also belongs to n = 3."
+    ]
+},
+{
+    "id": "c2l4q05",
+    "topic": "Orbital capacity",
+    "difficulty": "Moderate",
+    "q": "A 3p subshell contains three orbitals. What is its maximum electron capacity?",
+    "c": [
+        "Three electrons",
+        "Six electrons",
+        "Eight electrons",
+        "Ten electrons"
+    ],
+    a: 1,
+    "e": "The three p orbitals can each hold two electrons, so the subshell holds at most six.",
+    "why": [
+        "Three is the number of orbitals, not their total capacity.",
+        "This choice is correct.",
+        "Eight is the maximum capacity of the n = 2 shell.",
+        "Ten is the maximum electron capacity of a d subshell."
+    ]
+},
+{
+    "id": "c2l4q06",
+    "topic": "Shell capacity",
+    "difficulty": "Moderate",
+    "q": "What is the maximum number of electrons in the n = 3 shell?",
+    "c": [
+        "8",
+        "12",
+        "18",
+        "32"
+    ],
+    a: 2,
+    "e": "The maximum shell capacity is 2n² = 2(3)² = 18 electrons. This does not mean the shell is always full.",
+    "why": [
+        "Eight is the maximum for n = 2.",
+        "Apply 2n², squaring 3 before multiplying by 2.",
+        "This choice is correct.",
+        "Thirty-two is the maximum for n = 4."
+    ]
+},
+{
+    "id": "c2l4q07",
+    "topic": "Allowed subshells",
+    "difficulty": "Moderate",
+    "q": "Which subshell label is not allowed?",
+    "c": [
+        "1s",
+        "2p",
+        "3d",
+        "2d"
+    ],
+    a: 3,
+    "e": "The n = 2 shell has s and p subshells only; a d subshell first appears at n = 3.",
+    "why": [
+        "1s is allowed.",
+        "2p is allowed.",
+        "3d is allowed.",
+        "This choice is correct."
+    ]
+},
+{
+    "id": "c2l4q08",
+    "topic": "Orbital representations",
+    "difficulty": "Moderate",
+    "q": "A diagram shows a two-lobed p orbital. How should the two lobes be interpreted?",
+    "c": [
+        "They are parts of one p orbital.",
+        "Each lobe is a separate p subshell.",
+        "They represent two electrons travelling along fixed paths.",
+        "They are the 2s and 3s shells."
+    ],
+    a: 0,
+    "e": "The two lobes belong to one p orbital. A p subshell contains three differently oriented p orbitals.",
+    "why": [
+        "This choice is correct.",
+        "A p subshell contains three orbitals; the two lobes shown are parts of one orbital.",
+        "The lobes represent a spatial orbital shape, not fixed electron paths.",
+        "The diagram shows a p orbital, not two s shells."
+    ]
+},
+{
+    "id": "c2l4q09",
+    "topic": "Energy transitions",
+    "difficulty": "Difficult",
+    "q": "A hydrogen energy diagram has n = 1 below n = 2. What occurs when the atom absorbs a photon that matches the energy gap and its electron transitions from n = 1 to n = 2?",
+    "c": [
+        "The electron moves to a lower allowed energy state.",
+        "The electron moves to a higher allowed energy state.",
+        "The electron remains at n = 1 while the photon is emitted.",
+        "The electron occupies every energy between n = 1 and n = 2 as a stable state."
+    ],
+    a: 1,
+    "e": "Absorption of a photon with energy matching the gap can raise the electron from n = 1 to the higher n = 2 state.",
+    "why": [
+        "An upward transition goes to a higher energy state.",
+        "This choice is correct.",
+        "This describes neither the stated absorption nor the stated transition.",
+        "The diagram represents discrete allowed energies rather than all intermediate energies."
+    ]
+},
+{
+    "id": "c2l4q10",
+    "topic": "Energy transitions",
+    "difficulty": "Difficult",
+    "q": "A learner concludes that 2s and 2p must have equal energies in every atom because they share one line in a simplified hydrogen diagram. What is the best response?",
+    "c": [
+        "The conclusion is always true because all orbitals have the same energy.",
+        "The conclusion is always false even for the simplified hydrogen model.",
+        "The diagram applies only to molecules, not atoms.",
+        "In the simple hydrogen model they share an energy, but in multielectron atoms their energies can differ."
+    ],
+    a: 3,
+    "e": "In the simple hydrogen-atom model, orbitals with the same n share an energy; in multielectron atoms, subshell energies can differ.",
+    "why": [
+        "Energy levels are discrete and need not all have the same energy.",
+        "The simplified hydrogen model does give equal energies for 2s and 2p.",
+        "The diagram is explicitly a simplified hydrogen-atom model.",
+        "This choice is correct."
+    ]
+}
+            ];
+            let answers = Array(quizData.length).fill(null);
+            let resultSent = false;
+            let completed = false;
+            const quizBox = document.getElementById("quizBox");
+            const nextBtn = document.getElementById("nextBtn");
+            const progressText = document.getElementById("progressText");
+            const progressBar = document.getElementById("progressBar");
+            const progressMeter = document.getElementById("progressMeter");
+
+            function element(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = text;
+                return node;
+            }
+            function isEmbedded() {
+                return window.parent !== window;
+            }
+            function updateProgress() {
+                const count = answers.filter((value) => value !== null).length;
+                progressBar.style.width = (count / quizData.length) * 100 + "%";
+                progressMeter.setAttribute("aria-valuenow", String(count));
+                progressMeter.setAttribute("aria-valuemax", String(quizData.length));
+                progressMeter.setAttribute("aria-valuetext", `${count} of ${quizData.length} questions answered`);
+                progressText.textContent = completed
+                    ? `Quiz completed · ${count} of ${quizData.length} answered`
+                    : `Question ${current + 1} of ${quizData.length} · ${count} answered`;
+            }
+            function renderEvidence(data) {
+                const wrap = element("div", "table-wrap evidence");
+                wrap.tabIndex = 0;
+                wrap.setAttribute("role", "region");
+                wrap.setAttribute("aria-label", data.caption);
+                const table = element("table");
+                table.append(element("caption", "", data.caption));
+                const head = element("thead");
+                const heading = element("tr");
+                data.headers.forEach((text) => {
+                    const cell = element("th", "", text);
+                    cell.scope = "col";
+                    heading.append(cell);
+                });
+                head.append(heading);
+                table.append(head);
+                const body = element("tbody");
+                data.rows.forEach((row) => {
+                    const tr = element("tr");
+                    row.forEach((text, i) => {
+                        const td = element(i === 0 ? "th" : "td", "", text);
+                        if (i === 0) td.scope = "row";
+                        tr.append(td);
+                    });
+                    body.append(tr);
+                });
+                table.append(body);
+                wrap.append(table);
+                return wrap;
+            }
+            function showQuestion(focus = false) {
+                const q = quizData[current];
+                quizBox.replaceChildren();
+                const heading = element("h2", "question", q.q);
+                heading.id = "questionTitle";
+                heading.tabIndex = -1;
+                const choices = element("div", "choices");
+                choices.setAttribute("role", "group");
+                choices.setAttribute("aria-labelledby", "questionTitle");
+                q.c.forEach((text, i) => {
+                    const button = element("button", "choice");
+                    button.type = "button";
+                    button.setAttribute("data-choice", String(i));
+                    const body = element("span", "choice-body");
+                    body.append(element("span", "choice-label", text), element("span", "choice-status"));
+                    button.append(body);
+                    button.addEventListener("click", () => selectChoice(i));
+                    choices.append(button);
+                });
+                const feedback = element("div", "explanation");
+                feedback.id = "explanationBox";
+                feedback.hidden = true;
+                feedback.tabIndex = -1;
+                feedback.setAttribute("role", "status");
+                feedback.setAttribute("aria-live", "polite");
+                feedback.setAttribute("aria-atomic", "true");
+                quizBox.append(heading);
+                if (q.evidence) quizBox.append(renderEvidence(q.evidence));
+                quizBox.append(choices, feedback);
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                nextBtn.textContent = current === quizData.length - 1 ? "View Results →" : "Next Question →";
+                updateProgress();
+                if (focus) heading.focus();
+            }
+            function selectChoice(index) {
+                if (completed || answers[current] !== null || !Number.isInteger(index) || index < 0 || index > 3)
+                    return;
+                const q = quizData[current];
+                answers[current] = index;
+                const correct = index === q.a;
+                quizBox.querySelectorAll(".choice").forEach((button, i) => {
+                    button.disabled = true;
+                    const status = button.querySelector(".choice-status");
+                    if (i === q.a) {
+                        button.classList.add("correct");
+                        status.textContent = correct ? "✓ Your answer — correct" : "✓ Correct answer";
+                    } else if (i === index) {
+                        button.classList.add("incorrect");
+                        status.textContent = "✗ Your answer — incorrect";
+                    }
+                });
+                const feedback = document.getElementById("explanationBox");
+                feedback.classList.toggle("incorrect-feedback", !correct);
+                feedback.append(element("h3", "", correct ? "Correct." : "Not quite."));
+                if (!correct) feedback.append(element("p", "", q.why[index]));
+                feedback.append(
+                    element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                    element("p", "", q.e)
+                );
+                feedback.hidden = false;
+                nextBtn.hidden = false;
+                nextBtn.disabled = false;
+                updateProgress();
+                feedback.focus();
+            }
+            function nextQuestion() {
+                if (completed || answers[current] === null) return;
+                if (current === quizData.length - 1) showResult();
+                else {
+                    current += 1;
+                    showQuestion(true);
+                }
+            }
+            function starCount(percent) {
+                return percent === 100 ? 3 : percent >= 90 ? 2 : percent >= 80 ? 1 : 0;
+            }
+            function getScore() {
+                return answers.reduce((total, value, index) => total + (value === quizData[index].a ? 1 : 0), 0);
+            }
+            function sendResult(percent, passed) {
+                if (resultSent || !isEmbedded()) return;
+                // Same message and score format used by the Organic Chemistry quizzes.
+                window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+                resultSent = true;
+            }
+            function showResult() {
+                if (completed || answers.some((value) => value === null)) return;
+                completed = true;
+                const score = getScore();
+                const percent = Math.round((score / quizData.length) * 100);
+                const passed = percent >= PASS_PERCENT;
+                const stars = starCount(percent);
+                quizBox.replaceChildren();
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                updateProgress();
+                const result = element("section", "quiz-result-panel");
+                const starDisplay = element("div", "stars", "★".repeat(stars) + "☆".repeat(3 - stars));
+                starDisplay.setAttribute("role", "img");
+                starDisplay.setAttribute("aria-label", `${stars} out of 3 stars`);
+                const title = element("h2", "result", `You scored ${score}/${quizData.length} (${percent}%)`);
+                title.id = "resultTitle";
+                title.tabIndex = -1;
+                result.setAttribute("aria-labelledby", "resultTitle");
+                const outcome = passed
+                    ? "Passed — you met the 80% target."
+                    : "Not yet passed — review the explanations, then retry.";
+                const status = element("p", "save-status");
+                status.id = "saveStatus";
+                status.setAttribute("role", "status");
+                status.textContent = isEmbedded()
+                    ? "Waiting for LearnTrack to verify and save your answers..."
+                    : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                result.append(starDisplay, title, element("p", "result-status", outcome), status);
+                const nav = element("nav", "quiz-nav");
+                nav.setAttribute("aria-label", "Quiz result actions");
+                const back = element("button", "quiz-btn", "← Back to Lesson");
+                back.type = "button";
+                back.id = "backBtn";
+                back.disabled = !isEmbedded();
+                const retry = element("button", "quiz-btn", "Retry Quiz");
+                retry.type = "button";
+                retry.id = "retryBtn";
+                retry.disabled = false;
+                const next = element("button", "quiz-btn primary", "Next Lesson →");
+                next.type = "button";
+                next.id = "nextLessonBtn";
+                next.disabled = true;
+                back.addEventListener("click", () => {
+                    if (isEmbedded()) window.parent.postMessage({ type: "quizBack" }, "*");
+                });
+                retry.addEventListener("click", retryQuiz);
+                next.addEventListener("click", () => {
+                    if (passed && isEmbedded()) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+                });
+                nav.append(back, retry, next);
+                result.append(nav);
+                quizBox.append(result);
+
+                // Send once before building optional review sections, matching the
+                // established Organic Chemistry quiz integration.
+                sendResult(percent, passed);
+                renderTopicSummary();
+                renderReview();
+                title.focus();
+            }
+            function renderTopicSummary() {
+                const wrap = element("div", "table-wrap");
+                const table = element("table");
+                table.append(element("caption", "", "Your review priorities"));
+                const head = element("thead");
+                const header = element("tr");
+                ["Area", "Score", "Next step"].forEach((text) => {
+                    const th = element("th", "", text);
+                    th.scope = "col";
+                    header.append(th);
+                });
+                head.append(header);
+                table.append(head);
+                const body = element("tbody");
+                [...new Set(quizData.map((q) => q.topic))].forEach((topic) => {
+                    const indices = quizData.map((q, i) => (q.topic === topic ? i : -1)).filter((i) => i >= 0);
+                    const correct = indices.filter((i) => answers[i] === quizData[i].a).length;
+                    const row = element("tr");
+                    const name = element("th", "", topic);
+                    name.scope = "row";
+                    row.append(
+                        name,
+                        element("td", "", `${correct}/${indices.length}`),
+                        element(
+                            "td",
+                            "",
+                            correct === indices.length
+                                ? "All correct this attempt"
+                                : "Review the related explanations below"
+                        )
+                    );
+                    body.append(row);
+                });
+                table.append(body);
+                wrap.append(table);
+                quizBox.append(wrap);
+            }
+            function renderReview() {
+                const section = element("section", "review-section");
+                section.append(
+                    element("h3", "", "Review your answers"),
+                    element(
+                        "p",
+                        "small",
+                        "Open any question to compare your answer with the explanation. Retry starts a new attempt with the same question and choice order."
+                    )
+                );
+                quizData.forEach((q, index) => {
+                    const correct = answers[index] === q.a;
+                    const details = element("details");
+                    details.append(
+                        element("summary", "", `Question ${index + 1} · ${correct ? "Correct" : "Review needed"}`),
+                        element("p", "review-question", q.q),
+                        element(
+                            "p",
+                            "review-choice",
+                            `Your answer: ${letters[answers[index]]}. ${q.c[answers[index]]}`
+                        ),
+                        element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                        element("p", "review-answer", q.e)
+                    );
+                    if (q.evidence) details.querySelector(".review-question").after(renderEvidence(q.evidence));
+                    const all = element("details");
+                    all.append(element("summary", "", "Why each option fits or does not fit"));
+                    q.c.forEach((text, i) =>
+                        all.append(element("p", "review-choice", `${letters[i]}. ${text} — ${q.why[i]}`))
+                    );
+                    details.append(all);
+                    section.append(details);
+                });
+                quizBox.append(section);
+            }
+            function retryQuiz() {
+                current = 0;
+                answers = Array(quizData.length).fill(null);
+                completed = false;
+                resultSent = false;
+                showQuestion(true);
+            }
+            nextBtn.addEventListener("click", nextQuestion);
+            showQuestion();
+        </script>
+    </body>
+</html>
