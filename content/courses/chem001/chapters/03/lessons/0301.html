@@ -1,451 +1,748 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<title>The Mole Concept and Avogadro’s Number</title>
-
-<style>
-body{
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
-  padding:24px;
-  line-height:1.8;
-  font-size:20px;
-}
-
-h1{color:#136f63;}
-h2{color:#136f63;margin-top:1.4em;}
-h3{color:#174ea6;}
-
-.section{margin-bottom:30px;}
-
-.key-box{
-  background:#e8f7f5;
-  border-left:6px solid #136f63;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.example-box{
-  background:#fff;
-  border-left:5px solid #2b7de9;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.visual-box{
-  background:#fff;
-  border-radius:12px;
-  padding:14px;
-  margin:16px 0;
-  border:1px solid #ddd;
-}
-
-.lesson-img{
-  width:100%;
-  max-width:720px;
-  display:block;
-  margin:0 auto;
-  border-radius:12px;
-}
-
-.caption{
-  text-align:center;
-  font-size:0.9em;
-  color:#555;
-}
-
-.activity{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  margin:14px 0;
-}
-
-.toggle-btn{
-  background:#136f63;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.answer{
-  display:none;
-  margin-top:10px;
-  background:#eef3ff;
-  padding:10px;
-  border-radius:6px;
-}
-
-.formula{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.formula .equation-line{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:8px 0;
-}
-
-.formula .fraction{
-  display:inline-grid;
-  grid-template-rows:auto auto;
-  min-width:max-content;
-  text-align:center;
-  line-height:1.2;
-  vertical-align:middle;
-}
-
-.formula .fraction-top{
-  border-bottom:2px solid currentColor;
-  padding:0 10px 5px;
-}
-
-.formula .fraction-bottom{
-  padding:5px 10px 0;
-}
-
-.answer .formula{
-  font-size:20px;
-  margin:8px 0;
-}
-
-.answer ol{
-  margin-top:8px;
-}
-
-.quiz-button{
-  background:#136f63;
-  color:white;
-  padding:12px 22px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:16px 0;
-  background:#fff;
-}
-
-th,td{
-  border:1px solid #ddd;
-  padding:10px;
-}
-
-th{background:#e8f7f5;}
-
-iframe{
-  width:100%;
-  max-width:100%;
-}
-</style>
-</head>
-<body>
-<h1>The Mole Concept and Avogadro’s Number</h1>
-
-<div class="section">
-<h2>Learning Objectives</h2>
-<ul>
-<li>Explain why chemists use the mole as a counting unit</li>
-<li>Define Avogadro’s number</li>
-<li>Convert between moles and particles</li>
-<li>Interpret the mole as a bridge between microscopic particles and measurable amounts</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>1. Why Do Chemists Need the Mole?</h2>
-
-<p>
-Atoms, ions, and molecules are extremely small. Because they are too tiny to count one by one in ordinary laboratory work, chemists use a special counting unit called the <strong>mole</strong>.
-</p>
-
-<p>
-A mole works like other counting units. For example, a dozen means 12 items, a pair means 2 items, and a mole means a specific number of particles.
-</p>
-
-<div class="key-box">
-<strong>Key Idea:</strong> The mole is a counting unit used to represent a very large number of atoms, molecules, ions, or formula units.
-</div>
-
-<div class="example-box">
-<h3>Comparison</h3>
-<ul>
-<li>1 dozen = 12 objects</li>
-<li>1 pair = 2 objects</li>
-<li>1 mole = 6.022 × 10²³ particles</li>
-</ul>
-</div>
-
-<div class="activity">
-<p>Why is it impractical to count atoms one by one?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-Atoms are incredibly small and exist in enormous numbers, so direct counting is impossible in ordinary laboratory measurements.
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>2. Avogadro’s Number</h2>
-
-<p>
-Avogadro’s number is the number of particles found in exactly one mole of a substance.
-</p>
-
-<div class="key-box">
-<strong>Avogadro’s Number:</strong> 1 mole = 6.022 × 10²³ particles
-</div>
-
-<p>
-The word <strong>particles</strong> can refer to different things depending on the substance:
-</p>
-
-<ul>
-<li>For elements such as Fe, particles are atoms</li>
-<li>For molecular substances such as H₂O, particles are molecules</li>
-<li>For ionic compounds such as NaCl, particles are formula units</li>
-</ul>
-
-<div class="image">
-<img src="https://imgur.com/USikK53.png" alt="Mole concept illustration">
-<p class="note"><em>The mole connects a measurable amount of substance to a very large number of particles.</em></p>
-</div>
-
-<div class="activity">
-<p>In 1 mole of water, what kind of particles are being counted?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-Molecules. One mole of water contains 6.022 × 10²³ water molecules.
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>3. Converting Moles to Particles</h2>
-
-<p>
-To convert from moles to particles, multiply by Avogadro’s number.
-</p>
-
-<div class="summary-box"></div>
-
-<div class="example-box">
-<h3>Formula</h3>
-<p>
-Number of particles = moles × 6.022 × 10²³
-</p>
-</div>
-
-<div class="example-box">
-<h3>Example 1</h3>
-<p>
-How many atoms are in 2.00 moles of carbon?
-</p>
-
-<p>
-<strong>Step 1:</strong> Identify the conversion factor:
-<br>
-1 mole = 6.022 × 10²³ atoms
-</p>
-
-<p>
-<strong>Step 2:</strong> Multiply:
-<br>
-2.00 mol × 6.022 × 10²³ atoms/mol
-</p>
-
-<p>
-<strong>Answer:</strong>
-<br>
-1.204 × 10²⁴ atoms of carbon
-</p>
-</div>
-
-<div class="activity">
-<p>How many molecules are in 0.50 mole of O₂?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-0.50 × 6.022 × 10²³ = <strong>3.011 × 10²³ molecules of O₂</strong>
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>4. Converting Particles to Moles</h2>
-
-<p>
-To convert from particles to moles, divide by Avogadro’s number.
-</p>
-
-<div class="example-box">
-<h3>Formula</h3>
-<p>
-Moles = number of particles ÷ 6.022 × 10²³
-</p>
-</div>
-
-<div class="example-box">
-<h3>Example 2</h3>
-<p>
-How many moles are represented by 3.011 × 10²³ molecules of CO₂?
-</p>
-
-<p>
-<strong>Step 1:</strong> Use Avogadro’s number:
-<br>
-1 mole = 6.022 × 10²³ molecules
-</p>
-
-<p>
-<strong>Step 2:</strong> Divide:
-<br>
-3.011 × 10²³ ÷ 6.022 × 10²³
-</p>
-
-<p>
-<strong>Answer:</strong>
-<br>
-0.500 mole of CO₂
-</p>
-</div>
-
-<div class="activity">
-<p>How many moles are in 1.204 × 10²⁴ atoms of sodium?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-1.204 × 10²⁴ ÷ 6.022 × 10²³ = <strong>2.00 moles of sodium atoms</strong>
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>5. Understanding What the Mole Really Means</h2>
-
-<p>
-The mole does not tell us what kind of substance we have. It only tells us how many particles are present. One mole of carbon atoms and one mole of water molecules contain the same number of particles, but they are different substances and have different masses.
-</p>
-
-<div class="key-box">
-<strong>Key Idea:</strong> Equal moles contain equal numbers of particles, but not necessarily equal masses.
-</div>
-
-<div class="example-box">
-<h3>Example</h3>
-<ul>
-<li>1 mole of carbon atoms = 6.022 × 10²³ carbon atoms</li>
-<li>1 mole of water molecules = 6.022 × 10²³ water molecules</li>
-<li>But their masses are different because carbon atoms and water molecules have different masses</li>
-</ul>
-</div>
-
-<div class="warning-box">
-<strong>Common Mistake:</strong> Do not assume that 1 mole of every substance has the same mass. The number of particles is the same, but the mass depends on the substance.
-</div>
-</div>
-
-<div class="section">
-<h2>Practice Drills</h2>
-
-<div class="activity">
-<p>Convert 3.00 moles of helium atoms to atoms.</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-3.00 × 6.022 × 10²³ = <strong>1.807 × 10²⁴ atoms</strong>
-</div>
-</div>
-
-<div class="activity">
-<p>Convert 6.022 × 10²³ molecules of NH₃ to moles.</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-6.022 × 10²³ ÷ 6.022 × 10²³ = <strong>1.00 mole of NH₃</strong>
-</div>
-</div>
-
-<div class="activity">
-<p>Convert 1.50 moles of NaCl to formula units.</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-1.50 × 6.022 × 10²³ = <strong>9.033 × 10²³ formula units of NaCl</strong>
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>Checkpoint Challenge</h2>
-
-<div class="activity">
-<p>
-A sample contains 2.409 × 10²⁴ molecules of H₂O.
-<br>
-How many moles of H₂O are present?
-</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-2.409 × 10²⁴ ÷ 6.022 × 10²³ = <strong>4.00 moles of H₂O</strong>
-</div>
-</div>
-
-<div class="activity">
-<p>
-Which contains more particles: 1 mole of oxygen gas or 1 mole of carbon dioxide?
-</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-They contain the same number of particles: <strong>6.022 × 10²³ particles</strong>. One mole always contains Avogadro’s number of particles.
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>Key Terms</h2>
-<ul>
-<li><strong>Mole:</strong> A counting unit equal to 6.022 × 10²³ particles</li>
-<li><strong>Avogadro’s Number:</strong> 6.022 × 10²³ particles per mole</li>
-<li><strong>Particle:</strong> The item being counted, such as an atom, molecule, ion, or formula unit</li>
-<li><strong>Formula Unit:</strong> The simplest ratio of ions in an ionic compound</li>
-</ul>
-</div>
-
-  <div style="text-align:center;margin-top:30px;">
-	<button class="quiz-button" id="takeQuizBtn">
-
-Take the Quiz →
-
-</button>
-
-</div>
-
-<script>
-function toggleAnswer(btn){
-  const ans = btn.nextElementSibling;
-  ans.style.display = ans.style.display === "block" ? "none" : "block";
-}
-
-document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
-  const quizId = e.target.dataset.quiz;
-  window.parent.postMessage({
-    type:"openQuiz",
-    quiz:quizId
-  },"*");
-});
-</script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Chemistry I | Chapter 3 Lesson 1: Early Atomic Models</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .model-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .model-grid figure {
+                margin: 0;
+                padding: 15px;
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 10px;
+            }
+            .model-grid svg {
+                width: 100%;
+                height: auto;
+            }
+            .video-wrap {
+                position: relative;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+            @media (max-width: 700px) {
+                .model-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 3 · Lesson 1</div>
+                <h1>Early Atomic Models: From Dalton to Rutherford</h1>
+                <p>
+                    What could scientists learn about something they could not see directly? Follow the evidence that
+                    changed the atom from an indivisible particle into a model with electrons and a nucleus.
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#goals">Objectives</a><a href="#models">Model gallery</a><a href="#dalton">Dalton</a
+                    ><a href="#thomson">Thomson</a><a href="#rutherford">Rutherford</a><a href="#practice">Practice</a
+                    ><a href="#video">Video</a>
+                </nav>
+            </header>
+            <section class="card" id="goals">
+                <h2>Learning objectives</h2>
+                <p>At the end of this lesson, you should be able to:</p>
+                <ul>
+                    <li>Describe the key features of Dalton’s, Thomson’s, and Rutherford’s atomic models.</li>
+                    <li>
+                        Connect observations from cathode rays and alpha-particle scattering to the inferences
+                        scientists made.
+                    </li>
+                    <li>Compare what each model explained and identify limitations that prompted further work.</li>
+                    <li>Distinguish an experimental observation from a model used to explain it.</li>
+                </ul>
+                <div class="note">
+                    <strong>Connection to Chapter 2:</strong> We used orbitals and energy levels to describe electrons.
+                    Here we investigate the evidence that came before those models. Lesson 2 will examine Planck, Bohr,
+                    and the quantum model.
+                </div>
+            </section>
+            <section class="card" id="models">
+                <h2>1. Three models at a glance</h2>
+                <p>
+                    Each sketch represents an idea, not an image of an actual atom. The drawings are schematic and are
+                    <strong>not to scale</strong>.
+                </p>
+                <div class="model-grid">
+                    <figure>
+                        <svg viewBox="0 0 180 140" role="img" aria-label="Schematic of Dalton’s solid sphere">
+                            <circle cx="90" cy="70" r="47" fill="#a8b8df" stroke="#174ea6" stroke-width="3" />
+                        </svg>
+                        <figcaption>
+                            <strong>Dalton:</strong> atom represented as a solid, indivisible particle.
+                        </figcaption>
+                    </figure>
+                    <figure>
+                        <svg
+                            viewBox="0 0 180 140"
+                            role="img"
+                            aria-label="Thomson model: electrons embedded in a positive region"
+                        >
+                            <circle cx="90" cy="70" r="47" fill="#fde7c9" stroke="#b87817" stroke-width="3" />
+                            <text x="69" y="54" font-size="24" fill="#174ea6">−</text>
+                            <text x="100" y="78" font-size="24" fill="#174ea6">−</text>
+                            <text x="70" y="99" font-size="24" fill="#174ea6">−</text>
+                            <text x="95" y="49" font-size="17" fill="#ad7115">+</text>
+                            <text x="55" y="78" font-size="17" fill="#ad7115">+</text>
+                        </svg>
+                        <figcaption>
+                            <strong>Thomson:</strong> electrons embedded in a diffuse positive region.
+                        </figcaption>
+                    </figure>
+                    <figure>
+                        <svg
+                            viewBox="0 0 180 140"
+                            role="img"
+                            aria-label="Rutherford model: small central positive nucleus with electrons outside"
+                        >
+                            <circle
+                                cx="90"
+                                cy="70"
+                                r="47"
+                                fill="none"
+                                stroke="#8fb8b0"
+                                stroke-width="2"
+                                stroke-dasharray="4 5"
+                            />
+                            <circle cx="90" cy="70" r="8" fill="#b87817" />
+                            <text x="85" y="75" font-size="14" fill="white">+</text>
+                            <circle cx="48" cy="55" r="4" fill="#174ea6" />
+                            <circle cx="119" cy="103" r="4" fill="#174ea6" />
+                        </svg>
+                        <figcaption>
+                            <strong>Rutherford:</strong> a small positive nucleus with electrons outside it. The dashed
+                            circle marks a schematic atomic boundary, not an electron path.
+                        </figcaption>
+                    </figure>
+                </div>
+            </section>
+            <section class="card" id="dalton">
+                <h2>2. Dalton: atoms in chemical reactions</h2>
+                <p>
+                    In the early nineteenth century, John Dalton developed an atomic theory to explain patterns in
+                    chemical composition. He proposed that elements consist of atoms and that compounds form when atoms
+                    combine in simple whole-number ratios. His model treated the atom as indivisible in ordinary
+                    chemical changes.
+                </p>
+                <div class="worked">
+                    <h3>Connect a model to evidence</h3>
+                    <p>
+                        A pure compound has a consistent composition. Dalton’s particle model helped explain why a
+                        compound can be described by a definite ratio of atoms. The model supplied a way to reason about
+                        reactions even before the atom’s internal components were known.
+                    </p>
+                </div>
+                <div class="note">
+                    <strong>Historical claim and current view:</strong> Dalton treated atoms of a given element as alike
+                    and indivisible. Later evidence revealed subatomic particles and isotopes. Atoms are rearranged in
+                    ordinary chemical reactions, but nuclear processes can change nuclei.
+                </div>
+            </section>
+            <section class="card" id="thomson">
+                <h2>3. Thomson: evidence for electrons</h2>
+                <p>
+                    In experiments with cathode rays in evacuated tubes, J. J. Thomson studied how the rays responded to
+                    electric and magnetic fields. Their deflection supported the conclusion that the beam contained
+                    negatively charged particles. He inferred a charge-to-mass ratio for these particles, now called
+                    <strong>electrons</strong>. Similar behavior from different cathode materials supported the idea
+                    that electrons are components of many kinds of matter.
+                </p>
+                <div class="worked">
+                    <h3>Observation → inference → model</h3>
+                    <p>
+                        <strong>Observation:</strong> Cathode rays deflect in an electric field toward a positive plate.
+                    </p>
+                    <p><strong>Inference:</strong> The beam includes negatively charged particles.</p>
+                    <p>
+                        <strong>Model:</strong> Thomson proposed electrons embedded in a distributed positive region,
+                        accounting for an overall neutral atom. The model is often called the plum-pudding model.
+                    </p>
+                </div>
+                <p>
+                    Thomson’s work challenged the claim that atoms are indivisible. His model did not contain the
+                    compact nucleus later supported by scattering evidence.
+                </p>
+            </section>
+            <section class="card" id="rutherford">
+                <h2>4. Rutherford: evidence for a nucleus</h2>
+                <p>
+                    In the experiments conducted by Hans Geiger and Ernest Marsden under Ernest Rutherford’s direction,
+                    positively charged <strong>alpha particles</strong> were directed at very thin metal foil. A
+                    detector registered where particles arrived. Most passed through with little deflection; a small
+                    fraction were deflected through large angles, and very few scattered backward.
+                </p>
+                <div class="worked">
+                    <h3>Read the evidence</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Observation</th>
+                                    <th>Inference in the nuclear model</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Most alpha particles passed through or deflected only slightly.</td>
+                                    <td>
+                                        The dense nucleus occupies only a tiny fraction of the atom’s volume; most of
+                                        the volume is comparatively empty.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>A small fraction deflected through large angles.</td>
+                                    <td>
+                                        Positive charge and much of the mass are concentrated in a small region that can
+                                        strongly repel a nearby positive alpha particle.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Rutherford proposed an atom with a small, dense, positively charged <strong>nucleus</strong> and
+                        electrons outside it. The phrase “mostly empty space” describes the tiny relative size of the
+                        nucleus; it does not mean electrons are absent from the surrounding region.
+                    </p>
+                </div>
+                <h3>What remained unexplained?</h3>
+                <p>
+                    The nuclear model did not adequately explain why atoms are stable or the observed pattern of atomic
+                    light spectra. Those questions helped motivate later models of electron energies, which we will
+                    examine in Lesson 2.
+                </p>
+            </section>
+            <section class="card" id="compare">
+                <h2>5. Compare the changing models</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Core contribution</th>
+                                <th>Evidence or limitation to consider</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dalton</td>
+                                <td>Atoms and whole-number combinations helped explain composition.</td>
+                                <td>Its original indivisibility claim was challenged by subatomic particles.</td>
+                            </tr>
+                            <tr>
+                                <td>Thomson</td>
+                                <td>Included electrons within a positively charged atom.</td>
+                                <td>Diffuse positive charge did not account well for large-angle alpha scattering.</td>
+                            </tr>
+                            <tr>
+                                <td>Rutherford</td>
+                                <td>Concentrated positive charge and much of the mass in a nucleus.</td>
+                                <td>Did not adequately explain atomic stability or spectral patterns.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="practice">
+                    <h3>Try an explanation</h3>
+                    <p>
+                        A classmate says, “Most alpha particles passed through, so atoms must contain no particles at
+                        all.” Identify the error and use both scattering observations in your answer.
+                    </p>
+                    <details>
+                        <summary>Show a possible response</summary>
+                        <p>
+                            Passing through suggests the compact nucleus occupies little of the atom’s volume, not that
+                            the atom contains no particles. The rare large deflections provide evidence for a
+                            concentrated positive nucleus; electrons are also part of the atom.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="practice">
+                <h2>6. Check your understanding</h2>
+                <p>
+                    Choose an answer and select <strong>Check answer</strong>. These practice activities do not record a
+                    quiz score.
+                </p>
+                <div class="practice" data-quiz="dalton">
+                    <fieldset>
+                        <legend>
+                            Which finding would challenge Dalton’s original claim that atoms cannot be divided?
+                        </legend>
+                        <label
+                            ><input type="radio" name="dalton" value="0" /> Atoms contain negatively charged
+                            electrons.</label
+                        ><label><input type="radio" name="dalton" value="1" /> A sample has measurable mass.</label
+                        ><label
+                            ><input type="radio" name="dalton" value="2" /> Elements form compounds in fixed
+                            ratios.</label
+                        ><label
+                            ><input type="radio" name="dalton" value="3" /> Atoms participate in chemical
+                            reactions.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="cathode">
+                    <fieldset>
+                        <legend>
+                            A cathode ray bends toward a positive plate. What does that observation indicate about its
+                            charged component?
+                        </legend>
+                        <label><input type="radio" name="cathode" value="0" /> It is positively charged.</label
+                        ><label><input type="radio" name="cathode" value="1" /> It is negatively charged.</label
+                        ><label><input type="radio" name="cathode" value="2" /> It has no charge.</label
+                        ><label
+                            ><input type="radio" name="cathode" value="3" /> It must be light with no charged
+                            particles.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="thomson">
+                    <fieldset>
+                        <legend>Which statement matches Thomson’s model?</legend>
+                        <label
+                            ><input type="radio" name="thomson" value="0" /> A small nucleus contains all
+                            electrons.</label
+                        ><label
+                            ><input type="radio" name="thomson" value="1" /> Electrons occupy fixed circular energy
+                            levels.</label
+                        ><label
+                            ><input type="radio" name="thomson" value="2" /> Electrons are embedded in a diffuse
+                            positive region.</label
+                        ><label
+                            ><input type="radio" name="thomson" value="3" /> The atom is an indivisible sphere.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="foil">
+                    <fieldset>
+                        <legend>
+                            In the gold-foil experiment, most alpha particles traveled through the foil with little
+                            deflection. What inference is supported?
+                        </legend>
+                        <label
+                            ><input type="radio" name="foil" value="0" /> Most of the atom’s volume is not occupied by a
+                            dense nucleus.</label
+                        ><label
+                            ><input type="radio" name="foil" value="1" /> Positive charge is spread uniformly throughout
+                            the atom.</label
+                        ><label
+                            ><input type="radio" name="foil" value="2" /> Every alpha particle collided directly with an
+                            electron.</label
+                        ><label><input type="radio" name="foil" value="3" /> Atoms contain no positive charge.</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="deflection">
+                    <fieldset>
+                        <legend>
+                            A few alpha particles were deflected through large angles. Which interpretation best
+                            accounts for this?
+                        </legend>
+                        <label
+                            ><input type="radio" name="deflection" value="0" /> The atom contains a small, concentrated
+                            region of positive charge.</label
+                        ><label
+                            ><input type="radio" name="deflection" value="1" /> The atom has no internal
+                            structure.</label
+                        ><label
+                            ><input type="radio" name="deflection" value="2" /> Electrons are fixed inside a uniformly
+                            positive sphere.</label
+                        ><label
+                            ><input type="radio" name="deflection" value="3" /> The foil contained only empty
+                            space.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="limitation">
+                    <fieldset>
+                        <legend>Which question remained unresolved by Rutherford’s nuclear model?</legend>
+                        <label
+                            ><input type="radio" name="limitation" value="0" /> Why atoms contain positively charged
+                            nuclei.</label
+                        ><label
+                            ><input type="radio" name="limitation" value="1" /> Why most alpha particles pass through
+                            thin foil.</label
+                        ><label
+                            ><input type="radio" name="limitation" value="2" /> How electrons could remain stable and
+                            how their energies were arranged.</label
+                        ><label
+                            ><input type="radio" name="limitation" value="3" /> Whether some alpha particles could be
+                            deflected.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Build an evidence chain</h3>
+                    <p>
+                        In two or three sentences, explain why cathode-ray evidence and large-angle scattering called
+                        for different revisions to earlier models.
+                    </p>
+                    <details>
+                        <summary>Show a possible response</summary>
+                        <p>
+                            Evidence that cathode rays contained negative particles supported electrons inside atoms,
+                            challenging the indivisible-atom idea. Later, rare large-angle alpha scattering supported a
+                            concentrated positive nucleus rather than a diffuse positive charge.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="video">
+                <h2>7. Watch: Rutherford’s gold-foil experiment</h2>
+                <p>
+                    This Khan Academy video explains the scattering experiment and the evidence for the nuclear model.
+                </p>
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/bVlwH1kfDeg"
+                        title="Rutherford’s gold foil experiment | Khan Academy"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <p>
+                    <a href="https://www.youtube.com/watch?v=bVlwH1kfDeg" target="_blank" rel="noopener noreferrer"
+                        >Open the video on YouTube</a
+                    >
+                    if the embedded video does not load.
+                </p>
+            </section>
+            <section class="card" id="takeaways">
+                <h2>8. Key takeaways</h2>
+                <ul>
+                    <li>Scientific models change when new evidence requires a better explanation.</li>
+                    <li>
+                        Dalton used atoms to explain chemical composition; his indivisibility claim was later revised.
+                    </li>
+                    <li>Cathode-ray studies supported electrons and Thomson’s model of distributed positive charge.</li>
+                    <li>Alpha-particle scattering supported Rutherford’s small, dense, positive nucleus.</li>
+                    <li>
+                        Later models addressed unresolved questions about electrons, energies, and atomic stability.
+                    </li>
+                </ul>
+                <p class="small">
+                    Original LearnTrack explanations and activities informed by the supplied Chemistry I Teacher’s Guide
+                    #9. Video: Khan Academy, “Rutherford’s gold foil experiment.”
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status" aria-live="polite"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                dalton: {
+                    answer: "0",
+                    explanation: "Electrons are constituents of atoms, so the indivisibility claim required revision.",
+                },
+                cathode: {
+                    answer: "1",
+                    explanation:
+                        "Opposite charges attract. The bending supports the presence of negatively charged particles in the beam.",
+                },
+                thomson: {
+                    answer: "2",
+                    explanation:
+                        "Thomson’s model placed negatively charged electrons within a distributed positive charge; it did not include a small nucleus.",
+                },
+                foil: {
+                    answer: "0",
+                    explanation:
+                        "Most particles passed through, consistent with a small nucleus occupying only a tiny fraction of the atom’s volume.",
+                },
+                deflection: {
+                    answer: "0",
+                    explanation:
+                        "A small, dense, positively charged nucleus can strongly repel an approaching positive alpha particle.",
+                },
+                limitation: {
+                    answer: "2",
+                    explanation:
+                        "The nuclear model did not adequately explain atomic stability or the detailed arrangement of electron energies; later models addressed these questions.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter3_lesson1_quiz.html" }, "*");
+                } else {
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+                }
+            });
+        </script>
+    </body>
 </html>
