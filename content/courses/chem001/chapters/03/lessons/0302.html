@@ -1,471 +1,702 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<title>Calculating the Amounts of Substances</title>
-
-<style>
-body{
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
-  padding:24px;
-  line-height:1.8;
-  font-size:20px;
-}
-
-h1{color:#136f63;}
-h2{color:#136f63;margin-top:1.4em;}
-h3{color:#174ea6;}
-
-.section{margin-bottom:30px;}
-
-.key-box{
-  background:#e8f7f5;
-  border-left:6px solid #136f63;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.example-box{
-  background:#fff;
-  border-left:5px solid #2b7de9;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.visual-box{
-  background:#fff;
-  border-radius:12px;
-  padding:14px;
-  margin:16px 0;
-  border:1px solid #ddd;
-}
-
-.lesson-img{
-  width:100%;
-  max-width:720px;
-  display:block;
-  margin:0 auto;
-  border-radius:12px;
-}
-
-.caption{
-  text-align:center;
-  font-size:0.9em;
-  color:#555;
-}
-
-.activity{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  margin:14px 0;
-}
-
-.toggle-btn{
-  background:#136f63;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.answer{
-  display:none;
-  margin-top:10px;
-  background:#eef3ff;
-  padding:10px;
-  border-radius:6px;
-}
-
-.formula{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.quiz-button{
-  background:#136f63;
-  color:white;
-  padding:12px 22px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:16px 0;
-  background:#fff;
-}
-
-th,td{
-  border:1px solid #ddd;
-  padding:10px;
-}
-
-th{background:#e8f7f5;}
-</style>
-</head>
-
-<body>
-
-<h1>Calculating the Amounts of Substances</h1>
-
-<div class="key-box">
-<strong>Real-World Scenario</strong><br><br>
-A laboratory technician needs to prepare a chemical solution using a specific amount of substance. The technician cannot count atoms or molecules directly, so the amount must be calculated using moles, mass, and molar mass.
-
-In chemistry, calculating the amount of substance allows us to connect what we measure in the laboratory to the number of particles present in a sample.
-</div>
-
-<div class="section">
-<h2>Learning Objectives</h2>
-<ul>
-<li>Define amount of substance in terms of moles.</li>
-<li>Explain the relationship between mass, molar mass, and moles.</li>
-<li>Calculate moles from mass and molar mass.</li>
-<li>Calculate mass from moles and molar mass.</li>
-<li>Solve multi-step problems involving amount of substance.</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>Amount of Substance</h2>
-
-<p>
-The <strong>amount of substance</strong> tells how many particles are present in a sample. In chemistry, this amount is measured in <strong>moles</strong>.
-</p>
-
-<p>
-One mole contains Avogadro’s number of particles:
-</p>
-
-<div class="formula">
-1 mol = 6.022 × 10<sup>23</sup> particles
-</div>
-
-<div class="key-box">
-The mole allows chemists to count particles by measuring mass.
-</div>
-
-<p>
-This is important because atoms and molecules are too small to count one by one. Instead, chemists use mass and molar mass to determine how many moles are present.
-</p>
-</div>
-
-<div class="section">
-<h2>Mass, Moles, and Molar Mass</h2>
-
-<p>
-The relationship among mass, moles, and molar mass is one of the most important tools in chemistry calculations.
-</p>
-
-<table>
-<tr>
-<th>Quantity</th>
-<th>Symbol</th>
-<th>Common Unit</th>
-</tr>
-<tr>
-<td>Mass</td>
-<td>m</td>
-<td>grams (g)</td>
-</tr>
-<tr>
-<td>Amount of Substance</td>
-<td>n</td>
-<td>moles (mol)</td>
-</tr>
-<tr>
-<td>Molar Mass</td>
-<td>M</td>
-<td>grams per mole (g/mol)</td>
-</tr>
-</table>
-
-<div class="formula">
-n = m / M
-</div>
-
-<div class="key-box">
-<strong>Meaning:</strong> Moles are calculated by dividing the given mass by the molar mass.
-</div>
-
-<p>
-You can also rearrange the formula:
-</p>
-
-<div class="formula">
-m = n × M
-</div>
-
-<p>
-Use this when you need to calculate the mass of a substance from a given number of moles.
-</p>
-</div>
-
-<div class="section">
-<h2>Understanding Molar Mass</h2>
-
-<p>
-<strong>Molar mass</strong> is the mass of one mole of a substance. It is usually obtained from the periodic table.
-</p>
-
-<div class="example-box">
-<h3>Examples</h3>
-<ul>
-<li>Carbon (C): 12.01 g/mol</li>
-<li>Oxygen (O): 16.00 g/mol</li>
-<li>Sodium (Na): 22.99 g/mol</li>
-<li>Water (H₂O): 18.02 g/mol</li>
-</ul>
-</div>
-
-<p>
-For elements, the molar mass is taken directly from the periodic table. For compounds, the molar mass is found by adding the molar masses of all atoms in the formula.
-</p>
-</div>
-
-<div class="section">
-<h2>Worked Example 1: Finding Moles from Mass</h2>
-
-<div class="example-box">
-A sample contains 24.0 g of carbon. How many moles of carbon are present?
-</div>
-
-<p><strong>Step 1:</strong> Identify the given values.</p>
-
-<p>
-Mass = 24.0 g<br>
-Molar mass of carbon = 12.01 g/mol
-</p>
-
-<p><strong>Step 2:</strong> Use the formula.</p>
-
-<div class="formula">
-n = m / M
-</div>
-
-<p><strong>Step 3:</strong> Substitute values.</p>
-
-<div class="formula">
-n = 24.0 g / 12.01 g/mol
-</div>
-
-<p><strong>Step 4:</strong> Solve.</p>
-
-<div class="formula">
-n = 2.00 mol
-</div>
-
-<div class="key-box">
-Answer: 24.0 g of carbon is approximately 2.00 mol of carbon.
-</div>
-</div>
-
-<div class="section">
-<h2>Worked Example 2: Finding Mass from Moles</h2>
-
-<div class="example-box">
-How many grams are in 0.500 mol of sodium chloride (NaCl)?
-</div>
-
-<p><strong>Step 1:</strong> Determine molar mass.</p>
-
-<p>
-Na = 22.99 g/mol<br>
-Cl = 35.45 g/mol
-</p>
-
-<div class="formula">
-Molar mass of NaCl = 22.99 + 35.45 = 58.44 g/mol
-</div>
-
-<p><strong>Step 2:</strong> Use the formula.</p>
-
-<div class="formula">
-m = n × M
-</div>
-
-<p><strong>Step 3:</strong> Substitute values.</p>
-
-<div class="formula">
-m = 0.500 mol × 58.44 g/mol
-</div>
-
-<p><strong>Step 4:</strong> Solve.</p>
-
-<div class="formula">
-m = 29.22 g
-</div>
-
-<div class="key-box">
-Answer: 0.500 mol of NaCl has a mass of 29.22 g.
-</div>
-</div>
-
-<div class="section">
-<h2>Worked Example 3: Compound Sample</h2>
-
-<div class="example-box">
-A sample contains 36.04 g of water (H₂O). How many moles of water are present?
-</div>
-
-<p><strong>Step 1:</strong> Calculate molar mass of H₂O.</p>
-
-<p>
-Hydrogen = 1.01 g/mol<br>
-Oxygen = 16.00 g/mol
-</p>
-
-<div class="formula">
-Molar mass of H₂O = (2 × 1.01) + 16.00 = 18.02 g/mol
-</div>
-
-<p><strong>Step 2:</strong> Use the formula.</p>
-
-<div class="formula">
-n = m / M
-</div>
-
-<p><strong>Step 3:</strong> Substitute values.</p>
-
-<div class="formula">
-n = 36.04 g / 18.02 g/mol
-</div>
-
-<p><strong>Step 4:</strong> Solve.</p>
-
-<div class="formula">
-n = 2.00 mol
-</div>
-
-<div class="key-box">
-Answer: 36.04 g of water is equal to 2.00 mol of H₂O.
-</div>
-</div>
-
-<div class="section">
-<h2>Common Mistakes</h2>
-
-<div class="key-box">
-<ul>
-<li>Using atomic number instead of molar mass.</li>
-<li>Forgetting to calculate the molar mass of a compound before solving.</li>
-<li>Using grams when the problem asks for moles.</li>
-<li>Forgetting that units should cancel properly.</li>
-</ul>
-</div>
-</div>
-
-<div class="section">
-<h2>Check Your Understanding</h2>
-
-<div class="activity">
-<p><strong>1.</strong> How many moles are in 48.0 g of oxygen gas (O₂)?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-<p><strong>Step 1:</strong> Find molar mass of O₂.</p>
-<div class="formula">O₂ = 2 × 16.00 = 32.00 g/mol</div>
-
-<p><strong>Step 2:</strong> Use n = m / M.</p>
-<div class="formula">n = 48.0 / 32.00 = 1.50 mol</div>
-
-<p><strong>Answer:</strong> 1.50 mol of O₂</p>
-</div>
-</div>
-
-<div class="activity">
-<p><strong>2.</strong> What is the mass of 3.00 mol of CO₂?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-<p><strong>Step 1:</strong> Find molar mass of CO₂.</p>
-<div class="formula">CO₂ = 12.01 + (2 × 16.00) = 44.01 g/mol</div>
-
-<p><strong>Step 2:</strong> Use m = n × M.</p>
-<div class="formula">m = 3.00 × 44.01 = 132.03 g</div>
-
-<p><strong>Answer:</strong> 132.03 g of CO₂</p>
-</div>
-</div>
-
-<div class="activity">
-<p><strong>3.</strong> A student has 10.0 g of calcium carbonate (CaCO₃). Estimate the number of moles present.</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-<p><strong>Step 1:</strong> Find molar mass of CaCO₃.</p>
-<div class="formula">CaCO₃ = 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol</div>
-
-<p><strong>Step 2:</strong> Use n = m / M.</p>
-<div class="formula">n = 10.0 / 100.09 = 0.0999 mol</div>
-
-<p><strong>Answer:</strong> approximately 0.100 mol of CaCO₃</p>
-</div>
-</div>
-
-<div class="activity">
-<p><strong>4.</strong> Why must molar mass be written in g/mol?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-Molar mass tells how many grams are present in one mole of a substance. The unit g/mol allows grams to cancel when calculating moles.
-</div>
-</div>
-
-<div class="activity">
-<p><strong>5.</strong> Which has more moles: 10 g of carbon or 10 g of sodium? Explain.</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-<div class="answer">
-Carbon has more moles because it has a smaller molar mass.
-<br><br>
-Carbon: 10 / 12.01 ≈ 0.833 mol<br>
-Sodium: 10 / 22.99 ≈ 0.435 mol
-</div>
-</div>
-
-</div>
-
-<div class="section">
-<h2>Lesson Summary</h2>
-
-<ul>
-<li>The mole measures the amount of substance.</li>
-<li>Molar mass connects grams and moles.</li>
-<li>To find moles, divide mass by molar mass.</li>
-<li>To find mass, multiply moles by molar mass.</li>
-<li>For compounds, calculate molar mass before solving.</li>
-<li>Unit cancellation helps confirm that the calculation is set up correctly.</li>
-</ul>
-</div>
-
-<div style="text-align:center;margin-top:30px;">
-<button class="quiz-button" id="takeQuizBtn" data-quiz="CHEM001_03_L2">
-Take the Quiz →
-</button>
-</div>
-
-<script>
-function toggleAnswer(btn){
-  const ans = btn.nextElementSibling;
-  ans.style.display = ans.style.display === "block" ? "none" : "block";
-}
-
-document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
-  const quizId = e.target.dataset.quiz;
-  window.parent.postMessage({
-    type:"openQuiz",
-    quiz:quizId
-  },"*");
-});
-</script>
-
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 3 Lesson 2: From Bohr to the Quantum Model</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .visual {
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .visual svg {
+                width: 100%;
+                height: auto;
+                max-width: 650px;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 3 · Lesson 2</div>
+                <h1>From Bohr to the Quantum Model</h1>
+                <p>
+                    Rutherford’s nucleus transformed the picture of the atom, but questions about atomic stability and
+                    light remained. Follow the evidence that led to quantized energy and the modern quantum model.
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#goals">Objectives</a><a href="#planck">Planck</a><a href="#bohr">Bohr</a
+                    ><a href="#transitions">Energy transitions</a><a href="#quantum">Quantum model</a
+                    ><a href="#practice">Practice</a><a href="#video">Video</a>
+                </nav>
+            </header>
+            <section class="card" id="goals">
+                <h2>Learning objectives</h2>
+                <p>After this lesson, you should be able to:</p>
+                <ul>
+                    <li>Explain Planck’s contribution to the idea of quantized energy and use E = hν for a photon.</li>
+                    <li>Describe Bohr’s allowed energy levels and connect transitions to hydrogen’s line spectrum.</li>
+                    <li>Compare Bohr’s fixed-orbit model with Schrödinger’s quantum description of orbitals.</li>
+                    <li>
+                        Interpret a simplified energy-level diagram and distinguish photon absorption from emission.
+                    </li>
+                    <li>Identify what the Bohr model explains well and where it is limited.</li>
+                </ul>
+                <div class="note">
+                    <strong>Recall:</strong> Chapter 2 introduced shells and orbitals. This lesson explores the evidence
+                    and ideas behind those descriptions. Lesson 1 ended with Rutherford’s nuclear model.
+                </div>
+            </section>
+            <section class="card" id="planck">
+                <h2>1. Planck and energy quanta</h2>
+                <p>
+                    In 1900 Max Planck developed a description of radiation emitted by heated objects that matched
+                    observations when energy exchange was restricted to discrete amounts. His treatment used energies in
+                    whole-number multiples of <strong>hν</strong>, where ν is frequency and h is Planck’s constant. This
+                    was a key step toward quantum theory.
+                </p>
+                <p>For a photon of frequency ν, its energy is:</p>
+                <p class="formula">E = hν</p>
+                <p>
+                    Here <strong>h = 6.626 × 10⁻³⁴ J·s</strong> and frequency ν is measured in hertz (Hz), or s⁻¹. At
+                    the same frequency, each photon has energy hν. Later work, including Einstein’s light-quantum
+                    explanation of the photoelectric effect, developed the photon idea; Planck’s original work addressed
+                    thermal radiation.
+                </p>
+                <div class="worked">
+                    <h3>Worked example · Energy of one photon</h3>
+                    <p>For ν = 6.0 × 10¹⁴ Hz, calculate E using h ≈ 6.63 × 10⁻³⁴ J·s.</p>
+                    <p class="formula">E = (6.63 × 10⁻³⁴ J·s)(6.0 × 10¹⁴ s⁻¹) ≈ 4.0 × 10⁻¹⁹ J</p>
+                    <p>
+                        The units of seconds cancel. The final value is shown to two significant figures, following the
+                        frequency given.
+                    </p>
+                </div>
+            </section>
+            <section class="card" id="bohr">
+                <h2>2. Bohr and the hydrogen atom</h2>
+                <p>
+                    In 1913 Niels Bohr proposed a model for hydrogen in which the electron could occupy certain allowed
+                    orbits, each with a specific energy. In that model, an electron in an allowed stationary state does
+                    not continuously radiate energy; energy changes when it moves between allowed states.
+                </p>
+                <p>
+                    Bohr’s model explained the wavelengths of hydrogen’s spectral lines particularly well. It did not
+                    fully explain the spectra and behavior of multielectron atoms. Its fixed circular paths were later
+                    replaced by quantum-mechanical descriptions.
+                </p>
+                <div class="worked">
+                    <h3>Evidence and interpretation</h3>
+                    <p><strong>Observation:</strong> Excited hydrogen emits light at a set of distinct wavelengths.</p>
+                    <p>
+                        <strong>Model:</strong> Allowed energy states have specific energy differences, so transitions
+                        can produce photons with specific energies.
+                    </p>
+                    <p>
+                        <strong>Scope:</strong> The model is especially successful for hydrogen and hydrogen-like
+                        one-electron systems; the full quantum model provides a broader framework.
+                    </p>
+                </div>
+            </section>
+            <section class="card" id="transitions">
+                <h2>3. Read an energy-level diagram</h2>
+                <p>
+                    Energy increases upward. Separate lines represent allowed states; the vertical spacing shown below
+                    is schematic and not to scale.
+                </p>
+                <div class="visual">
+                    <svg viewBox="0 0 640 300" role="img" aria-labelledby="levelTitle levelDesc">
+                        <title id="levelTitle">Absorption and emission between allowed states</title>
+                        <desc id="levelDesc">
+                            A lower and a higher horizontal energy line. An arrow upward from lower to higher indicates
+                            absorption; an arrow downward from higher to lower indicates emission. Photon energy equals
+                            the energy difference.
+                        </desc>
+                        <line x1="45" y1="245" x2="45" y2="35" stroke="#174ea6" stroke-width="3" />
+                        <polygon points="45,22 38,38 52,38" fill="#174ea6" />
+                        <text x="15" y="20" font-size="15" fill="#174ea6">Energy ↑</text>
+                        <line x1="100" y1="220" x2="470" y2="220" stroke="#136f63" stroke-width="4" />
+                        <text x="485" y="225" font-size="17">Lower state</text>
+                        <line x1="100" y1="85" x2="470" y2="85" stroke="#136f63" stroke-width="4" />
+                        <text x="485" y="90" font-size="17">Higher state</text>
+                        <line x1="210" y1="207" x2="210" y2="100" stroke="#ad7115" stroke-width="4" />
+                        <polygon points="210,90 202,105 218,105" fill="#ad7115" />
+                        <text x="128" y="158" font-size="15">Absorption</text>
+                        <line x1="370" y1="98" x2="370" y2="207" stroke="#174ea6" stroke-width="4" />
+                        <polygon points="370,217 362,202 378,202" fill="#174ea6" />
+                        <text x="383" y="158" font-size="15">Emission</text>
+                        <text x="285" y="275" text-anchor="middle" font-size="16">
+                            Photon energy = E higher − E lower = hν
+                        </text>
+                    </svg>
+                </div>
+                <div class="grid">
+                    <div>
+                        <h3>Absorption</h3>
+                        <p>
+                            The atom can absorb a photon with energy matching an allowed gap, moving from the lower to
+                            the higher state.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Emission</h3>
+                        <p>A transition from higher to lower can emit a photon whose energy equals that gap.</p>
+                    </div>
+                </div>
+                <p>
+                    For transitions between the same two states, the energy gap is the same in either direction, but
+                    absorption and emission are different processes. A larger gap corresponds to higher photon
+                    frequency, because E = hν.
+                </p>
+            </section>
+            <section class="card" id="quantum">
+                <h2>4. Schrödinger and the quantum model</h2>
+                <p>
+                    Erwin Schrödinger developed a wave equation that can describe electron states in atoms. Its
+                    solutions, called <strong>wavefunctions</strong>, are used to calculate probability distributions.
+                    An <strong>orbital</strong> is associated with such a wavefunction; it does not specify a fixed
+                    planetary path for an electron.
+                </p>
+                <p>
+                    Orbitals and their labels, such as 1s and 2p, connect this historical development to Chapter 2. A
+                    drawn orbital boundary represents a selected probability region, not a hard edge or an electron’s
+                    actual route.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Bohr’s model</th>
+                                <th>Quantum model</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Electron description</td>
+                                <td>Electron in specified orbits for the model.</td>
+                                <td>Wavefunction and probability distribution; no definite fixed orbital path.</td>
+                            </tr>
+                            <tr>
+                                <td>Energy</td>
+                                <td>Allowed energy states.</td>
+                                <td>Allowed quantum states, with energies depending on the system.</td>
+                            </tr>
+                            <tr>
+                                <td>Use and limitations</td>
+                                <td>Explains key hydrogen spectral lines; limited for more complex atoms.</td>
+                                <td>Broader framework for atoms; calculations may require approximations.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="note">
+                    The development of quantum theory involved many scientists. Planck, Bohr, and Schrödinger made
+                    different contributions at different stages; no single diagram captures all the evidence.
+                </div>
+            </section>
+            <section class="card" id="practice">
+                <h2>5. Practice and drills</h2>
+                <p>
+                    Choose an answer, then select <strong>Check answer</strong>. Practice does not record a quiz score.
+                </p>
+                <div class="practice" data-quiz="planck">
+                    <fieldset>
+                        <legend>
+                            In Planck’s treatment of blackbody radiation, what is the energy associated with one quantum
+                            of frequency ν?
+                        </legend>
+                        <label><input type="radio" name="planck" value="0" /> E = hν</label
+                        ><label><input type="radio" name="planck" value="1" /> E = h/ν</label
+                        ><label><input type="radio" name="planck" value="2" /> E = ν/h</label
+                        ><label><input type="radio" name="planck" value="3" /> E = h + ν</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="absorb">
+                    <fieldset>
+                        <legend>
+                            An electron moves from a lower to a higher allowed atomic state. What must happen?
+                        </legend>
+                        <label
+                            ><input type="radio" name="absorb" value="0" /> A photon carrying the energy difference can
+                            be absorbed.</label
+                        ><label
+                            ><input type="radio" name="absorb" value="1" /> A photon carrying the energy difference must
+                            be emitted.</label
+                        ><label
+                            ><input type="radio" name="absorb" value="2" /> The atom must lose all its electrons.</label
+                        ><label
+                            ><input type="radio" name="absorb" value="3" /> The electron can settle at any intermediate
+                            energy.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="emit">
+                    <fieldset>
+                        <legend>
+                            An atom transitions from a higher energy state to a lower state. What can be emitted?
+                        </legend>
+                        <label
+                            ><input type="radio" name="emit" value="0" /> A photon with energy equal to the difference
+                            between the states.</label
+                        ><label
+                            ><input type="radio" name="emit" value="1" /> A photon with an energy unrelated to the
+                            states.</label
+                        ><label
+                            ><input type="radio" name="emit" value="2" /> A proton whose mass equals the energy
+                            gap.</label
+                        ><label
+                            ><input type="radio" name="emit" value="3" /> A photon whose energy is the sum of the two
+                            states.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="lines">
+                    <fieldset>
+                        <legend>Why can excited hydrogen produce a line emission spectrum?</legend>
+                        <label
+                            ><input type="radio" name="lines" value="0" /> Transitions between allowed energies produce
+                            photons of particular energies.</label
+                        ><label
+                            ><input type="radio" name="lines" value="1" /> Hydrogen emits every possible photon energy
+                            equally.</label
+                        ><label
+                            ><input type="radio" name="lines" value="2" /> The nucleus turns into a different element
+                            for each line.</label
+                        ><label
+                            ><input type="radio" name="lines" value="3" /> Electrons emit light only while at rest in
+                            the lowest state.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="bohr">
+                    <fieldset>
+                        <legend>Which limitation applies to Bohr’s model?</legend>
+                        <label
+                            ><input type="radio" name="bohr" value="0" /> It did not describe any allowed
+                            energies.</label
+                        ><label
+                            ><input type="radio" name="bohr" value="1" /> It works well for hydrogen-like one-electron
+                            systems but does not fully explain complex atoms.</label
+                        ><label
+                            ><input type="radio" name="bohr" value="2" /> It predicts a continuous range of bound
+                            electron energies.</label
+                        ><label
+                            ><input type="radio" name="bohr" value="3" /> It eliminated the nucleus from atomic
+                            structure.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="quantum">
+                    <fieldset>
+                        <legend>What does an orbital in the quantum model describe?</legend>
+                        <label
+                            ><input type="radio" name="quantum" value="0" /> A fixed circular track followed by the
+                            electron.</label
+                        ><label
+                            ><input type="radio" name="quantum" value="1" /> A wavefunction associated with a
+                            probability distribution for an electron’s position.</label
+                        ><label
+                            ><input type="radio" name="quantum" value="2" /> The path of a photon through the
+                            nucleus.</label
+                        ><label
+                            ><input type="radio" name="quantum" value="3" /> A shell that always contains two
+                            electrons.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="calculation">
+                    <fieldset>
+                        <legend>
+                            For a photon with frequency 6.0 × 10¹⁴ Hz, use h = 6.63 × 10⁻³⁴ J·s. What is its approximate
+                            energy?
+                        </legend>
+                        <label><input type="radio" name="calculation" value="0" /> 3.98 × 10⁻¹⁹ J</label
+                        ><label><input type="radio" name="calculation" value="1" /> 9.05 × 10⁻⁴⁹ J</label
+                        ><label><input type="radio" name="calculation" value="2" /> 3.98 × 10¹⁹ J</label
+                        ><label><input type="radio" name="calculation" value="3" /> 1.11 × 10⁻⁴⁸ J</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Compare models</h3>
+                    <p>
+                        A classmate says, “A quantum orbital is the same as a Bohr orbit because both refer to
+                        electrons.” Explain one similarity and one difference.
+                    </p>
+                    <details>
+                        <summary>Show a possible answer</summary>
+                        <p>
+                            Both are used to describe electron states in an atom and connect to allowed energies. A Bohr
+                            orbit is a specified path in that model; a quantum orbital is associated with a wavefunction
+                            and probability distribution rather than a fixed path.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="video">
+                <h2>6. Watch: Atomic spectra</h2>
+                <p>
+                    Khan Academy’s video discusses energy levels, atomic spectra, and transitions; the Bohr model and
+                    energy-level diagram begin at about 5:37.
+                </p>
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/N0lBsW3ZzN8"
+                        title="Atomic spectra | Physics | Khan Academy"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <p>
+                    <a href="https://www.youtube.com/watch?v=N0lBsW3ZzN8" target="_blank" rel="noopener noreferrer"
+                        >Open “Atomic spectra” on YouTube</a
+                    >
+                    if the embedded video does not load.
+                </p>
+            </section>
+            <section class="card" id="takeaways">
+                <h2>7. Key terms and takeaways</h2>
+                <ul>
+                    <li><strong>Quantum:</strong> a discrete amount of energy; for a photon, E = hν.</li>
+                    <li>
+                        <strong>Bohr model:</strong> allowed energy states explain key features of the hydrogen
+                        spectrum, with limitations for more complex atoms.
+                    </li>
+                    <li>
+                        <strong>Transition:</strong> absorption can raise the atom’s energy; emission can accompany a
+                        decrease, with photon energy equal to the gap.
+                    </li>
+                    <li>
+                        <strong>Quantum orbital:</strong> a wavefunction-based description associated with a probability
+                        distribution, not a fixed orbit.
+                    </li>
+                    <li>
+                        <strong>Scientific models:</strong> evidence and predictions guide their development and
+                        testing.
+                    </li>
+                </ul>
+                <p class="small">
+                    Original LearnTrack explanations and activities informed by the supplied Chemistry I Teacher’s Guide
+                    #9 and the course objectives. Video: Khan Academy, “Atomic spectra.”
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status" aria-live="polite"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                planck: { answer: "0", explanation: "The energy of one quantum is E = hν; h is Planck’s constant." },
+                absorb: {
+                    answer: "0",
+                    explanation:
+                        "An atom can absorb a photon whose energy matches the energy gap and transition to a higher state.",
+                },
+                emit: {
+                    answer: "0",
+                    explanation: "For this radiative transition, the emitted photon has energy E higher − E lower.",
+                },
+                lines: {
+                    answer: "0",
+                    explanation:
+                        "Specific energy differences correspond to specific photon energies and frequencies, producing spectral lines.",
+                },
+                bohr: {
+                    answer: "1",
+                    explanation:
+                        "Bohr’s model successfully explains key hydrogen spectral lines but does not fully explain multielectron atoms and more detailed spectra.",
+                },
+                quantum: {
+                    answer: "1",
+                    explanation:
+                        "An orbital is described by a wavefunction; its probability distribution predicts where an electron may be found, not an exact orbit.",
+                },
+                calculation: { answer: "0", explanation: "E = hν = (6.63 × 10⁻³⁴)(6.0 × 10¹⁴) ≈ 3.98 × 10⁻¹⁹ J." },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter3_lesson2_quiz.html" }, "*");
+                } else {
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+                }
+            });
+        </script>
+    </body>
 </html>
