@@ -406,7 +406,7 @@
             "The total space occupied by the solid",
             "The temperature at which the solid melts"
         ],
-        "a": 0,
+        a: 0,
         "e": "Density compares mass with volume: density = mass ÷ volume.",
         "id": "c1l2q01",
         "topic": "Density of solids",
@@ -426,7 +426,7 @@
             "16 g/cm³",
             "192 g/cm³"
         ],
-        "a": 1,
+        a: 1,
         "e": "Divide mass by volume: 24.0 g ÷ 8.0 cm³ = 3.0 g/cm³.",
         "id": "c1l2q02",
         "topic": "Density of solids",
@@ -446,7 +446,7 @@
             "Each milliliter of the sample has a mass of approximately 2.5 g",
             "Every 2.5 g of the sample occupies 2.5 mL"
         ],
-        "a": 2,
+        a: 2,
         "e": "A density of 2.5 g/mL means about 2.5 g of the material occupies each milliliter.",
         "id": "c1l2q03",
         "topic": "Density of solids",
@@ -466,7 +466,7 @@
             "12 g/cm³",
             "2.5 cm³/g"
         ],
-        "a": 1,
+        a: 1,
         "e": "The volume is 3.0 × 2.0 × 2.0 = 12 cm³. Density = 30.0 ÷ 12 = 2.5 g/cm³.",
         "id": "c1l2q04",
         "topic": "Density of solids",
@@ -486,7 +486,7 @@
             "2.70 g/mL",
             "3.24 g/mL"
         ],
-        "a": 2,
+        a: 2,
         "e": "The stone displaces 29.0 − 17.0 = 12.0 mL. Density = 32.4 g ÷ 12.0 mL = 2.70 g/mL.",
         "id": "c1l2q05",
         "topic": "Density of solids",
@@ -506,7 +506,7 @@
             "Both have the same density because their volumes are equal",
             "The density cannot be compared without knowing their shapes"
         ],
-        "a": 1,
+        a: 1,
         "e": "For the same volume, the sample with greater mass has greater density: A is 2.0 g/cm³ and B is 3.0 g/cm³.",
         "id": "c1l2q06",
         "topic": "Density of solids",
@@ -526,7 +526,7 @@
             "It remains the same as that of the original sample",
             "It becomes zero because mass was removed"
         ],
-        "a": 2,
+        a: 2,
         "e": "Each piece has less mass and less volume, but for the same uniform material under the same conditions, their ratio remains the same.",
         "id": "c1l2q07",
         "topic": "Density of solids",
@@ -546,7 +546,7 @@
             "It sinks because its mass is less than 1.0 g",
             "It must remain completely submerged because all solids sink"
         ],
-        "a": 1,
+        a: 1,
         "e": "An object with an overall density lower than the liquid’s density is expected to float.",
         "id": "c1l2q08",
         "topic": "Density of solids",
@@ -566,7 +566,7 @@
             "The mass will increase and the volume will stay unchanged",
             "The volume will be unaffected because air has no volume"
         ],
-        "a": 0,
+        a: 0,
         "e": "Attached bubbles displace additional water. If the measured mass is unchanged, an overestimated volume produces an underestimated density.",
         "id": "c1l2q09",
         "topic": "Density of solids",
@@ -586,7 +586,7 @@
             "“The sample had a mass of 18.0 g and a volume of 6.0 cm³, giving a density of 3.0 g/cm³.”",
             "“The sample displaced water, so it was made of metal.”"
         ],
-        "a": 2,
+        a: 2,
         "e": "A useful report includes the measured mass and volume, the calculated density, and units. Density alone does not establish an unknown material’s identity.",
         "id": "c1l2q10",
         "topic": "Density of solids",
@@ -773,7 +773,7 @@
                 status.id = "saveStatus";
                 status.setAttribute("role", "status");
                 status.textContent = isEmbedded()
-                    ? "Sending your result to LearnTrack..."
+                    ? "Waiting for LearnTrack to verify and save your answers..."
                     : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
                 result.append(starDisplay, title, element("p", "result-status", outcome), status);
                 const nav = element("nav", "quiz-nav");
@@ -781,11 +781,11 @@
                 const back = element("button", "quiz-btn", "← Back to Lesson");
                 back.type = "button";
                 back.id = "backBtn";
-                back.disabled = true;
+                back.disabled = !isEmbedded();
                 const retry = element("button", "quiz-btn", "Retry Quiz");
                 retry.type = "button";
                 retry.id = "retryBtn";
-                retry.disabled = true;
+                retry.disabled = false;
                 const next = element("button", "quiz-btn primary", "Next Lesson →");
                 next.type = "button";
                 next.id = "nextLessonBtn";
@@ -804,15 +804,6 @@
                 // Send once before building optional review sections, matching the
                 // established Organic Chemistry quiz integration.
                 sendResult(percent, passed);
-                setTimeout(() => {
-                    if (document.getElementById("saveStatus") !== status) return;
-                    status.textContent = isEmbedded()
-                        ? "Result sent to LearnTrack. Saving has not been confirmed by the app."
-                        : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
-                    back.disabled = !isEmbedded();
-                    retry.disabled = false;
-                    next.disabled = !isEmbedded() || !passed;
-                }, 1200);
                 renderTopicSummary();
                 renderReview();
                 title.focus();
