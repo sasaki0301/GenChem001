@@ -1,340 +1,890 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[Lesson Title]</title>
-  <style>
-  body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #e8f9f1, #f7faff);
-    margin: 0;
-    padding: 40px 20px;
-    color: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  .quiz-container {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 40px 50px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-    width: 95%;
-    max-width: 850px;
-    text-align: center;
-  }
-  h2 {
-    color: #136f63;
-    margin-bottom: 25px;
-    font-size: 1.8em;
-  }
-  .progress-wrapper {
-    background: #e9f5ef;
-    border-radius: 8px;
-    height: 14px;
-    width: 100%;
-    margin-bottom: 25px;
-    overflow: hidden;
-  }
-  .progress-bar {
-    height: 100%;
-    background: linear-gradient(to right, #136f63, #2b7de9);
-    width: 0%;
-    transition: width 0.4s ease;
-  }
-  .progress-text {
-    text-align: right;
-    font-size: 0.95em;
-    color: #174ea6;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-  .question {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #174ea6;
-    margin-bottom: 20px;
-  }
-  .choices {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .choice {
-    background: #e8ecf8;
-    border: none;
-    border-radius: 10px;
-    padding: 14px 18px;
-    cursor: pointer;
-    text-align: left;
-    font-size: 1.05em;
-    transition: all 0.2s ease;
-  }
-  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.correct { background: #136f63; color: #fff; }
-  .choice.incorrect { background: #e57373; color: #fff; }
-  .explanation {
-    background: #eef3ff;
-    border-radius: 10px;
-    padding: 14px 18px;
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-    color: #174ea6;
-    display: none;
-  }
-  .next-btn {
-    background: #136f63;
-    color: #fff;
-    border: none;
-    padding: 12px 26px;
-    border-radius: 10px;
-    font-size: 1.05em;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-  }
-  .next-btn:hover { background: #0f5b52; }
-  .result {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #174ea6;
-    margin-top: 20px;
-  }
-  .stars {
-    font-size: 2.5em;
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
-  .quiz-nav {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .quiz-btn {
-    background: #e8ecf8;
-    color: #174ea6;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 0.95em;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .quiz-btn.primary { background: #136f63; color: #fff; }
-  .quiz-btn.primary:hover { background: #0f5b52; }
-  @media (max-width: 600px) {
-    .quiz-container { padding: 25px; }
-    .question { font-size: 1.1em; }
-    .stars { font-size: 2em; }
-  }
-  </style>
-</head>
-<body>
-  <div class="quiz-container">
-    <h2>[Lesson Title] – Quiz</h2>
-    <div class="progress-text" id="progressText">Question 1 of 10</div>
-    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
-
-    <div id="quizBox"></div>
-    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-  </div>
-
-<script>
-const quizData = [
-
-{q:"What determines the identity of an element?",c:["Number of neutrons","Number of electrons","Number of protons","Mass number"],a:2,e:"The number of protons is the atomic number, which identifies the element."},
-
-{q:"An atom has 12 protons. Which element is it?",c:["Carbon","Magnesium","Sodium","Aluminum"],a:1,e:"Atomic number 12 corresponds to magnesium."},
-
-{q:"What does the mass number represent?",c:["Protons only","Protons plus neutrons","Electrons plus neutrons","Protons plus electrons"],a:1,e:"Mass number is the total number of protons and neutrons."},
-
-{q:"How many neutrons are in ²⁷₁₃Al?",c:["13","14","27","40"],a:1,e:"Neutrons = mass number − atomic number = 27 − 13 = 14."},
-
-{q:"Which pair represents isotopes of the same element?",c:["¹²₆C and ¹⁴₆C","²³₁₁Na and ²⁴₁₂Mg","¹⁶₈O and ¹⁶₇N","³⁵₁₇Cl and ³⁵₁₈Ar"],a:0,e:"Isotopes have the same atomic number but different mass numbers."},
-
-{q:"Which statement correctly describes isotopes?",c:["Same protons, different neutrons","Different protons, same neutrons","Same electrons, different protons","Different elements with same mass"],a:0,e:"Isotopes are atoms of the same element with different numbers of neutrons."},
-
-{q:"Which isotopic symbol represents carbon-14?",c:["¹⁴₆C","⁶₁₄C","¹²₆C","¹⁴₇N"],a:0,e:"Carbon has atomic number 6, and carbon-14 has mass number 14."},
-
-{q:"An atom has 17 protons and 18 neutrons. What is its isotopic symbol?",c:["³⁵₁₇Cl","¹⁷₃₅Cl","³⁵₁₈Ar","¹⁸₁₇Cl"],a:0,e:"Atomic number 17 is chlorine. Mass number = 17 + 18 = 35."},
-
-{q:"What happens when a neutral atom gains electrons?",c:["It becomes a cation","It becomes an anion","Its atomic number increases","Its mass number increases"],a:1,e:"Gaining electrons gives the atom a negative charge, forming an anion."},
-
-{q:"What happens when a neutral atom loses electrons?",c:["It becomes positive","It becomes negative","Its protons decrease","Its neutrons increase"],a:0,e:"Losing electrons leaves more protons than electrons, producing a positive ion."},
-
-{q:"What is the charge of an ion with 20 protons and 18 electrons?",c:["2+","2−","18+","20−"],a:0,e:"Charge = protons − electrons = 20 − 18 = 2+."},
-
-{q:"What is the charge of an ion with 16 protons and 18 electrons?",c:["2+","2−","16+","18−"],a:1,e:"The ion has two more electrons than protons, giving it a 2− charge."},
-
-{q:"How many electrons are in Cl⁻ if chlorine has 17 protons?",c:["16","17","18","35"],a:2,e:"A 1− charge means chlorine gained one electron, so it has 18 electrons."},
-
-{q:"Which notation correctly represents calcium-40 with a 2+ charge?",c:["⁴⁰₂₀Ca²⁺","²⁰₄₀Ca²⁺","⁴⁰₂₂Ca²⁺","⁴²₂₀Ca²⁻"],a:0,e:"Calcium has atomic number 20, mass number 40, and a 2+ charge."},
-
-{q:"Which particle changes when an atom becomes an ion?",c:["Proton","Neutron","Electron","Nucleus"],a:2,e:"Ions form when atoms gain or lose electrons."},
-
-{q:"Why does the atomic mass on the periodic table usually have decimals?",c:["Atoms lose electrons naturally","It is a weighted average of isotopes","Protons have decimal charges","Neutrons are unstable"],a:1,e:"Periodic table atomic mass reflects the weighted average of naturally occurring isotopes."},
-
-{q:"Which information is required to calculate average atomic mass?",c:["Isotopic mass and abundance","Charge and electrons","Atomic number and ion charge","Protons and electrons only"],a:0,e:"Average atomic mass requires each isotope’s mass and fractional abundance."},
-
-{q:"What is the fractional abundance of 75%?",c:["75","7.5","0.75","0.075"],a:2,e:"Percent is converted to decimal by dividing by 100, so 75% = 0.75."},
-
-{q:"An element has isotopes 10 amu at 20% and 12 amu at 80%. What is the average atomic mass?",c:["10.4 amu","11.0 amu","11.6 amu","12.0 amu"],a:2,e:"Average = (10 × 0.20) + (12 × 0.80) = 2.0 + 9.6 = 11.6 amu."},
-
-{q:"An element has isotopes 24 amu at 75% and 26 amu at 25%. What is the average atomic mass?",c:["24.0 amu","24.5 amu","25.0 amu","26.0 amu"],a:1,e:"Average = (24 × 0.75) + (26 × 0.25) = 18 + 6.5 = 24.5 amu."},
-
-{q:"An element has isotopes 35 amu at 60% and 37 amu at 40%. What is the average atomic mass?",c:["35.4 amu","35.8 amu","36.0 amu","36.4 amu"],a:1,e:"Average = (35 × 0.60) + (37 × 0.40) = 21 + 14.8 = 35.8 amu."},
-
-{q:"Why is weighted average used instead of simple average?",c:["Isotopes occur in different abundances","All isotopes have equal mass","Atoms cannot be measured","Mass numbers are always inaccurate"],a:0,e:"Weighted average accounts for the fact that some isotopes are more common than others."},
-
-{q:"If the average atomic mass is closer to one isotope’s mass, what does that suggest?",c:["That isotope is less abundant","That isotope is more abundant","That isotope is charged","That isotope has more electrons"],a:1,e:"The average is pulled closer to the isotope with greater natural abundance."},
-
-{q:"Which isotope is more abundant if the average atomic mass of an element with isotopes 14 amu and 15 amu is 14.8 amu?",c:["14 amu isotope","15 amu isotope","Both are equal","Cannot be determined"],a:1,e:"14.8 amu is closer to 15 amu, so the 15 amu isotope is more abundant."},
-
-{q:"Which setup is correct for isotopes 63 amu at 69% and 65 amu at 31%?",c:["(63 × 69) + (65 × 31)","(63 × 0.69) + (65 × 0.31)","(63 + 65) ÷ 2","(69 + 31) ÷ 2"],a:1,e:"Percent abundances must be converted to decimals before multiplication."},
-
-{q:"Which statement about atomic number is true?",c:["It changes when ions form","It equals protons","It equals protons plus neutrons","It equals electrons plus neutrons"],a:1,e:"Atomic number is the number of protons."},
-
-{q:"Which statement about ions is correct?",c:["Ions form by changing protons","Ions form by changing neutrons","Ions form by gaining or losing electrons","Ions always have no charge"],a:2,e:"Ions are charged particles formed by electron transfer."},
-
-{q:"A particle has 13 protons, 14 neutrons, and 10 electrons. Which notation is correct?",c:["²⁷₁₃Al³⁺","²⁷₁₄Si³⁺","²³₁₃Al³⁻","²⁷₁₃Al³⁻"],a:0,e:"Mass = 13 + 14 = 27. Charge = 13 − 10 = 3+."},
-
-{q:"A particle has 8 protons, 10 neutrons, and 10 electrons. Which notation is correct?",c:["¹⁸₈O²⁻","¹⁸₈O²⁺","¹⁶₈O²⁻","¹⁸₁₀Ne²⁻"],a:0,e:"Mass = 8 + 10 = 18. Charge = 8 − 10 = 2−."},
-
-{q:"Which is the best summary of Chapter 2?",c:["Matter is classified only by physical state","Atoms are identified by protons, isotopes differ by neutrons, and ions differ by electrons","Atomic mass is always a whole number","Electrons determine the element identity"],a:1,e:"Chapter 2 focuses on atomic number, isotopes, ions, and average atomic mass."}
-
-];
-
-let current = 0, score = 0, selected = null, showingExplanation = false;
-const quizBox = document.getElementById("quizBox");
-const nextBtn = document.getElementById("nextBtn");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
-
-function showQuestion() {
-  const q = quizData[current];
-  updateProgress();
-  quizBox.innerHTML = `
-    <div class='question'>${q.q}</div>
-    <div class='choices'></div>
-    <div class='explanation' id='explanationBox'></div>
-  `;
-  const choicesContainer = quizBox.querySelector(".choices");
-  q.c.forEach((choice, i) => {
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.innerHTML = choice;
-    btn.addEventListener("click", () => selectChoice(i));
-    choicesContainer.appendChild(btn);
-  });
-  nextBtn.style.display = "none";
-  selected = null;
-  showingExplanation = false;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Chapter 2 – Lesson 3 Quiz: Atomic Radius and Atomic Mass</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --red: #a82332;
+                --ink: #24323d;
+                --muted: #536575;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background: linear-gradient(135deg, #e8f9f1, #f7faff);
+                margin: 0;
+                padding: 32px 20px;
+                color: var(--ink);
+                min-height: 100vh;
+                line-height: 1.6;
+                font-size: 18px;
+            }
+            .quiz-container {
+                background: #fff;
+                border-radius: 18px;
+                padding: 34px 40px;
+                box-shadow: 0 8px 28px #00000012;
+                width: 100%;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            .eyebrow {
+                font-size: 0.75em;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--green);
+            }
+            h1 {
+                color: var(--green);
+                font-size: clamp(1.5rem, 3.5vw, 2rem);
+                line-height: 1.25;
+                margin: 10px 0 12px;
+            }
+            h2 {
+                line-height: 1.45;
+            }
+            h3 {
+                line-height: 1.4;
+            }
+            .instructions {
+                font-size: 0.9em;
+                color: var(--muted);
+                margin: 0 0 22px;
+            }
+            .instructions strong {
+                color: var(--ink);
+            }
+            .progress-text {
+                font-size: 0.85em;
+                color: var(--blue);
+                font-weight: 600;
+                margin: 0 0 8px;
+            }
+            .progress-wrapper {
+                background: #e9f5ef;
+                border-radius: 8px;
+                height: 12px;
+                width: 100%;
+                margin-bottom: 24px;
+                overflow: hidden;
+            }
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(to right, var(--green), #2b7de9);
+                width: 0;
+                transition: width 0.25s ease;
+            }
+            .question {
+                font-size: 1.18em;
+                color: var(--blue);
+                margin: 0 0 20px;
+            }
+            .choices {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .choice {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+                padding: 14px 16px;
+                border: 2px solid transparent;
+                border-radius: 10px;
+                background: #eef1fb;
+                color: var(--ink);
+                text-align: left;
+                font: inherit;
+                line-height: 1.5;
+                cursor: pointer;
+                overflow-wrap: anywhere;
+            }
+            .letter {
+                font-weight: 750;
+                color: var(--blue);
+                flex-shrink: 0;
+            }
+            .choice-body {
+                flex: 1;
+                min-width: 0;
+            }
+            .choice-label {
+                display: block;
+            }
+            .choice:hover:not(:disabled) {
+                background: #dfe7fb;
+                border-color: #a9bde4;
+            }
+            .choice:disabled {
+                cursor: default;
+                opacity: 1;
+            }
+            .choice.correct {
+                background: #e7efff;
+                border-color: var(--blue);
+                color: #113e83;
+            }
+            .choice.incorrect {
+                background: #fdecef;
+                border-color: var(--red);
+                color: #8c1d29;
+            }
+            .choice.incorrect .letter {
+                color: var(--red);
+            }
+            .choice-status {
+                font-size: 0.8em;
+                font-weight: 750;
+                display: block;
+                margin-top: 7px;
+            }
+            .choice-status:empty {
+                display: none;
+            }
+            .explanation {
+                padding: 18px;
+                border: 1px solid #b9cee9;
+                border-left: 5px solid var(--blue);
+                border-radius: 10px;
+                background: #f2f6ff;
+                margin: 18px 0;
+            }
+            .explanation.incorrect-feedback {
+                border-left-color: var(--red);
+            }
+            .explanation h3 {
+                font-size: 1em;
+                margin: 0 0 8px;
+            }
+            .explanation p {
+                margin: 8px 0;
+            }
+            .correct-answer {
+                font-weight: 700;
+                color: var(--blue);
+            }
+            .small {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            button {
+                touch-action: manipulation;
+            }
+            .next-btn,
+            .quiz-btn {
+                border: 0;
+                border-radius: 9px;
+                padding: 12px 22px;
+                font:
+                    650 0.95em "Segoe UI",
+                    Arial,
+                    sans-serif;
+                cursor: pointer;
+                min-height: 46px;
+            }
+            .next-btn,
+            .quiz-btn.primary {
+                background: var(--green);
+                color: #fff;
+            }
+            .next-btn:hover:not(:disabled),
+            .quiz-btn.primary:hover:not(:disabled) {
+                background: #0f5b52;
+            }
+            .next-row {
+                text-align: right;
+            }
+            .quiz-btn {
+                background: #e8ecf8;
+                color: var(--blue);
+            }
+            .quiz-btn:hover:not(:disabled) {
+                background: #d7e1f8;
+            }
+            .quiz-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            .quiz-nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 24px 0;
+            }
+            .quiz-result-panel {
+                text-align: center;
+            }
+            .quiz-result-panel h2 {
+                color: var(--blue);
+                font-size: 1.45em;
+                margin: 12px 0;
+            }
+            .stars {
+                color: #a56a00;
+                font-size: 2.4em;
+                letter-spacing: 6px;
+                line-height: 1.3;
+            }
+            .result-status {
+                font-weight: 700;
+            }
+            .save-status {
+                font-size: 0.85em;
+                background: #f1f6fa;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 0.9em;
+            }
+            caption {
+                text-align: left;
+                font-weight: 700;
+                color: var(--green);
+                margin-bottom: 8px;
+            }
+            th,
+            td {
+                padding: 11px 12px;
+                border-bottom: 1px solid #dde5ed;
+                text-align: left;
+            }
+            thead th {
+                background: #f2f6fd;
+                color: var(--blue);
+            }
+            details {
+                margin: 12px 0;
+                border: 1px solid #d7e1e9;
+                border-radius: 9px;
+                padding: 12px 16px;
+            }
+            summary {
+                cursor: pointer;
+                font-weight: 650;
+                color: var(--green);
+            }
+            .review-question {
+                font-weight: 650;
+            }
+            .review-choice {
+                font-size: 0.9em;
+            }
+            .review-answer {
+                border-left: 4px solid var(--blue);
+                padding-left: 12px;
+            }
+            .review-section h3 {
+                color: var(--green);
+            }
+            .review-section p {
+                margin: 10px 0;
+            }
+            .footer-note {
+                font-size: 0.8em;
+                color: var(--muted);
+                text-align: center;
+                margin: 20px 0 0;
+            }
+            [hidden] {
+                display: none !important;
+            }
+            :focus-visible {
+                outline: 3px solid #b36c0c;
+                outline-offset: 4px;
+            }
+            .question:focus,
+            .quiz-result-panel h2:focus {
+                outline: none;
+            }
+            .evidence {
+                margin: 0 0 20px;
+            }
+            .evidence table {
+                margin-top: 0;
+            }
+            .evidence caption {
+                font-size: 0.85em;
+                color: var(--muted);
+                font-weight: 400;
+            }
+            .evidence td,
+            .evidence th {
+                vertical-align: top;
+            }
+            @media (max-width: 600px) {
+                body {
+                    padding: 16px 10px;
+                    font-size: 17px;
+                }
+                .quiz-container {
+                    padding: 24px 18px;
+                    border-radius: 14px;
+                }
+                .choice {
+                    padding: 12px;
+                    gap: 10px;
+                }
+                .quiz-nav {
+                    flex-direction: column;
+                }
+                .quiz-nav button {
+                    width: 100%;
+                }
+                .question {
+                    font-size: 1.1em;
+                }
+                .next-btn {
+                    width: 100%;
+                }
+                th,
+                td {
+                    padding: 9px 8px;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    scroll-behavior: auto !important;
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="quiz-container" aria-labelledby="quizTitle">
+            <div class="eyebrow">LearnTrack · Chemistry I · Chapter 2 · Lesson 3</div>
+            <h1 id="quizTitle">Atomic Radius and Atomic Mass — Lesson Quiz</h1>
+            <p class="instructions" id="instructions">
+                <strong>10 questions · Pass: 8/10 (80%).</strong> Choose one answer. Your first choice is final for that
+                question; read the feedback before continuing. Each question is worth one point.
+            </p>
+            <p class="progress-text" id="progressText">Question 1 of 10 · 0 answered</p>
+            <div
+                class="progress-wrapper"
+                id="progressMeter"
+                role="progressbar"
+                aria-label="Questions answered"
+                aria-valuemin="0"
+                aria-valuemax="10"
+                aria-valuenow="0"
+            >
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="quizBox"></div>
+            <div class="next-row">
+                <button type="button" id="nextBtn" class="next-btn" hidden disabled>Next Question →</button>
+            </div>
+            <p class="footer-note">Stars: 100% = 3 · 90% = 2 · 80% = 1 · below 80% = 0</p>
+            <noscript><p>This quiz requires JavaScript to show questions and record your choices.</p></noscript>
+        </main>
+        <script>
+            "use strict";
+            // Fixed order: 3 easy, 5 moderate, 2 difficult items. Difficulty is an editorial estimate.
+            // Integration contract retained: quizResult {score, passed}, quizBack, quizNextLesson.
+            const quizData = [
+{
+    "id": "c2l3q01",
+    "topic": "Atomic radius trends",
+    "difficulty": "Easy",
+    "q": "How does the radius of neutral atoms generally change from left to right across a period?",
+    "c": [
+        "It generally decreases.",
+        "It generally increases.",
+        "It is always identical for every element.",
+        "It must equal the atomic number."
+    ],
+    a: 0,
+    "e": "Atomic radius generally decreases across a period as effective nuclear attraction increases.",
+    "why": [
+        "This choice is correct.",
+        "The general across-period trend is toward a smaller radius.",
+        "Atoms of different elements do not all have identical radii.",
+        "Radius and atomic number describe different properties."
+    ]
+},
+{
+    "id": "c2l3q02",
+    "topic": "Atomic radius trends",
+    "difficulty": "Easy",
+    "q": "How does neutral atomic radius generally change down a group?",
+    "c": [
+        "It generally decreases.",
+        "It generally increases.",
+        "It always stays exactly the same.",
+        "It becomes the relative atomic mass."
+    ],
+    a: 1,
+    "e": "Atomic radius generally increases down a group as additional principal energy levels are occupied.",
+    "why": [
+        "A downward comparison typically adds occupied energy levels.",
+        "This choice is correct.",
+        "Elements in a group do not all have identical radii.",
+        "Atomic radius and relative atomic mass are different quantities."
+    ]
+},
+{
+    "id": "c2l3q03",
+    "topic": "Atomic mass trends",
+    "difficulty": "Easy",
+    "q": "How does relative atomic mass generally vary left to right across a period?",
+    "c": [
+        "It always decreases.",
+        "It remains exactly constant.",
+        "It generally increases, although exceptions occur.",
+        "It exactly equals the atomic number."
+    ],
+    a: 2,
+    "e": "Relative atomic mass generally increases across a period, but the pattern has exceptions.",
+    "why": [
+        "The usual across-period pattern is an increase.",
+        "Different elements generally have different relative atomic masses.",
+        "This choice is correct.",
+        "Relative atomic mass is not identical to atomic number."
+    ]
+},
+{
+    "id": "c2l3q04",
+    "topic": "Atomic radius comparisons",
+    "difficulty": "Moderate",
+    "q": "Sodium (Na) and chlorine (Cl) are neutral atoms in period 3. Which generally has the larger atomic radius?",
+    "c": [
+        "Sodium, because it is farther left in the same period",
+        "Chlorine, because it is farther right in the same period",
+        "They necessarily have identical radii",
+        "Chlorine, because its relative atomic mass is greater"
+    ],
+    a: 0,
+    "e": "In the same period, atomic radius generally decreases left to right, so Na has the larger radius.",
+    "why": [
+        "This choice is correct.",
+        "Radius generally decreases rather than increases across this period.",
+        "A shared period does not mean equal atomic radii.",
+        "A greater relative atomic mass does not imply a greater atomic radius."
+    ]
+},
+{
+    "id": "c2l3q05",
+    "topic": "Atomic radius reasoning",
+    "difficulty": "Moderate",
+    "q": "Why does atomic radius generally increase down a group?",
+    "c": [
+        "Each element has fewer occupied energy levels than the one above it.",
+        "Additional occupied principal energy levels place outer electrons farther out, with increased shielding.",
+        "The nucleus loses all its protons.",
+        "All electrons move into the first energy level."
+    ],
+    a: 1,
+    "e": "Down a group, added occupied energy levels and increased shielding generally increase atomic size despite greater nuclear charge.",
+    "why": [
+        "Elements lower in a group generally have more occupied principal energy levels.",
+        "This choice is correct.",
+        "The number of protons increases down a group.",
+        "Additional levels are occupied; electrons do not all move to the first level."
+    ]
+},
+{
+    "id": "c2l3q06",
+    "topic": "Atomic radius reasoning",
+    "difficulty": "Moderate",
+    "q": "What best explains why atomic radius generally decreases across a period?",
+    "c": [
+        "The number of protons decreases while new shells are added.",
+        "Shielding completely cancels every increase in nuclear charge.",
+        "Increasing nuclear charge creates stronger effective attraction while electrons enter the same principal energy level.",
+        "Each successive atom loses an occupied principal energy level."
+    ],
+    a: 2,
+    "e": "Across a period, increasing nuclear charge is not fully offset by shielding, so effective attraction generally draws electrons closer.",
+    "why": [
+        "The number of protons increases across a period.",
+        "Shielding does not completely cancel the increased nuclear charge.",
+        "This choice is correct.",
+        "Electrons are generally added to the same principal energy level across a period."
+    ]
+},
+{
+    "id": "c2l3q07",
+    "topic": "Atomic mass trends",
+    "difficulty": "Moderate",
+    "q": "Sodium has a relative atomic mass of about 22.99 and chlorine about 35.45. What conclusion is supported?",
+    "c": [
+        "Chlorine has the greater relative atomic mass.",
+        "Sodium has the greater relative atomic mass.",
+        "Both values are atomic numbers.",
+        "Sodium must have the greater atomic mass because its radius is larger."
+    ],
+    a: 0,
+    "e": "The listed value for chlorine, about 35.45, is greater than sodium’s 22.99.",
+    "why": [
+        "This choice is correct.",
+        "22.99 is less than 35.45.",
+        "Atomic numbers are whole-number proton counts; these are relative atomic masses.",
+        "Radius and relative atomic mass are distinct properties."
+    ]
+},
+{
+    "id": "c2l3q08",
+    "topic": "Atomic mass trends",
+    "difficulty": "Moderate",
+    "q": "Tellurium has atomic number 52 and relative atomic mass about 127.60; iodine has atomic number 53 and relative atomic mass about 126.90. Why does tellurium come first?",
+    "c": [
+        "Tellurium has the lower relative atomic mass.",
+        "The modern table is ordered by atomic number, not strictly by relative atomic mass.",
+        "Iodine has fewer protons than tellurium.",
+        "Their relative atomic masses are exactly equal."
+    ],
+    a: 1,
+    "e": "Tellurium precedes iodine because 52 is less than 53, despite tellurium’s slightly greater relative atomic mass.",
+    "why": [
+        "Tellurium’s stated relative atomic mass is greater.",
+        "This choice is correct.",
+        "Iodine has 53 protons and tellurium has 52.",
+        "The given relative atomic masses differ."
+    ]
+},
+{
+    "id": "c2l3q09",
+    "topic": "Evaluating comparisons",
+    "difficulty": "Difficult",
+    "q": "An element is farther right and lower on the table than another element. What is the best way to compare their neutral atomic radii?",
+    "c": [
+        "Assume the lower element is always larger.",
+        "Assume the farther-right element is always larger.",
+        "Consult comparable radius data because the directional effects can oppose each other.",
+        "Assume they have identical radii because the effects cancel exactly."
+    ],
+    a: 2,
+    "e": "Across-period and down-group trends can oppose one another in a diagonal comparison; consistently defined data provide a sounder comparison.",
+    "why": [
+        "The down-group trend alone does not settle every diagonal comparison.",
+        "The across-period trend alone does not settle every diagonal comparison.",
+        "This choice is correct.",
+        "Opposing trends do not necessarily cancel exactly."
+    ]
+},
+{
+    "id": "c2l3q10",
+    "topic": "Evaluating measurements",
+    "difficulty": "Difficult",
+    "q": "Which evidence best supports a comparison of atomic radius between two elements?",
+    "c": [
+        "A neutral atomic radius and an ionic radius measured using unrelated definitions",
+        "Two relative atomic masses taken from the same table",
+        "A covalent radius for one element and an unqualified nuclear radius for the other",
+        "Neutral atomic radii obtained using the same definition and comparable conditions"
+    ],
+    a: 3,
+    "e": "Atomic radius depends on its definition and measurement method, so a consistent comparison is important.",
+    "why": [
+        "Ionic and neutral atomic radii are different measurements.",
+        "Mass values do not directly measure atomic radius.",
+        "A nuclear radius and covalent radius are not comparable measures of atomic size.",
+        "This choice is correct."
+    ]
 }
+            ];
+            let answers = Array(quizData.length).fill(null);
+            let resultSent = false;
+            let completed = false;
+            const quizBox = document.getElementById("quizBox");
+            const nextBtn = document.getElementById("nextBtn");
+            const progressText = document.getElementById("progressText");
+            const progressBar = document.getElementById("progressBar");
+            const progressMeter = document.getElementById("progressMeter");
 
-function selectChoice(i) {
-  if (showingExplanation) return;
-  selected = i;
-  document.querySelectorAll(".choice").forEach((btn, idx) => {
-    btn.classList.toggle("selected", idx === i);
-    btn.disabled = true;
-  });
-  const q = quizData[current];
-  const expBox = document.getElementById("explanationBox");
-  const correct = i === q.a;
+            function element(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = text;
+                return node;
+            }
+            function isEmbedded() {
+                return window.parent !== window;
+            }
+            function updateProgress() {
+                const count = answers.filter((value) => value !== null).length;
+                progressBar.style.width = (count / quizData.length) * 100 + "%";
+                progressMeter.setAttribute("aria-valuenow", String(count));
+                progressMeter.setAttribute("aria-valuemax", String(quizData.length));
+                progressMeter.setAttribute("aria-valuetext", `${count} of ${quizData.length} questions answered`);
+                progressText.textContent = completed
+                    ? `Quiz completed · ${count} of ${quizData.length} answered`
+                    : `Question ${current + 1} of ${quizData.length} · ${count} answered`;
+            }
+            function renderEvidence(data) {
+                const wrap = element("div", "table-wrap evidence");
+                wrap.tabIndex = 0;
+                wrap.setAttribute("role", "region");
+                wrap.setAttribute("aria-label", data.caption);
+                const table = element("table");
+                table.append(element("caption", "", data.caption));
+                const head = element("thead");
+                const heading = element("tr");
+                data.headers.forEach((text) => {
+                    const cell = element("th", "", text);
+                    cell.scope = "col";
+                    heading.append(cell);
+                });
+                head.append(heading);
+                table.append(head);
+                const body = element("tbody");
+                data.rows.forEach((row) => {
+                    const tr = element("tr");
+                    row.forEach((text, i) => {
+                        const td = element(i === 0 ? "th" : "td", "", text);
+                        if (i === 0) td.scope = "row";
+                        tr.append(td);
+                    });
+                    body.append(tr);
+                });
+                table.append(body);
+                wrap.append(table);
+                return wrap;
+            }
+            function showQuestion(focus = false) {
+                const q = quizData[current];
+                quizBox.replaceChildren();
+                const heading = element("h2", "question", q.q);
+                heading.id = "questionTitle";
+                heading.tabIndex = -1;
+                const choices = element("div", "choices");
+                choices.setAttribute("role", "group");
+                choices.setAttribute("aria-labelledby", "questionTitle");
+                q.c.forEach((text, i) => {
+                    const button = element("button", "choice");
+                    button.type = "button";
+                    button.setAttribute("data-choice", String(i));
+                    const body = element("span", "choice-body");
+                    body.append(element("span", "choice-label", text), element("span", "choice-status"));
+                    button.append(body);
+                    button.addEventListener("click", () => selectChoice(i));
+                    choices.append(button);
+                });
+                const feedback = element("div", "explanation");
+                feedback.id = "explanationBox";
+                feedback.hidden = true;
+                feedback.tabIndex = -1;
+                feedback.setAttribute("role", "status");
+                feedback.setAttribute("aria-live", "polite");
+                feedback.setAttribute("aria-atomic", "true");
+                quizBox.append(heading);
+                if (q.evidence) quizBox.append(renderEvidence(q.evidence));
+                quizBox.append(choices, feedback);
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                nextBtn.textContent = current === quizData.length - 1 ? "View Results →" : "Next Question →";
+                updateProgress();
+                if (focus) heading.focus();
+            }
+            function selectChoice(index) {
+                if (completed || answers[current] !== null || !Number.isInteger(index) || index < 0 || index > 3)
+                    return;
+                const q = quizData[current];
+                answers[current] = index;
+                const correct = index === q.a;
+                quizBox.querySelectorAll(".choice").forEach((button, i) => {
+                    button.disabled = true;
+                    const status = button.querySelector(".choice-status");
+                    if (i === q.a) {
+                        button.classList.add("correct");
+                        status.textContent = correct ? "✓ Your answer — correct" : "✓ Correct answer";
+                    } else if (i === index) {
+                        button.classList.add("incorrect");
+                        status.textContent = "✗ Your answer — incorrect";
+                    }
+                });
+                const feedback = document.getElementById("explanationBox");
+                feedback.classList.toggle("incorrect-feedback", !correct);
+                feedback.append(element("h3", "", correct ? "Correct." : "Not quite."));
+                if (!correct) feedback.append(element("p", "", q.why[index]));
+                feedback.append(
+                    element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                    element("p", "", q.e)
+                );
+                feedback.hidden = false;
+                nextBtn.hidden = false;
+                nextBtn.disabled = false;
+                updateProgress();
+                feedback.focus();
+            }
+            function nextQuestion() {
+                if (completed || answers[current] === null) return;
+                if (current === quizData.length - 1) showResult();
+                else {
+                    current += 1;
+                    showQuestion(true);
+                }
+            }
+            function starCount(percent) {
+                return percent === 100 ? 3 : percent >= 90 ? 2 : percent >= 80 ? 1 : 0;
+            }
+            function getScore() {
+                return answers.reduce((total, value, index) => total + (value === quizData[index].a ? 1 : 0), 0);
+            }
+            function sendResult(percent, passed) {
+                if (resultSent || !isEmbedded()) return;
+                // Same message and score format used by the Organic Chemistry quizzes.
+                window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+                resultSent = true;
+            }
+            function showResult() {
+                if (completed || answers.some((value) => value === null)) return;
+                completed = true;
+                const score = getScore();
+                const percent = Math.round((score / quizData.length) * 100);
+                const passed = percent >= PASS_PERCENT;
+                const stars = starCount(percent);
+                quizBox.replaceChildren();
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                updateProgress();
+                const result = element("section", "quiz-result-panel");
+                const starDisplay = element("div", "stars", "★".repeat(stars) + "☆".repeat(3 - stars));
+                starDisplay.setAttribute("role", "img");
+                starDisplay.setAttribute("aria-label", `${stars} out of 3 stars`);
+                const title = element("h2", "result", `You scored ${score}/${quizData.length} (${percent}%)`);
+                title.id = "resultTitle";
+                title.tabIndex = -1;
+                result.setAttribute("aria-labelledby", "resultTitle");
+                const outcome = passed
+                    ? "Passed — you met the 80% target."
+                    : "Not yet passed — review the explanations, then retry.";
+                const status = element("p", "save-status");
+                status.id = "saveStatus";
+                status.setAttribute("role", "status");
+                status.textContent = isEmbedded()
+                    ? "Waiting for LearnTrack to verify and save your answers..."
+                    : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                result.append(starDisplay, title, element("p", "result-status", outcome), status);
+                const nav = element("nav", "quiz-nav");
+                nav.setAttribute("aria-label", "Quiz result actions");
+                const back = element("button", "quiz-btn", "← Back to Lesson");
+                back.type = "button";
+                back.id = "backBtn";
+                back.disabled = !isEmbedded();
+                const retry = element("button", "quiz-btn", "Retry Quiz");
+                retry.type = "button";
+                retry.id = "retryBtn";
+                retry.disabled = false;
+                const next = element("button", "quiz-btn primary", "Next Lesson →");
+                next.type = "button";
+                next.id = "nextLessonBtn";
+                next.disabled = true;
+                back.addEventListener("click", () => {
+                    if (isEmbedded()) window.parent.postMessage({ type: "quizBack" }, "*");
+                });
+                retry.addEventListener("click", retryQuiz);
+                next.addEventListener("click", () => {
+                    if (passed && isEmbedded()) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+                });
+                nav.append(back, retry, next);
+                result.append(nav);
+                quizBox.append(result);
 
-  if (correct) score++;
-
-  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
-  expBox.style.display = "block";
-  nextBtn.style.display = "inline-block";
-  showingExplanation = true;
-}
-
-nextBtn.addEventListener("click", () => {
-  current++;
-  if (current < quizData.length) showQuestion();
-  else showResult();
-});
-
-function updateProgress() {
-  const percent = (current / quizData.length) * 100;
-  progressBar.style.width = percent + "%";
-  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
-}
-
-function getStarRating(percent) {
-  if (percent === 100) return "⭐️⭐️⭐️";
-  else if (percent >= 90) return "⭐️⭐️☆";
-  else if (percent >= 80) return "⭐️☆☆";
-  else return "☆☆☆";
-}
-
-let resultSent = false;
-
-function showResult() {
-  progressBar.style.width = "100%";
-  progressText.textContent = "Quiz Completed";
-
-  const percent = Math.round((score / quizData.length) * 100);
-  const passed = percent >= 80;
-
-  quizBox.innerHTML = `
-    <div class='stars'>${getStarRating(percent)}</div>
-    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
-    <div class='quiz-nav'>
-      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
-      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
-      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
-    </div>
-  `;
-
-  nextBtn.style.display = "none";
-
-  if (!resultSent) {
-    resultSent = true;
-    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
-  }
-
-  setTimeout(() => {
-    const status = document.getElementById("saveStatus");
-    const backBtn = document.getElementById("backBtn");
-    const retryBtn = document.getElementById("retryBtn");
-    const nextLessonBtn = document.getElementById("nextLessonBtn");
-
-    if (status) status.textContent = passed
-      ? "Progress sent. You may proceed after it is saved."
-      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
-
-    if (backBtn) backBtn.disabled = false;
-    if (retryBtn) retryBtn.disabled = false;
-    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
-
-    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
-    if (backBtn) backBtn.addEventListener("click", () =>
-      window.parent.postMessage({ type: "quizBack" }, "*")
-    );
-    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
-      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
-    });
-  }, 1200);
-}
-
-function retryQuiz() {
-  resultSent = false;
-  current = 0;
-  score = 0;
-  showQuestion();
-}
-
-showQuestion();
-</script>
-</body>
+                // Send once before building optional review sections, matching the
+                // established Organic Chemistry quiz integration.
+                sendResult(percent, passed);
+                renderTopicSummary();
+                renderReview();
+                title.focus();
+            }
+            function renderTopicSummary() {
+                const wrap = element("div", "table-wrap");
+                const table = element("table");
+                table.append(element("caption", "", "Your review priorities"));
+                const head = element("thead");
+                const header = element("tr");
+                ["Area", "Score", "Next step"].forEach((text) => {
+                    const th = element("th", "", text);
+                    th.scope = "col";
+                    header.append(th);
+                });
+                head.append(header);
+                table.append(head);
+                const body = element("tbody");
+                [...new Set(quizData.map((q) => q.topic))].forEach((topic) => {
+                    const indices = quizData.map((q, i) => (q.topic === topic ? i : -1)).filter((i) => i >= 0);
+                    const correct = indices.filter((i) => answers[i] === quizData[i].a).length;
+                    const row = element("tr");
+                    const name = element("th", "", topic);
+                    name.scope = "row";
+                    row.append(
+                        name,
+                        element("td", "", `${correct}/${indices.length}`),
+                        element(
+                            "td",
+                            "",
+                            correct === indices.length
+                                ? "All correct this attempt"
+                                : "Review the related explanations below"
+                        )
+                    );
+                    body.append(row);
+                });
+                table.append(body);
+                wrap.append(table);
+                quizBox.append(wrap);
+            }
+            function renderReview() {
+                const section = element("section", "review-section");
+                section.append(
+                    element("h3", "", "Review your answers"),
+                    element(
+                        "p",
+                        "small",
+                        "Open any question to compare your answer with the explanation. Retry starts a new attempt with the same question and choice order."
+                    )
+                );
+                quizData.forEach((q, index) => {
+                    const correct = answers[index] === q.a;
+                    const details = element("details");
+                    details.append(
+                        element("summary", "", `Question ${index + 1} · ${correct ? "Correct" : "Review needed"}`),
+                        element("p", "review-question", q.q),
+                        element(
+                            "p",
+                            "review-choice",
+                            `Your answer: ${letters[answers[index]]}. ${q.c[answers[index]]}`
+                        ),
+                        element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                        element("p", "review-answer", q.e)
+                    );
+                    if (q.evidence) details.querySelector(".review-question").after(renderEvidence(q.evidence));
+                    const all = element("details");
+                    all.append(element("summary", "", "Why each option fits or does not fit"));
+                    q.c.forEach((text, i) =>
+                        all.append(element("p", "review-choice", `${letters[i]}. ${text} — ${q.why[i]}`))
+                    );
+                    details.append(all);
+                    section.append(details);
+                });
+                quizBox.append(section);
+            }
+            function retryQuiz() {
+                current = 0;
+                answers = Array(quizData.length).fill(null);
+                completed = false;
+                resultSent = false;
+                showQuestion(true);
+            }
+            nextBtn.addEventListener("click", nextQuestion);
+            showQuestion();
+        </script>
+    </body>
 </html>
