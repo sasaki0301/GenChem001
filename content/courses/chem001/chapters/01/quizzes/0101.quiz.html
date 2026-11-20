@@ -406,7 +406,7 @@
             "The force of gravity on the stone",
             "The mass of each cubic centimeter"
         ],
-        "a": 0,
+        a: 0,
         "e": "Volume describes the space the stone occupies. The mass is 36 g.",
         "id": "c1l1q01",
         "topic": "Mass and volume",
@@ -426,7 +426,7 @@
             "A balance",
             "A thermometer"
         ],
-        "a": 2,
+        a: 2,
         "e": "A balance measures mass. A graduated cylinder can measure liquid volume or help find volume by displacement.",
         "id": "c1l1q02",
         "topic": "Mass and volume",
@@ -446,7 +446,7 @@
             "Its mass becomes smaller on the Moon",
             "The units of mass change on the Moon"
         ],
-        "a": 1,
+        a: 1,
         "e": "Mass remains the same, while weight is a gravitational force and depends on the local gravitational field.",
         "id": "c1l1q03",
         "topic": "Mass and volume",
@@ -466,7 +466,7 @@
             "53.8 g",
             "14.2 g"
         ],
-        "a": 0,
+        a: 0,
         "e": "Subtract the empty container’s mass: 39.6 g − 14.2 g = 25.4 g.",
         "id": "c1l1q04",
         "topic": "Mass and volume",
@@ -486,7 +486,7 @@
             "To set the container reading to zero so the added sample’s mass can be read",
             "To ensure the sample will not react with water"
         ],
-        "a": 2,
+        a: 2,
         "e": "Taring resets the reading with the container on the balance, so the reading after adding the sample represents the sample’s mass.",
         "id": "c1l1q05",
         "topic": "Mass and volume",
@@ -506,7 +506,7 @@
             "24 cm³",
             "48 cm³"
         ],
-        "a": 2,
+        a: 2,
         "e": "Volume = length × width × height = 4.0 × 3.0 × 2.0 = 24 cm³.",
         "id": "c1l1q06",
         "topic": "Mass and volume",
@@ -526,7 +526,7 @@
             "28.5 cm³",
             "50.5 cm³"
         ],
-        "a": 0,
+        a: 0,
         "e": "Subtract the initial reading from the final reading: 28.5 − 22.0 = 6.5 mL, equivalent to 6.5 cm³.",
         "id": "c1l1q07",
         "topic": "Mass and volume",
@@ -546,7 +546,7 @@
             "A solid that absorbs a large amount of water",
             "A solid that does not dissolve, react with, or significantly absorb water"
         ],
-        "a": 3,
+        a: 3,
         "e": "Water displacement is appropriate when the solid does not dissolve, react with, or significantly absorb the water and can be fully submerged.",
         "id": "c1l1q08",
         "topic": "Mass and volume",
@@ -566,7 +566,7 @@
             "Read the top of the curve from below",
             "Read the side of the cylinder from any angle"
         ],
-        "a": 1,
+        a: 1,
         "e": "Read the bottom of the water meniscus at eye level to reduce parallax.",
         "id": "c1l1q09",
         "topic": "Mass and volume",
@@ -586,7 +586,7 @@
             "The larger object occupies more space, but their masses must be measured to compare them",
             "The objects must have the same mass if both are solids"
         ],
-        "a": 2,
+        a: 2,
         "e": "A larger volume means more space is occupied. Size alone does not establish which object has greater mass.",
         "id": "c1l1q10",
         "topic": "Mass and volume",
@@ -743,9 +743,9 @@
             }
             function sendResult(percent, passed) {
                 if (resultSent || !isEmbedded()) return;
-                resultSent = true;
-                // Preserve the LearnTrack quizResult message format.
+                // Same message and score format used by the Organic Chemistry quizzes.
                 window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+                resultSent = true;
             }
             function showResult() {
                 if (completed || answers.some((value) => value === null)) return;
@@ -785,6 +785,7 @@
                 const retry = element("button", "quiz-btn", "Retry Quiz");
                 retry.type = "button";
                 retry.id = "retryBtn";
+                retry.disabled = false;
                 const next = element("button", "quiz-btn primary", "Next Lesson →");
                 next.type = "button";
                 next.id = "nextLessonBtn";
@@ -799,9 +800,12 @@
                 nav.append(back, retry, next);
                 result.append(nav);
                 quizBox.append(result);
+
+                // Send once before building optional review sections, matching the
+                // established Organic Chemistry quiz integration.
+                sendResult(percent, passed);
                 renderTopicSummary();
                 renderReview();
-                sendResult(percent, passed);
                 title.focus();
             }
             function renderTopicSummary() {
