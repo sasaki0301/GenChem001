@@ -743,9 +743,9 @@
             }
             function sendResult(percent, passed) {
                 if (resultSent || !isEmbedded()) return;
-                resultSent = true;
-                // Preserve the LearnTrack quizResult message format.
+                // Same message and score format used by the Organic Chemistry quizzes.
                 window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+                resultSent = true;
             }
             function showResult() {
                 if (completed || answers.some((value) => value === null)) return;
@@ -773,7 +773,7 @@
                 status.id = "saveStatus";
                 status.setAttribute("role", "status");
                 status.textContent = isEmbedded()
-                    ? "Waiting for LearnTrack to verify and save your answers..."
+                    ? "Sending your result to LearnTrack..."
                     : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
                 result.append(starDisplay, title, element("p", "result-status", outcome), status);
                 const nav = element("nav", "quiz-nav");
@@ -781,10 +781,11 @@
                 const back = element("button", "quiz-btn", "← Back to Lesson");
                 back.type = "button";
                 back.id = "backBtn";
-                back.disabled = !isEmbedded();
+                back.disabled = true;
                 const retry = element("button", "quiz-btn", "Retry Quiz");
                 retry.type = "button";
                 retry.id = "retryBtn";
+                retry.disabled = true;
                 const next = element("button", "quiz-btn primary", "Next Lesson →");
                 next.type = "button";
                 next.id = "nextLessonBtn";
@@ -799,9 +800,21 @@
                 nav.append(back, retry, next);
                 result.append(nav);
                 quizBox.append(result);
+
+                // Send once before building optional review sections, matching the
+                // established Organic Chemistry quiz integration.
+                sendResult(percent, passed);
+                setTimeout(() => {
+                    if (document.getElementById("saveStatus") !== status) return;
+                    status.textContent = isEmbedded()
+                        ? "Result sent to LearnTrack. Saving has not been confirmed by the app."
+                        : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                    back.disabled = !isEmbedded();
+                    retry.disabled = false;
+                    next.disabled = !isEmbedded() || !passed;
+                }, 1200);
                 renderTopicSummary();
                 renderReview();
-                sendResult(percent, passed);
                 title.focus();
             }
             function renderTopicSummary() {
