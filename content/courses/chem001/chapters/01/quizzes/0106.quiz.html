@@ -1,534 +1,1094 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chapter 1 Assessment: Scientific Measurement and Data</title>
-
-<style>
-  body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #e8f9f1, #f7faff);
-    margin: 0;
-    padding: 40px 20px;
-    color: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-
-  .quiz-container {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 40px 50px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-    width: 95%;
-    max-width: 850px;
-    text-align: center;
-  }
-
-  * { box-sizing: border-box; }
-  .choice:focus-visible, button:focus-visible { outline: 3px solid #ad7115; outline-offset: 3px; }
-  .choice.correct { background: #e1ecff; color: #123c80; border: 2px solid #174ea6; }
-  .choice.incorrect { background: #fde9ed; color: #8a1d2a; border: 2px solid #b22b3b; }
-  .choice:disabled { opacity: 1; cursor: default; }
-  .quiz-btn:disabled { opacity: .5; cursor: not-allowed; }
-  h2 {
-    color: #136f63;
-    margin-bottom: 25px;
-    font-size: 1.8em;
-  }
-
-  /* Progress */
-  .progress-text {
-    text-align: right;
-    font-size: 0.95em;
-    color: #174ea6;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-  .progress-wrapper {
-    background: #e9f5ef;
-    border-radius: 8px;
-    height: 14px;
-    width: 100%;
-    margin-bottom: 25px;
-    overflow: hidden;
-  }
-  .progress-bar {
-    height: 100%;
-    background: linear-gradient(to right, #136f63, #2b7de9);
-    width: 0%;
-    transition: width 0.4s ease;
-  }
-
-  /* Question */
-  .question {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #174ea6;
-    margin-bottom: 20px;
-  }
-  .choices {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 25px;
-  }
-  .choice {
-    background: #e8ecf8;
-    border: none;
-    border-radius: 10px;
-    padding: 14px 18px;
-    text-align: left;
-    cursor: pointer;
-    font-size: 1.05em;
-    transition: 0.2s;
-  }
-  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
-
-  .explanation {
-    background: #eef3ff;
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-top: 10px;
-    display: none;
-    text-align: left;
-    font-size: 1.05em;
-  }
-
-  /* Buttons */
-  .next-btn {
-    background: #136f63;
-    color: #fff;
-    border: none;
-    padding: 12px 26px;
-    border-radius: 10px;
-    font-size: 1.05em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    margin-top: 15px;
-  }
-  .next-btn:hover { background: #0f5b52; }
-
-  /* Result */
-  .result {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #174ea6;
-    margin-top: 12px;
-  }
-  .stars {
-    font-size: 2.5em;
-    margin-top: 10px;
-  }
-
-  .quiz-nav {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .quiz-btn {
-    background: #e8ecf8;
-    color: #174ea6;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 0.95em;
-    transition: 0.2s;
-  }
-  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .quiz-btn.primary { background: #136f63; color: #fff; }
-  .quiz-btn.primary:hover { background: #0f5b52; }
-
-  @media(max-width:600px){
-    .quiz-container { padding: 25px; }
-    .question { font-size: 1.15em; }
-    .stars { font-size: 2em; }
-  }
-.choice.correct { background: #e1ecff; color: #123c80; border: 2px solid #174ea6; }
-.choice.incorrect { background: #fde9ed; color: #8a1d2a; border: 2px solid #b22b3b; }
-</style>
-</head>
-
-<body>
-
-<div class="quiz-container">
-  <h2>Chapter 1 Assessment – Scientific Measurement and Data</h2>
-
-  <p>20 questions · Pass: 16/20 (80% required). Choose one answer; your first choice is final. Read the explanation before continuing.</p>
-  <div id="progressText" class="progress-text">Question 1 of 20</div>
-  <div class="progress-wrapper"><div id="progressBar" class="progress-bar"></div></div>
-
-  <div id="quizBox"></div>
-  <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-</div>
-
-<script>
-/* ============================
-     QUIZ DATA
-============================= */
-
-const quizData = [
-  {
-    "q": "A student measures a pebble as 32.4 g. Which property and instrument are represented?",
-    "c": [
-      "Volume measured with a ruler",
-      "Mass measured with a balance",
-      "Weight measured with a graduated cylinder",
-      "Density measured with a thermometer"
-    ],
-    "a": 1,
-    "e": "Grams express mass, which is measured with a balance."
-  },
-  {
-    "q": "An empty container has a mass of 17.2 g; the container and sample together have a mass of 45.7 g. What is the sample mass?",
-    "c": [
-      "28.5 g",
-      "45.7 g",
-      "62.9 g",
-      "27.5 g"
-    ],
-    "a": 0,
-    "e": "Subtract the container’s mass: 45.7 − 17.2 = 28.5 g."
-  },
-  {
-    "q": "A rectangular block measures 5.0 cm × 2.0 cm × 3.0 cm. What is its volume?",
-    "c": [
-      "10 cm³",
-      "15 cm³",
-      "30 cm³",
-      "30 cm²"
-    ],
-    "a": 2,
-    "e": "Multiply the dimensions: 5.0 × 2.0 × 3.0 = 30 cm³."
-  },
-  {
-    "q": "A student wants to measure an irregular solid by water displacement. Which practice is appropriate?",
-    "c": [
-      "Use a solid that dissolves in water",
-      "Read the water level from above",
-      "Submerge a suitable solid completely and remove trapped bubbles",
-      "Use the final water reading as the solid’s volume"
-    ],
-    "a": 2,
-    "e": "A suitable solid must be fully submerged without trapped bubbles. Its volume is the change in the water reading."
-  },
-  {
-    "q": "A solid has a mass of 36.0 g and a volume of 12.0 cm³. What is its density?",
-    "c": [
-      "0.333 g/cm³",
-      "3.00 g/cm³",
-      "24.0 g/cm³",
-      "432 g/cm³"
-    ],
-    "a": 1,
-    "e": "Density = mass ÷ volume = 36.0 ÷ 12.0 = 3.00 g/cm³."
-  },
-  {
-    "q": "A solid has a mass of 18.0 g. Water rises from 16.0 mL to 22.0 mL when it is fully submerged. What is the density?",
-    "c": [
-      "0.33 g/mL",
-      "0.82 g/mL",
-      "3.0 g/mL",
-      "6.0 g/mL"
-    ],
-    "a": 2,
-    "e": "The volume is 22.0 − 16.0 = 6.0 mL. Density = 18.0 ÷ 6.0 = 3.0 g/mL."
-  },
-  {
-    "q": "Object A has a mass of 40 g and a volume of 100 cm³; object B has a mass of 30 g and a volume of 10 cm³. Which is denser?",
-    "c": [
-      "A, because it has more mass",
-      "B, because its mass per unit volume is greater",
-      "They have equal densities because both are solids",
-      "Their densities cannot be calculated without their shapes"
-    ],
-    "a": 1,
-    "e": "A has density 0.40 g/cm³ and B has density 3 g/cm³. B is denser even though its total mass is smaller."
-  },
-  {
-    "q": "An object’s overall density is 0.70 g/mL. What is expected when it is placed in water of density 1.0 g/mL?",
-    "c": [
-      "It floats because its overall density is lower than water’s",
-      "It sinks because its overall density is lower than water’s",
-      "It floats only if its mass is greater than 1 g",
-      "It must remain completely submerged because it is a solid"
-    ],
-    "a": 0,
-    "e": "An object with an overall density less than the liquid’s density is expected to float."
-  },
-  {
-    "q": "Which expression writes 0.0000580 in normalized scientific notation while retaining the reported digits?",
-    "c": [
-      "5.80 × 10⁻⁴",
-      "5.80 × 10⁻⁵",
-      "5.80 × 10⁵",
-      "58.0 × 10⁻⁵"
-    ],
-    "a": 1,
-    "e": "Move the decimal five places right to obtain 5.80, giving 5.80 × 10⁻⁵. The final zero is retained."
-  },
-  {
-    "q": "What is 3.6 × 10⁻³ in ordinary form?",
-    "c": [
-      "0.00036",
-      "0.0036",
-      "0.036",
-      "3600"
-    ],
-    "a": 1,
-    "e": "Move the decimal three places to the left: 3.6 × 10⁻³ = 0.0036."
-  },
-  {
-    "q": "What is (3.0 × 10⁴)(2.0 × 10⁻²)?",
-    "c": [
-      "6.0 × 10⁻⁸",
-      "6.0 × 10²",
-      "5.0 × 10²",
-      "6.0 × 10⁶"
-    ],
-    "a": 1,
-    "e": "Multiply coefficients and add exponents: 3.0 × 2.0 = 6.0 and 4 + (−2) = 2."
-  },
-  {
-    "q": "What is 7.0 × 10⁴ − 2.0 × 10³, reported to the appropriate place value?",
-    "c": [
-      "5.0 × 10¹",
-      "5.0 × 10⁴",
-      "6.8 × 10⁴",
-      "6.98 × 10⁴"
-    ],
-    "a": 2,
-    "e": "Rewrite 2.0 × 10³ as 0.20 × 10⁴. The difference is 6.80 × 10⁴, reported to the least precise place as 6.8 × 10⁴."
-  },
-  {
-    "q": "How many significant figures are in 0.006020?",
-    "c": [
-      "Two",
-      "Three",
-      "Four",
-      "Six"
-    ],
-    "a": 2,
-    "e": "The leading zeros are not significant. The digits 6, 0, 2, and the final zero are significant: four in total."
-  },
-  {
-    "q": "Which notation shows the value 4,300 to three significant figures?",
-    "c": [
-      "4.3 × 10³",
-      "4.30 × 10³",
-      "4.300 × 10³",
-      "43 × 10²"
-    ],
-    "a": 1,
-    "e": "The coefficient 4.30 contains three significant figures."
-  },
-  {
-    "q": "Calculate 3.2 cm × 2.15 cm and report the result using the multiplication rule.",
-    "c": [
-      "6.880 cm²",
-      "6.88 cm²",
-      "6.9 cm²",
-      "7 cm²"
-    ],
-    "a": 2,
-    "e": "The unrounded product is 6.88 cm². The factor 3.2 has two significant figures, so report 6.9 cm²."
-  },
-  {
-    "q": "A sample and container together have a mass of 28.36 g; the container has a mass of 8.2 g. What is the sample mass, reported to the appropriate place?",
-    "c": [
-      "20.16 g",
-      "20.2 g",
-      "20.1 g",
-      "20 g"
-    ],
-    "a": 1,
-    "e": "28.36 − 8.2 = 20.16 g. Round to the tenths place, giving 20.2 g."
-  },
-  {
-    "q": "A reference mass is 10.00 g. A group records 9.59 g, 9.60 g, and 9.61 g. What is the best description?",
-    "c": [
-      "The readings are tightly grouped, but their mean is far below the reference",
-      "The readings are widely spread, but their mean equals the reference",
-      "Every reading equals the reference",
-      "The readings show that no bias is possible"
-    ],
-    "a": 0,
-    "e": "The range is 0.02 g and the mean is 9.60 g, which is 0.40 g below the reference."
-  },
-  {
-    "q": "A reference value is 20.00 mL. Measurements are 19.70, 20.00, and 20.30 mL. What can be concluded?",
-    "c": [
-      "The mean equals the reference, but the individual readings are spread out",
-      "All three measurements equal the reference",
-      "The mean is 19.70 mL",
-      "The data prove the instrument has a constant positive offset"
-    ],
-    "a": 0,
-    "e": "The mean is 20.00 mL, but the range is 0.60 mL. A close mean does not imply that each reading is close."
-  },
-  {
-    "q": "A balance consistently reads 0.20 g above a reference mass. What is the best first response?",
-    "c": [
-      "Record more digits after the decimal",
-      "Average the readings without inspecting the balance",
-      "Check the zero setting and calibration against a suitable standard",
-      "Assume the sample’s mass changes with each trial"
-    ],
-    "a": 2,
-    "e": "A consistent offset suggests possible systematic bias. Checking zero and calibration helps investigate the cause."
-  },
-  {
-    "q": "The accepted mass is 50.0 g and the measured mass is 49.0 g. What is the percent error?",
-    "c": [
-      "1%",
-      "2%",
-      "4%",
-      "49%"
-    ],
-    "a": 1,
-    "e": "Percent error = |49.0 − 50.0| ÷ 50.0 × 100% = 2%."
-  }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Chapter 1 Assessment: Scientific Measurement and Data</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --red: #a82332;
+                --ink: #24323d;
+                --muted: #536575;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background: linear-gradient(135deg, #e8f9f1, #f7faff);
+                margin: 0;
+                padding: 32px 20px;
+                color: var(--ink);
+                min-height: 100vh;
+                line-height: 1.6;
+                font-size: 18px;
+            }
+            .quiz-container {
+                background: #fff;
+                border-radius: 18px;
+                padding: 34px 40px;
+                box-shadow: 0 8px 28px #00000012;
+                width: 100%;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            .eyebrow {
+                font-size: 0.75em;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--green);
+            }
+            h1 {
+                color: var(--green);
+                font-size: clamp(1.5rem, 3.5vw, 2rem);
+                line-height: 1.25;
+                margin: 10px 0 12px;
+            }
+            h2 {
+                line-height: 1.45;
+            }
+            h3 {
+                line-height: 1.4;
+            }
+            .instructions {
+                font-size: 0.9em;
+                color: var(--muted);
+                margin: 0 0 22px;
+            }
+            .instructions strong {
+                color: var(--ink);
+            }
+            .progress-text {
+                font-size: 0.85em;
+                color: var(--blue);
+                font-weight: 600;
+                margin: 0 0 8px;
+            }
+            .progress-wrapper {
+                background: #e9f5ef;
+                border-radius: 8px;
+                height: 12px;
+                width: 100%;
+                margin-bottom: 24px;
+                overflow: hidden;
+            }
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(to right, var(--green), #2b7de9);
+                width: 0;
+                transition: width 0.25s ease;
+            }
+            .question {
+                font-size: 1.18em;
+                color: var(--blue);
+                margin: 0 0 20px;
+            }
+            .choices {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .choice {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+                padding: 14px 16px;
+                border: 2px solid transparent;
+                border-radius: 10px;
+                background: #eef1fb;
+                color: var(--ink);
+                text-align: left;
+                font: inherit;
+                line-height: 1.5;
+                cursor: pointer;
+                overflow-wrap: anywhere;
+            }
+            .letter {
+                font-weight: 750;
+                color: var(--blue);
+                flex-shrink: 0;
+            }
+            .choice-body {
+                flex: 1;
+                min-width: 0;
+            }
+            .choice-label {
+                display: block;
+            }
+            .choice:hover:not(:disabled) {
+                background: #dfe7fb;
+                border-color: #a9bde4;
+            }
+            .choice:disabled {
+                cursor: default;
+                opacity: 1;
+            }
+            .choice.correct {
+                background: #e7efff;
+                border-color: var(--blue);
+                color: #113e83;
+            }
+            .choice.incorrect {
+                background: #fdecef;
+                border-color: var(--red);
+                color: #8c1d29;
+            }
+            .choice.incorrect .letter {
+                color: var(--red);
+            }
+            .choice-status {
+                font-size: 0.8em;
+                font-weight: 750;
+                display: block;
+                margin-top: 7px;
+            }
+            .choice-status:empty {
+                display: none;
+            }
+            .explanation {
+                padding: 18px;
+                border: 1px solid #b9cee9;
+                border-left: 5px solid var(--blue);
+                border-radius: 10px;
+                background: #f2f6ff;
+                margin: 18px 0;
+            }
+            .explanation.incorrect-feedback {
+                border-left-color: var(--red);
+            }
+            .explanation h3 {
+                font-size: 1em;
+                margin: 0 0 8px;
+            }
+            .explanation p {
+                margin: 8px 0;
+            }
+            .correct-answer {
+                font-weight: 700;
+                color: var(--blue);
+            }
+            .small {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            button {
+                touch-action: manipulation;
+            }
+            .next-btn,
+            .quiz-btn {
+                border: 0;
+                border-radius: 9px;
+                padding: 12px 22px;
+                font:
+                    650 0.95em "Segoe UI",
+                    Arial,
+                    sans-serif;
+                cursor: pointer;
+                min-height: 46px;
+            }
+            .next-btn,
+            .quiz-btn.primary {
+                background: var(--green);
+                color: #fff;
+            }
+            .next-btn:hover:not(:disabled),
+            .quiz-btn.primary:hover:not(:disabled) {
+                background: #0f5b52;
+            }
+            .next-row {
+                text-align: right;
+            }
+            .quiz-btn {
+                background: #e8ecf8;
+                color: var(--blue);
+            }
+            .quiz-btn:hover:not(:disabled) {
+                background: #d7e1f8;
+            }
+            .quiz-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            .quiz-nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 24px 0;
+            }
+            .quiz-result-panel {
+                text-align: center;
+            }
+            .quiz-result-panel h2 {
+                color: var(--blue);
+                font-size: 1.45em;
+                margin: 12px 0;
+            }
+            .stars {
+                color: #a56a00;
+                font-size: 2.4em;
+                letter-spacing: 6px;
+                line-height: 1.3;
+            }
+            .result-status {
+                font-weight: 700;
+            }
+            .save-status {
+                font-size: 0.85em;
+                background: #f1f6fa;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 0.9em;
+            }
+            caption {
+                text-align: left;
+                font-weight: 700;
+                color: var(--green);
+                margin-bottom: 8px;
+            }
+            th,
+            td {
+                padding: 11px 12px;
+                border-bottom: 1px solid #dde5ed;
+                text-align: left;
+            }
+            thead th {
+                background: #f2f6fd;
+                color: var(--blue);
+            }
+            details {
+                margin: 12px 0;
+                border: 1px solid #d7e1e9;
+                border-radius: 9px;
+                padding: 12px 16px;
+            }
+            summary {
+                cursor: pointer;
+                font-weight: 650;
+                color: var(--green);
+            }
+            .review-question {
+                font-weight: 650;
+            }
+            .review-choice {
+                font-size: 0.9em;
+            }
+            .review-answer {
+                border-left: 4px solid var(--blue);
+                padding-left: 12px;
+            }
+            .review-section h3 {
+                color: var(--green);
+            }
+            .review-section p {
+                margin: 10px 0;
+            }
+            .footer-note {
+                font-size: 0.8em;
+                color: var(--muted);
+                text-align: center;
+                margin: 20px 0 0;
+            }
+            [hidden] {
+                display: none !important;
+            }
+            :focus-visible {
+                outline: 3px solid #b36c0c;
+                outline-offset: 4px;
+            }
+            .question:focus,
+            .quiz-result-panel h2:focus {
+                outline: none;
+            }
+            .evidence {
+                margin: 0 0 20px;
+            }
+            .evidence table {
+                margin-top: 0;
+            }
+            .evidence caption {
+                font-size: 0.85em;
+                color: var(--muted);
+                font-weight: 400;
+            }
+            .evidence td,
+            .evidence th {
+                vertical-align: top;
+            }
+            @media (max-width: 600px) {
+                body {
+                    padding: 16px 10px;
+                    font-size: 17px;
+                }
+                .quiz-container {
+                    padding: 24px 18px;
+                    border-radius: 14px;
+                }
+                .choice {
+                    padding: 12px;
+                    gap: 10px;
+                }
+                .quiz-nav {
+                    flex-direction: column;
+                }
+                .quiz-nav button {
+                    width: 100%;
+                }
+                .question {
+                    font-size: 1.1em;
+                }
+                .next-btn {
+                    width: 100%;
+                }
+                th,
+                td {
+                    padding: 9px 8px;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    scroll-behavior: auto !important;
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="quiz-container" aria-labelledby="quizTitle">
+            <div class="eyebrow">LearnTrack · Chemistry I · Chapter 1 Assessment</div>
+            <h1 id="quizTitle">Scientific Measurement and Data — Chapter Assessment</h1>
+            <p class="instructions" id="instructions">
+                <strong>20 questions · Pass: 16/20 (80%).</strong> Choose one answer. Your first choice is final for that
+                question; read the feedback before continuing. Each question is worth one point.
+            </p>
+            <p class="progress-text" id="progressText">Question 1 of 20 · 0 answered</p>
+            <div
+                class="progress-wrapper"
+                id="progressMeter"
+                role="progressbar"
+                aria-label="Questions answered"
+                aria-valuemin="0"
+                aria-valuemax="20"
+                aria-valuenow="0"
+            >
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="quizBox"></div>
+            <div class="next-row">
+                <button type="button" id="nextBtn" class="next-btn" hidden disabled>Next Question →</button>
+            </div>
+            <p class="footer-note">Stars: 100% = 3 · 90% = 2 · 80% = 1 · below 80% = 0</p>
+            <noscript><p>This quiz requires JavaScript to show questions and record your choices.</p></noscript>
+        </main>
+        <script>
+            "use strict";
+            // Fixed order: 3 easy, 5 moderate, 2 difficult items. Difficulty is an editorial estimate.
+            // Integration contract retained: quizResult {score, passed}, quizBack, quizNextLesson.
+            const quizData = [
+    {
+        "q": "A student measures a pebble as 32.4 g. Which property and instrument are represented?",
+        "c": [
+            "Volume measured with a ruler",
+            "Mass measured with a balance",
+            "Weight measured with a graduated cylinder",
+            "Density measured with a thermometer"
+        ],
+        a: 1,
+        "e": "Grams express mass, which is measured with a balance.",
+        "id": "c1assessmentq01",
+        "topic": "Mass and volume",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "An empty container has a mass of 17.2 g; the container and sample together have a mass of 45.7 g. What is the sample mass?",
+        "c": [
+            "28.5 g",
+            "45.7 g",
+            "62.9 g",
+            "27.5 g"
+        ],
+        a: 0,
+        "e": "Subtract the container’s mass: 45.7 − 17.2 = 28.5 g.",
+        "id": "c1assessmentq02",
+        "topic": "Mass and volume",
+        "difficulty": "Review",
+        "why": [
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "A rectangular block measures 5.0 cm × 2.0 cm × 3.0 cm. What is its volume?",
+        "c": [
+            "10 cm³",
+            "15 cm³",
+            "30 cm³",
+            "30 cm²"
+        ],
+        a: 2,
+        "e": "Multiply the dimensions: 5.0 × 2.0 × 3.0 = 30 cm³.",
+        "id": "c1assessmentq03",
+        "topic": "Mass and volume",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "A student wants to measure an irregular solid by water displacement. Which practice is appropriate?",
+        "c": [
+            "Use a solid that dissolves in water",
+            "Read the water level from above",
+            "Submerge a suitable solid completely and remove trapped bubbles",
+            "Use the final water reading as the solid’s volume"
+        ],
+        a: 2,
+        "e": "A suitable solid must be fully submerged without trapped bubbles. Its volume is the change in the water reading.",
+        "id": "c1assessmentq04",
+        "topic": "Mass and volume",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "A solid has a mass of 36.0 g and a volume of 12.0 cm³. What is its density?",
+        "c": [
+            "0.333 g/cm³",
+            "3.00 g/cm³",
+            "24.0 g/cm³",
+            "432 g/cm³"
+        ],
+        a: 1,
+        "e": "Density = mass ÷ volume = 36.0 ÷ 12.0 = 3.00 g/cm³.",
+        "id": "c1assessmentq05",
+        "topic": "Density of solids",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "A solid has a mass of 18.0 g. Water rises from 16.0 mL to 22.0 mL when it is fully submerged. What is the density?",
+        "c": [
+            "0.33 g/mL",
+            "0.82 g/mL",
+            "3.0 g/mL",
+            "6.0 g/mL"
+        ],
+        a: 2,
+        "e": "The volume is 22.0 − 16.0 = 6.0 mL. Density = 18.0 ÷ 6.0 = 3.0 g/mL.",
+        "id": "c1assessmentq06",
+        "topic": "Density of solids",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "Object A has a mass of 40 g and a volume of 100 cm³; object B has a mass of 30 g and a volume of 10 cm³. Which is denser?",
+        "c": [
+            "A, because it has more mass",
+            "B, because its mass per unit volume is greater",
+            "They have equal densities because both are solids",
+            "Their densities cannot be calculated without their shapes"
+        ],
+        a: 1,
+        "e": "A has density 0.40 g/cm³ and B has density 3 g/cm³. B is denser even though its total mass is smaller.",
+        "id": "c1assessmentq07",
+        "topic": "Density of solids",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "An object’s overall density is 0.70 g/mL. What is expected when it is placed in water of density 1.0 g/mL?",
+        "c": [
+            "It floats because its overall density is lower than water’s",
+            "It sinks because its overall density is lower than water’s",
+            "It floats only if its mass is greater than 1 g",
+            "It must remain completely submerged because it is a solid"
+        ],
+        a: 0,
+        "e": "An object with an overall density less than the liquid’s density is expected to float.",
+        "id": "c1assessmentq08",
+        "topic": "Density of solids",
+        "difficulty": "Review",
+        "why": [
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "Which expression writes 0.0000580 in normalized scientific notation while retaining the reported digits?",
+        "c": [
+            "5.80 × 10⁻⁴",
+            "5.80 × 10⁻⁵",
+            "5.80 × 10⁵",
+            "58.0 × 10⁻⁵"
+        ],
+        a: 1,
+        "e": "Move the decimal five places right to obtain 5.80, giving 5.80 × 10⁻⁵. The final zero is retained.",
+        "id": "c1assessmentq09",
+        "topic": "Scientific notation",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "What is 3.6 × 10⁻³ in ordinary form?",
+        "c": [
+            "0.00036",
+            "0.0036",
+            "0.036",
+            "3600"
+        ],
+        a: 1,
+        "e": "Move the decimal three places to the left: 3.6 × 10⁻³ = 0.0036.",
+        "id": "c1assessmentq10",
+        "topic": "Scientific notation",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "What is (3.0 × 10⁴)(2.0 × 10⁻²)?",
+        "c": [
+            "6.0 × 10⁻⁸",
+            "6.0 × 10²",
+            "5.0 × 10²",
+            "6.0 × 10⁶"
+        ],
+        a: 1,
+        "e": "Multiply coefficients and add exponents: 3.0 × 2.0 = 6.0 and 4 + (−2) = 2.",
+        "id": "c1assessmentq11",
+        "topic": "Scientific notation",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "What is 7.0 × 10⁴ − 2.0 × 10³, reported to the appropriate place value?",
+        "c": [
+            "5.0 × 10¹",
+            "5.0 × 10⁴",
+            "6.8 × 10⁴",
+            "6.98 × 10⁴"
+        ],
+        a: 2,
+        "e": "Rewrite 2.0 × 10³ as 0.20 × 10⁴. The difference is 6.80 × 10⁴, reported to the least precise place as 6.8 × 10⁴.",
+        "id": "c1assessmentq12",
+        "topic": "Scientific notation",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "How many significant figures are in 0.006020?",
+        "c": [
+            "Two",
+            "Three",
+            "Four",
+            "Six"
+        ],
+        a: 2,
+        "e": "The leading zeros are not significant. The digits 6, 0, 2, and the final zero are significant: four in total.",
+        "id": "c1assessmentq13",
+        "topic": "Significant figures",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "Which notation shows the value 4,300 to three significant figures?",
+        "c": [
+            "4.3 × 10³",
+            "4.30 × 10³",
+            "4.300 × 10³",
+            "43 × 10²"
+        ],
+        a: 1,
+        "e": "The coefficient 4.30 contains three significant figures.",
+        "id": "c1assessmentq14",
+        "topic": "Significant figures",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "Calculate 3.2 cm × 2.15 cm and report the result using the multiplication rule.",
+        "c": [
+            "6.880 cm²",
+            "6.88 cm²",
+            "6.9 cm²",
+            "7 cm²"
+        ],
+        a: 2,
+        "e": "The unrounded product is 6.88 cm². The factor 3.2 has two significant figures, so report 6.9 cm².",
+        "id": "c1assessmentq15",
+        "topic": "Significant figures",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "A sample and container together have a mass of 28.36 g; the container has a mass of 8.2 g. What is the sample mass, reported to the appropriate place?",
+        "c": [
+            "20.16 g",
+            "20.2 g",
+            "20.1 g",
+            "20 g"
+        ],
+        a: 1,
+        "e": "28.36 − 8.2 = 20.16 g. Round to the tenths place, giving 20.2 g.",
+        "id": "c1assessmentq16",
+        "topic": "Significant figures",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "A reference mass is 10.00 g. A group records 9.59 g, 9.60 g, and 9.61 g. What is the best description?",
+        "c": [
+            "The readings are tightly grouped, but their mean is far below the reference",
+            "The readings are widely spread, but their mean equals the reference",
+            "Every reading equals the reference",
+            "The readings show that no bias is possible"
+        ],
+        a: 0,
+        "e": "The range is 0.02 g and the mean is 9.60 g, which is 0.40 g below the reference.",
+        "id": "c1assessmentq17",
+        "topic": "Accuracy and precision",
+        "difficulty": "Review",
+        "why": [
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "A reference value is 20.00 mL. Measurements are 19.70, 20.00, and 20.30 mL. What can be concluded?",
+        "c": [
+            "The mean equals the reference, but the individual readings are spread out",
+            "All three measurements equal the reference",
+            "The mean is 19.70 mL",
+            "The data prove the instrument has a constant positive offset"
+        ],
+        a: 0,
+        "e": "The mean is 20.00 mL, but the range is 0.60 mL. A close mean does not imply that each reading is close.",
+        "id": "c1assessmentq18",
+        "topic": "Accuracy and precision",
+        "difficulty": "Review",
+        "why": [
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "A balance consistently reads 0.20 g above a reference mass. What is the best first response?",
+        "c": [
+            "Record more digits after the decimal",
+            "Average the readings without inspecting the balance",
+            "Check the zero setting and calibration against a suitable standard",
+            "Assume the sample’s mass changes with each trial"
+        ],
+        a: 2,
+        "e": "A consistent offset suggests possible systematic bias. Checking zero and calibration helps investigate the cause.",
+        "id": "c1assessmentq19",
+        "topic": "Accuracy and precision",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    },
+    {
+        "q": "The accepted mass is 50.0 g and the measured mass is 49.0 g. What is the percent error?",
+        "c": [
+            "1%",
+            "2%",
+            "4%",
+            "49%"
+        ],
+        a: 1,
+        "e": "Percent error = |49.0 − 50.0| ÷ 50.0 × 100% = 2%.",
+        "id": "c1assessmentq20",
+        "topic": "Accuracy and precision",
+        "difficulty": "Review",
+        "why": [
+            "Compare this choice with the explanation and correct answer below.",
+            "This choice is correct.",
+            "Compare this choice with the explanation and correct answer below.",
+            "Compare this choice with the explanation and correct answer below."
+        ]
+    }
 ];
 
-/* ============================
-       QUIZ LOGIC
-============================= */
+            const PASS_PERCENT = 80;
+            const letters = ["A", "B", "C", "D"];
+            let current = 0;
+            let answers = Array(quizData.length).fill(null);
+            let resultSent = false;
+            let completed = false;
+            const quizBox = document.getElementById("quizBox");
+            const nextBtn = document.getElementById("nextBtn");
+            const progressText = document.getElementById("progressText");
+            const progressBar = document.getElementById("progressBar");
+            const progressMeter = document.getElementById("progressMeter");
 
-let current = 0, score = 0, selected = null, showingExplanation = false;
-const quizBox = document.getElementById("quizBox");
-const nextBtn = document.getElementById("nextBtn");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
+            function element(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = text;
+                return node;
+            }
+            function isEmbedded() {
+                return window.parent !== window;
+            }
+            function updateProgress() {
+                const count = answers.filter((value) => value !== null).length;
+                progressBar.style.width = (count / quizData.length) * 100 + "%";
+                progressMeter.setAttribute("aria-valuenow", String(count));
+                progressMeter.setAttribute("aria-valuemax", String(quizData.length));
+                progressMeter.setAttribute("aria-valuetext", `${count} of ${quizData.length} questions answered`);
+                progressText.textContent = completed
+                    ? `Quiz completed · ${count} of ${quizData.length} answered`
+                    : `Question ${current + 1} of ${quizData.length} · ${count} answered`;
+            }
+            function renderEvidence(data) {
+                const wrap = element("div", "table-wrap evidence");
+                wrap.tabIndex = 0;
+                wrap.setAttribute("role", "region");
+                wrap.setAttribute("aria-label", data.caption);
+                const table = element("table");
+                table.append(element("caption", "", data.caption));
+                const head = element("thead");
+                const heading = element("tr");
+                data.headers.forEach((text) => {
+                    const cell = element("th", "", text);
+                    cell.scope = "col";
+                    heading.append(cell);
+                });
+                head.append(heading);
+                table.append(head);
+                const body = element("tbody");
+                data.rows.forEach((row) => {
+                    const tr = element("tr");
+                    row.forEach((text, i) => {
+                        const td = element(i === 0 ? "th" : "td", "", text);
+                        if (i === 0) td.scope = "row";
+                        tr.append(td);
+                    });
+                    body.append(tr);
+                });
+                table.append(body);
+                wrap.append(table);
+                return wrap;
+            }
+            function showQuestion(focus = false) {
+                const q = quizData[current];
+                quizBox.replaceChildren();
+                const heading = element("h2", "question", q.q);
+                heading.id = "questionTitle";
+                heading.tabIndex = -1;
+                const choices = element("div", "choices");
+                choices.setAttribute("role", "group");
+                choices.setAttribute("aria-labelledby", "questionTitle");
+                q.c.forEach((text, i) => {
+                    const button = element("button", "choice");
+                    button.type = "button";
+                    button.setAttribute("data-choice", String(i));
+                    const body = element("span", "choice-body");
+                    body.append(element("span", "choice-label", text), element("span", "choice-status"));
+                    button.append(body);
+                    button.addEventListener("click", () => selectChoice(i));
+                    choices.append(button);
+                });
+                const feedback = element("div", "explanation");
+                feedback.id = "explanationBox";
+                feedback.hidden = true;
+                feedback.tabIndex = -1;
+                feedback.setAttribute("role", "status");
+                feedback.setAttribute("aria-live", "polite");
+                feedback.setAttribute("aria-atomic", "true");
+                quizBox.append(heading);
+                if (q.evidence) quizBox.append(renderEvidence(q.evidence));
+                quizBox.append(choices, feedback);
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                nextBtn.textContent = current === quizData.length - 1 ? "View Results →" : "Next Question →";
+                updateProgress();
+                if (focus) heading.focus();
+            }
+            function selectChoice(index) {
+                if (completed || answers[current] !== null || !Number.isInteger(index) || index < 0 || index > 3)
+                    return;
+                const q = quizData[current];
+                answers[current] = index;
+                const correct = index === q.a;
+                quizBox.querySelectorAll(".choice").forEach((button, i) => {
+                    button.disabled = true;
+                    const status = button.querySelector(".choice-status");
+                    if (i === q.a) {
+                        button.classList.add("correct");
+                        status.textContent = correct ? "✓ Your answer — correct" : "✓ Correct answer";
+                    } else if (i === index) {
+                        button.classList.add("incorrect");
+                        status.textContent = "✗ Your answer — incorrect";
+                    }
+                });
+                const feedback = document.getElementById("explanationBox");
+                feedback.classList.toggle("incorrect-feedback", !correct);
+                feedback.append(element("h3", "", correct ? "Correct." : "Not quite."));
+                if (!correct) feedback.append(element("p", "", q.why[index]));
+                feedback.append(
+                    element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                    element("p", "", q.e)
+                );
+                feedback.hidden = false;
+                nextBtn.hidden = false;
+                nextBtn.disabled = false;
+                updateProgress();
+                feedback.focus();
+            }
+            function nextQuestion() {
+                if (completed || answers[current] === null) return;
+                if (current === quizData.length - 1) showResult();
+                else {
+                    current += 1;
+                    showQuestion(true);
+                }
+            }
+            function starCount(percent) {
+                return percent === 100 ? 3 : percent >= 90 ? 2 : percent >= 80 ? 1 : 0;
+            }
+            function getScore() {
+                return answers.reduce((total, value, index) => total + (value === quizData[index].a ? 1 : 0), 0);
+            }
+            function sendResult(percent, passed) {
+                if (resultSent || !isEmbedded()) return;
+                // Same message and score format used by the Organic Chemistry quizzes.
+                window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+                resultSent = true;
+            }
+            function showResult() {
+                if (completed || answers.some((value) => value === null)) return;
+                completed = true;
+                const score = getScore();
+                const percent = Math.round((score / quizData.length) * 100);
+                const passed = percent >= PASS_PERCENT;
+                const stars = starCount(percent);
+                quizBox.replaceChildren();
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                updateProgress();
+                const result = element("section", "quiz-result-panel");
+                const starDisplay = element("div", "stars", "★".repeat(stars) + "☆".repeat(3 - stars));
+                starDisplay.setAttribute("role", "img");
+                starDisplay.setAttribute("aria-label", `${stars} out of 3 stars`);
+                const title = element("h2", "result", `You scored ${score}/${quizData.length} (${percent}%)`);
+                title.id = "resultTitle";
+                title.tabIndex = -1;
+                result.setAttribute("aria-labelledby", "resultTitle");
+                const outcome = passed
+                    ? "Passed — you met the 80% target."
+                    : "Not yet passed — review the explanations, then retry.";
+                const status = element("p", "save-status");
+                status.id = "saveStatus";
+                status.setAttribute("role", "status");
+                status.textContent = isEmbedded()
+                    ? "Waiting for LearnTrack to verify and save your answers..."
+                    : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                result.append(starDisplay, title, element("p", "result-status", outcome), status);
+                const nav = element("nav", "quiz-nav");
+                nav.setAttribute("aria-label", "Quiz result actions");
+                const back = element("button", "quiz-btn", "← Back to Lesson");
+                back.type = "button";
+                back.id = "backBtn";
+                back.disabled = !isEmbedded();
+                const retry = element("button", "quiz-btn", "Retry Quiz");
+                retry.type = "button";
+                retry.id = "retryBtn";
+                retry.disabled = false;
+                const next = element("button", "quiz-btn primary", "Next Lesson →");
+                next.type = "button";
+                next.id = "nextLessonBtn";
+                next.disabled = true;
+                back.addEventListener("click", () => {
+                    if (isEmbedded()) window.parent.postMessage({ type: "quizBack" }, "*");
+                });
+                retry.addEventListener("click", retryQuiz);
+                next.addEventListener("click", () => {
+                    if (passed && isEmbedded()) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+                });
+                nav.append(back, retry, next);
+                result.append(nav);
+                quizBox.append(result);
 
-function showQuestion() {
-  const q = quizData[current];
-  updateProgress();
-  quizBox.innerHTML = `
-    <div class='question'>${q.q}</div>
-    <div class='choices'></div>
-    <div class='explanation' id='explanationBox' role='status' aria-live='polite'></div>
-  `;
-  const choicesContainer = quizBox.querySelector(".choices");
-  q.c.forEach((choice, i) => {
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.innerHTML = choice;
-    btn.addEventListener("click", () => selectChoice(i));
-    choicesContainer.appendChild(btn);
-  });
-  nextBtn.style.display = "none";
-  selected = null;
-  showingExplanation = false;
-}
-
-function selectChoice(i) {
-  if (showingExplanation) return;
-  selected = i;
-  document.querySelectorAll(".choice").forEach((btn, idx) => {
-    btn.classList.toggle("selected", idx === i);
-    if (idx === quizData[current].a) btn.classList.add("correct");
-    if (idx === i && i !== quizData[current].a) btn.classList.add("incorrect");
-    btn.disabled = true;
-  });
-  const q = quizData[current];
-  const expBox = document.getElementById("explanationBox");
-  const correct = i === q.a;
-
-  if (correct) score++;
-
-  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br><strong>Correct answer:</strong> ${q.c[q.a]}<br>${q.e}`;
-  expBox.style.display = "block";
-  nextBtn.style.display = "inline-block";
-  showingExplanation = true;
-}
-
-nextBtn.addEventListener("click", () => {
-  current++;
-  if (current < quizData.length) showQuestion();
-  else showResult();
-});
-
-function updateProgress() {
-  const percent = (current / quizData.length) * 100;
-  progressBar.style.width = percent + "%";
-  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
-}
-
-function getStarRating(percent) {
-  if (percent === 100) return "⭐️⭐️⭐️";
-  else if (percent >= 90) return "⭐️⭐️☆";
-  else if (percent >= 80) return "⭐️☆☆";
-  else return "☆☆☆";
-}
-
-let resultSent = false;
-
-function showResult() {
-  progressBar.style.width = "100%";
-  progressText.textContent = "Quiz Completed";
-
-  const percent = Math.round((score / quizData.length) * 100);
-  const passed = percent >= 80;
-
-  quizBox.innerHTML = `
-    <div class='stars'>${getStarRating(percent)}</div>
-    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Sending your result to LearnTrack...</p>
-    <div class='quiz-nav'>
-      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
-      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
-      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
-    </div>
-  `;
-
-  nextBtn.style.display = "none";
-
-  if (!resultSent) {
-    resultSent = true;
-    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
-  }
-
-  setTimeout(() => {
-    const status = document.getElementById("saveStatus");
-    const backBtn = document.getElementById("backBtn");
-    const retryBtn = document.getElementById("retryBtn");
-    const nextLessonBtn = document.getElementById("nextLessonBtn");
-
-    if (status) status.textContent = passed
-      ? "Result sent to LearnTrack. You may proceed."
-      : "Result sent to LearnTrack. Retake the quiz to meet the 80% target.";
-
-    if (backBtn) backBtn.disabled = false;
-    if (retryBtn) retryBtn.disabled = false;
-    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
-
-    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
-    if (backBtn) backBtn.addEventListener("click", () =>
-      window.parent.postMessage({ type: "quizBack" }, "*")
-    );
-    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
-      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
-    });
-  }, 1200);
-}
-
-function retryQuiz() {
-  resultSent = false;
-  current = 0;
-  score = 0;
-  showQuestion();
-}
-
-showQuestion();
-
-</script>
-</body>
+                // Send once before building optional review sections, matching the
+                // established Organic Chemistry quiz integration.
+                sendResult(percent, passed);
+                renderTopicSummary();
+                renderReview();
+                title.focus();
+            }
+            function renderTopicSummary() {
+                const wrap = element("div", "table-wrap");
+                const table = element("table");
+                table.append(element("caption", "", "Your review priorities"));
+                const head = element("thead");
+                const header = element("tr");
+                ["Area", "Score", "Next step"].forEach((text) => {
+                    const th = element("th", "", text);
+                    th.scope = "col";
+                    header.append(th);
+                });
+                head.append(header);
+                table.append(head);
+                const body = element("tbody");
+                [...new Set(quizData.map((q) => q.topic))].forEach((topic) => {
+                    const indices = quizData.map((q, i) => (q.topic === topic ? i : -1)).filter((i) => i >= 0);
+                    const correct = indices.filter((i) => answers[i] === quizData[i].a).length;
+                    const row = element("tr");
+                    const name = element("th", "", topic);
+                    name.scope = "row";
+                    row.append(
+                        name,
+                        element("td", "", `${correct}/${indices.length}`),
+                        element(
+                            "td",
+                            "",
+                            correct === indices.length
+                                ? "All correct this attempt"
+                                : "Review the related explanations below"
+                        )
+                    );
+                    body.append(row);
+                });
+                table.append(body);
+                wrap.append(table);
+                quizBox.append(wrap);
+            }
+            function renderReview() {
+                const section = element("section", "review-section");
+                section.append(
+                    element("h3", "", "Review your answers"),
+                    element(
+                        "p",
+                        "small",
+                        "Open any question to compare your answer with the explanation. Retry starts a new attempt with the same question and choice order."
+                    )
+                );
+                quizData.forEach((q, index) => {
+                    const correct = answers[index] === q.a;
+                    const details = element("details");
+                    details.append(
+                        element("summary", "", `Question ${index + 1} · ${correct ? "Correct" : "Review needed"}`),
+                        element("p", "review-question", q.q),
+                        element(
+                            "p",
+                            "review-choice",
+                            `Your answer: ${letters[answers[index]]}. ${q.c[answers[index]]}`
+                        ),
+                        element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                        element("p", "review-answer", q.e)
+                    );
+                    if (q.evidence) details.querySelector(".review-question").after(renderEvidence(q.evidence));
+                    const all = element("details");
+                    all.append(element("summary", "", "Why each option fits or does not fit"));
+                    q.c.forEach((text, i) =>
+                        all.append(element("p", "review-choice", `${letters[i]}. ${text} — ${q.why[i]}`))
+                    );
+                    details.append(all);
+                    section.append(details);
+                });
+                quizBox.append(section);
+            }
+            function retryQuiz() {
+                current = 0;
+                answers = Array(quizData.length).fill(null);
+                completed = false;
+                resultSent = false;
+                showQuestion(true);
+            }
+            nextBtn.addEventListener("click", nextQuestion);
+            showQuestion();
+        </script>
+    </body>
 </html>
