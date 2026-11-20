@@ -1,310 +1,890 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculating Average Atomic Mass</title>
-  <style>
-  body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #e8f9f1, #f7faff);
-    margin: 0;
-    padding: 40px 20px;
-    color: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  .quiz-container {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 40px 50px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-    width: 95%;
-    max-width: 850px;
-    text-align: center;
-  }
-  h2 {
-    color: #136f63;
-    margin-bottom: 25px;
-    font-size: 1.8em;
-  }
-  .progress-wrapper {
-    background: #e9f5ef;
-    border-radius: 8px;
-    height: 14px;
-    width: 100%;
-    margin-bottom: 25px;
-    overflow: hidden;
-  }
-  .progress-bar {
-    height: 100%;
-    background: linear-gradient(to right, #136f63, #2b7de9);
-    width: 0%;
-    transition: width 0.4s ease;
-  }
-  .progress-text {
-    text-align: right;
-    font-size: 0.95em;
-    color: #174ea6;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-  .question {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #174ea6;
-    margin-bottom: 20px;
-  }
-  .choices {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .choice {
-    background: #e8ecf8;
-    border: none;
-    border-radius: 10px;
-    padding: 14px 18px;
-    cursor: pointer;
-    text-align: left;
-    font-size: 1.05em;
-    transition: all 0.2s ease;
-  }
-  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.correct { background: #136f63; color: #fff; }
-  .choice.incorrect { background: #e57373; color: #fff; }
-  .explanation {
-    background: #eef3ff;
-    border-radius: 10px;
-    padding: 14px 18px;
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-    color: #174ea6;
-    display: none;
-  }
-  .next-btn {
-    background: #136f63;
-    color: #fff;
-    border: none;
-    padding: 12px 26px;
-    border-radius: 10px;
-    font-size: 1.05em;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-  }
-  .next-btn:hover { background: #0f5b52; }
-  .result {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #174ea6;
-    margin-top: 20px;
-  }
-  .stars {
-    font-size: 2.5em;
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
-  .quiz-nav {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .quiz-btn {
-    background: #e8ecf8;
-    color: #174ea6;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 0.95em;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .quiz-btn.primary { background: #136f63; color: #fff; }
-  .quiz-btn.primary:hover { background: #0f5b52; }
-  @media (max-width: 600px) {
-    .quiz-container { padding: 25px; }
-    .question { font-size: 1.1em; }
-    .stars { font-size: 2em; }
-  }
-  </style>
-</head>
-<body>
-  <div class="quiz-container">
-    <h2>Calculating Average Atomic Mass – Quiz</h2>
-    <div class="progress-text" id="progressText">Question 1 of 10</div>
-    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
-
-    <div id="quizBox"></div>
-    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-  </div>
-
-<script>
-const quizData = [
-
-{q:"Why is the atomic mass on the periodic table usually not a whole number?",c:["Atoms always have decimal masses","It is a weighted average of naturally occurring isotopes","Electrons add most of the mass","Atomic number changes over time"],a:1,e:"The periodic table atomic mass is a weighted average based on the masses and natural abundances of isotopes."},
-
-{q:"Which information is needed to calculate average atomic mass?",c:["Atomic number and charge","Mass number and electron count","Isotopic mass and percent abundance","Number of valence electrons"],a:2,e:"Average atomic mass uses each isotope’s mass and its fractional abundance."},
-
-{q:"What must be done to percent abundance before using it in the average atomic mass formula?",c:["Multiply it by 100","Convert it to a decimal","Round it to a whole number","Subtract it from the mass number"],a:1,e:"Percent abundance must be converted to fractional abundance, such as 75% = 0.75."},
-
-{q:"An element has two isotopes: 10 amu at 25% abundance and 12 amu at 75% abundance. What is the average atomic mass?",c:["10.5 amu","11.0 amu","11.5 amu","12.0 amu"],a:2,e:"Average mass = (10 × 0.25) + (12 × 0.75) = 2.5 + 9.0 = 11.5 amu."},
-
-{q:"An element has isotopes of 24 amu at 80% and 25 amu at 20%. What is its average atomic mass?",c:["24.0 amu","24.2 amu","24.5 amu","25.0 amu"],a:1,e:"Average mass = (24 × 0.80) + (25 × 0.20) = 19.2 + 5.0 = 24.2 amu."},
-
-{q:"If an element’s average atomic mass is closer to isotope A than isotope B, what does that usually suggest?",c:["Isotope A has lower abundance","Isotope A has higher abundance","Isotope B is unstable","Both isotopes have equal abundance"],a:1,e:"The average is pulled closer to the isotope with greater abundance."},
-
-{q:"An element has two isotopes: 35 amu at 60% and 37 amu at 40%. What is the average atomic mass?",c:["35.2 amu","35.8 amu","36.0 amu","36.6 amu"],a:1,e:"Average mass = (35 × 0.60) + (37 × 0.40) = 21.0 + 14.8 = 35.8 amu."},
-
-{q:"Which isotope contributes more to the average atomic mass?",c:["The isotope with the largest mass only","The isotope with the smallest mass only","The isotope with the greatest abundance","The isotope with the most electrons"],a:2,e:"Contribution depends strongly on abundance because abundance determines how much weight that isotope has in the average."},
-
-{q:"An element has isotopes 20 amu, 21 amu, and 22 amu with abundances 50%, 30%, and 20%. What is the average atomic mass?",c:["20.7 amu","21.0 amu","21.3 amu","22.0 amu"],a:0,e:"Average mass = (20 × 0.50) + (21 × 0.30) + (22 × 0.20) = 10 + 6.3 + 4.4 = 20.7 amu."},
-
-{q:"What does fractional abundance mean?",c:["The number of protons in an isotope","The percent abundance written as a decimal","The mass number divided by atomic number","The total number of isotopes"],a:1,e:"Fractional abundance is the decimal form of percent abundance, such as 40% = 0.40."},
-
-{q:"An isotope has 90% abundance. Its fractional abundance is:",c:["90","9.0","0.90","0.09"],a:2,e:"To convert percent to decimal, divide by 100. So 90% = 0.90."},
-
-{q:"Why is a weighted average used instead of a simple average?",c:["Isotopes do not occur in equal amounts","Atoms cannot be counted","Mass numbers are always wrong","All isotopes have the same abundance"],a:0,e:"A weighted average accounts for the fact that some isotopes are more common than others."},
-
-{q:"An element has two isotopes: 14 amu and 15 amu. The average atomic mass is 14.8 amu. Which isotope is more abundant?",c:["14 amu isotope","15 amu isotope","Both are equally abundant","Cannot be determined"],a:1,e:"Because 14.8 amu is closer to 15 amu, the 15 amu isotope is more abundant."},
-
-{q:"Which setup correctly calculates average atomic mass for isotopes 63 amu at 69% and 65 amu at 31%?",c:["(63 × 69) + (65 × 31)","(63 × 0.69) + (65 × 0.31)","(63 + 65) ÷ 2","(69 + 31) ÷ 2"],a:1,e:"Percent abundances must be converted to decimals before multiplying by isotope masses."},
-
-{q:"A calculated average atomic mass should be reported in:",c:["grams only","amu or atomic mass units","moles","percent"],a:1,e:"Atomic mass is commonly expressed in amu, also called atomic mass units."}
-
-];
-
-let current = 0, score = 0, selected = null, showingExplanation = false;
-const quizBox = document.getElementById("quizBox");
-const nextBtn = document.getElementById("nextBtn");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
-
-function showQuestion() {
-  const q = quizData[current];
-  updateProgress();
-  quizBox.innerHTML = `
-    <div class='question'>${q.q}</div>
-    <div class='choices'></div>
-    <div class='explanation' id='explanationBox'></div>
-  `;
-  const choicesContainer = quizBox.querySelector(".choices");
-  q.c.forEach((choice, i) => {
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.innerHTML = choice;
-    btn.addEventListener("click", () => selectChoice(i));
-    choicesContainer.appendChild(btn);
-  });
-  nextBtn.style.display = "none";
-  selected = null;
-  showingExplanation = false;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Chapter 2 – Lesson 2 Quiz: Groups, Families, and Periods</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --red: #a82332;
+                --ink: #24323d;
+                --muted: #536575;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background: linear-gradient(135deg, #e8f9f1, #f7faff);
+                margin: 0;
+                padding: 32px 20px;
+                color: var(--ink);
+                min-height: 100vh;
+                line-height: 1.6;
+                font-size: 18px;
+            }
+            .quiz-container {
+                background: #fff;
+                border-radius: 18px;
+                padding: 34px 40px;
+                box-shadow: 0 8px 28px #00000012;
+                width: 100%;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            .eyebrow {
+                font-size: 0.75em;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--green);
+            }
+            h1 {
+                color: var(--green);
+                font-size: clamp(1.5rem, 3.5vw, 2rem);
+                line-height: 1.25;
+                margin: 10px 0 12px;
+            }
+            h2 {
+                line-height: 1.45;
+            }
+            h3 {
+                line-height: 1.4;
+            }
+            .instructions {
+                font-size: 0.9em;
+                color: var(--muted);
+                margin: 0 0 22px;
+            }
+            .instructions strong {
+                color: var(--ink);
+            }
+            .progress-text {
+                font-size: 0.85em;
+                color: var(--blue);
+                font-weight: 600;
+                margin: 0 0 8px;
+            }
+            .progress-wrapper {
+                background: #e9f5ef;
+                border-radius: 8px;
+                height: 12px;
+                width: 100%;
+                margin-bottom: 24px;
+                overflow: hidden;
+            }
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(to right, var(--green), #2b7de9);
+                width: 0;
+                transition: width 0.25s ease;
+            }
+            .question {
+                font-size: 1.18em;
+                color: var(--blue);
+                margin: 0 0 20px;
+            }
+            .choices {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .choice {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+                padding: 14px 16px;
+                border: 2px solid transparent;
+                border-radius: 10px;
+                background: #eef1fb;
+                color: var(--ink);
+                text-align: left;
+                font: inherit;
+                line-height: 1.5;
+                cursor: pointer;
+                overflow-wrap: anywhere;
+            }
+            .letter {
+                font-weight: 750;
+                color: var(--blue);
+                flex-shrink: 0;
+            }
+            .choice-body {
+                flex: 1;
+                min-width: 0;
+            }
+            .choice-label {
+                display: block;
+            }
+            .choice:hover:not(:disabled) {
+                background: #dfe7fb;
+                border-color: #a9bde4;
+            }
+            .choice:disabled {
+                cursor: default;
+                opacity: 1;
+            }
+            .choice.correct {
+                background: #e7efff;
+                border-color: var(--blue);
+                color: #113e83;
+            }
+            .choice.incorrect {
+                background: #fdecef;
+                border-color: var(--red);
+                color: #8c1d29;
+            }
+            .choice.incorrect .letter {
+                color: var(--red);
+            }
+            .choice-status {
+                font-size: 0.8em;
+                font-weight: 750;
+                display: block;
+                margin-top: 7px;
+            }
+            .choice-status:empty {
+                display: none;
+            }
+            .explanation {
+                padding: 18px;
+                border: 1px solid #b9cee9;
+                border-left: 5px solid var(--blue);
+                border-radius: 10px;
+                background: #f2f6ff;
+                margin: 18px 0;
+            }
+            .explanation.incorrect-feedback {
+                border-left-color: var(--red);
+            }
+            .explanation h3 {
+                font-size: 1em;
+                margin: 0 0 8px;
+            }
+            .explanation p {
+                margin: 8px 0;
+            }
+            .correct-answer {
+                font-weight: 700;
+                color: var(--blue);
+            }
+            .small {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            button {
+                touch-action: manipulation;
+            }
+            .next-btn,
+            .quiz-btn {
+                border: 0;
+                border-radius: 9px;
+                padding: 12px 22px;
+                font:
+                    650 0.95em "Segoe UI",
+                    Arial,
+                    sans-serif;
+                cursor: pointer;
+                min-height: 46px;
+            }
+            .next-btn,
+            .quiz-btn.primary {
+                background: var(--green);
+                color: #fff;
+            }
+            .next-btn:hover:not(:disabled),
+            .quiz-btn.primary:hover:not(:disabled) {
+                background: #0f5b52;
+            }
+            .next-row {
+                text-align: right;
+            }
+            .quiz-btn {
+                background: #e8ecf8;
+                color: var(--blue);
+            }
+            .quiz-btn:hover:not(:disabled) {
+                background: #d7e1f8;
+            }
+            .quiz-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            .quiz-nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 24px 0;
+            }
+            .quiz-result-panel {
+                text-align: center;
+            }
+            .quiz-result-panel h2 {
+                color: var(--blue);
+                font-size: 1.45em;
+                margin: 12px 0;
+            }
+            .stars {
+                color: #a56a00;
+                font-size: 2.4em;
+                letter-spacing: 6px;
+                line-height: 1.3;
+            }
+            .result-status {
+                font-weight: 700;
+            }
+            .save-status {
+                font-size: 0.85em;
+                background: #f1f6fa;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 0.9em;
+            }
+            caption {
+                text-align: left;
+                font-weight: 700;
+                color: var(--green);
+                margin-bottom: 8px;
+            }
+            th,
+            td {
+                padding: 11px 12px;
+                border-bottom: 1px solid #dde5ed;
+                text-align: left;
+            }
+            thead th {
+                background: #f2f6fd;
+                color: var(--blue);
+            }
+            details {
+                margin: 12px 0;
+                border: 1px solid #d7e1e9;
+                border-radius: 9px;
+                padding: 12px 16px;
+            }
+            summary {
+                cursor: pointer;
+                font-weight: 650;
+                color: var(--green);
+            }
+            .review-question {
+                font-weight: 650;
+            }
+            .review-choice {
+                font-size: 0.9em;
+            }
+            .review-answer {
+                border-left: 4px solid var(--blue);
+                padding-left: 12px;
+            }
+            .review-section h3 {
+                color: var(--green);
+            }
+            .review-section p {
+                margin: 10px 0;
+            }
+            .footer-note {
+                font-size: 0.8em;
+                color: var(--muted);
+                text-align: center;
+                margin: 20px 0 0;
+            }
+            [hidden] {
+                display: none !important;
+            }
+            :focus-visible {
+                outline: 3px solid #b36c0c;
+                outline-offset: 4px;
+            }
+            .question:focus,
+            .quiz-result-panel h2:focus {
+                outline: none;
+            }
+            .evidence {
+                margin: 0 0 20px;
+            }
+            .evidence table {
+                margin-top: 0;
+            }
+            .evidence caption {
+                font-size: 0.85em;
+                color: var(--muted);
+                font-weight: 400;
+            }
+            .evidence td,
+            .evidence th {
+                vertical-align: top;
+            }
+            @media (max-width: 600px) {
+                body {
+                    padding: 16px 10px;
+                    font-size: 17px;
+                }
+                .quiz-container {
+                    padding: 24px 18px;
+                    border-radius: 14px;
+                }
+                .choice {
+                    padding: 12px;
+                    gap: 10px;
+                }
+                .quiz-nav {
+                    flex-direction: column;
+                }
+                .quiz-nav button {
+                    width: 100%;
+                }
+                .question {
+                    font-size: 1.1em;
+                }
+                .next-btn {
+                    width: 100%;
+                }
+                th,
+                td {
+                    padding: 9px 8px;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    scroll-behavior: auto !important;
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="quiz-container" aria-labelledby="quizTitle">
+            <div class="eyebrow">LearnTrack · Chemistry I · Chapter 2 · Lesson 2</div>
+            <h1 id="quizTitle">Groups, Families, and Periods — Lesson Quiz</h1>
+            <p class="instructions" id="instructions">
+                <strong>10 questions · Pass: 8/10 (80%).</strong> Choose one answer. Your first choice is final for that
+                question; read the feedback before continuing. Each question is worth one point.
+            </p>
+            <p class="progress-text" id="progressText">Question 1 of 10 · 0 answered</p>
+            <div
+                class="progress-wrapper"
+                id="progressMeter"
+                role="progressbar"
+                aria-label="Questions answered"
+                aria-valuemin="0"
+                aria-valuemax="10"
+                aria-valuenow="0"
+            >
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="quizBox"></div>
+            <div class="next-row">
+                <button type="button" id="nextBtn" class="next-btn" hidden disabled>Next Question →</button>
+            </div>
+            <p class="footer-note">Stars: 100% = 3 · 90% = 2 · 80% = 1 · below 80% = 0</p>
+            <noscript><p>This quiz requires JavaScript to show questions and record your choices.</p></noscript>
+        </main>
+        <script>
+            "use strict";
+            // Fixed order: 3 easy, 5 moderate, 2 difficult items. Difficulty is an editorial estimate.
+            // Integration contract retained: quizResult {score, passed}, quizBack, quizNextLesson.
+            const quizData = [
+{
+    "id": "c2l2q01",
+    "topic": "Table structure",
+    "difficulty": "Easy",
+    "q": "In the modern periodic table, a group is a:",
+    "c": [
+        "Vertical column of elements",
+        "Horizontal row of elements",
+        "Set of atoms with identical masses",
+        "List of elements ordered alphabetically"
+    ],
+    a: 0,
+    "e": "A group is a vertical column; modern groups are numbered 1–18.",
+    "why": [
+        "This choice is correct.",
+        "A horizontal row is a period.",
+        "Elements in a group do not all have identical masses.",
+        "The table is ordered by atomic number, not alphabetically."
+    ]
+},
+{
+    "id": "c2l2q02",
+    "topic": "Table structure",
+    "difficulty": "Easy",
+    "q": "What does the atomic number shown on an element tile represent?",
+    "c": [
+        "The number of neutrons in every atom",
+        "The number of protons in each atom",
+        "The mass of one mole in grams",
+        "The row number"
+    ],
+    a: 1,
+    "e": "Atomic number is the number of protons in an atom’s nucleus and identifies the element.",
+    "why": [
+        "Neutron numbers can differ among isotopes.",
+        "This choice is correct.",
+        "Atomic number counts protons; it is not molar mass.",
+        "A row is identified by the period number."
+    ]
+},
+{
+    "id": "c2l2q03",
+    "topic": "Families",
+    "difficulty": "Easy",
+    "q": "Which family consists of elements in group 17?",
+    "c": [
+        "Noble gases",
+        "Alkaline earth metals",
+        "Halogens",
+        "Alkali metals"
+    ],
+    a: 2,
+    "e": "The halogens occupy group 17; examples include fluorine and chlorine.",
+    "why": [
+        "Noble gases are in group 18.",
+        "Alkaline earth metals are in group 2.",
+        "This choice is correct.",
+        "Alkali metals occupy group 1, excluding hydrogen."
+    ]
+},
+{
+    "id": "c2l2q04",
+    "topic": "Locations",
+    "difficulty": "Moderate",
+    "q": "Magnesium (Mg) is in the second column and third row of the periodic table. What is its location?",
+    "c": [
+        "Group 3, period 2",
+        "Group 2, period 3",
+        "Group 2, period 2",
+        "Group 12, period 3"
+    ],
+    a: 1,
+    "e": "The second column is group 2 and the third row is period 3.",
+    "why": [
+        "This reverses the group and period numbers.",
+        "This choice is correct.",
+        "Mg lies in the third row, not the second.",
+        "The second column is group 2, not group 12."
+    ]
+},
+{
+    "id": "c2l2q05",
+    "topic": "Groups and periods",
+    "difficulty": "Moderate",
+    "q": "Which pair belongs to the same group?",
+    "c": [
+        "Sodium (Na) and magnesium (Mg)",
+        "Fluorine (F) and neon (Ne)",
+        "Lithium (Li) and sodium (Na)",
+        "Carbon (C) and oxygen (O)"
+    ],
+    a: 2,
+    "e": "Lithium and sodium are both in group 1, although they are in different periods.",
+    "why": [
+        "Na and Mg share period 3, but they are in different groups.",
+        "F and Ne are in groups 17 and 18.",
+        "This choice is correct.",
+        "C and O are in groups 14 and 16."
+    ]
+},
+{
+    "id": "c2l2q06",
+    "topic": "Groups and periods",
+    "difficulty": "Moderate",
+    "q": "Which pair belongs to the same period?",
+    "c": [
+        "Fluorine (F) and chlorine (Cl)",
+        "Helium (He) and neon (Ne)",
+        "Lithium (Li) and sodium (Na)",
+        "Sodium (Na) and magnesium (Mg)"
+    ],
+    a: 3,
+    "e": "Sodium and magnesium are both in the third horizontal row, period 3.",
+    "why": [
+        "F and Cl share group 17 but occupy different periods.",
+        "He and Ne share group 18 but occupy different periods.",
+        "Li and Na share group 1 but occupy different periods.",
+        "This choice is correct."
+    ]
+},
+{
+    "id": "c2l2q07",
+    "topic": "Families",
+    "difficulty": "Moderate",
+    "q": "Which statement about hydrogen is most accurate?",
+    "c": [
+        "Hydrogen is a nonmetal with distinctive properties, although it is usually placed above group 1",
+        "Hydrogen is an alkali metal because it is above group 1",
+        "Hydrogen is an alkaline earth metal in group 2",
+        "Hydrogen is a noble gas in group 18"
+    ],
+    a: 0,
+    "e": "Hydrogen is generally placed above group 1, but it is a nonmetal and is not an alkali metal.",
+    "why": [
+        "This choice is correct.",
+        "Its position does not make hydrogen an alkali metal.",
+        "Hydrogen is not an alkaline earth metal.",
+        "Hydrogen is not a noble gas."
+    ]
+},
+{
+    "id": "c2l2q08",
+    "topic": "Families",
+    "difficulty": "Moderate",
+    "q": "What is a suitable general description of group 18 elements?",
+    "c": [
+        "Reactive metals that commonly form +1 ions",
+        "Gases that are relatively unreactive under ordinary conditions",
+        "Reactive nonmetals that commonly form −1 ions",
+        "Metals that commonly form +2 ions"
+    ],
+    a: 1,
+    "e": "The group 18 noble gases are relatively unreactive under ordinary conditions.",
+    "why": [
+        "This describes alkali metals, not noble gases.",
+        "This choice is correct.",
+        "This is characteristic of some halogens.",
+        "This is characteristic of many alkaline earth metals."
+    ]
+},
+{
+    "id": "c2l2q09",
+    "topic": "Comparing positions",
+    "difficulty": "Difficult",
+    "q": "Chlorine and fluorine are in group 17; chlorine and sodium are in period 3. Which conclusion follows?",
+    "c": [
+        "Both pairs belong to the halogen family",
+        "Cl and F share a column and often have related chemical properties; Cl and Na share a row",
+        "Cl and Na are in the same group, while Cl and F share a period",
+        "Elements in a period always have identical chemical properties"
+    ],
+    a: 1,
+    "e": "Cl and F are halogens in the same vertical group; Cl and Na share period 3 but occupy different groups.",
+    "why": [
+        "Sodium is an alkali metal, not a halogen.",
+        "This choice is correct.",
+        "This exchanges the meanings of group and period.",
+        "Properties vary across a period."
+    ]
+},
+{
+    "id": "c2l2q10",
+    "topic": "Reading the table",
+    "difficulty": "Difficult",
+    "q": "A learner says neon and chlorine must be in the same group because both are nonmetals. Which response best evaluates the claim?",
+    "c": [
+        "Correct: all nonmetals are in group 18",
+        "Correct: nonmetals always occupy the same vertical column",
+        "Incorrect: neon is in group 18 and chlorine is in group 17, even though both are nonmetals",
+        "Incorrect: neon is a metal and chlorine is a noble gas"
+    ],
+    a: 2,
+    "e": "Neon is a group 18 noble gas and chlorine is a group 17 halogen. Being nonmetals does not place them in the same group.",
+    "why": [
+        "Nonmetals occur in several groups.",
+        "A shared broad classification does not imply the same group.",
+        "This choice is correct.",
+        "Neon is a noble gas and chlorine is a halogen; both are nonmetals."
+    ]
 }
+            ];
+            let answers = Array(quizData.length).fill(null);
+            let resultSent = false;
+            let completed = false;
+            const quizBox = document.getElementById("quizBox");
+            const nextBtn = document.getElementById("nextBtn");
+            const progressText = document.getElementById("progressText");
+            const progressBar = document.getElementById("progressBar");
+            const progressMeter = document.getElementById("progressMeter");
 
-function selectChoice(i) {
-  if (showingExplanation) return;
-  selected = i;
-  document.querySelectorAll(".choice").forEach((btn, idx) => {
-    btn.classList.toggle("selected", idx === i);
-    btn.disabled = true;
-  });
-  const q = quizData[current];
-  const expBox = document.getElementById("explanationBox");
-  const correct = i === q.a;
+            function element(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = text;
+                return node;
+            }
+            function isEmbedded() {
+                return window.parent !== window;
+            }
+            function updateProgress() {
+                const count = answers.filter((value) => value !== null).length;
+                progressBar.style.width = (count / quizData.length) * 100 + "%";
+                progressMeter.setAttribute("aria-valuenow", String(count));
+                progressMeter.setAttribute("aria-valuemax", String(quizData.length));
+                progressMeter.setAttribute("aria-valuetext", `${count} of ${quizData.length} questions answered`);
+                progressText.textContent = completed
+                    ? `Quiz completed · ${count} of ${quizData.length} answered`
+                    : `Question ${current + 1} of ${quizData.length} · ${count} answered`;
+            }
+            function renderEvidence(data) {
+                const wrap = element("div", "table-wrap evidence");
+                wrap.tabIndex = 0;
+                wrap.setAttribute("role", "region");
+                wrap.setAttribute("aria-label", data.caption);
+                const table = element("table");
+                table.append(element("caption", "", data.caption));
+                const head = element("thead");
+                const heading = element("tr");
+                data.headers.forEach((text) => {
+                    const cell = element("th", "", text);
+                    cell.scope = "col";
+                    heading.append(cell);
+                });
+                head.append(heading);
+                table.append(head);
+                const body = element("tbody");
+                data.rows.forEach((row) => {
+                    const tr = element("tr");
+                    row.forEach((text, i) => {
+                        const td = element(i === 0 ? "th" : "td", "", text);
+                        if (i === 0) td.scope = "row";
+                        tr.append(td);
+                    });
+                    body.append(tr);
+                });
+                table.append(body);
+                wrap.append(table);
+                return wrap;
+            }
+            function showQuestion(focus = false) {
+                const q = quizData[current];
+                quizBox.replaceChildren();
+                const heading = element("h2", "question", q.q);
+                heading.id = "questionTitle";
+                heading.tabIndex = -1;
+                const choices = element("div", "choices");
+                choices.setAttribute("role", "group");
+                choices.setAttribute("aria-labelledby", "questionTitle");
+                q.c.forEach((text, i) => {
+                    const button = element("button", "choice");
+                    button.type = "button";
+                    button.setAttribute("data-choice", String(i));
+                    const body = element("span", "choice-body");
+                    body.append(element("span", "choice-label", text), element("span", "choice-status"));
+                    button.append(body);
+                    button.addEventListener("click", () => selectChoice(i));
+                    choices.append(button);
+                });
+                const feedback = element("div", "explanation");
+                feedback.id = "explanationBox";
+                feedback.hidden = true;
+                feedback.tabIndex = -1;
+                feedback.setAttribute("role", "status");
+                feedback.setAttribute("aria-live", "polite");
+                feedback.setAttribute("aria-atomic", "true");
+                quizBox.append(heading);
+                if (q.evidence) quizBox.append(renderEvidence(q.evidence));
+                quizBox.append(choices, feedback);
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                nextBtn.textContent = current === quizData.length - 1 ? "View Results →" : "Next Question →";
+                updateProgress();
+                if (focus) heading.focus();
+            }
+            function selectChoice(index) {
+                if (completed || answers[current] !== null || !Number.isInteger(index) || index < 0 || index > 3)
+                    return;
+                const q = quizData[current];
+                answers[current] = index;
+                const correct = index === q.a;
+                quizBox.querySelectorAll(".choice").forEach((button, i) => {
+                    button.disabled = true;
+                    const status = button.querySelector(".choice-status");
+                    if (i === q.a) {
+                        button.classList.add("correct");
+                        status.textContent = correct ? "✓ Your answer — correct" : "✓ Correct answer";
+                    } else if (i === index) {
+                        button.classList.add("incorrect");
+                        status.textContent = "✗ Your answer — incorrect";
+                    }
+                });
+                const feedback = document.getElementById("explanationBox");
+                feedback.classList.toggle("incorrect-feedback", !correct);
+                feedback.append(element("h3", "", correct ? "Correct." : "Not quite."));
+                if (!correct) feedback.append(element("p", "", q.why[index]));
+                feedback.append(
+                    element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                    element("p", "", q.e)
+                );
+                feedback.hidden = false;
+                nextBtn.hidden = false;
+                nextBtn.disabled = false;
+                updateProgress();
+                feedback.focus();
+            }
+            function nextQuestion() {
+                if (completed || answers[current] === null) return;
+                if (current === quizData.length - 1) showResult();
+                else {
+                    current += 1;
+                    showQuestion(true);
+                }
+            }
+            function starCount(percent) {
+                return percent === 100 ? 3 : percent >= 90 ? 2 : percent >= 80 ? 1 : 0;
+            }
+            function getScore() {
+                return answers.reduce((total, value, index) => total + (value === quizData[index].a ? 1 : 0), 0);
+            }
+            function sendResult(percent, passed) {
+                if (resultSent || !isEmbedded()) return;
+                // Same message and score format used by the Organic Chemistry quizzes.
+                window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+                resultSent = true;
+            }
+            function showResult() {
+                if (completed || answers.some((value) => value === null)) return;
+                completed = true;
+                const score = getScore();
+                const percent = Math.round((score / quizData.length) * 100);
+                const passed = percent >= PASS_PERCENT;
+                const stars = starCount(percent);
+                quizBox.replaceChildren();
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                updateProgress();
+                const result = element("section", "quiz-result-panel");
+                const starDisplay = element("div", "stars", "★".repeat(stars) + "☆".repeat(3 - stars));
+                starDisplay.setAttribute("role", "img");
+                starDisplay.setAttribute("aria-label", `${stars} out of 3 stars`);
+                const title = element("h2", "result", `You scored ${score}/${quizData.length} (${percent}%)`);
+                title.id = "resultTitle";
+                title.tabIndex = -1;
+                result.setAttribute("aria-labelledby", "resultTitle");
+                const outcome = passed
+                    ? "Passed — you met the 80% target."
+                    : "Not yet passed — review the explanations, then retry.";
+                const status = element("p", "save-status");
+                status.id = "saveStatus";
+                status.setAttribute("role", "status");
+                status.textContent = isEmbedded()
+                    ? "Waiting for LearnTrack to verify and save your answers..."
+                    : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                result.append(starDisplay, title, element("p", "result-status", outcome), status);
+                const nav = element("nav", "quiz-nav");
+                nav.setAttribute("aria-label", "Quiz result actions");
+                const back = element("button", "quiz-btn", "← Back to Lesson");
+                back.type = "button";
+                back.id = "backBtn";
+                back.disabled = !isEmbedded();
+                const retry = element("button", "quiz-btn", "Retry Quiz");
+                retry.type = "button";
+                retry.id = "retryBtn";
+                retry.disabled = false;
+                const next = element("button", "quiz-btn primary", "Next Lesson →");
+                next.type = "button";
+                next.id = "nextLessonBtn";
+                next.disabled = true;
+                back.addEventListener("click", () => {
+                    if (isEmbedded()) window.parent.postMessage({ type: "quizBack" }, "*");
+                });
+                retry.addEventListener("click", retryQuiz);
+                next.addEventListener("click", () => {
+                    if (passed && isEmbedded()) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+                });
+                nav.append(back, retry, next);
+                result.append(nav);
+                quizBox.append(result);
 
-  if (correct) score++;
-
-  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
-  expBox.style.display = "block";
-  nextBtn.style.display = "inline-block";
-  showingExplanation = true;
-}
-
-nextBtn.addEventListener("click", () => {
-  current++;
-  if (current < quizData.length) showQuestion();
-  else showResult();
-});
-
-function updateProgress() {
-  const percent = (current / quizData.length) * 100;
-  progressBar.style.width = percent + "%";
-  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
-}
-
-function getStarRating(percent) {
-  if (percent === 100) return "⭐️⭐️⭐️";
-  else if (percent >= 90) return "⭐️⭐️☆";
-  else if (percent >= 80) return "⭐️☆☆";
-  else return "☆☆☆";
-}
-
-let resultSent = false;
-
-function showResult() {
-  progressBar.style.width = "100%";
-  progressText.textContent = "Quiz Completed";
-
-  const percent = Math.round((score / quizData.length) * 100);
-  const passed = percent >= 80;
-
-  quizBox.innerHTML = `
-    <div class='stars'>${getStarRating(percent)}</div>
-    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
-    <div class='quiz-nav'>
-      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
-      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
-      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
-    </div>
-  `;
-
-  nextBtn.style.display = "none";
-
-  if (!resultSent) {
-    resultSent = true;
-    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
-  }
-
-  setTimeout(() => {
-    const status = document.getElementById("saveStatus");
-    const backBtn = document.getElementById("backBtn");
-    const retryBtn = document.getElementById("retryBtn");
-    const nextLessonBtn = document.getElementById("nextLessonBtn");
-
-    if (status) status.textContent = passed
-      ? "Progress sent. You may proceed after it is saved."
-      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
-
-    if (backBtn) backBtn.disabled = false;
-    if (retryBtn) retryBtn.disabled = false;
-    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
-
-    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
-    if (backBtn) backBtn.addEventListener("click", () =>
-      window.parent.postMessage({ type: "quizBack" }, "*")
-    );
-    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
-      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
-    });
-  }, 1200);
-}
-
-function retryQuiz() {
-  resultSent = false;
-  current = 0;
-  score = 0;
-  showQuestion();
-}
-
-showQuestion();
-</script>
-</body>
+                // Send once before building optional review sections, matching the
+                // established Organic Chemistry quiz integration.
+                sendResult(percent, passed);
+                renderTopicSummary();
+                renderReview();
+                title.focus();
+            }
+            function renderTopicSummary() {
+                const wrap = element("div", "table-wrap");
+                const table = element("table");
+                table.append(element("caption", "", "Your review priorities"));
+                const head = element("thead");
+                const header = element("tr");
+                ["Area", "Score", "Next step"].forEach((text) => {
+                    const th = element("th", "", text);
+                    th.scope = "col";
+                    header.append(th);
+                });
+                head.append(header);
+                table.append(head);
+                const body = element("tbody");
+                [...new Set(quizData.map((q) => q.topic))].forEach((topic) => {
+                    const indices = quizData.map((q, i) => (q.topic === topic ? i : -1)).filter((i) => i >= 0);
+                    const correct = indices.filter((i) => answers[i] === quizData[i].a).length;
+                    const row = element("tr");
+                    const name = element("th", "", topic);
+                    name.scope = "row";
+                    row.append(
+                        name,
+                        element("td", "", `${correct}/${indices.length}`),
+                        element(
+                            "td",
+                            "",
+                            correct === indices.length
+                                ? "All correct this attempt"
+                                : "Review the related explanations below"
+                        )
+                    );
+                    body.append(row);
+                });
+                table.append(body);
+                wrap.append(table);
+                quizBox.append(wrap);
+            }
+            function renderReview() {
+                const section = element("section", "review-section");
+                section.append(
+                    element("h3", "", "Review your answers"),
+                    element(
+                        "p",
+                        "small",
+                        "Open any question to compare your answer with the explanation. Retry starts a new attempt with the same question and choice order."
+                    )
+                );
+                quizData.forEach((q, index) => {
+                    const correct = answers[index] === q.a;
+                    const details = element("details");
+                    details.append(
+                        element("summary", "", `Question ${index + 1} · ${correct ? "Correct" : "Review needed"}`),
+                        element("p", "review-question", q.q),
+                        element(
+                            "p",
+                            "review-choice",
+                            `Your answer: ${letters[answers[index]]}. ${q.c[answers[index]]}`
+                        ),
+                        element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                        element("p", "review-answer", q.e)
+                    );
+                    if (q.evidence) details.querySelector(".review-question").after(renderEvidence(q.evidence));
+                    const all = element("details");
+                    all.append(element("summary", "", "Why each option fits or does not fit"));
+                    q.c.forEach((text, i) =>
+                        all.append(element("p", "review-choice", `${letters[i]}. ${text} — ${q.why[i]}`))
+                    );
+                    details.append(all);
+                    section.append(details);
+                });
+                quizBox.append(section);
+            }
+            function retryQuiz() {
+                current = 0;
+                answers = Array(quizData.length).fill(null);
+                completed = false;
+                resultSent = false;
+                showQuestion(true);
+            }
+            nextBtn.addEventListener("click", nextQuestion);
+            showQuestion();
+        </script>
+    </body>
 </html>
