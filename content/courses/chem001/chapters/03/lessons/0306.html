@@ -1,686 +1,770 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<title>Chapter 6 Summary: Atomic Models and Electron Structure</title>
-
-<style>
-body{
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
-  padding:24px;
-  line-height:1.8;
-  font-size:20px;
-}
-
-h1{color:#136f63;}
-h2{color:#136f63;margin-top:1.4em;}
-h3{color:#174ea6;}
-
-.section{margin-bottom:30px;}
-
-.key-box{
-  background:#e8f7f5;
-  border-left:6px solid #136f63;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.example-box{
-  background:#fff;
-  border-left:5px solid #2b7de9;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.visual-box{
-  background:#fff;
-  border-radius:12px;
-  padding:14px;
-  margin:16px 0;
-  border:1px solid #ddd;
-}
-
-.lesson-img{
-  width:100%;
-  max-width:720px;
-  display:block;
-  margin:0 auto;
-  border-radius:12px;
-}
-
-.caption{
-  text-align:center;
-  font-size:0.9em;
-  color:#555;
-}
-
-.activity{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  margin:14px 0;
-}
-
-.toggle-btn{
-  background:#136f63;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.answer{
-  display:none;
-  margin-top:10px;
-  background:#eef3ff;
-  padding:10px;
-  border-radius:6px;
-}
-
-.formula{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.formula .equation-line{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:8px 0;
-}
-
-.formula .fraction{
-  display:inline-grid;
-  grid-template-rows:auto auto;
-  min-width:max-content;
-  text-align:center;
-  line-height:1.2;
-  vertical-align:middle;
-}
-
-.formula .fraction-top{
-  border-bottom:2px solid currentColor;
-  padding:0 10px 5px;
-}
-
-.formula .fraction-bottom{
-  padding:5px 10px 0;
-}
-
-.answer .formula{
-  font-size:20px;
-  margin:8px 0;
-}
-
-.answer ol{
-  margin-top:8px;
-}
-
-.quiz-button{
-  background:#136f63;
-  color:white;
-  padding:12px 22px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:16px 0;
-  background:#fff;
-}
-
-th,td{
-  border:1px solid #ddd;
-  padding:10px;
-}
-
-th{background:#e8f7f5;}
-
-iframe{
-  width:100%;
-  max-width:100%;
-}
-</style>
-</head>
-<body>
-
-<h1>Chapter Summary: The Mole Concept and Chemical Quantities</h1>
-
-<div class="key-box">
-<strong>Chapter Big Idea</strong><br><br>
-
-Chemists cannot directly count atoms, molecules, or ions because these particles are extremely small and exist in enormous numbers. The mole concept provides a bridge between the microscopic world of particles and the macroscopic world of measurable quantities such as mass. By understanding moles, molar mass, particle counting, empirical formulas, molecular formulas, and percent composition, chemists can determine the composition and quantity of substances involved in chemical processes.
-</div>
-
-<div class="section">
-<h2>1. The Mole Concept and Avogadro's Number</h2>
-
-<p>
-The mole is the SI unit used to measure the amount of substance. It functions as a counting unit in chemistry, similar to how a dozen represents 12 objects.
-</p>
-
-<div class="key-box">
-1 mole = 6.022 × 10²³ representative particles
-</div>
-
-<p>
-This number is known as <strong>Avogadro's Number</strong>.
-</p>
-
-<table>
-<tr>
-<th>Substance Type</th>
-<th>Representative Particle</th>
-</tr>
-
-<tr>
-<td>Elements</td>
-<td>Atoms</td>
-</tr>
-
-<tr>
-<td>Molecular Compounds</td>
-<td>Molecules</td>
-</tr>
-
-<tr>
-<td>Ionic Compounds</td>
-<td>Formula Units</td>
-</tr>
-
-</table>
-
-<div class="example-box">
-<h3>Examples</h3>
-
-<ul>
-<li>1 mol Fe = 6.022 × 10²³ iron atoms</li>
-<li>1 mol H₂O = 6.022 × 10²³ water molecules</li>
-<li>1 mol NaCl = 6.022 × 10²³ formula units</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>2. Converting Between Moles and Particles</h2>
-
-<p>
-Avogadro's number allows us to convert between moles and particles.
-</p>
-
-<div class="formula">
-Particles = Moles × 6.022 × 10²³
-</div>
-
-<br>
-
-<div class="formula">
-Moles = Particles ÷ 6.022 × 10²³
-</div>
-
-<div class="example-box">
-
-<h3>Example</h3>
-
-<p>
-How many molecules are in 2.00 mol of CO₂?
-</p>
-
-<div class="formula">
-2.00 × 6.022 × 10²³
-=
-1.204 × 10²⁴ molecules
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>3. Amount of Substance and Molar Mass</h2>
-
-<p>
-Molar mass is the mass of one mole of a substance and provides the connection between mass and amount of substance.
-</p>
-
-<div class="key-box">
-Unit of Molar Mass: g/mol
-</div>
-
-<p>
-Relationship among mass, moles, and molar mass:
-</p>
-
-<div class="formula">
-n = m ÷ M
-</div>
-
-<br>
-
-<div class="formula">
-m = n × M
-</div>
-
-<table>
-<tr>
-<th>Symbol</th>
-<th>Meaning</th>
-</tr>
-
-<tr>
-<td>n</td>
-<td>Moles</td>
-</tr>
-
-<tr>
-<td>m</td>
-<td>Mass</td>
-</tr>
-
-<tr>
-<td>M</td>
-<td>Molar Mass</td>
-</tr>
-
-</table>
-
-<div class="example-box">
-
-<h3>Example</h3>
-
-<div class="formula">
-24.0 g C ÷ 12.01 g/mol
-=
-2.00 mol C
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>4. Counting Atoms and Molecules</h2>
-
-<p>
-Chemical formulas indicate how many atoms of each element are present in a molecule or formula unit.
-</p>
-
-<table>
-<tr>
-<th>Formula</th>
-<th>Total Atoms</th>
-</tr>
-
-<tr>
-<td>H₂O</td>
-<td>3</td>
-</tr>
-
-<tr>
-<td>CO₂</td>
-<td>3</td>
-</tr>
-
-<tr>
-<td>NH₃</td>
-<td>4</td>
-</tr>
-
-<tr>
-<td>C₆H₁₂O₆</td>
-<td>24</td>
-</tr>
-
-</table>
-
-<div class="key-box">
-Subscripts indicate the number of atoms of each element present in one molecule.
-</div>
-
-<p>
-When counting atoms from moles, first determine the number of molecules and then multiply by the appropriate subscript.
-</p>
-
-<div class="example-box">
-
-<h3>Example</h3>
-
-<p>
-How many hydrogen atoms are present in 1.00 mol of H₂O?
-</p>
-
-<div class="formula">
-6.022 × 10²³ molecules × 2
-=
-1.204 × 10²⁴ hydrogen atoms
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>5. Empirical and Molecular Formulas</h2>
-
-<table>
-<tr>
-<th>Empirical Formula</th>
-<th>Molecular Formula</th>
-</tr>
-
-<tr>
-<td>Simplest whole-number ratio</td>
-<td>Actual number of atoms</td>
-</tr>
-
-<tr>
-<td>CH₂O</td>
-<td>C₆H₁₂O₆</td>
-</tr>
-
-<tr>
-<td>CH</td>
-<td>C₆H₆</td>
-</tr>
-
-<tr>
-<td>NO₂</td>
-<td>N₂O₄</td>
-</tr>
-
-</table>
-
-<div class="key-box">
-The molecular formula is a whole-number multiple of the empirical formula.
-</div>
-
-<div class="formula">
-Molecular Formula = (Empirical Formula)<sub>n</sub>
-</div>
-
-<br>
-
-<div class="formula">
-n = Molecular Mass ÷ Empirical Formula Mass
-</div>
-
-</div>
-
-<div class="section">
-<h2>6. Determining Empirical Formulas from Percent Composition</h2>
-
-<p>
-Chemists often determine formulas from experimental composition data.
-</p>
-
-<div class="key-box">
-
-General Procedure:
-
-<ol>
-<li>Assume a 100 g sample.</li>
-<li>Convert grams to moles.</li>
-<li>Divide all mole values by the smallest value.</li>
-<li>Convert ratios to whole numbers.</li>
-<li>Write the empirical formula.</li>
-</ol>
-
-</div>
-
-<div class="example-box">
-
-<h3>Example</h3>
-
-<p>
-40.0% C, 6.7% H, 53.3% O
-</p>
-
-<p>
-After conversion and simplification:
-</p>
-
-<div class="formula">
-CH₂O
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>7. Molar Mass of Compounds</h2>
-
-<p>
-The molar mass of a compound is obtained by adding the molar masses of all atoms in the formula.
-</p>
-
-<div class="example-box">
-
-<h3>Example: Water</h3>
-
-<div class="formula">
-(2 × 1.01) + 16.00
-=
-18.02 g/mol
-</div>
-
-</div>
-
-<div class="example-box">
-
-<h3>Example: Carbon Dioxide</h3>
-
-<div class="formula">
-12.01 + (2 × 16.00)
-=
-44.01 g/mol
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>8. Percent Composition</h2>
-
-<p>
-Percent composition describes the percentage by mass contributed by each element in a compound.
-</p>
-
-<div class="formula">
-Percent Composition =
-(Element Mass ÷ Compound Molar Mass)
-× 100
-</div>
-
-<div class="example-box">
-
-<h3>Example: Water</h3>
-
-<div class="formula">
-% H =
-(2.02 ÷ 18.02) × 100
-=
-11.21%
-</div>
-
-<br>
-
-<div class="formula">
-% O =
-(16.00 ÷ 18.02) × 100
-=
-88.79%
-</div>
-
-</div>
-
-<div class="key-box">
-The percentages of all elements in a compound should total approximately 100%.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Common Mistakes to Avoid</h2>
-
-<div class="key-box">
-
-<ul>
-<li>Confusing atoms, molecules, and formula units.</li>
-<li>Using multiplication instead of division when converting particles to moles.</li>
-<li>Ignoring subscripts when counting atoms.</li>
-<li>Using atomic number instead of atomic mass.</li>
-<li>Forgetting to calculate molar mass before determining percent composition.</li>
-<li>Confusing empirical formulas with molecular formulas.</li>
-<li>Rounding mole ratios too early when deriving formulas.</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Chapter Mastery Check</h2>
-
-<div class="activity">
-
-<p><strong>1.</strong> How many molecules are present in 2.00 mol of NH₃?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-<div class="formula">
-2.00 × 6.022 × 10²³
-=
-1.204 × 10²⁴ molecules
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>2.</strong> Calculate the molar mass of CH₄.</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-<div class="formula">
-12.01 + (4 × 1.01)
-=
-16.05 g/mol
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>3.</strong> What is the empirical formula of C₂H₄?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-<div class="formula">
-CH₂
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>4.</strong> Which contains more particles: 1 mol H₂O or 1 mol CO₂?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-Both contain the same number of particles:
-
-<div class="formula">
-6.022 × 10²³ particles
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>5.</strong> Why is percent composition useful?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-Percent composition helps determine the composition, purity, and identity of chemical substances.
-
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Chapter Summary</h2>
-
-<ul>
-<li>The mole is the SI unit used to measure the amount of substance.</li>
-<li>One mole contains 6.022 × 10²³ representative particles.</li>
-<li>Molar mass connects grams and moles.</li>
-<li>Particle counting requires Avogadro's number and proper interpretation of chemical formulas.</li>
-<li>Empirical formulas show the simplest atom ratios, while molecular formulas show actual atom counts.</li>
-<li>Percent composition reveals how much each element contributes to a compound's mass.</li>
-<li>Together, these concepts allow chemists to determine the composition and quantity of substances accurately.</li>
-</ul>
-
-</div>
-<div style="text-align:center;margin-top:30px;">
-	<button class="quiz-button" id="takeQuizBtn">
-
-Take the Assessment →
-
-</button>
-
-</div>
-
-<script>
-function toggleAnswer(btn){
-  const ans = btn.nextElementSibling;
-  ans.style.display = ans.style.display === "block" ? "none" : "block";
-}
-
-document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
-  const quizId = e.target.dataset.quiz;
-  window.parent.postMessage({
-    type:"openQuiz",
-    quiz:quizId
-  },"*");
-});
-</script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 3 Lesson 6: Half-Life, Medical Applications, and Risks</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .nuclide {
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                align-items: center;
+                color: #174ea6;
+                font-weight: 700;
+                vertical-align: middle;
+                line-height: 1;
+            }
+            .nuclide .numbers {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                font-size: 0.56em;
+                gap: 0.14em;
+            }
+            .nuclide .symbol {
+                font-size: 1.8em;
+            }
+            .nuclide .charge {
+                align-self: start;
+                font-size: 0.55em;
+            }
+            .diagram {
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 3 · Lesson 6 · SAS #11</div>
+                <h1>Half-Life, Medical Applications, and Risks</h1>
+                <p>
+                    How can a radioactive tracer help doctors see inside the body? Learn how half-life helps describe
+                    radioactive decay and why benefits and risks must be considered together.
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#objectives">Objectives</a><a href="#halflife">Half-life</a
+                    ><a href="#examples">Worked examples</a><a href="#medicine">Medical uses</a
+                    ><a href="#risks">Risks</a><a href="#practice">Practice</a>
+                </nav>
+            </header>
+            <section class="card" id="objectives">
+                <h2>Learning objectives</h2>
+                <p>After this lesson, you should be able to:</p>
+                <ul>
+                    <li>Explain half-life and distinguish random individual decay from predictable sample behavior.</li>
+                    <li>
+                        Calculate the amount or percentage of parent isotope remaining after a given number of
+                        half-lives.
+                    </li>
+                    <li>Use elapsed time and half-life together and distinguish remaining from decayed amounts.</li>
+                    <li>Describe examples of medical imaging and treatment using radioisotopes.</li>
+                    <li>Explain how exposure, dose, and protective measures relate to risk.</li>
+                </ul>
+                <div class="note">
+                    <strong>Connection to Lesson 5:</strong> Radioisotopes have unstable nuclei and can emit ionizing
+                    radiation. Half-life describes the timing of nuclear decay, while the type and energy of radiation
+                    affect its use and hazards.
+                </div>
+            </section>
+            <section class="card" id="halflife">
+                <h2>1. What does half-life mean?</h2>
+                <p>
+                    The <strong>physical half-life</strong> is the time required for half the radioactive nuclei of a
+                    given nuclide in a large sample to decay. The amount of the original <em>parent</em> nuclide and its
+                    activity each fall by half over one physical half-life, assuming no addition or removal and no other
+                    process changes the sample.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Elapsed half-lives</th>
+                                <th>Fraction of parent remaining</th>
+                                <th>Percent remaining</th>
+                                <th>Example: starting with 80 g</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>100%</td>
+                                <td>80 g</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1/2</td>
+                                <td>50%</td>
+                                <td>40 g</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>1/4</td>
+                                <td>25%</td>
+                                <td>20 g</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>1/8</td>
+                                <td>12.5%</td>
+                                <td>10 g</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>1/16</td>
+                                <td>6.25%</td>
+                                <td>5 g</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    The sample is halved repeatedly; it does not lose the same original amount at every step. Each
+                    nucleus decays randomly, but the behavior of a large population is predictable.
+                </p>
+                <div class="note">
+                    After one half-life, half the <em>parent</em> nuclei remain; the other half have changed into
+                    daughter products. The material does not simply vanish, and the model does not imply that the whole
+                    sample is nonradioactive after one or two half-lives. Daughter products may themselves be
+                    radioactive.
+                </div>
+            </section>
+            <section class="card" id="examples">
+                <h2>2. Solve half-life problems</h2>
+                <p class="formula">
+                    number of half-lives, n = elapsed time ÷ half-life<br />parent amount remaining = initial amount ×
+                    (1/2)<sup>n</sup>
+                </p>
+                <p>
+                    Use consistent time units. For elapsed times that are whole numbers of half-lives, repeated halving
+                    is often the easiest method.
+                </p>
+                <div class="worked">
+                    <h3>Example 1 · Amount remaining</h3>
+                    <p>
+                        A sample begins with 120 g of a parent radioisotope. Its half-life is 4 hours. How much parent
+                        isotope remains after 12 hours?
+                    </p>
+                    <ol>
+                        <li>n = 12 h ÷ 4 h = 3 half-lives.</li>
+                        <li>120 g → 60 g → 30 g → <strong>15 g</strong>.</li>
+                        <li>Check: 120 × (1/2)³ = 15 g. This represents 12.5% remaining.</li>
+                    </ol>
+                </div>
+                <div class="worked">
+                    <h3>Example 2 · Percentage decayed</h3>
+                    <p>
+                        A sample has a half-life of 10 days. After 20 days, what percentage of the initial parent nuclei
+                        has decayed?
+                    </p>
+                    <p>
+                        20 ÷ 10 = 2 half-lives. The remaining fraction is (1/2)² = 1/4 = 25%. The fraction that has
+                        decayed is 100% − 25% = <strong>75%</strong>.
+                    </p>
+                </div>
+                <div class="worked">
+                    <h3>Example 3 · Find elapsed time</h3>
+                    <p>
+                        A sample decreases from 200 mg to 25 mg of parent isotope. If its half-life is 3 days, how much
+                        time has elapsed?
+                    </p>
+                    <p>200 → 100 → 50 → 25 mg: three halvings. Time = 3 × 3 days = <strong>9 days</strong>.</p>
+                </div>
+                <div class="practice">
+                    <h3>Try it</h3>
+                    <p>A 64 mg parent sample has a half-life of 6 hours. How much remains after 18 hours?</p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>18 ÷ 6 = 3 half-lives. 64 → 32 → 16 → <strong>8 mg</strong> remains.</p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="medicine">
+                <h2>3. Why radioisotopes are useful in medicine</h2>
+                <p>
+                    In nuclear medicine, a <strong>radiopharmaceutical</strong> combines a radioactive nuclide with a
+                    chemical form chosen for its biological behavior. Tracers can help image bodily processes; selected
+                    radioactive substances can also deliver treatment. The medical team chooses and controls the
+                    procedure.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Example</th>
+                                <th>Use and principle</th>
+                                <th>Half-life connection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Technetium-99m</td>
+                                <td>
+                                    Used in many diagnostic imaging studies; gamma photons emitted by the tracer can be
+                                    detected by specialized cameras.
+                                </td>
+                                <td>
+                                    Physical half-life about 6 hours: long enough for preparation and imaging but short
+                                    enough for activity to decrease relatively quickly.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Iodine-131</td>
+                                <td>
+                                    Radioiodine can be used to treat an overactive thyroid or certain thyroid cancers.
+                                    Thyroid tissue takes up iodine; emitted beta radiation contributes to the treatment.
+                                </td>
+                                <td>
+                                    Physical half-life about 8 days; duration, uptake, dose, and follow-up all matter.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cobalt-60</td>
+                                <td>
+                                    A sealed source emits gamma radiation that can be directed at tumors in
+                                    external-beam radiotherapy.
+                                </td>
+                                <td>
+                                    Its longer half-life supports use as a source over time; the patient does not take
+                                    the sealed source into the body.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="note">
+                    A short physical half-life alone does not guarantee a low dose or suitability. Radiation type,
+                    energy, administered activity, chemical form, organ uptake, and how quickly the body removes the
+                    material matter. Biological elimination and physical decay together affect how long activity remains
+                    in the body.
+                </div>
+                <div class="practice">
+                    <h3>Think like a scientist</h3>
+                    <p>Why might a gamma-emitting tracer be useful for imaging?</p>
+                    <details>
+                        <summary>Show a possible answer</summary>
+                        <p>
+                            Gamma photons can travel out of the body and be detected by an external camera, allowing the
+                            distribution of a suitable tracer to be imaged. The procedure still involves exposure and
+                            must be justified and controlled.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="risks">
+                <h2>4. Radiation risks and protection</h2>
+                <p>
+                    Ionizing radiation can damage cells and DNA. Health effects depend on absorbed dose, dose rate,
+                    radiation type and energy, affected tissue, and whether exposure is internal or external. Higher
+                    doses can cause tissue injury; radiation exposure can also increase the chance of later cancer. The
+                    nature and magnitude of risk depend on the circumstances.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Protection principle</th>
+                                <th>Meaning</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Time</td>
+                                <td>Limit unnecessary time near a source.</td>
+                                <td>A trained worker prepares before entering an area.</td>
+                            </tr>
+                            <tr>
+                                <td>Distance</td>
+                                <td>Increase distance from an external source when practical.</td>
+                                <td>Use remote handling equipment as directed.</td>
+                            </tr>
+                            <tr>
+                                <td>Shielding</td>
+                                <td>Use suitable material and thickness for the radiation.</td>
+                                <td>Facilities select appropriate barriers based on source and radiation energy.</td>
+                            </tr>
+                            <tr>
+                                <td>Prevent contamination</td>
+                                <td>
+                                    Keep radioactive material from entering or spreading onto the body and surroundings.
+                                </td>
+                                <td>Follow institutional procedures for containment and monitoring.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    <strong>Exposure versus contamination:</strong> Exposure means radiation reaches the body.
+                    Contamination means radioactive material is on or inside a person or object. An external exposure
+                    does not necessarily make a person radioactive.
+                </p>
+                <div class="note">
+                    These are general educational principles. Medical use and radioactive sources require trained
+                    professionals, applicable local rules, and specific procedures; a patient should follow their care
+                    team’s instructions.
+                </div>
+            </section>
+            <section class="card" id="practice">
+                <h2>5. Practice and drills</h2>
+                <p>
+                    Choose an answer and select <strong>Check answer</strong>. These practice activities provide
+                    feedback but do not record a quiz score.
+                </p>
+                <div class="practice" data-quiz="q1">
+                    <fieldset>
+                        <legend>1. A parent sample starts at 80 g. How much remains after 3 half-lives?</legend>
+                        <label><input type="radio" name="q1" value="0" /> 40 g</label
+                        ><label><input type="radio" name="q1" value="1" /> 20 g</label
+                        ><label><input type="radio" name="q1" value="2" /> 10 g</label
+                        ><label><input type="radio" name="q1" value="3" /> 5 g</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q2">
+                    <fieldset>
+                        <legend>2. A nuclide has a half-life of 4 hours. How many half-lives pass in 12 hours?</legend>
+                        <label><input type="radio" name="q2" value="0" /> 2</label
+                        ><label><input type="radio" name="q2" value="1" /> 3</label
+                        ><label><input type="radio" name="q2" value="2" /> 4</label
+                        ><label><input type="radio" name="q2" value="3" /> 8</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q3">
+                    <fieldset>
+                        <legend>3. What fraction remains after two half-lives?</legend>
+                        <label><input type="radio" name="q3" value="0" /> 1/2</label
+                        ><label><input type="radio" name="q3" value="1" /> 1/4</label
+                        ><label><input type="radio" name="q3" value="2" /> 1/3</label
+                        ><label><input type="radio" name="q3" value="3" /> 3/4</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q4">
+                    <fieldset>
+                        <legend>4. If 25% of parent nuclei remain, what percentage has decayed?</legend>
+                        <label><input type="radio" name="q4" value="0" /> 25%</label
+                        ><label><input type="radio" name="q4" value="1" /> 50%</label
+                        ><label><input type="radio" name="q4" value="2" /> 75%</label
+                        ><label><input type="radio" name="q4" value="3" /> 100%</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q5">
+                    <fieldset>
+                        <legend>
+                            5. A sample decreases from 200 mg to 25 mg. If the half-life is 3 days, what elapsed time is
+                            required?
+                        </legend>
+                        <label><input type="radio" name="q5" value="0" /> 3 days</label
+                        ><label><input type="radio" name="q5" value="1" /> 6 days</label
+                        ><label><input type="radio" name="q5" value="2" /> 9 days</label
+                        ><label><input type="radio" name="q5" value="3" /> 12 days</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q6">
+                    <fieldset>
+                        <legend>6. Why can a gamma-emitting tracer be useful for medical imaging?</legend>
+                        <label><input type="radio" name="q6" value="0" /> It guarantees zero exposure</label
+                        ><label
+                            ><input type="radio" name="q6" value="1" /> Some emitted photons can be detected outside the
+                            body</label
+                        ><label
+                            ><input type="radio" name="q6" value="2" /> It changes every isotope into a stable isotope
+                            immediately</label
+                        ><label
+                            ><input type="radio" name="q6" value="3" /> It can be seen directly without a
+                            detector</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q7">
+                    <fieldset>
+                        <legend>7. Which statement about half-life and medical risk is correct?</legend>
+                        <label
+                            ><input type="radio" name="q7" value="0" /> A shorter half-life always guarantees no
+                            risk</label
+                        ><label
+                            ><input type="radio" name="q7" value="1" /> Dose and risk also depend on radiation,
+                            activity, uptake, and elimination</label
+                        ><label
+                            ><input type="radio" name="q7" value="2" /> Any tracer remains in the body solely by
+                            physical decay</label
+                        ><label><input type="radio" name="q7" value="3" /> Medical exposure is never justified</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q8">
+                    <fieldset>
+                        <legend>8. What is radioactive contamination?</legend>
+                        <label
+                            ><input type="radio" name="q8" value="0" /> Radioactive material on or inside a person or
+                            object</label
+                        ><label><input type="radio" name="q8" value="1" /> Any radiation reaching the body</label
+                        ><label><input type="radio" name="q8" value="2" /> Any ordinary medical scan</label
+                        ><label
+                            ><input type="radio" name="q8" value="3" /> An atom having more neutrons than protons</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Apply your understanding</h3>
+                    <p>
+                        A 96 mg sample has a half-life of 5 days. How much parent isotope remains after 15 days, and
+                        what percentage has decayed?
+                    </p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            15 ÷ 5 = 3 half-lives; 96 → 48 → 24 → <strong>12 mg remains</strong>. The remaining fraction
+                            is 1/8 = 12.5%, so <strong>87.5% has decayed</strong>.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card">
+                <h2>6. Key takeaways</h2>
+                <ul>
+                    <li>A physical half-life is the time for half the parent nuclei in a large sample to decay.</li>
+                    <li>Remaining fraction = (1/2)<sup>n</sup>, where n = elapsed time ÷ half-life.</li>
+                    <li>
+                        Radioisotopes can support imaging or therapy; choice depends on several physical and biological
+                        factors.
+                    </li>
+                    <li>
+                        Radiation risk depends on exposure and dose; trained professionals use time, distance,
+                        shielding, and contamination control.
+                    </li>
+                </ul>
+                <p class="small">
+                    Original explanations and activities informed by Chemistry I Teacher’s Guide #11. Further reading:
+                    <a href="https://www.epa.gov/radiation/radioactive-decay" target="_blank" rel="noopener noreferrer"
+                        >US EPA: Radioactive Decay</a
+                    >
+                    ·
+                    <a
+                        href="https://www.epa.gov/radiation/radiation-health-effects"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >US EPA: Radiation Health Effects</a
+                    >
+                    ·
+                    <a
+                        href="https://www-pub.iaea.org/MTCD/publications/PDF/PUB2031_web.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >IAEA: Radioisotopes and Radiopharmaceuticals</a
+                    >.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status" aria-live="polite"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                q1: { answer: "2", explanation: "80 → 40 → 20 → 10 g." },
+                q2: { answer: "1", explanation: "12 hours ÷ 4 hours = 3 half-lives." },
+                q3: { answer: "1", explanation: "Half of one-half remains: 1/4 or 25%." },
+                q4: { answer: "2", explanation: "100% − 25% remaining = 75% decayed." },
+                q5: { answer: "2", explanation: "200 → 100 → 50 → 25 is three half-lives, and 3 × 3 = 9 days." },
+                q6: {
+                    answer: "1",
+                    explanation: "Gamma photons escaping the body can be detected by a suitable camera.",
+                },
+                q7: {
+                    answer: "1",
+                    explanation:
+                        "Half-life is one factor; radiation, administered activity, uptake, and elimination also affect dose.",
+                },
+                q8: {
+                    answer: "0",
+                    explanation:
+                        "Contamination describes the presence of radioactive material. Exposure is radiation reaching the body.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter3_lesson6_quiz.html" }, "*");
+                } else {
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+                }
+            });
+        </script>
+    </body>
 </html>
