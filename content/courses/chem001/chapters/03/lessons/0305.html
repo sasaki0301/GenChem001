@@ -1,638 +1,753 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<title>Molar Mass and Percent Composition</title>
-
-<style>
-body{
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
-  padding:24px;
-  line-height:1.8;
-  font-size:20px;
-}
-
-h1{color:#136f63;}
-h2{color:#136f63;margin-top:1.4em;}
-h3{color:#174ea6;}
-
-.section{margin-bottom:30px;}
-
-.key-box{
-  background:#e8f7f5;
-  border-left:6px solid #136f63;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.example-box{
-  background:#fff;
-  border-left:5px solid #2b7de9;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.visual-box{
-  background:#fff;
-  border-radius:12px;
-  padding:14px;
-  margin:16px 0;
-  border:1px solid #ddd;
-}
-
-.lesson-img{
-  width:100%;
-  max-width:720px;
-  display:block;
-  margin:0 auto;
-  border-radius:12px;
-}
-
-.caption{
-  text-align:center;
-  font-size:0.9em;
-  color:#555;
-}
-
-.activity{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  margin:14px 0;
-}
-
-.toggle-btn{
-  background:#136f63;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.answer{
-  display:none;
-  margin-top:10px;
-  background:#eef3ff;
-  padding:10px;
-  border-radius:6px;
-}
-
-.formula{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.formula .equation-line{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:8px 0;
-}
-
-.formula .fraction{
-  display:inline-grid;
-  grid-template-rows:auto auto;
-  min-width:max-content;
-  text-align:center;
-  line-height:1.2;
-  vertical-align:middle;
-}
-
-.formula .fraction-top{
-  border-bottom:2px solid currentColor;
-  padding:0 10px 5px;
-}
-
-.formula .fraction-bottom{
-  padding:5px 10px 0;
-}
-
-.answer .formula{
-  font-size:20px;
-  margin:8px 0;
-}
-
-.answer ol{
-  margin-top:8px;
-}
-
-.quiz-button{
-  background:#136f63;
-  color:white;
-  padding:12px 22px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:16px 0;
-  background:#fff;
-}
-
-th,td{
-  border:1px solid #ddd;
-  padding:10px;
-}
-
-th{background:#e8f7f5;}
-
-iframe{
-  width:100%;
-  max-width:100%;
-}
-</style>
-</head>
-<body>
-<h1>Molar Mass and Percent Composition</h1>
-
-<div class="key-box">
-<strong>Real-World Scenario</strong><br><br>
-
-A food manufacturer wants to determine how much calcium is present in a nutritional supplement. A pharmaceutical company must know the exact percentage of each element in a medicine to ensure proper dosage and effectiveness.
-
-Chemists use <strong>molar mass</strong> and <strong>percent composition</strong> to determine the quantitative composition of substances and compare different compounds.
-</div>
-
-<div class="section">
-<h2>Learning Objectives</h2>
-
-<ul>
-<li>Define molar mass and percent composition.</li>
-<li>Calculate the molar mass of elements and compounds.</li>
-<li>Determine the mass contribution of each element in a compound.</li>
-<li>Calculate percent composition from a chemical formula.</li>
-<li>Apply percent composition in chemical analysis.</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>What is Molar Mass?</h2>
-
-<p>
-The <strong>molar mass</strong> of a substance is the mass of one mole of that substance. It serves as the bridge between the microscopic world of atoms and molecules and the measurable world of grams.
-</p>
-
-<div class="key-box">
-<strong>Molar Mass</strong> = Mass of 1 mole of a substance
-<br><br>
-Unit: g/mol
-</div>
-
-<p>
-The numerical value of an element's molar mass is usually the same as its atomic mass from the periodic table, but the unit changes from amu to g/mol.
-</p>
-
-<div class="example-box">
-<h3>Examples</h3>
-
-<ul>
-<li>Carbon (C) = 12.01 g/mol</li>
-<li>Hydrogen (H) = 1.01 g/mol</li>
-<li>Oxygen (O) = 16.00 g/mol</li>
-<li>Sodium (Na) = 22.99 g/mol</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Calculating Molar Mass of Compounds</h2>
-
-<p>
-For compounds, the molar mass is obtained by adding the molar masses of all atoms present in the chemical formula.
-</p>
-
-<div class="key-box">
-Always multiply the atomic mass by the number of atoms indicated by the subscript before adding.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 1: Water (H₂O)</h2>
-
-<div class="example-box">
-
-<p>
-Calculate the molar mass of water.
-</p>
-
-<p><strong>Step 1:</strong> Identify the elements.</p>
-
-<ul>
-<li>Hydrogen (H) = 1.01 g/mol</li>
-<li>Oxygen (O) = 16.00 g/mol</li>
-</ul>
-
-<p><strong>Step 2:</strong> Multiply by subscripts.</p>
-
-<div class="formula">
-H = 2 × 1.01 = 2.02
-</div>
-
-<div class="formula">
-O = 1 × 16.00 = 16.00
-</div>
-
-<p><strong>Step 3:</strong> Add contributions.</p>
-
-<div class="formula">
-2.02 + 16.00 = 18.02 g/mol
-</div>
-
-<p>
-<strong>Molar Mass of H₂O = 18.02 g/mol</strong>
-</p>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 2: Carbon Dioxide (CO₂)</h2>
-
-<div class="example-box">
-
-<p><strong>Step 1:</strong> Atomic masses</p>
-
-<ul>
-<li>C = 12.01 g/mol</li>
-<li>O = 16.00 g/mol</li>
-</ul>
-
-<p><strong>Step 2:</strong> Apply subscripts</p>
-
-<div class="formula">
-C = 12.01
-</div>
-
-<div class="formula">
-O = 2 × 16.00 = 32.00
-</div>
-
-<p><strong>Step 3:</strong> Add</p>
-
-<div class="formula">
-12.01 + 32.00 = 44.01 g/mol
-</div>
-
-<p>
-<strong>Molar Mass of CO₂ = 44.01 g/mol</strong>
-</p>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>What is Percent Composition?</h2>
-
-<p>
-Percent composition describes the percentage by mass of each element in a compound.
-</p>
-
-<p>
-It tells us how much of a compound's total mass comes from each element.
-</p>
-
-<div class="key-box">
-Percent composition is useful for:
-<ul>
-<li>Identifying unknown substances</li>
-<li>Checking purity of compounds</li>
-<li>Determining nutrient content</li>
-<li>Verifying chemical formulas</li>
-</ul>
-</div>
-
-</div>
-
-<div class="section">
-<h2>Formula for Percent Composition</h2>
-
-<div class="formula">
-Percent Composition =
-(Element Mass in 1 mole ÷ Molar Mass of Compound)
-× 100
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 3: Percent Composition of Water</h2>
-
-<div class="example-box">
-
-<p>
-Determine the percent composition of hydrogen and oxygen in H₂O.
-</p>
-
-<p><strong>Step 1:</strong> Determine element masses.</p>
-
-<div class="formula">
-Hydrogen = 2.02 g
-</div>
-
-<div class="formula">
-Oxygen = 16.00 g
-</div>
-
-<p><strong>Step 2:</strong> Determine molar mass.</p>
-
-<div class="formula">
-18.02 g/mol
-</div>
-
-<p><strong>Step 3:</strong> Calculate percentages.</p>
-
-<div class="formula">
-% H =
-(2.02 ÷ 18.02) × 100
-=
-11.21%
-</div>
-
-<br>
-
-<div class="formula">
-% O =
-(16.00 ÷ 18.02) × 100
-=
-88.79%
-</div>
-
-<p>
-Notice that the percentages add to approximately 100%.
-</p>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 4: Percent Composition of CO₂</h2>
-
-<div class="example-box">
-
-<p><strong>Step 1:</strong> Molar mass of CO₂</p>
-
-<div class="formula">
-44.01 g/mol
-</div>
-
-<p><strong>Step 2:</strong> Carbon contribution</p>
-
-<div class="formula">
-(12.01 ÷ 44.01) × 100
-=
-27.29%
-</div>
-
-<p><strong>Step 3:</strong> Oxygen contribution</p>
-
-<div class="formula">
-(32.00 ÷ 44.01) × 100
-=
-72.71%
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Interpreting Percent Composition</h2>
-
-<p>
-Percent composition allows chemists to compare substances and understand their makeup.
-</p>
-
-<div class="example-box">
-
-<h3>Example</h3>
-
-<p>
-Water contains approximately:
-</p>
-
-<ul>
-<li>11% hydrogen by mass</li>
-<li>89% oxygen by mass</li>
-</ul>
-
-<p>
-Even though water contains twice as many hydrogen atoms as oxygen atoms, oxygen contributes more mass because oxygen atoms are much heavier than hydrogen atoms.
-</p>
-
-</div>
-
-<div class="key-box">
-The number of atoms does not necessarily determine the percentage by mass. Atomic mass must also be considered.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Applications of Percent Composition</h2>
-
-<table>
-<tr>
-<th>Field</th>
-<th>Application</th>
-</tr>
-
-<tr>
-<td>Nutrition</td>
-<td>Determining nutrient content in foods</td>
-</tr>
-
-<tr>
-<td>Pharmaceuticals</td>
-<td>Analyzing medicine composition</td>
-</tr>
-
-<tr>
-<td>Environmental Science</td>
-<td>Analyzing pollutants and contaminants</td>
-</tr>
-
-<tr>
-<td>Materials Science</td>
-<td>Determining alloy composition</td>
-</tr>
-
-</table>
-
-</div>
-
-<div class="section">
-<h2>Common Mistakes</h2>
-
-<div class="key-box">
-
-<ul>
-<li>Forgetting to multiply atomic masses by subscripts.</li>
-<li>Using atomic number instead of atomic mass.</li>
-<li>Not calculating the total molar mass before determining percentages.</li>
-<li>Rounding too early during calculations.</li>
-<li>Assuming more atoms always means greater percent composition.</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Check Your Understanding</h2>
-
-<div class="activity">
-
-<p><strong>1.</strong> Calculate the molar mass of NH₃.</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-N = 14.01
-
-<br>
-
-H = 3 × 1.01 = 3.03
-
-<div class="formula">
-14.01 + 3.03 = 17.04 g/mol
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>2.</strong> Calculate the molar mass of CH₄.</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-<div class="formula">
-12.01 + (4 × 1.01)
-=
-16.05 g/mol
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>3.</strong> Which contributes more mass in CO₂: carbon or oxygen?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-Oxygen contributes more mass because:
-
-<div class="formula">
-32.00 g > 12.01 g
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>4.</strong> Why do percent compositions usually add up to approximately 100%?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-Because all elements present in the compound account for the entire mass of the compound.
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>5.</strong> Calculate the percent composition of sodium in NaCl.</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-Molar mass NaCl:
-
-<div class="formula">
-22.99 + 35.45 = 58.44 g/mol
-</div>
-
-<div class="formula">
-(22.99 ÷ 58.44) × 100
-=
-39.34%
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Lesson Summary</h2>
-
-<ul>
-<li>Molar mass is the mass of one mole of a substance.</li>
-<li>For compounds, molar mass is found by adding the masses of all atoms in the formula.</li>
-<li>Percent composition describes the percentage by mass of each element in a compound.</li>
-<li>Percent composition calculations require the molar mass of the compound.</li>
-<li>Atomic mass influences percent composition more than the number of atoms alone.</li>
-<li>Molar mass and percent composition are essential tools for chemical analysis and formula determination.</li>
-</ul>
-
-</div>
-<div style="text-align:center;margin-top:30px;">
-	<button class="quiz-button" id="takeQuizBtn">
-
-Take the Quiz →
-
-</button>
-
-</div>
-
-<script>
-function toggleAnswer(btn){
-  const ans = btn.nextElementSibling;
-  ans.style.display = ans.style.display === "block" ? "none" : "block";
-}
-
-document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
-  const quizId = e.target.dataset.quiz;
-  window.parent.postMessage({
-    type:"openQuiz",
-    quiz:quizId
-  },"*");
-});
-</script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 3 Lesson 5: Radioisotopes: Sources and Types of Radiation</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .nuclide {
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                align-items: center;
+                color: #174ea6;
+                font-weight: 700;
+                vertical-align: middle;
+                line-height: 1;
+            }
+            .nuclide .numbers {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                font-size: 0.56em;
+                gap: 0.14em;
+            }
+            .nuclide .symbol {
+                font-size: 1.8em;
+            }
+            .nuclide .charge {
+                align-self: start;
+                font-size: 0.55em;
+            }
+            .diagram {
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 3 · Lesson 5 · SAS #11</div>
+                <h1>Radioisotopes: Sources and Types of Radiation</h1>
+                <p>
+                    Some atomic nuclei change spontaneously and emit radiation. Where do these radioisotopes come from,
+                    and how do alpha, beta, and gamma radiation differ?
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#objectives">Objectives</a><a href="#nuclei">Radioisotopes</a><a href="#sources">Sources</a
+                    ><a href="#radiation">Types of radiation</a><a href="#decay">Nuclear changes</a
+                    ><a href="#practice">Practice</a>
+                </nav>
+            </header>
+            <section class="card" id="objectives">
+                <h2>Learning objectives</h2>
+                <p>After this lesson, you should be able to:</p>
+                <ul>
+                    <li>Explain radioisotopes, radioactive decay, and ionizing radiation.</li>
+                    <li>Identify examples of naturally occurring and human-produced radioisotope sources.</li>
+                    <li>Compare alpha, beta, and gamma radiation by composition, charge, and typical penetration.</li>
+                    <li>
+                        Interpret simple alpha and beta-minus nuclear equations using mass number and atomic number.
+                    </li>
+                    <li>
+                        Explain why radiation risk depends on the exposure and where the radioactive material is
+                        located.
+                    </li>
+                </ul>
+                <div class="note">
+                    <strong>Connection to Lesson 4:</strong> Isotopes of an element share the same number of protons but
+                    have different numbers of neutrons. Some isotopes are stable; others have unstable nuclei and are
+                    radioactive.
+                </div>
+            </section>
+            <section class="card" id="nuclei">
+                <h2>1. What is a radioisotope?</h2>
+                <p>
+                    A <strong>radioisotope</strong> is an isotope with an unstable nucleus that can change spontaneously
+                    through <strong>radioactive decay</strong>. The original nucleus is the parent; the product nucleus
+                    is the daughter. A daughter may be stable or may decay again.
+                </p>
+                <p>
+                    Decay can emit particles or electromagnetic radiation, often carrying energy away from the nucleus.
+                    Alpha particles, beta particles, and gamma rays are forms of <strong>ionizing radiation</strong>:
+                    they can remove electrons from atoms or molecules directly or indirectly. This can alter molecules,
+                    including those in living tissue.
+                </p>
+                <div class="worked">
+                    <h3>From isotope to radioisotope</h3>
+                    <p>
+                        Carbon-12 and carbon-14 both have 6 protons. Carbon-12 is stable, while carbon-14 is radioactive
+                        and undergoes beta-minus decay. Radioactivity is a property of a particular nucleus, not a
+                        reason to call every isotope radioactive.
+                    </p>
+                </div>
+                <div class="note">
+                    <strong>Random and predictable:</strong> We cannot predict exactly when one nucleus will decay. For
+                    a large collection, however, the fraction expected to decay over a given time is predictable. Lesson
+                    6 explores this pattern using half-life.
+                </div>
+            </section>
+            <section class="card" id="sources">
+                <h2>2. Natural and human-produced sources</h2>
+                <p>
+                    Radioisotopes occur naturally and can also be produced by nuclear reactions. The classification
+                    describes <em>how a particular sample originated</em>; the same nuclide can sometimes be produced by
+                    both natural and human processes.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Source or production</th>
+                                <th>Examples</th>
+                                <th>How it occurs or is produced</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Natural</td>
+                                <td>Uranium-238; radon-222</td>
+                                <td>
+                                    Uranium occurs in rocks and soils; radon-222 forms in a natural decay chain and can
+                                    enter air.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Natural</td>
+                                <td>Carbon-14</td>
+                                <td>
+                                    Forms in the atmosphere through reactions initiated by cosmic radiation and enters
+                                    the carbon cycle.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Human-produced</td>
+                                <td>Cobalt-60</td>
+                                <td>
+                                    Made by neutron activation in a nuclear reactor for uses including radiotherapy and
+                                    sterilization.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Human-produced</td>
+                                <td>Iodine-131; cesium-137</td>
+                                <td>
+                                    Can be produced through nuclear fission in reactors; iodine-131 has medical
+                                    applications.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="practice">
+                    <h3>Apply the idea</h3>
+                    <p>
+                        A laboratory produces a radioactive sample of a nuclide also found in nature. How should that
+                        sample be classified?
+                    </p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            The particular laboratory sample is human-produced. A different sample of the same nuclide
+                            may have a natural origin. Its nuclear properties do not depend on its origin.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="radiation">
+                <h2>3. Alpha, beta, and gamma radiation</h2>
+                <p>
+                    The penetration comparisons below are general patterns. Actual shielding depends on radiation
+                    energy, material, thickness, and source geometry.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>What it is</th>
+                                <th>Charge</th>
+                                <th>Typical penetration and shielding</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alpha (α)</td>
+                                <td>2 protons and 2 neutrons: a helium-4 nucleus</td>
+                                <td>+2</td>
+                                <td>
+                                    Short range; a sheet of paper or outer dead layer of skin generally stops external
+                                    alpha particles.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Beta-minus (β⁻)</td>
+                                <td>A high-speed electron emitted during nuclear decay</td>
+                                <td>−1</td>
+                                <td>
+                                    Often passes through paper; plastic or a thin sheet of metal can reduce or stop many
+                                    beta particles depending on their energy.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Gamma (γ)</td>
+                                <td>A high-energy electromagnetic photon, not a material particle with rest mass</td>
+                                <td>0</td>
+                                <td>
+                                    Generally more penetrating; dense lead or thick concrete attenuates gamma radiation.
+                                    The amount transmitted depends on thickness and energy.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    There is also <strong>beta-plus (β⁺)</strong> radiation, consisting of positrons. Here the worked
+                    nuclear example uses beta-minus. A radioactive nucleus can emit gamma radiation after another decay
+                    event; some nuclides emit more than one kind of radiation.
+                </p>
+                <div class="diagram">
+                    <svg
+                        viewBox="0 0 720 255"
+                        role="img"
+                        aria-label="Schematic of relative penetration: alpha stopped by paper, beta by plastic or metal, gamma attenuated by dense shielding"
+                    >
+                        <rect x="12" y="83" width="92" height="91" rx="12" fill="#dceee9" />
+                        <text x="27" y="133" font-size="19" fill="#136f63">Source</text>
+                        <rect x="242" y="25" width="8" height="205" fill="#88a0a4" />
+                        <rect x="430" y="25" width="20" height="205" fill="#6091a0" />
+                        <rect x="624" y="25" width="48" height="205" fill="#526572" />
+                        <path d="M105 65 H242" stroke="#b77919" stroke-width="6" />
+                        <path d="M105 125 H430" stroke="#136f63" stroke-width="6" />
+                        <path d="M105 185 H624" stroke="#174ea6" stroke-width="6" />
+                        <path d="M672 185 H706" stroke="#174ea6" stroke-width="3" stroke-dasharray="7 5" />
+                        <text x="120" y="56" font-size="18">α</text>
+                        <text x="120" y="116" font-size="18">β</text>
+                        <text x="120" y="176" font-size="18">γ</text>
+                        <text x="215" y="250" font-size="16">Paper</text>
+                        <text x="390" y="250" font-size="16">Plastic / metal</text>
+                        <text x="612" y="250" font-size="16">Dense shield</text>
+                    </svg>
+                    <p class="small">
+                        Conceptual comparison, not to scale. Gamma rays are attenuated rather than guaranteed to be
+                        completely blocked.
+                    </p>
+                </div>
+                <div class="note">
+                    <strong>Inside versus outside:</strong> Alpha radiation has low external penetration, but
+                    alpha-emitting material can be particularly harmful if inhaled or swallowed. Beta and gamma exposure
+                    can also damage tissue. Do not infer safety from penetration alone.
+                </div>
+            </section>
+            <section class="card" id="decay">
+                <h2>4. Follow changes in the nucleus</h2>
+                <p>
+                    In a nuclear equation, the total mass number A and atomic number Z balance across the arrow. These
+                    conservation checks help identify the daughter nucleus. The beta-minus example includes an
+                    antineutrino, which carries no electric charge or nucleon number.
+                </p>
+                <div class="worked">
+                    <h3>Alpha decay</h3>
+                    <p><sup>238</sup><sub>92</sub>U → <sup>234</sup><sub>90</sub>Th + <sup>4</sup><sub>2</sub>He (α)</p>
+                    <p>A decreases by 4 and Z decreases by 2 in the daughter: 238 = 234 + 4 and 92 = 90 + 2.</p>
+                </div>
+                <div class="worked">
+                    <h3>Beta-minus decay</h3>
+                    <p>
+                        <sup>14</sup><sub>6</sub>C → <sup>14</sup><sub>7</sub>N + <sup>0</sup><sub>−1</sub>e (β⁻) +
+                        antineutrino
+                    </p>
+                    <p>
+                        A neutron changes into a proton, producing an electron and an antineutrino. The daughter’s A
+                        stays 14, while Z increases from 6 to 7. Check: 6 = 7 + (−1); the antineutrino has A = 0 and Z =
+                        0.
+                    </p>
+                </div>
+                <p>
+                    Gamma emission generally releases excess nuclear energy without changing A or Z. Gamma rays are not
+                    alpha or beta particles.
+                </p>
+            </section>
+            <section class="card" id="practice">
+                <h2>5. Practice and drills</h2>
+                <p>
+                    Choose an answer and select <strong>Check answer</strong>. These practice activities provide
+                    feedback but do not record a quiz score.
+                </p>
+                <div class="practice" data-quiz="q1">
+                    <fieldset>
+                        <legend>1. Which statement defines a radioisotope?</legend>
+                        <label
+                            ><input type="radio" name="q1" value="0" /> An isotope with an unstable nucleus that can
+                            decay</label
+                        ><label><input type="radio" name="q1" value="1" /> Any atom containing neutrons</label
+                        ><label><input type="radio" name="q1" value="2" /> Any charged atom</label
+                        ><label
+                            ><input type="radio" name="q1" value="3" /> An isotope that always emits only gamma
+                            rays</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q2">
+                    <fieldset>
+                        <legend>2. Which example is naturally produced in the atmosphere?</legend>
+                        <label
+                            ><input type="radio" name="q2" value="0" /> Carbon-14 formed through cosmic-ray
+                            interactions</label
+                        ><label><input type="radio" name="q2" value="1" /> A cobalt-60 sample made in a reactor</label
+                        ><label
+                            ><input type="radio" name="q2" value="2" /> Iodine-131 prepared as a reactor product</label
+                        ><label
+                            ><input type="radio" name="q2" value="3" /> A sample created by neutron activation</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q3">
+                    <fieldset>
+                        <legend>3. What is an alpha particle?</legend>
+                        <label><input type="radio" name="q3" value="0" /> A photon</label
+                        ><label
+                            ><input type="radio" name="q3" value="1" /> A helium nucleus containing 2 protons and 2
+                            neutrons</label
+                        ><label><input type="radio" name="q3" value="2" /> A high-speed electron</label
+                        ><label><input type="radio" name="q3" value="3" /> A single neutron</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q4">
+                    <fieldset>
+                        <legend>4. Which type of radiation is a high-energy electromagnetic photon?</legend>
+                        <label><input type="radio" name="q4" value="0" /> Alpha</label
+                        ><label><input type="radio" name="q4" value="1" /> Beta-minus</label
+                        ><label><input type="radio" name="q4" value="2" /> Gamma</label
+                        ><label><input type="radio" name="q4" value="3" /> Proton</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q5">
+                    <fieldset>
+                        <legend>5. Which statement about penetration and risk is correct?</legend>
+                        <label
+                            ><input type="radio" name="q5" value="0" /> Alpha particles are harmless in all
+                            situations</label
+                        ><label
+                            ><input type="radio" name="q5" value="1" /> Paper may stop external alpha particles, but
+                            inhaled alpha-emitting material can be dangerous</label
+                        ><label
+                            ><input type="radio" name="q5" value="2" /> Gamma rays can always be stopped completely by
+                            paper</label
+                        ><label
+                            ><input type="radio" name="q5" value="3" /> All radiation types have identical
+                            penetration</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q6">
+                    <fieldset>
+                        <legend>
+                            6. In alpha decay, how do the daughter nucleus mass number and atomic number change?
+                        </legend>
+                        <label><input type="radio" name="q6" value="0" /> A decreases by 4 and Z decreases by 2</label
+                        ><label><input type="radio" name="q6" value="1" /> A increases by 4 and Z increases by 2</label
+                        ><label><input type="radio" name="q6" value="2" /> A stays the same and Z increases by 1</label
+                        ><label><input type="radio" name="q6" value="3" /> A and Z both stay the same</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q7">
+                    <fieldset>
+                        <legend>7. During beta-minus decay, how does the daughter nucleus change?</legend>
+                        <label><input type="radio" name="q7" value="0" /> A decreases by 4, Z decreases by 2</label
+                        ><label><input type="radio" name="q7" value="1" /> A stays the same, Z increases by 1</label
+                        ><label><input type="radio" name="q7" value="2" /> A increases by 1, Z stays the same</label
+                        ><label><input type="radio" name="q7" value="3" /> A stays the same, Z decreases by 2</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q8">
+                    <fieldset>
+                        <legend>8. Which statement about radioactive decay is accurate?</legend>
+                        <label
+                            ><input type="radio" name="q8" value="0" /> The exact decay time of each nucleus is known in
+                            advance</label
+                        ><label
+                            ><input type="radio" name="q8" value="1" /> Individual decay is random, but large samples
+                            follow predictable patterns</label
+                        ><label
+                            ><input type="radio" name="q8" value="2" /> All radioactive nuclei decay
+                            simultaneously</label
+                        ><label><input type="radio" name="q8" value="3" /> Every daughter nucleus must be stable</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Apply your understanding</h3>
+                    <p>
+                        A nuclide has A = 210 and Z = 84. It emits an alpha particle. Give the daughter’s mass number
+                        and atomic number.
+                    </p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            A = 210 − 4 = <strong>206</strong>; Z = 84 − 2 = <strong>82</strong>. Atomic number 82 is
+                            lead, so the daughter is lead-206.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card">
+                <h2>6. Key takeaways</h2>
+                <ul>
+                    <li>Radioisotopes have unstable nuclei; a sample may be natural or human-produced.</li>
+                    <li>
+                        Alpha particles are helium nuclei, beta-minus particles are electrons, and gamma rays are
+                        photons.
+                    </li>
+                    <li>Penetration and shielding vary; internal alpha contamination can be dangerous.</li>
+                    <li>Alpha emission changes A and Z; beta-minus emission raises Z while A stays the same.</li>
+                </ul>
+                <p class="small">
+                    Original explanations and activities informed by Chemistry I Teacher’s Guide #11. Further reading:
+                    <a href="https://www.epa.gov/radiation/radioactive-decay" target="_blank" rel="noopener noreferrer"
+                        >US EPA: Radioactive Decay</a
+                    >
+                    ·
+                    <a
+                        href="https://www.epa.gov/radiation/radiation-health-effects"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >US EPA: Radiation Health Effects</a
+                    >
+                    ·
+                    <a
+                        href="https://www-pub.iaea.org/MTCD/publications/PDF/PUB2031_web.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >IAEA: Radioisotopes and Radiopharmaceuticals</a
+                    >.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status" aria-live="polite"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                q1: {
+                    answer: "0",
+                    explanation: "A radioisotope has an unstable nucleus that can spontaneously decay.",
+                },
+                q2: { answer: "0", explanation: "Cosmic-radiation interactions in the atmosphere produce carbon-14." },
+                q3: {
+                    answer: "1",
+                    explanation: "An alpha particle is a helium-4 nucleus with two protons and two neutrons.",
+                },
+                q4: { answer: "2", explanation: "Gamma radiation consists of high-energy photons." },
+                q5: {
+                    answer: "1",
+                    explanation:
+                        "Alpha particles penetrate poorly from outside but may damage tissue when the source is inside the body.",
+                },
+                q6: {
+                    answer: "0",
+                    explanation: "An alpha particle carries A = 4 and Z = 2 away from the parent nucleus.",
+                },
+                q7: { answer: "1", explanation: "A neutron becomes a proton, so A stays the same and Z rises by 1." },
+                q8: {
+                    answer: "1",
+                    explanation:
+                        "Individual decay events are random, while large populations follow predictable statistical patterns.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter3_lesson5_quiz.html" }, "*");
+                } else {
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+                }
+            });
+        </script>
+    </body>
 </html>
