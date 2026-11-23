@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 3 Summary</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .nuclide {
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                align-items: center;
+                color: #174ea6;
+                font-weight: 700;
+                vertical-align: middle;
+                line-height: 1;
+            }
+            .nuclide .numbers {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                font-size: 0.56em;
+                gap: 0.14em;
+            }
+            .nuclide .symbol {
+                font-size: 1.8em;
+            }
+            .nuclide .charge {
+                align-self: start;
+                font-size: 0.55em;
+            }
+            .diagram {
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 3 · Chapter Summary</div>
+                <h1>Atomic Structure, Isotopes, and Radioactivity</h1>
+                <p>
+                    Bring together the evidence for atomic models, the particles that define an atom, and the ways
+                    isotopes influence atomic mass and radioactivity.
+                </p>
+                <nav aria-label="Summary sections">
+                    <a href="#goals">Goals</a><a href="#models">Atomic models</a><a href="#identity">Atomic identity</a
+                    ><a href="#isotopes">Isotopes</a><a href="#radiation">Radiation</a><a href="#half">Half-life</a
+                    ><a href="#average">Average mass</a><a href="#review">Review</a><a href="#checklist">Checklist</a>
+                </nav>
+            </header>
+            <section class="card" id="goals">
+                <h2>What you should be able to do</h2>
+                <ul>
+                    <li>Connect evidence to changes in atomic models and explain energy levels and orbitals.</li>
+                    <li>Determine particle counts and interpret or construct isotope notation.</li>
+                    <li>Compare types of radiation, nuclear changes, medical applications, and risks.</li>
+                    <li>Calculate parent isotope remaining after a number of half-lives.</li>
+                    <li>Calculate a weighted average atomic mass from isotopic data.</li>
+                </ul>
+                <div class="note">
+                    <strong>How to use this review:</strong> Read each summary, try the worked examples yourself, then
+                    complete the practice questions. Practice provides feedback and is separate from the chapter
+                    assessment.
+                </div>
+            </section>
+            <section class="card" id="models">
+                <h2>1. How models of the atom developed</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Model or idea</th>
+                                <th>Contribution and evidence</th>
+                                <th>Limit or later development</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dalton</td>
+                                <td>Atoms helped explain fixed ratios in compounds and chemical reactions.</td>
+                                <td>
+                                    His indivisible-atom idea was revised after subatomic particles were discovered.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Thomson</td>
+                                <td>
+                                    Cathode-ray evidence supported negatively charged electrons. His model placed
+                                    electrons within a diffuse positive region.
+                                </td>
+                                <td>It did not account for the concentrated nucleus suggested by scattering.</td>
+                            </tr>
+                            <tr>
+                                <td>Rutherford</td>
+                                <td>
+                                    Most alpha particles passed through foil; rare large deflections supported a small,
+                                    dense, positively charged nucleus.
+                                </td>
+                                <td>It did not adequately explain atomic stability and line spectra.</td>
+                            </tr>
+                            <tr>
+                                <td>Bohr</td>
+                                <td>
+                                    Electrons in hydrogen were assigned specific energy levels. Transitions explain
+                                    hydrogen spectral lines.
+                                </td>
+                                <td>
+                                    It works well for hydrogen-like systems but does not fully explain many-electron
+                                    atoms.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Quantum model</td>
+                                <td>
+                                    Electrons are described using quantum states and orbitals: probability distributions
+                                    rather than precise circular paths.
+                                </td>
+                                <td>Models describe evidence and can be refined as new evidence appears.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    <strong>Energy and light:</strong> An electron absorbs energy to move to a higher permitted level; a
+                    transition to a lower level can emit a photon with energy equal to the difference between levels, ΔE
+                    = hν. Higher photon frequency corresponds to greater photon energy.
+                </p>
+                <div class="practice">
+                    <h3>Explain the evidence</h3>
+                    <p>Why did rare large-angle alpha-particle deflections suggest a concentrated positive nucleus?</p>
+                    <details>
+                        <summary>Show a possible answer</summary>
+                        <p>
+                            A small, concentrated positive region can strongly repel a positively charged alpha particle
+                            passing close to it. The fact that most particles passed through suggests that the nucleus
+                            occupies only a tiny fraction of the atom’s volume.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="identity">
+                <h2>2. Atomic identity and particle counts</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Particle</th>
+                                <th>Charge</th>
+                                <th>Location</th>
+                                <th>Key idea</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Proton</td>
+                                <td>+1</td>
+                                <td>Nucleus</td>
+                                <td>Proton count determines element identity.</td>
+                            </tr>
+                            <tr>
+                                <td>Neutron</td>
+                                <td>0</td>
+                                <td>Nucleus</td>
+                                <td>Different neutron counts produce isotopes of the same element.</td>
+                            </tr>
+                            <tr>
+                                <td>Electron</td>
+                                <td>−1</td>
+                                <td>Outside the nucleus</td>
+                                <td>Gain or loss changes an atom’s charge.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="formula">
+                    Z = protons &nbsp; | &nbsp; A = protons + neutrons &nbsp; | &nbsp; neutrons = A − Z
+                </p>
+                <p>
+                    For a neutral atom, electrons = protons. For a monatomic ion,
+                    <strong>electrons = Z − signed charge</strong>. Insert +1 for a 1+ ion and −1 for a 1− ion.
+                </p>
+                <div class="worked">
+                    <h3>Worked example · Chloride-35</h3>
+                    <p>
+                        For
+                        <span class="nuclide" aria-label="chlorine 35, atomic number 17, charge minus one"
+                            ><span class="numbers"><span>35</span><span>17</span></span
+                            ><span class="symbol">Cl</span><span class="charge">−</span></span
+                        >: protons = 17; neutrons = 35 − 17 = 18; electrons = 17 − (−1) = <strong>18</strong>. It
+                        remains chlorine because it still has 17 protons.
+                    </p>
+                </div>
+            </section>
+            <section class="card" id="isotopes">
+                <h2>3. Isotopes and isotope notation</h2>
+                <p>
+                    Isotopes are atoms of the same element with the same proton count but different neutron counts. In
+                    isotope notation, write mass number A at the upper left and atomic number Z at the lower left of the
+                    element symbol. A charge, if shown, appears at the upper right.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Neutral isotope</th>
+                                <th>Protons</th>
+                                <th>Neutrons</th>
+                                <th>Electrons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Carbon-12</td>
+                                <td>6</td>
+                                <td>6</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>Carbon-14</td>
+                                <td>6</td>
+                                <td>8</td>
+                                <td>6</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    In the hyphenated name carbon-14, 14 is the <strong>mass number</strong>. Changing neutrons changes
+                    the isotope; changing electrons makes an ion; changing protons changes the element. Some isotopes
+                    are stable and some are radioactive.
+                </p>
+            </section>
+            <section class="card" id="radiation">
+                <h2>4. Radioisotopes and radiation</h2>
+                <p>
+                    A radioisotope has an unstable nucleus that can decay spontaneously. Natural sources include uranium
+                    in rocks, radon from decay chains, and carbon-14 formed in the atmosphere. Radioisotopes can also be
+                    produced by nuclear reactions; cobalt-60 and iodine-131 are examples of commonly human-produced
+                    radioisotopes. Source classification describes the sample’s origin.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Radiation</th>
+                                <th>Nature and charge</th>
+                                <th>Typical penetration</th>
+                                <th>Key nuclear change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alpha (α)</td>
+                                <td>2 protons and 2 neutrons; +2</td>
+                                <td>Short range; paper or outer skin generally stops external alpha particles.</td>
+                                <td>Daughter A decreases by 4 and Z by 2.</td>
+                            </tr>
+                            <tr>
+                                <td>Beta-minus (β⁻)</td>
+                                <td>Electron emitted in nuclear decay; −1</td>
+                                <td>
+                                    Often passes through paper; plastic or thin metal can stop many beta particles
+                                    depending on energy.
+                                </td>
+                                <td>A remains the same; Z increases by 1.</td>
+                            </tr>
+                            <tr>
+                                <td>Gamma (γ)</td>
+                                <td>High-energy electromagnetic photon; no charge</td>
+                                <td>Generally more penetrating; dense shielding attenuates it.</td>
+                                <td>Gamma emission alone does not change A or Z.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="note">
+                    Penetration and shielding depend on radiation energy and material. Alpha-emitting material inside
+                    the body can be hazardous despite alpha’s low external penetration. Some nuclides emit more than one
+                    type of radiation.
+                </div>
+                <div class="worked">
+                    <h3>Worked example · Alpha decay</h3>
+                    <p>
+                        <sup>238</sup><sub>92</sub>U → <sup>234</sup><sub>90</sub>Th + <sup>4</sup><sub>2</sub>He. Check
+                        the mass numbers: 238 = 234 + 4. Check atomic numbers: 92 = 90 + 2.
+                    </p>
+                </div>
+            </section>
+            <section class="card" id="half">
+                <h2>5. Half-life, applications, and risks</h2>
+                <p>
+                    Physical half-life is the time required for half the radioactive parent nuclei in a large sample to
+                    decay. The exact time at which one nucleus decays is random, while large samples follow a
+                    predictable statistical pattern.
+                </p>
+                <p class="formula">
+                    n = elapsed time ÷ half-life<br />parent amount remaining = initial amount × (1/2)<sup>n</sup>
+                </p>
+                <div class="worked">
+                    <h3>Worked example · Half-life</h3>
+                    <p>
+                        A 120 mg parent sample has a half-life of 4 hours. After 12 hours, n = 12 ÷ 4 = 3. Repeated
+                        halving gives 120 → 60 → 30 → <strong>15 mg</strong>. The remaining fraction is 12.5%, so
+                        <strong>87.5%</strong> of the original parent nuclei have decayed. Daughter products may remain
+                        or be radioactive.
+                    </p>
+                </div>
+                <p>
+                    <strong>Medical applications:</strong> Technetium-99m is used in diagnostic imaging, iodine-131 in
+                    some thyroid treatments, and sealed cobalt-60 sources in external radiotherapy. The benefit, dose,
+                    radiation type, biological uptake, and elimination all matter; a short half-life alone does not
+                    guarantee safety.
+                </p>
+                <p>
+                    Ionizing radiation can damage cells and DNA. Risk depends on dose, radiation type, exposed tissue,
+                    and whether material is inside or outside the body. Time, distance, suitable shielding, and
+                    preventing contamination are important protection principles. Medical procedures and source handling
+                    require trained professionals.
+                </p>
+            </section>
+            <section class="card" id="average">
+                <h2>6. Relative and average atomic mass</h2>
+                <p>
+                    <strong>Mass number</strong> is a whole-number count of protons and neutrons for a specific nuclide.
+                    <strong>Isotopic mass</strong> is an isotope’s measured mass, commonly in u.
+                    <strong>Average atomic mass</strong> is the abundance-weighted average for a specified mixture.
+                </p>
+                <p>
+                    One unified atomic mass unit (1 u) is one-twelfth of the mass of a carbon-12 atom.
+                    <strong>Relative atomic mass</strong> is the ratio of the average atomic mass to 1 u and is
+                    dimensionless; its numerical value matches the average mass expressed in u for the same mixture.
+                </p>
+                <p class="formula">average atomic mass = Σ (isotope mass × fractional abundance)</p>
+                <div class="worked">
+                    <h3>Worked example · Weighted average</h3>
+                    <p>
+                        A sample has isotopes of 24.00 u at 70.0% and 26.00 u at 30.0%. Convert percentages to
+                        fractions: 0.700 and 0.300.
+                    </p>
+                    <p>
+                        (24.00 × 0.700) + (26.00 × 0.300) = <strong>24.6 u</strong>. For this mixture the relative
+                        atomic mass is <strong>24.6</strong> without a unit.
+                    </p>
+                    <p>
+                        Check: the answer is between 24.00 and 26.00 and closer to the more abundant isotope. Isotopic
+                        mass is not exactly the same as mass number; using whole-number mass numbers gives an estimate.
+                    </p>
+                </div>
+                <p>
+                    Isotopic abundances can vary among samples; some standard atomic weights are expressed as intervals.
+                    Use the abundance data provided for the sample in a calculation.
+                </p>
+            </section>
+            <section class="card" id="review">
+                <h2>7. Mixed chapter review</h2>
+                <p>
+                    Select an answer and choose <strong>Check answer</strong>. These practice questions provide feedback
+                    but do not record a score.
+                </p>
+                <div class="practice" data-quiz="q1">
+                    <fieldset>
+                        <legend>1. Which observation supported the presence of a small, concentrated nucleus?</legend>
+                        <label
+                            ><input type="radio" name="q1" value="0" /> Most alpha particles passed straight through
+                            foil</label
+                        ><label
+                            ><input type="radio" name="q1" value="1" /> A few alpha particles were deflected through
+                            large angles</label
+                        ><label
+                            ><input type="radio" name="q1" value="2" /> Cathode rays traveled toward a positive
+                            plate</label
+                        ><label><input type="radio" name="q1" value="3" /> Compounds formed in fixed ratios</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q2">
+                    <fieldset>
+                        <legend>2. What did cathode-ray evidence support?</legend>
+                        <label
+                            ><input type="radio" name="q2" value="0" /> Atoms contain negatively charged
+                            particles</label
+                        ><label><input type="radio" name="q2" value="1" /> Atoms contain no internal particles</label
+                        ><label
+                            ><input type="radio" name="q2" value="2" /> All electrons occupy fixed circular paths</label
+                        ><label
+                            ><input type="radio" name="q2" value="3" /> Neutrons determine an element’s identity</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q3">
+                    <fieldset>
+                        <legend>3. An electron moves from a higher to a lower energy level. What can occur?</legend>
+                        <label
+                            ><input type="radio" name="q3" value="0" /> A photon with energy equal to the level
+                            difference is emitted</label
+                        ><label><input type="radio" name="q3" value="1" /> A photon must be absorbed</label
+                        ><label><input type="radio" name="q3" value="2" /> The proton count changes</label
+                        ><label><input type="radio" name="q3" value="3" /> The electron disappears</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q4">
+                    <fieldset>
+                        <legend>4. How is an orbital best described in the quantum model?</legend>
+                        <label><input type="radio" name="q4" value="0" /> A fixed circular path</label
+                        ><label
+                            ><input type="radio" name="q4" value="1" /> A probability description for an electron’s
+                            position</label
+                        ><label><input type="radio" name="q4" value="2" /> A particle in the nucleus</label
+                        ><label><input type="radio" name="q4" value="3" /> A positively charged shell</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q5">
+                    <fieldset>
+                        <legend>5. An atom has 11 protons and 12 neutrons. What is its mass number?</legend>
+                        <label><input type="radio" name="q5" value="0" /> 11</label
+                        ><label><input type="radio" name="q5" value="1" /> 12</label
+                        ><label><input type="radio" name="q5" value="2" /> 23</label
+                        ><label><input type="radio" name="q5" value="3" /> 1</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q6">
+                    <fieldset>
+                        <legend>6. How many electrons are in Cl⁻ if Z = 17?</legend>
+                        <label><input type="radio" name="q6" value="0" /> 16</label
+                        ><label><input type="radio" name="q6" value="1" /> 17</label
+                        ><label><input type="radio" name="q6" value="2" /> 18</label
+                        ><label><input type="radio" name="q6" value="3" /> 35</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q7">
+                    <fieldset>
+                        <legend>7. Which pair represents isotopes of the same element?</legend>
+                        <label
+                            ><input type="radio" name="q7" value="0" /> 6 protons and 6 neutrons; 6 protons and 8
+                            neutrons</label
+                        ><label
+                            ><input type="radio" name="q7" value="1" /> 6 protons and 6 neutrons; 7 protons and 6
+                            neutrons</label
+                        ><label
+                            ><input type="radio" name="q7" value="2" /> 8 protons and 8 neutrons; 9 protons and 8
+                            neutrons</label
+                        ><label
+                            ><input type="radio" name="q7" value="3" /> 7 protons and 7 neutrons; 8 protons and 8
+                            neutrons</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q8">
+                    <fieldset>
+                        <legend>8. For ¹⁸₈O, how many neutrons are present?</legend>
+                        <label><input type="radio" name="q8" value="0" /> 8</label
+                        ><label><input type="radio" name="q8" value="1" /> 10</label
+                        ><label><input type="radio" name="q8" value="2" /> 18</label
+                        ><label><input type="radio" name="q8" value="3" /> 26</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q9">
+                    <fieldset>
+                        <legend>9. Which radiation consists of a helium nucleus?</legend>
+                        <label><input type="radio" name="q9" value="0" /> Alpha</label
+                        ><label><input type="radio" name="q9" value="1" /> Beta-minus</label
+                        ><label><input type="radio" name="q9" value="2" /> Gamma</label
+                        ><label><input type="radio" name="q9" value="3" /> Visible light</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q10">
+                    <fieldset>
+                        <legend>10. What change occurs in beta-minus decay?</legend>
+                        <label><input type="radio" name="q10" value="0" /> A decreases by 4 and Z by 2</label
+                        ><label><input type="radio" name="q10" value="1" /> A stays constant and Z increases by 1</label
+                        ><label><input type="radio" name="q10" value="2" /> A increases by 1 and Z stays constant</label
+                        ><label><input type="radio" name="q10" value="3" /> A and Z both decrease by 1</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q11">
+                    <fieldset>
+                        <legend>11. Why can alpha-emitting material be dangerous inside the body?</legend>
+                        <label
+                            ><input type="radio" name="q11" value="0" /> Alpha particles cannot interact with
+                            tissue</label
+                        ><label
+                            ><input type="radio" name="q11" value="1" /> It can deposit energy in nearby tissue despite
+                            low external penetration</label
+                        ><label
+                            ><input type="radio" name="q11" value="2" /> It always passes through the entire body</label
+                        ><label><input type="radio" name="q11" value="3" /> It cannot be inhaled or swallowed</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q12">
+                    <fieldset>
+                        <legend>
+                            12. A sample begins with 80 g of a parent isotope. How much remains after 3 half-lives?
+                        </legend>
+                        <label><input type="radio" name="q12" value="0" /> 40 g</label
+                        ><label><input type="radio" name="q12" value="1" /> 20 g</label
+                        ><label><input type="radio" name="q12" value="2" /> 10 g</label
+                        ><label><input type="radio" name="q12" value="3" /> 5 g</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q13">
+                    <fieldset>
+                        <legend>
+                            13. After two half-lives, what percentage of the original parent nuclei has decayed?
+                        </legend>
+                        <label><input type="radio" name="q13" value="0" /> 25%</label
+                        ><label><input type="radio" name="q13" value="1" /> 50%</label
+                        ><label><input type="radio" name="q13" value="2" /> 75%</label
+                        ><label><input type="radio" name="q13" value="3" /> 100%</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q14">
+                    <fieldset>
+                        <legend>
+                            14. A sample contains 75% of a 10.0 u isotope and 25% of an 11.0 u isotope. What is its
+                            average atomic mass?
+                        </legend>
+                        <label><input type="radio" name="q14" value="0" /> 10.25 u</label
+                        ><label><input type="radio" name="q14" value="1" /> 10.50 u</label
+                        ><label><input type="radio" name="q14" value="2" /> 10.75 u</label
+                        ><label><input type="radio" name="q14" value="3" /> 21.0 u</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q15">
+                    <fieldset>
+                        <legend>15. A sample has average atomic mass 24.3 u. What is its relative atomic mass?</legend>
+                        <label><input type="radio" name="q15" value="0" /> 24.3 u</label
+                        ><label><input type="radio" name="q15" value="1" /> 24.3, with no unit</label
+                        ><label><input type="radio" name="q15" value="2" /> 12.15</label
+                        ><label><input type="radio" name="q15" value="3" /> 48.6 u</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q16">
+                    <fieldset>
+                        <legend>16. Which statement correctly compares radiation exposure and contamination?</legend>
+                        <label
+                            ><input type="radio" name="q16" value="0" /> Exposure always makes a person
+                            radioactive</label
+                        ><label
+                            ><input type="radio" name="q16" value="1" /> Contamination means radioactive material is on
+                            or inside a person or object</label
+                        ><label
+                            ><input type="radio" name="q16" value="2" /> Contamination and exposure have exactly the
+                            same meaning</label
+                        ><label
+                            ><input type="radio" name="q16" value="3" /> External exposure requires radioactive material
+                            to be swallowed</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Connect the chapter</h3>
+                    <p>
+                        A neutral sample of a fictional element contains an isotope with 12 protons and 13 neutrons. It
+                        makes up 25.0% of the sample and has an isotopic mass of 25.0 u. The remaining 75.0% has mass
+                        24.0 u. Identify the element and mass number of the first isotope, then calculate the sample’s
+                        average atomic mass.
+                    </p>
+                    <details>
+                        <summary>Show a possible answer</summary>
+                        <p>
+                            Z = 12 identifies magnesium; A = 12 + 13 = 25, so the first isotope is magnesium-25. Average
+                            = (25.0 × 0.250) + (24.0 × 0.750) = <strong>24.25 u</strong>, or about 24.3 u to three
+                            significant figures. The unrounded value lies closer to 24.0 u because that isotope is more
+                            abundant.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="checklist">
+                <h2>8. Before the chapter assessment</h2>
+                <ul>
+                    <li>
+                        I can connect Dalton, Thomson, Rutherford, Bohr, and the quantum model to evidence or key ideas.
+                    </li>
+                    <li>I can use Z, A, and charge to find proton, neutron, and electron counts.</li>
+                    <li>I can read isotope notation and distinguish isotopes from ions.</li>
+                    <li>I can compare alpha, beta-minus, and gamma radiation and explain basic risks.</li>
+                    <li>I can calculate remaining and decayed amounts using half-life.</li>
+                    <li>I can calculate an abundance-weighted atomic mass and interpret relative atomic mass.</li>
+                </ul>
+                <p class="small">
+                    Original review of Chemistry I Chapter 3 Lessons 1–7, informed by the supplied teacher’s guides.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take Chapter 3 Assessment →</button>
+                <p class="notice" id="quizNotice" role="status" aria-live="polite"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                q1: {
+                    answer: "1",
+                    explanation: "Rare large-angle deflections supported a small, concentrated positive nucleus.",
+                },
+                q2: { answer: "0", explanation: "Thomson’s cathode-ray work supported the presence of electrons." },
+                q3: { answer: "0", explanation: "The energy difference can be emitted as a photon." },
+                q4: {
+                    answer: "1",
+                    explanation:
+                        "An orbital is associated with a probability distribution, not a definite circular path.",
+                },
+                q5: { answer: "2", explanation: "A = 11 + 12 = 23." },
+                q6: { answer: "2", explanation: "The −1 ion has one more electron than protons: 18." },
+                q7: { answer: "0", explanation: "The proton count is the same while the neutron count differs." },
+                q8: { answer: "1", explanation: "Neutrons = mass number − atomic number = 18 − 8 = 10." },
+                q9: { answer: "0", explanation: "An alpha particle contains two protons and two neutrons." },
+                q10: {
+                    answer: "1",
+                    explanation: "A neutron changes into a proton, so A is unchanged and Z increases by one.",
+                },
+                q11: {
+                    answer: "1",
+                    explanation: "Alpha particles can damage tissue close to an internal radioactive source.",
+                },
+                q12: { answer: "2", explanation: "80 → 40 → 20 → 10 g." },
+                q13: { answer: "2", explanation: "25% remains after two half-lives, so 75% has decayed." },
+                q14: { answer: "0", explanation: "(10.0 × 0.75) + (11.0 × 0.25) = 10.25 u." },
+                q15: {
+                    answer: "1",
+                    explanation:
+                        "Relative atomic mass is dimensionless and has the same numerical value for the same mixture.",
+                },
+                q16: {
+                    answer: "1",
+                    explanation:
+                        "Exposure is radiation reaching the body; contamination is radioactive material on or in a person or object.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter3_assessment.html" }, "*");
+                if (window.parent === window)
+                    document.getElementById("quizNotice").textContent =
+                        "Open this summary inside LearnTrack to launch the assessment.";
+            });
+        </script>
+    </body>
+</html>
