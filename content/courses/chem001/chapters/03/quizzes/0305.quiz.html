@@ -1,253 +1,903 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Molar Mass and Percent Composition</title>
-
-<style>
-/* SAME STYLE AS TEMPLATE */
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #e8f9f1, #f7faff);
-  margin: 0;
-  padding: 40px 20px;
-  color: #222;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-.quiz-container {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 40px 50px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-  width: 95%;
-  max-width: 850px;
-  text-align: center;
-}
-h2 { color: #136f63; margin-bottom: 25px; }
-.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
-.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
-.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
-.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
-.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
-.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
-.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
-.choice.correct {background: #2b7de9;color: #fff;}
-.choice.incorrect {background: #e57373;color: #fff;}
-.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
-.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
-.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
-.stars { font-size:2.5em; margin-top:10px;}
-.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
-.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
-.quiz-btn.primary { background:#136f63; color:#fff;}
-@media (max-width: 600px) {
-    .quiz-container { padding: 25px; }
-    .question { font-size: 1.1em; }
-    .stars { font-size: 2em; }
-  }
-
-.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
-
-svg {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  display: block;
-}
-</style>
-</head>
-
-<body>
-
-<div class="quiz-container">
-
-<h2>Molar Mass and Percent Composition - Quiz</h2>
-
-<div class="progress-text" id="progressText"></div>
-<div class="progress-wrapper">
-<div id="progressBar" class="progress-bar"></div>
-</div>
-
-<div id="quizBox"></div>
-
-<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-
-</div>
-
-<script>
-
-const quizData = [
-
-{q:"What is molar mass?",c:["The mass of one atom","The mass of one molecule","The mass of one mole of a substance","The number of particles in a mole"],a:2,e:"Molar mass is the mass of one mole of a substance and is expressed in g/mol."},
-
-{q:"What is the molar mass of carbon?",c:["6.02 g/mol","12.01 g/mol","14.01 g/mol","16.00 g/mol"],a:1,e:"The molar mass of carbon is approximately 12.01 g/mol."},
-
-{q:"What is the molar mass of oxygen gas (O₂)?",c:["16.00 g/mol","18.00 g/mol","32.00 g/mol","34.00 g/mol"],a:2,e:"O₂ contains two oxygen atoms: 2 × 16.00 = 32.00 g/mol."},
-
-{q:"What is the molar mass of NH₃?",c:["14.01 g/mol","16.04 g/mol","17.04 g/mol","18.02 g/mol"],a:2,e:"NH₃ = 14.01 + (3 × 1.01) = 17.04 g/mol."},
-
-{q:"What is the molar mass of CH₄?",c:["14.05 g/mol","15.04 g/mol","16.05 g/mol","17.04 g/mol"],a:2,e:"CH₄ = 12.01 + (4 × 1.01) = 16.05 g/mol."},
-
-{q:"When calculating the molar mass of a compound, what must be done first?",c:["Convert to moles","Determine atomic numbers","Multiply atomic masses by their subscripts","Calculate percent composition"],a:2,e:"Each element's atomic mass must be multiplied by the number of atoms present."},
-
-{q:"What is the molar mass of CO₂?",c:["28.01 g/mol","32.00 g/mol","40.01 g/mol","44.01 g/mol"],a:3,e:"CO₂ = 12.01 + (2 × 16.00) = 44.01 g/mol."},
-
-{q:"What is the molar mass of H₂O?",c:["16.00 g/mol","17.01 g/mol","18.02 g/mol","20.02 g/mol"],a:2,e:"H₂O = (2 × 1.01) + 16.00 = 18.02 g/mol."},
-
-{q:"What does percent composition describe?",c:["The number of atoms in a compound","The percentage by mass of each element in a compound","The molar mass of a compound","The number of moles in a sample"],a:1,e:"Percent composition indicates how much of a compound's mass comes from each element."},
-
-{q:"Which formula is used to calculate percent composition?",c:["(Element mass ÷ Total molar mass) × 100","(Total molar mass ÷ Element mass) × 100","Element mass × Total mass","Moles × Molar mass"],a:0,e:"Percent composition is based on the mass contribution of each element."},
-
-{q:"What is the approximate percent composition of hydrogen in water (H₂O)?",c:["5.6%","11.2%","22.4%","88.8%"],a:1,e:"Hydrogen contributes about 2.02 g out of 18.02 g, giving approximately 11.2%."},
-
-{q:"What is the approximate percent composition of oxygen in water (H₂O)?",c:["11.2%","22.4%","50.0%","88.8%"],a:3,e:"Oxygen contributes approximately 16.00 g out of 18.02 g."},
-
-{q:"Why does oxygen contribute a greater percentage of mass than hydrogen in water?",c:["There are more oxygen atoms","Oxygen atoms are heavier","Hydrogen atoms disappear during calculations","Oxygen has a higher atomic number"],a:1,e:"Mass contribution depends on atomic mass, not simply the number of atoms."},
-
-{q:"A compound contains 27.3% carbon and 72.7% oxygen by mass. Which compound is most likely being described?",c:["CO","CO₂","CH₄","H₂O"],a:1,e:"These percentages closely match the composition of carbon dioxide."},
-
-{q:"Which statement about percent composition is TRUE?",c:["The percentages of all elements should total approximately 100%","Percent composition depends on sample size","Percent composition changes with the number of moles","Percent composition only applies to ionic compounds"],a:0,e:"The total percentage of all elements in a compound should equal approximately 100%."}
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Chapter 3 – Lesson 5 Quiz: Radioisotopes and Radiation</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --red: #a82332;
+                --ink: #24323d;
+                --muted: #536575;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background: linear-gradient(135deg, #e8f9f1, #f7faff);
+                margin: 0;
+                padding: 32px 20px;
+                color: var(--ink);
+                min-height: 100vh;
+                line-height: 1.6;
+                font-size: 18px;
+            }
+            .quiz-container {
+                background: #fff;
+                border-radius: 18px;
+                padding: 34px 40px;
+                box-shadow: 0 8px 28px #00000012;
+                width: 100%;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            .eyebrow {
+                font-size: 0.75em;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--green);
+            }
+            h1 {
+                color: var(--green);
+                font-size: clamp(1.5rem, 3.5vw, 2rem);
+                line-height: 1.25;
+                margin: 10px 0 12px;
+            }
+            h2 {
+                line-height: 1.45;
+            }
+            h3 {
+                line-height: 1.4;
+            }
+            .instructions {
+                font-size: 0.9em;
+                color: var(--muted);
+                margin: 0 0 22px;
+            }
+            .instructions strong {
+                color: var(--ink);
+            }
+            .progress-text {
+                font-size: 0.85em;
+                color: var(--blue);
+                font-weight: 600;
+                margin: 0 0 8px;
+            }
+            .progress-wrapper {
+                background: #e9f5ef;
+                border-radius: 8px;
+                height: 12px;
+                width: 100%;
+                margin-bottom: 24px;
+                overflow: hidden;
+            }
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(to right, var(--green), #2b7de9);
+                width: 0;
+                transition: width 0.25s ease;
+            }
+            .question {
+                font-size: 1.18em;
+                color: var(--blue);
+                margin: 0 0 20px;
+            }
+            .choices {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .choice {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+                padding: 14px 16px;
+                border: 2px solid transparent;
+                border-radius: 10px;
+                background: #eef1fb;
+                color: var(--ink);
+                text-align: left;
+                font: inherit;
+                line-height: 1.5;
+                cursor: pointer;
+                overflow-wrap: anywhere;
+            }
+            .letter {
+                font-weight: 750;
+                color: var(--blue);
+                flex-shrink: 0;
+            }
+            .choice-body {
+                flex: 1;
+                min-width: 0;
+            }
+            .choice-label {
+                display: block;
+            }
+            .choice:hover:not(:disabled) {
+                background: #dfe7fb;
+                border-color: #a9bde4;
+            }
+            .choice:disabled {
+                cursor: default;
+                opacity: 1;
+            }
+            .choice.correct {
+                background: #e7efff;
+                border-color: var(--blue);
+                color: #113e83;
+            }
+            .choice.incorrect {
+                background: #fdecef;
+                border-color: var(--red);
+                color: #8c1d29;
+            }
+            .choice.incorrect .letter {
+                color: var(--red);
+            }
+            .choice-status {
+                font-size: 0.8em;
+                font-weight: 750;
+                display: block;
+                margin-top: 7px;
+            }
+            .choice-status:empty {
+                display: none;
+            }
+            .explanation {
+                padding: 18px;
+                border: 1px solid #b9cee9;
+                border-left: 5px solid var(--blue);
+                border-radius: 10px;
+                background: #f2f6ff;
+                margin: 18px 0;
+            }
+            .explanation.incorrect-feedback {
+                border-left-color: var(--red);
+            }
+            .explanation h3 {
+                font-size: 1em;
+                margin: 0 0 8px;
+            }
+            .explanation p {
+                margin: 8px 0;
+            }
+            .correct-answer {
+                font-weight: 700;
+                color: var(--blue);
+            }
+            .small {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            button {
+                touch-action: manipulation;
+            }
+            .next-btn,
+            .quiz-btn {
+                border: 0;
+                border-radius: 9px;
+                padding: 12px 22px;
+                font:
+                    650 0.95em "Segoe UI",
+                    Arial,
+                    sans-serif;
+                cursor: pointer;
+                min-height: 46px;
+            }
+            .next-btn,
+            .quiz-btn.primary {
+                background: var(--green);
+                color: #fff;
+            }
+            .next-btn:hover:not(:disabled),
+            .quiz-btn.primary:hover:not(:disabled) {
+                background: #0f5b52;
+            }
+            .next-row {
+                text-align: right;
+            }
+            .quiz-btn {
+                background: #e8ecf8;
+                color: var(--blue);
+            }
+            .quiz-btn:hover:not(:disabled) {
+                background: #d7e1f8;
+            }
+            .quiz-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            .quiz-nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 24px 0;
+            }
+            .quiz-result-panel {
+                text-align: center;
+            }
+            .quiz-result-panel h2 {
+                color: var(--blue);
+                font-size: 1.45em;
+                margin: 12px 0;
+            }
+            .stars {
+                color: #a56a00;
+                font-size: 2.4em;
+                letter-spacing: 6px;
+                line-height: 1.3;
+            }
+            .result-status {
+                font-weight: 700;
+            }
+            .save-status {
+                font-size: 0.85em;
+                background: #f1f6fa;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 0.9em;
+            }
+            caption {
+                text-align: left;
+                font-weight: 700;
+                color: var(--green);
+                margin-bottom: 8px;
+            }
+            th,
+            td {
+                padding: 11px 12px;
+                border-bottom: 1px solid #dde5ed;
+                text-align: left;
+            }
+            thead th {
+                background: #f2f6fd;
+                color: var(--blue);
+            }
+            details {
+                margin: 12px 0;
+                border: 1px solid #d7e1e9;
+                border-radius: 9px;
+                padding: 12px 16px;
+            }
+            summary {
+                cursor: pointer;
+                font-weight: 650;
+                color: var(--green);
+            }
+            .review-question {
+                font-weight: 650;
+            }
+            .review-choice {
+                font-size: 0.9em;
+            }
+            .review-answer {
+                border-left: 4px solid var(--blue);
+                padding-left: 12px;
+            }
+            .review-section h3 {
+                color: var(--green);
+            }
+            .review-section p {
+                margin: 10px 0;
+            }
+            .footer-note {
+                font-size: 0.8em;
+                color: var(--muted);
+                text-align: center;
+                margin: 20px 0 0;
+            }
+            [hidden] {
+                display: none !important;
+            }
+            :focus-visible {
+                outline: 3px solid #b36c0c;
+                outline-offset: 4px;
+            }
+            .question:focus,
+            .quiz-result-panel h2:focus {
+                outline: none;
+            }
+            .evidence {
+                margin: 0 0 20px;
+            }
+            .evidence table {
+                margin-top: 0;
+            }
+            .evidence caption {
+                font-size: 0.85em;
+                color: var(--muted);
+                font-weight: 400;
+            }
+            .evidence td,
+            .evidence th {
+                vertical-align: top;
+            }
+            @media (max-width: 600px) {
+                body {
+                    padding: 16px 10px;
+                    font-size: 17px;
+                }
+                .quiz-container {
+                    padding: 24px 18px;
+                    border-radius: 14px;
+                }
+                .choice {
+                    padding: 12px;
+                    gap: 10px;
+                }
+                .quiz-nav {
+                    flex-direction: column;
+                }
+                .quiz-nav button {
+                    width: 100%;
+                }
+                .question {
+                    font-size: 1.1em;
+                }
+                .next-btn {
+                    width: 100%;
+                }
+                th,
+                td {
+                    padding: 9px 8px;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    scroll-behavior: auto !important;
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="quiz-container" aria-labelledby="quizTitle">
+            <div class="eyebrow">LearnTrack · Chemistry I · Chapter 3 · Lesson 5</div>
+            <h1 id="quizTitle">Radioisotopes: Sources and Types of Radiation — Lesson Quiz</h1>
+            <p class="instructions" id="instructions">
+                <strong>10 questions · Pass: 8/10 (80%).</strong> Choose one answer. Your first choice is final for that
+                question; read the feedback before continuing. Each question is worth one point.
+            </p>
+            <p class="progress-text" id="progressText">Question 1 of 10 · 0 answered</p>
+            <div
+                class="progress-wrapper"
+                id="progressMeter"
+                role="progressbar"
+                aria-label="Questions answered"
+                aria-valuemin="0"
+                aria-valuemax="10"
+                aria-valuenow="0"
+            >
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="quizBox"></div>
+            <div class="next-row">
+                <button type="button" id="nextBtn" class="next-btn" hidden disabled>Next Question →</button>
+            </div>
+            <p class="footer-note">Stars: 100% = 3 · 90% = 2 · 80% = 1 · below 80% = 0</p>
+            <noscript><p>This quiz requires JavaScript to show questions and record your choices.</p></noscript>
+        </main>
+        <script>
+            "use strict";
+            // Fixed order: 3 easy, 5 moderate, 2 difficult items. Difficulty is an editorial estimate.
+            // Integration contract retained: quizResult {score, passed}, quizBack, quizNextLesson.
+            const quizData = [
+    {
+        "q": "Which statement best defines a radioisotope?",
+        "c": [
+            "An isotope with an unstable nucleus that can decay spontaneously",
+            "Any atom that has gained an electron",
+            "An isotope that always emits only gamma rays",
+            "Any atom containing neutrons"
+        ],
+        "a": 0,
+        "e": "A radioisotope has an unstable nucleus that can undergo radioactive decay.",
+        "id": "c3l5q01",
+        "topic": "Radioisotopes",
+        "difficulty": "Easy",
+        "why": [
+            "This describes a radioisotope.",
+            "Gaining an electron produces a negative ion, which is not necessarily radioactive.",
+            "Different radioisotopes can emit different kinds of radiation.",
+            "Many atoms containing neutrons have stable nuclei."
+        ]
+    },
+    {
+        "q": "What is an alpha particle?",
+        "c": [
+            "A high-energy photon",
+            "A helium-4 nucleus with two protons and two neutrons",
+            "A high-speed electron",
+            "A single neutron"
+        ],
+        "a": 1,
+        "e": "An alpha particle contains two protons and two neutrons, the same composition as a helium-4 nucleus.",
+        "id": "c3l5q02",
+        "topic": "Types of radiation",
+        "difficulty": "Easy",
+        "why": [
+            "A high-energy photon describes gamma radiation.",
+            "This is the composition of an alpha particle.",
+            "An emitted high-speed electron is beta-minus radiation.",
+            "A neutron alone is not an alpha particle."
+        ]
+    },
+    {
+        "q": "Which type of radiation consists of high-energy electromagnetic photons?",
+        "c": [
+            "Alpha",
+            "Beta-minus",
+            "Gamma",
+            "Neutron radiation"
+        ],
+        "a": 2,
+        "e": "Gamma radiation consists of high-energy electromagnetic photons with no electric charge.",
+        "id": "c3l5q03",
+        "topic": "Types of radiation",
+        "difficulty": "Easy",
+        "why": [
+            "Alpha particles are helium-4 nuclei.",
+            "Beta-minus particles are electrons.",
+            "Gamma rays are electromagnetic photons.",
+            "Neutrons are particles, not photons."
+        ]
+    },
+    {
+        "q": "Carbon-14 formed in the atmosphere through cosmic-ray interactions is an example of which source?",
+        "c": [
+            "A naturally produced radioisotope",
+            "A radioisotope produced only in a nuclear reactor",
+            "A stable isotope that cannot decay",
+            "A radioisotope with no neutrons"
+        ],
+        "a": 0,
+        "e": "Carbon-14 is formed naturally in the atmosphere through reactions initiated by cosmic radiation.",
+        "id": "c3l5q04",
+        "topic": "Natural and human-produced sources",
+        "difficulty": "Moderate",
+        "why": [
+            "The atmospheric process described is natural.",
+            "The question describes a natural atmospheric process, not reactor production.",
+            "Carbon-14 is radioactive and undergoes beta-minus decay.",
+            "Carbon-14 contains six protons and eight neutrons."
+        ]
+    },
+    {
+        "q": "A laboratory produces a sample of a radioactive nuclide that can also occur naturally. How should this particular sample be classified?",
+        "c": [
+            "Natural, because the nuclide also occurs in nature",
+            "Human-produced, because this sample was made in a laboratory",
+            "Stable, because it has a natural counterpart",
+            "Neither natural nor human-produced"
+        ],
+        "a": 1,
+        "e": "Source classification describes the origin of the particular sample. This sample was produced in a laboratory.",
+        "id": "c3l5q05",
+        "topic": "Natural and human-produced sources",
+        "difficulty": "Moderate",
+        "why": [
+            "A different sample may be natural, but this one was produced in a laboratory.",
+            "The sample’s stated origin is human production.",
+            "Natural occurrence does not establish nuclear stability.",
+            "The production method supplied allows the sample’s origin to be classified."
+        ]
+    },
+    {
+        "q": "Which statement correctly describes beta-minus radiation?",
+        "c": [
+            "It consists of helium-4 nuclei with a +2 charge.",
+            "It consists of high-speed electrons with a −1 charge.",
+            "It consists of photons with no charge.",
+            "It consists only of neutral atoms."
+        ],
+        "a": 1,
+        "e": "Beta-minus radiation consists of electrons emitted during nuclear decay.",
+        "id": "c3l5q06",
+        "topic": "Types of radiation",
+        "difficulty": "Moderate",
+        "why": [
+            "Helium-4 nuclei are alpha particles.",
+            "Beta-minus particles are negatively charged electrons.",
+            "Uncharged high-energy photons are gamma rays.",
+            "Beta-minus particles carry negative charge."
+        ]
+    },
+    {
+        "q": "Which comparison of radiation penetration and shielding is generally correct?",
+        "c": [
+            "Paper stops all gamma radiation, while alpha passes through thick lead.",
+            "External alpha particles are generally stopped by paper; gamma rays require denser or thicker shielding to attenuate them.",
+            "All alpha, beta, and gamma radiation has identical penetrating ability.",
+            "A thin sheet of paper always stops all beta and gamma radiation."
+        ],
+        "a": 1,
+        "e": "External alpha particles generally have short ranges, while gamma rays are generally more penetrating and are attenuated by dense shielding. Actual shielding depends on energy and material.",
+        "id": "c3l5q07",
+        "topic": "Penetration and shielding",
+        "difficulty": "Moderate",
+        "why": [
+            "Gamma rays are generally more penetrating than alpha particles.",
+            "This is the usual comparison, though shielding depends on energy and material.",
+            "The radiation types have different typical penetrating abilities.",
+            "Paper does not reliably stop all beta radiation and is not sufficient gamma shielding."
+        ]
+    },
+    {
+        "q": "Why can an alpha-emitting substance be hazardous if it is inhaled, even though external alpha particles are generally stopped by skin?",
+        "c": [
+            "Alpha particles cannot interact with living tissue.",
+            "Radioactive material inside the body can deposit energy in nearby tissue.",
+            "Inhalation changes alpha particles into gamma rays.",
+            "Alpha particles always pass through the entire body."
+        ],
+        "a": 1,
+        "e": "An internal alpha-emitting source can irradiate and damage nearby tissue even though external alpha penetration is low.",
+        "id": "c3l5q08",
+        "topic": "Radiation hazards",
+        "difficulty": "Moderate",
+        "why": [
+            "Alpha particles can strongly ionize material and damage nearby tissue.",
+            "An internal source places the alpha radiation close to living cells.",
+            "Inhalation does not automatically transform alpha radiation into gamma radiation.",
+            "Alpha particles have short ranges in tissue."
+        ]
+    },
+    {
+        "q": "A nucleus with mass number 210 and atomic number 84 emits an alpha particle. What are the mass number and atomic number of the daughter nucleus?",
+        "c": [
+            "A = 206 and Z = 82",
+            "A = 210 and Z = 85",
+            "A = 214 and Z = 86",
+            "A = 208 and Z = 80"
+        ],
+        "a": 0,
+        "e": "An alpha particle carries away 2 protons and 2 neutrons, so daughter A = 210 − 4 = 206 and Z = 84 − 2 = 82.",
+        "id": "c3l5q09",
+        "topic": "Nuclear changes",
+        "difficulty": "Difficult",
+        "why": [
+            "Subtract 4 from A and 2 from Z for alpha emission.",
+            "This change describes beta-minus decay rather than alpha decay.",
+            "The daughter loses, rather than gains, an alpha particle’s nucleons.",
+            "An alpha particle has mass number 4 and atomic number 2."
+        ]
+    },
+    {
+        "q": "Carbon-14 undergoes beta-minus decay to nitrogen-14. Which statement explains how the daughter nucleus differs from the parent?",
+        "c": [
+            "A neutron becomes a proton, so Z increases by 1 while A remains 14.",
+            "Two protons and two neutrons leave the nucleus, so A decreases by 4.",
+            "The nucleus emits a gamma photon, so Z decreases by 1.",
+            "A proton becomes a neutron, so Z decreases by 1 while A increases."
+        ],
+        "a": 0,
+        "e": "In beta-minus decay, a neutron changes into a proton; an electron and an antineutrino are emitted. Atomic number increases by 1, while mass number remains unchanged.",
+        "id": "c3l5q10",
+        "topic": "Nuclear changes",
+        "difficulty": "Difficult",
+        "why": [
+            "This describes beta-minus decay of carbon-14 to nitrogen-14.",
+            "Losing two protons and two neutrons describes alpha emission.",
+            "Gamma emission alone changes neither atomic number nor mass number.",
+            "This does not describe beta-minus decay or conserve nucleon count as stated."
+        ]
+    }
 ];
 
-let current = 0, score = 0, selected = null, showingExplanation = false;
-const quizBox = document.getElementById("quizBox");
-const nextBtn = document.getElementById("nextBtn");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
+            const PASS_PERCENT = 80;
+            const letters = ["A", "B", "C", "D"];
+            let current = 0;
+            let answers = Array(quizData.length).fill(null);
+            let resultSent = false;
+            let completed = false;
+            const quizBox = document.getElementById("quizBox");
+            const nextBtn = document.getElementById("nextBtn");
+            const progressText = document.getElementById("progressText");
+            const progressBar = document.getElementById("progressBar");
+            const progressMeter = document.getElementById("progressMeter");
 
-function showQuestion() {
-  const q = quizData[current];
-  updateProgress();
-  quizBox.innerHTML = `
-    <div class='question'>${q.q}</div>
-	${q.svg || ""}
-    <div class='choices'></div>
-    <div class='explanation' id='explanationBox'></div>
-  `;
-  const choicesContainer = quizBox.querySelector(".choices");
-  q.c.forEach((choice, i) => {
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.innerHTML = choice;
-    btn.addEventListener("click", () => selectChoice(i));
-    choicesContainer.appendChild(btn);
-  });
-  nextBtn.style.display = "none";
-  selected = null;
-  showingExplanation = false;
-}
+            function element(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = text;
+                return node;
+            }
+            function isEmbedded() {
+                return window.parent !== window;
+            }
+            function updateProgress() {
+                const count = answers.filter((value) => value !== null).length;
+                progressBar.style.width = (count / quizData.length) * 100 + "%";
+                progressMeter.setAttribute("aria-valuenow", String(count));
+                progressMeter.setAttribute("aria-valuemax", String(quizData.length));
+                progressMeter.setAttribute("aria-valuetext", `${count} of ${quizData.length} questions answered`);
+                progressText.textContent = completed
+                    ? `Quiz completed · ${count} of ${quizData.length} answered`
+                    : `Question ${current + 1} of ${quizData.length} · ${count} answered`;
+            }
+            function renderEvidence(data) {
+                const wrap = element("div", "table-wrap evidence");
+                wrap.tabIndex = 0;
+                wrap.setAttribute("role", "region");
+                wrap.setAttribute("aria-label", data.caption);
+                const table = element("table");
+                table.append(element("caption", "", data.caption));
+                const head = element("thead");
+                const heading = element("tr");
+                data.headers.forEach((text) => {
+                    const cell = element("th", "", text);
+                    cell.scope = "col";
+                    heading.append(cell);
+                });
+                head.append(heading);
+                table.append(head);
+                const body = element("tbody");
+                data.rows.forEach((row) => {
+                    const tr = element("tr");
+                    row.forEach((text, i) => {
+                        const td = element(i === 0 ? "th" : "td", "", text);
+                        if (i === 0) td.scope = "row";
+                        tr.append(td);
+                    });
+                    body.append(tr);
+                });
+                table.append(body);
+                wrap.append(table);
+                return wrap;
+            }
+            function showQuestion(focus = false) {
+                const q = quizData[current];
+                quizBox.replaceChildren();
+                const heading = element("h2", "question", q.q);
+                heading.id = "questionTitle";
+                heading.tabIndex = -1;
+                const choices = element("div", "choices");
+                choices.setAttribute("role", "group");
+                choices.setAttribute("aria-labelledby", "questionTitle");
+                q.c.forEach((text, i) => {
+                    const button = element("button", "choice");
+                    button.type = "button";
+                    button.setAttribute("data-choice", String(i));
+                    const body = element("span", "choice-body");
+                    body.append(element("span", "choice-label", text), element("span", "choice-status"));
+                    button.append(body);
+                    button.addEventListener("click", () => selectChoice(i));
+                    choices.append(button);
+                });
+                const feedback = element("div", "explanation");
+                feedback.id = "explanationBox";
+                feedback.hidden = true;
+                feedback.tabIndex = -1;
+                feedback.setAttribute("role", "status");
+                feedback.setAttribute("aria-live", "polite");
+                feedback.setAttribute("aria-atomic", "true");
+                quizBox.append(heading);
+                if (q.evidence) quizBox.append(renderEvidence(q.evidence));
+                quizBox.append(choices, feedback);
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                nextBtn.textContent = current === quizData.length - 1 ? "View Results →" : "Next Question →";
+                updateProgress();
+                if (focus) heading.focus();
+            }
+            function selectChoice(index) {
+                if (completed || answers[current] !== null || !Number.isInteger(index) || index < 0 || index > 3)
+                    return;
+                const q = quizData[current];
+                answers[current] = index;
+                const correct = index === q.a;
+                quizBox.querySelectorAll(".choice").forEach((button, i) => {
+                    button.disabled = true;
+                    const status = button.querySelector(".choice-status");
+                    if (i === q.a) {
+                        button.classList.add("correct");
+                        status.textContent = correct ? "✓ Your answer — correct" : "✓ Correct answer";
+                    } else if (i === index) {
+                        button.classList.add("incorrect");
+                        status.textContent = "✗ Your answer — incorrect";
+                    }
+                });
+                const feedback = document.getElementById("explanationBox");
+                feedback.classList.toggle("incorrect-feedback", !correct);
+                feedback.append(element("h3", "", correct ? "Correct." : "Not quite."));
+                if (!correct) feedback.append(element("p", "", q.why[index]));
+                feedback.append(
+                    element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                    element("p", "", q.e)
+                );
+                feedback.hidden = false;
+                nextBtn.hidden = false;
+                nextBtn.disabled = false;
+                updateProgress();
+                feedback.focus();
+            }
+            function nextQuestion() {
+                if (completed || answers[current] === null) return;
+                if (current === quizData.length - 1) showResult();
+                else {
+                    current += 1;
+                    showQuestion(true);
+                }
+            }
+            function starCount(percent) {
+                return percent === 100 ? 3 : percent >= 90 ? 2 : percent >= 80 ? 1 : 0;
+            }
+            function getScore() {
+                return answers.reduce((total, value, index) => total + (value === quizData[index].a ? 1 : 0), 0);
+            }
+            function sendResult(percent, passed) {
+                if (resultSent || !isEmbedded()) return;
+                // Same message and score format used by the Organic Chemistry quizzes.
+                window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+                resultSent = true;
+            }
+            function showResult() {
+                if (completed || answers.some((value) => value === null)) return;
+                completed = true;
+                const score = getScore();
+                const percent = Math.round((score / quizData.length) * 100);
+                const passed = percent >= PASS_PERCENT;
+                const stars = starCount(percent);
+                quizBox.replaceChildren();
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                updateProgress();
+                const result = element("section", "quiz-result-panel");
+                const starDisplay = element("div", "stars", "★".repeat(stars) + "☆".repeat(3 - stars));
+                starDisplay.setAttribute("role", "img");
+                starDisplay.setAttribute("aria-label", `${stars} out of 3 stars`);
+                const title = element("h2", "result", `You scored ${score}/${quizData.length} (${percent}%)`);
+                title.id = "resultTitle";
+                title.tabIndex = -1;
+                result.setAttribute("aria-labelledby", "resultTitle");
+                const outcome = passed
+                    ? "Passed — you met the 80% target."
+                    : "Not yet passed — review the explanations, then retry.";
+                const status = element("p", "save-status");
+                status.id = "saveStatus";
+                status.setAttribute("role", "status");
+                status.textContent = isEmbedded()
+                    ? "Sending your result to LearnTrack..."
+                    : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                result.append(starDisplay, title, element("p", "result-status", outcome), status);
+                const nav = element("nav", "quiz-nav");
+                nav.setAttribute("aria-label", "Quiz result actions");
+                const back = element("button", "quiz-btn", "← Back to Lesson");
+                back.type = "button";
+                back.id = "backBtn";
+                back.disabled = true;
+                const retry = element("button", "quiz-btn", "Retry Quiz");
+                retry.type = "button";
+                retry.id = "retryBtn";
+                retry.disabled = true;
+                const next = element("button", "quiz-btn primary", "Next Lesson →");
+                next.type = "button";
+                next.id = "nextLessonBtn";
+                next.disabled = true;
+                back.addEventListener("click", () => {
+                    if (isEmbedded()) window.parent.postMessage({ type: "quizBack" }, "*");
+                });
+                retry.addEventListener("click", retryQuiz);
+                next.addEventListener("click", () => {
+                    if (passed && isEmbedded()) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+                });
+                nav.append(back, retry, next);
+                result.append(nav);
+                quizBox.append(result);
 
-function selectChoice(i) {
-  if (showingExplanation) return;
-
-  const q = quizData[current];
-  const buttons = document.querySelectorAll(".choice");
-  const expBox = document.getElementById("explanationBox");
-  const correct = i === q.a;
-
-  if (correct) score++;
-
-  buttons.forEach((btn, idx) => {
-    btn.disabled = true;
-
-    if (idx === q.a) {
-      btn.classList.add("correct");
-    }
-
-    if (idx === i && idx !== q.a) {
-      btn.classList.add("incorrect");
-    }
-  });
-
-  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
-  expBox.style.display = "block";
-  nextBtn.style.display = "inline-block";
-  showingExplanation = true;
-}
-
-nextBtn.addEventListener("click", () => {
-  current++;
-  if (current < quizData.length) showQuestion();
-  else showResult();
-});
-
-function updateProgress() {
-  const percent = (current / quizData.length) * 100;
-  progressBar.style.width = percent + "%";
-  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
-}
-
-function getStarRating(percent) {
-  if (percent === 100) return "⭐️⭐️⭐️";
-  else if (percent >= 90) return "⭐️⭐️☆";
-  else if (percent >= 80) return "⭐️☆☆";
-  else return "☆☆☆";
-}
-
-let resultSent = false;
-
-function showResult() {
-  progressBar.style.width = "100%";
-  progressText.textContent = "Quiz Completed";
-
-  const percent = Math.round((score / quizData.length) * 100);
-  const passed = percent >= 80;
-
-  quizBox.innerHTML = `
-    <div class='stars'>${getStarRating(percent)}</div>
-    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
-    <div class='quiz-nav'>
-      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
-      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
-      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
-    </div>
-  `;
-
-  nextBtn.style.display = "none";
-
-  if (!resultSent) {
-    resultSent = true;
-    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
-  }
-
-  setTimeout(() => {
-    const status = document.getElementById("saveStatus");
-    const backBtn = document.getElementById("backBtn");
-    const retryBtn = document.getElementById("retryBtn");
-    const nextLessonBtn = document.getElementById("nextLessonBtn");
-
-    if (status) status.textContent = passed
-      ? "Progress sent. You may proceed after it is saved."
-      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
-
-    if (backBtn) backBtn.disabled = false;
-    if (retryBtn) retryBtn.disabled = false;
-    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
-
-    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
-    if (backBtn) backBtn.addEventListener("click", () =>
-      window.parent.postMessage({ type: "quizBack" }, "*")
-    );
-    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
-      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
-    });
-  }, 1200);
-}
-
-function retryQuiz() {
-  resultSent = false;
-  current = 0;
-  score = 0;
-  showQuestion();
-}
-
-showQuestion();
-</script>
-</body>
+                // Send once before building optional review sections, matching the
+                // established Organic Chemistry quiz integration.
+                sendResult(percent, passed);
+                setTimeout(() => {
+                    if (document.getElementById("saveStatus") !== status) return;
+                    status.textContent = isEmbedded()
+                        ? "Result sent to LearnTrack. Saving has not been confirmed by the app."
+                        : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                    back.disabled = !isEmbedded();
+                    retry.disabled = false;
+                    next.disabled = !isEmbedded() || !passed;
+                }, 1200);
+                renderTopicSummary();
+                renderReview();
+                title.focus();
+            }
+            function renderTopicSummary() {
+                const wrap = element("div", "table-wrap");
+                const table = element("table");
+                table.append(element("caption", "", "Your review priorities"));
+                const head = element("thead");
+                const header = element("tr");
+                ["Area", "Score", "Next step"].forEach((text) => {
+                    const th = element("th", "", text);
+                    th.scope = "col";
+                    header.append(th);
+                });
+                head.append(header);
+                table.append(head);
+                const body = element("tbody");
+                [...new Set(quizData.map((q) => q.topic))].forEach((topic) => {
+                    const indices = quizData.map((q, i) => (q.topic === topic ? i : -1)).filter((i) => i >= 0);
+                    const correct = indices.filter((i) => answers[i] === quizData[i].a).length;
+                    const row = element("tr");
+                    const name = element("th", "", topic);
+                    name.scope = "row";
+                    row.append(
+                        name,
+                        element("td", "", `${correct}/${indices.length}`),
+                        element(
+                            "td",
+                            "",
+                            correct === indices.length
+                                ? "All correct this attempt"
+                                : "Review the related explanations below"
+                        )
+                    );
+                    body.append(row);
+                });
+                table.append(body);
+                wrap.append(table);
+                quizBox.append(wrap);
+            }
+            function renderReview() {
+                const section = element("section", "review-section");
+                section.append(
+                    element("h3", "", "Review your answers"),
+                    element(
+                        "p",
+                        "small",
+                        "Open any question to compare your answer with the explanation. Retry starts a new attempt with the same question and choice order."
+                    )
+                );
+                quizData.forEach((q, index) => {
+                    const correct = answers[index] === q.a;
+                    const details = element("details");
+                    details.append(
+                        element("summary", "", `Question ${index + 1} · ${correct ? "Correct" : "Review needed"}`),
+                        element("p", "review-question", q.q),
+                        element(
+                            "p",
+                            "review-choice",
+                            `Your answer: ${letters[answers[index]]}. ${q.c[answers[index]]}`
+                        ),
+                        element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                        element("p", "review-answer", q.e)
+                    );
+                    if (q.evidence) details.querySelector(".review-question").after(renderEvidence(q.evidence));
+                    const all = element("details");
+                    all.append(element("summary", "", "Why each option fits or does not fit"));
+                    q.c.forEach((text, i) =>
+                        all.append(element("p", "review-choice", `${letters[i]}. ${text} — ${q.why[i]}`))
+                    );
+                    details.append(all);
+                    section.append(details);
+                });
+                quizBox.append(section);
+            }
+            function retryQuiz() {
+                current = 0;
+                answers = Array(quizData.length).fill(null);
+                completed = false;
+                resultSent = false;
+                showQuestion(true);
+            }
+            nextBtn.addEventListener("click", nextQuestion);
+            showQuestion();
+        </script>
+    </body>
 </html>
