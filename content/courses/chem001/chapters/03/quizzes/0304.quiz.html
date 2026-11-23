@@ -1,252 +1,903 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Deriving the Chemical Formulas of Substances</title>
-
-<style>
-/* SAME STYLE AS TEMPLATE */
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #e8f9f1, #f7faff);
-  margin: 0;
-  padding: 40px 20px;
-  color: #222;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-.quiz-container {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 40px 50px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-  width: 95%;
-  max-width: 850px;
-  text-align: center;
-}
-h2 { color: #136f63; margin-bottom: 25px; }
-.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
-.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
-.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
-.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
-.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
-.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
-.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
-.choice.correct {background: #2b7de9;color: #fff;}
-.choice.incorrect {background: #e57373;color: #fff;}
-.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
-.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
-.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
-.stars { font-size:2.5em; margin-top:10px;}
-.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
-.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
-.quiz-btn.primary { background:#136f63; color:#fff;}
-@media (max-width: 600px) {
-    .quiz-container { padding: 25px; }
-    .question { font-size: 1.1em; }
-    .stars { font-size: 2em; }
-  }
-
-.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
-
-svg {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  display: block;
-}
-</style>
-</head>
-
-<body>
-
-<div class="quiz-container">
-
-<h2>Deriving the Chemical Formulas of Substances - Quiz</h2>
-
-<div class="progress-text" id="progressText"></div>
-<div class="progress-wrapper">
-<div id="progressBar" class="progress-bar"></div>
-</div>
-
-<div id="quizBox"></div>
-
-<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
-
-</div>
-
-<script>
-
-const quizData = [
-
-{q:"What does an empirical formula represent?",c:["The actual number of atoms in a molecule","The simplest whole-number ratio of atoms","The molecular mass of a compound","The percentage composition of a compound"],a:1,e:"The empirical formula shows the simplest whole-number ratio of atoms present in a compound."},
-
-{q:"What does a molecular formula represent?",c:["The simplest atom ratio","The actual number of atoms in a molecule","The percent composition of a compound","The number of moles in a sample"],a:1,e:"The molecular formula gives the actual number of each type of atom present in a molecule."},
-
-{q:"What is the empirical formula of C₂H₄?",c:["CH","CH₂","C₂H₄","C₄H₈"],a:1,e:"Divide both subscripts by 2 to obtain the simplest ratio: CH₂."},
-
-{q:"What is the empirical formula of N₂O₄?",c:["NO","NO₂","N₂O","N₂O₄"],a:1,e:"Divide both subscripts by 2 to obtain NO₂."},
-
-{q:"Which pair could represent an empirical formula and its molecular formula?",c:["CH₂ and C₂H₄","CO₂ and CO","H₂O and HO","NH₃ and N₂H"],a:0,e:"C₂H₄ is a whole-number multiple of CH₂."},
-
-{q:"A compound contains 4 carbon atoms and 8 hydrogen atoms. What is its empirical formula?",c:["C₄H₈","CH₂","C₂H₄","CH"],a:1,e:"Dividing both subscripts by 4 gives CH₂."},
-
-{q:"When deriving an empirical formula from percent composition, why is a 100 g sample often assumed?",c:["To make the compound larger","To convert percentages directly into grams","To avoid using moles","To determine molecular mass"],a:1,e:"A 100 g sample allows percentage values to be treated directly as gram values."},
-
-{q:"What is the first step after assuming a 100 g sample in a percent composition problem?",c:["Determine molecular mass","Convert grams to moles","Divide by the smallest value","Write the formula"],a:1,e:"The masses must first be converted into moles."},
-
-{q:"After obtaining mole values for each element, what is the next step?",c:["Multiply by Avogadro's number","Convert to percentages","Divide by the smallest mole value","Determine molecular mass"],a:2,e:"Dividing by the smallest mole value gives the simplest ratio."},
-
-{q:"A compound contains 40.0% C, 6.7% H, and 53.3% O. What is its empirical formula?",c:["CHO","CH₂O","C₂H₄O₂","C₆H₁₂O₆"],a:1,e:"The mole ratio simplifies to 1:2:1, giving CH₂O."},
-
-{q:"What does the value n represent in the equation Molecular Formula = (Empirical Formula)ₙ?",c:["Number of atoms","Number of moles","Whole-number multiplier","Percent composition"],a:2,e:"n indicates how many times the empirical formula must be multiplied."},
-
-{q:"A compound has an empirical formula mass of 30 g/mol and a molecular mass of 180 g/mol. What is n?",c:["3","4","5","6"],a:3,e:"180 ÷ 30 = 6."},
-
-{q:"If the empirical formula is CH₂O and n = 6, what is the molecular formula?",c:["C₆H₁₂O₆","C₃H₆O₃","CH₂O","C₁₂H₂₄O₁₂"],a:0,e:"Multiply all subscripts in CH₂O by 6."},
-
-{q:"A ratio calculation produces C = 1 and H = 1.5. What should be done next?",c:["Round immediately","Multiply all ratios by 2","Multiply only H by 2","Convert to percentages"],a:1,e:"Multiplying by 2 converts the fractional ratio into whole numbers."},
-
-{q:"Which decimal ratio typically requires multiplying all values by 3?",c:["0.25","0.50","0.33","0.20"],a:2,e:"Ratios near 0.33 (or 0.67) are usually converted by multiplying by 3."}
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Chapter 3 – Lesson 4 Quiz: Isotopes and Isotope Notation</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --red: #a82332;
+                --ink: #24323d;
+                --muted: #536575;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background: linear-gradient(135deg, #e8f9f1, #f7faff);
+                margin: 0;
+                padding: 32px 20px;
+                color: var(--ink);
+                min-height: 100vh;
+                line-height: 1.6;
+                font-size: 18px;
+            }
+            .quiz-container {
+                background: #fff;
+                border-radius: 18px;
+                padding: 34px 40px;
+                box-shadow: 0 8px 28px #00000012;
+                width: 100%;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            .eyebrow {
+                font-size: 0.75em;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--green);
+            }
+            h1 {
+                color: var(--green);
+                font-size: clamp(1.5rem, 3.5vw, 2rem);
+                line-height: 1.25;
+                margin: 10px 0 12px;
+            }
+            h2 {
+                line-height: 1.45;
+            }
+            h3 {
+                line-height: 1.4;
+            }
+            .instructions {
+                font-size: 0.9em;
+                color: var(--muted);
+                margin: 0 0 22px;
+            }
+            .instructions strong {
+                color: var(--ink);
+            }
+            .progress-text {
+                font-size: 0.85em;
+                color: var(--blue);
+                font-weight: 600;
+                margin: 0 0 8px;
+            }
+            .progress-wrapper {
+                background: #e9f5ef;
+                border-radius: 8px;
+                height: 12px;
+                width: 100%;
+                margin-bottom: 24px;
+                overflow: hidden;
+            }
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(to right, var(--green), #2b7de9);
+                width: 0;
+                transition: width 0.25s ease;
+            }
+            .question {
+                font-size: 1.18em;
+                color: var(--blue);
+                margin: 0 0 20px;
+            }
+            .choices {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .choice {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+                padding: 14px 16px;
+                border: 2px solid transparent;
+                border-radius: 10px;
+                background: #eef1fb;
+                color: var(--ink);
+                text-align: left;
+                font: inherit;
+                line-height: 1.5;
+                cursor: pointer;
+                overflow-wrap: anywhere;
+            }
+            .letter {
+                font-weight: 750;
+                color: var(--blue);
+                flex-shrink: 0;
+            }
+            .choice-body {
+                flex: 1;
+                min-width: 0;
+            }
+            .choice-label {
+                display: block;
+            }
+            .choice:hover:not(:disabled) {
+                background: #dfe7fb;
+                border-color: #a9bde4;
+            }
+            .choice:disabled {
+                cursor: default;
+                opacity: 1;
+            }
+            .choice.correct {
+                background: #e7efff;
+                border-color: var(--blue);
+                color: #113e83;
+            }
+            .choice.incorrect {
+                background: #fdecef;
+                border-color: var(--red);
+                color: #8c1d29;
+            }
+            .choice.incorrect .letter {
+                color: var(--red);
+            }
+            .choice-status {
+                font-size: 0.8em;
+                font-weight: 750;
+                display: block;
+                margin-top: 7px;
+            }
+            .choice-status:empty {
+                display: none;
+            }
+            .explanation {
+                padding: 18px;
+                border: 1px solid #b9cee9;
+                border-left: 5px solid var(--blue);
+                border-radius: 10px;
+                background: #f2f6ff;
+                margin: 18px 0;
+            }
+            .explanation.incorrect-feedback {
+                border-left-color: var(--red);
+            }
+            .explanation h3 {
+                font-size: 1em;
+                margin: 0 0 8px;
+            }
+            .explanation p {
+                margin: 8px 0;
+            }
+            .correct-answer {
+                font-weight: 700;
+                color: var(--blue);
+            }
+            .small {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            button {
+                touch-action: manipulation;
+            }
+            .next-btn,
+            .quiz-btn {
+                border: 0;
+                border-radius: 9px;
+                padding: 12px 22px;
+                font:
+                    650 0.95em "Segoe UI",
+                    Arial,
+                    sans-serif;
+                cursor: pointer;
+                min-height: 46px;
+            }
+            .next-btn,
+            .quiz-btn.primary {
+                background: var(--green);
+                color: #fff;
+            }
+            .next-btn:hover:not(:disabled),
+            .quiz-btn.primary:hover:not(:disabled) {
+                background: #0f5b52;
+            }
+            .next-row {
+                text-align: right;
+            }
+            .quiz-btn {
+                background: #e8ecf8;
+                color: var(--blue);
+            }
+            .quiz-btn:hover:not(:disabled) {
+                background: #d7e1f8;
+            }
+            .quiz-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            .quiz-nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 24px 0;
+            }
+            .quiz-result-panel {
+                text-align: center;
+            }
+            .quiz-result-panel h2 {
+                color: var(--blue);
+                font-size: 1.45em;
+                margin: 12px 0;
+            }
+            .stars {
+                color: #a56a00;
+                font-size: 2.4em;
+                letter-spacing: 6px;
+                line-height: 1.3;
+            }
+            .result-status {
+                font-weight: 700;
+            }
+            .save-status {
+                font-size: 0.85em;
+                background: #f1f6fa;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 0.9em;
+            }
+            caption {
+                text-align: left;
+                font-weight: 700;
+                color: var(--green);
+                margin-bottom: 8px;
+            }
+            th,
+            td {
+                padding: 11px 12px;
+                border-bottom: 1px solid #dde5ed;
+                text-align: left;
+            }
+            thead th {
+                background: #f2f6fd;
+                color: var(--blue);
+            }
+            details {
+                margin: 12px 0;
+                border: 1px solid #d7e1e9;
+                border-radius: 9px;
+                padding: 12px 16px;
+            }
+            summary {
+                cursor: pointer;
+                font-weight: 650;
+                color: var(--green);
+            }
+            .review-question {
+                font-weight: 650;
+            }
+            .review-choice {
+                font-size: 0.9em;
+            }
+            .review-answer {
+                border-left: 4px solid var(--blue);
+                padding-left: 12px;
+            }
+            .review-section h3 {
+                color: var(--green);
+            }
+            .review-section p {
+                margin: 10px 0;
+            }
+            .footer-note {
+                font-size: 0.8em;
+                color: var(--muted);
+                text-align: center;
+                margin: 20px 0 0;
+            }
+            [hidden] {
+                display: none !important;
+            }
+            :focus-visible {
+                outline: 3px solid #b36c0c;
+                outline-offset: 4px;
+            }
+            .question:focus,
+            .quiz-result-panel h2:focus {
+                outline: none;
+            }
+            .evidence {
+                margin: 0 0 20px;
+            }
+            .evidence table {
+                margin-top: 0;
+            }
+            .evidence caption {
+                font-size: 0.85em;
+                color: var(--muted);
+                font-weight: 400;
+            }
+            .evidence td,
+            .evidence th {
+                vertical-align: top;
+            }
+            @media (max-width: 600px) {
+                body {
+                    padding: 16px 10px;
+                    font-size: 17px;
+                }
+                .quiz-container {
+                    padding: 24px 18px;
+                    border-radius: 14px;
+                }
+                .choice {
+                    padding: 12px;
+                    gap: 10px;
+                }
+                .quiz-nav {
+                    flex-direction: column;
+                }
+                .quiz-nav button {
+                    width: 100%;
+                }
+                .question {
+                    font-size: 1.1em;
+                }
+                .next-btn {
+                    width: 100%;
+                }
+                th,
+                td {
+                    padding: 9px 8px;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    scroll-behavior: auto !important;
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="quiz-container" aria-labelledby="quizTitle">
+            <div class="eyebrow">LearnTrack · Chemistry I · Chapter 3 · Lesson 4</div>
+            <h1 id="quizTitle">Isotopes and Isotope Notation — Lesson Quiz</h1>
+            <p class="instructions" id="instructions">
+                <strong>10 questions · Pass: 8/10 (80%).</strong> Choose one answer. Your first choice is final for that
+                question; read the feedback before continuing. Each question is worth one point.
+            </p>
+            <p class="progress-text" id="progressText">Question 1 of 10 · 0 answered</p>
+            <div
+                class="progress-wrapper"
+                id="progressMeter"
+                role="progressbar"
+                aria-label="Questions answered"
+                aria-valuemin="0"
+                aria-valuemax="10"
+                aria-valuenow="0"
+            >
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="quizBox"></div>
+            <div class="next-row">
+                <button type="button" id="nextBtn" class="next-btn" hidden disabled>Next Question →</button>
+            </div>
+            <p class="footer-note">Stars: 100% = 3 · 90% = 2 · 80% = 1 · below 80% = 0</p>
+            <noscript><p>This quiz requires JavaScript to show questions and record your choices.</p></noscript>
+        </main>
+        <script>
+            "use strict";
+            // Fixed order: 3 easy, 5 moderate, 2 difficult items. Difficulty is an editorial estimate.
+            // Integration contract retained: quizResult {score, passed}, quizBack, quizNextLesson.
+            const quizData = [
+    {
+        "q": "What makes two atoms isotopes of the same element?",
+        "c": [
+            "They have the same number of protons but different numbers of neutrons.",
+            "They have the same number of neutrons but different numbers of protons.",
+            "They have different numbers of protons and electrons.",
+            "They have the same mass number but different numbers of protons."
+        ],
+        "a": 0,
+        "e": "Isotopes are atoms of the same element with the same proton count and different neutron counts.",
+        "id": "c3l4q01",
+        "topic": "Isotope concepts",
+        "difficulty": "Easy",
+        "why": [
+            "Equal proton counts identify the element; different neutron counts distinguish isotopes.",
+            "Different proton counts identify different elements.",
+            "Different proton counts indicate different elements, not isotopes of one element.",
+            "Different proton counts indicate different elements even when mass numbers match."
+        ]
+    },
+    {
+        "q": "In the name carbon-14, what does the number 14 represent?",
+        "c": [
+            "Number of protons",
+            "Number of neutrons",
+            "Mass number",
+            "Electric charge"
+        ],
+        "a": 2,
+        "e": "The number in a hyphenated isotope name is the mass number: the sum of protons and neutrons.",
+        "id": "c3l4q02",
+        "topic": "Isotope notation",
+        "difficulty": "Easy",
+        "why": [
+            "Carbon has 6 protons; 14 is not its atomic number.",
+            "Carbon-14 has 8 neutrons, not 14.",
+            "The number after the hyphen is the mass number.",
+            "The number in the isotope name does not show electric charge."
+        ]
+    },
+    {
+        "q": "In the isotope notation ²³₁₁Na, what does the subscript 11 represent?",
+        "c": [
+            "Mass number",
+            "Number of neutrons",
+            "Atomic number",
+            "Net electric charge"
+        ],
+        "a": 2,
+        "e": "The lower-left subscript is atomic number Z, which equals the number of protons.",
+        "id": "c3l4q03",
+        "topic": "Isotope notation",
+        "difficulty": "Easy",
+        "why": [
+            "The mass number is the upper-left number, 23.",
+            "Neutrons are 23 − 11 = 12.",
+            "The lower-left number is atomic number Z.",
+            "No charge is shown; charge would appear at the upper right."
+        ]
+    },
+    {
+        "q": "How many protons and neutrons are in an atom of ¹⁸₈O?",
+        "c": [
+            "8 protons and 10 neutrons",
+            "8 protons and 18 neutrons",
+            "10 protons and 8 neutrons",
+            "18 protons and 8 neutrons"
+        ],
+        "a": 0,
+        "e": "Z = 8 gives 8 protons; neutrons = A − Z = 18 − 8 = 10.",
+        "id": "c3l4q04",
+        "topic": "Interpreting notation",
+        "difficulty": "Moderate",
+        "why": [
+            "The atomic number is 8 and the neutron count is 10.",
+            "18 is the mass number, not the neutron count.",
+            "The atomic number gives 8 protons, not 10.",
+            "The lower-left atomic number, not the mass number, gives the proton count."
+        ]
+    },
+    {
+        "q": "An atom has 17 protons and 20 neutrons. What is its hyphenated isotope name?",
+        "c": [
+            "Chlorine-17",
+            "Calcium-37",
+            "Chlorine-37",
+            "Chlorine-20"
+        ],
+        "a": 2,
+        "e": "An atom with 17 protons is chlorine; its mass number is 17 + 20 = 37, so it is chlorine-37.",
+        "id": "c3l4q05",
+        "topic": "Constructing notation",
+        "difficulty": "Moderate",
+        "why": [
+            "17 is the atomic number, not the mass number.",
+            "17 protons identify chlorine, not calcium.",
+            "The element is chlorine and its mass number is 37.",
+            "20 is the neutron count, not the mass number."
+        ]
+    },
+    {
+        "q": "A neutral atom contains 3 protons and 4 neutrons. Which isotope notation is correct?",
+        "c": [
+            "⁷₄Be",
+            "⁴₃Li",
+            "⁷₃Li",
+            "³₇Li"
+        ],
+        "a": 2,
+        "e": "Z = 3 identifies lithium, and A = 3 + 4 = 7; the correct notation is ⁷₃Li.",
+        "id": "c3l4q06",
+        "topic": "Constructing notation",
+        "difficulty": "Moderate",
+        "why": [
+            "This notation has Z = 4, not 3.",
+            "4 is the neutron count; A must include both protons and neutrons.",
+            "Lithium has Z = 3 and this atom has A = 7.",
+            "This swaps the positions of mass number and atomic number."
+        ]
+    },
+    {
+        "q": "How many electrons are in a neutral ²⁴₁₂Mg atom?",
+        "c": [
+            "10",
+            "12",
+            "24",
+            "36"
+        ],
+        "a": 1,
+        "e": "A neutral atom has as many electrons as protons; Z = 12, so it has 12 electrons.",
+        "id": "c3l4q07",
+        "topic": "Particles and charge",
+        "difficulty": "Moderate",
+        "why": [
+            "Ten electrons would give a 2+ charge.",
+            "The 12 electrons balance the 12 protons.",
+            "24 is the mass number.",
+            "Adding mass number and atomic number does not give electron count."
+        ]
+    },
+    {
+        "q": "How many protons, neutrons, and electrons are in ³⁵₁₇Cl⁻?",
+        "c": [
+            "17 protons, 18 neutrons, 18 electrons",
+            "17 protons, 18 neutrons, 16 electrons",
+            "18 protons, 17 neutrons, 18 electrons",
+            "17 protons, 35 neutrons, 17 electrons"
+        ],
+        "a": 0,
+        "e": "Protons = 17; neutrons = 35 − 17 = 18; a 1− charge means one extra electron, giving 18.",
+        "id": "c3l4q08",
+        "topic": "Particles and charge",
+        "difficulty": "Moderate",
+        "why": [
+            "The atomic number, mass number, and −1 charge give 17 p, 18 n, and 18 e.",
+            "A 1− charge means one more electron than protons, not one fewer.",
+            "The atomic number 17 gives the proton count.",
+            "35 counts protons plus neutrons, and a 1− ion has an extra electron."
+        ]
+    },
+    {
+        "q": "Particle A has 8 protons, 8 neutrons, and 8 electrons. Particle B has 8 protons, 10 neutrons, and 10 electrons. Which statement is correct?",
+        "c": [
+            "They are different elements because their neutron counts differ.",
+            "They are isotopes of oxygen; B has a 2− charge.",
+            "They are the same isotope; B has a 2+ charge.",
+            "They are different elements because their electron counts differ."
+        ],
+        "a": 1,
+        "e": "Both have 8 protons, so they are oxygen. Their neutron counts differ, and B has two more electrons than protons, giving 2−.",
+        "id": "c3l4q09",
+        "topic": "Isotopes and ions",
+        "difficulty": "Difficult",
+        "why": [
+            "Same proton count means the same element despite different neutrons.",
+            "Both have Z = 8, different neutron counts, and B has two excess electrons.",
+            "Their neutron counts differ, and B has a negative rather than positive charge.",
+            "Electron count affects charge, not element identity."
+        ]
+    },
+    {
+        "q": "A student says that ¹⁴₆C and ¹⁴₇N are isotopes of the same element because both have mass number 14. Which response best evaluates the claim?",
+        "c": [
+            "Correct, because their mass numbers match.",
+            "Correct, because each has seven neutrons.",
+            "Incorrect, because their proton counts differ, so they are different elements.",
+            "Incorrect, because atoms cannot share a mass number."
+        ],
+        "a": 2,
+        "e": "Carbon has 6 protons and nitrogen has 7. Equal mass number does not make atoms isotopes of the same element.",
+        "id": "c3l4q10",
+        "topic": "Isotope reasoning",
+        "difficulty": "Difficult",
+        "why": [
+            "Equal mass numbers do not establish the same element.",
+            "Their neutron counts are 8 and 7, respectively.",
+            "Different atomic numbers mean different elements.",
+            "Different elements can have the same mass number."
+        ]
+    }
 ];
-let current = 0, score = 0, selected = null, showingExplanation = false;
-const quizBox = document.getElementById("quizBox");
-const nextBtn = document.getElementById("nextBtn");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
 
-function showQuestion() {
-  const q = quizData[current];
-  updateProgress();
-  quizBox.innerHTML = `
-    <div class='question'>${q.q}</div>
-	${q.svg || ""}
-    <div class='choices'></div>
-    <div class='explanation' id='explanationBox'></div>
-  `;
-  const choicesContainer = quizBox.querySelector(".choices");
-  q.c.forEach((choice, i) => {
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.innerHTML = choice;
-    btn.addEventListener("click", () => selectChoice(i));
-    choicesContainer.appendChild(btn);
-  });
-  nextBtn.style.display = "none";
-  selected = null;
-  showingExplanation = false;
-}
+            const PASS_PERCENT = 80;
+            const letters = ["A", "B", "C", "D"];
+            let current = 0;
+            let answers = Array(quizData.length).fill(null);
+            let resultSent = false;
+            let completed = false;
+            const quizBox = document.getElementById("quizBox");
+            const nextBtn = document.getElementById("nextBtn");
+            const progressText = document.getElementById("progressText");
+            const progressBar = document.getElementById("progressBar");
+            const progressMeter = document.getElementById("progressMeter");
 
-function selectChoice(i) {
-  if (showingExplanation) return;
+            function element(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = text;
+                return node;
+            }
+            function isEmbedded() {
+                return window.parent !== window;
+            }
+            function updateProgress() {
+                const count = answers.filter((value) => value !== null).length;
+                progressBar.style.width = (count / quizData.length) * 100 + "%";
+                progressMeter.setAttribute("aria-valuenow", String(count));
+                progressMeter.setAttribute("aria-valuemax", String(quizData.length));
+                progressMeter.setAttribute("aria-valuetext", `${count} of ${quizData.length} questions answered`);
+                progressText.textContent = completed
+                    ? `Quiz completed · ${count} of ${quizData.length} answered`
+                    : `Question ${current + 1} of ${quizData.length} · ${count} answered`;
+            }
+            function renderEvidence(data) {
+                const wrap = element("div", "table-wrap evidence");
+                wrap.tabIndex = 0;
+                wrap.setAttribute("role", "region");
+                wrap.setAttribute("aria-label", data.caption);
+                const table = element("table");
+                table.append(element("caption", "", data.caption));
+                const head = element("thead");
+                const heading = element("tr");
+                data.headers.forEach((text) => {
+                    const cell = element("th", "", text);
+                    cell.scope = "col";
+                    heading.append(cell);
+                });
+                head.append(heading);
+                table.append(head);
+                const body = element("tbody");
+                data.rows.forEach((row) => {
+                    const tr = element("tr");
+                    row.forEach((text, i) => {
+                        const td = element(i === 0 ? "th" : "td", "", text);
+                        if (i === 0) td.scope = "row";
+                        tr.append(td);
+                    });
+                    body.append(tr);
+                });
+                table.append(body);
+                wrap.append(table);
+                return wrap;
+            }
+            function showQuestion(focus = false) {
+                const q = quizData[current];
+                quizBox.replaceChildren();
+                const heading = element("h2", "question", q.q);
+                heading.id = "questionTitle";
+                heading.tabIndex = -1;
+                const choices = element("div", "choices");
+                choices.setAttribute("role", "group");
+                choices.setAttribute("aria-labelledby", "questionTitle");
+                q.c.forEach((text, i) => {
+                    const button = element("button", "choice");
+                    button.type = "button";
+                    button.setAttribute("data-choice", String(i));
+                    const body = element("span", "choice-body");
+                    body.append(element("span", "choice-label", text), element("span", "choice-status"));
+                    button.append(body);
+                    button.addEventListener("click", () => selectChoice(i));
+                    choices.append(button);
+                });
+                const feedback = element("div", "explanation");
+                feedback.id = "explanationBox";
+                feedback.hidden = true;
+                feedback.tabIndex = -1;
+                feedback.setAttribute("role", "status");
+                feedback.setAttribute("aria-live", "polite");
+                feedback.setAttribute("aria-atomic", "true");
+                quizBox.append(heading);
+                if (q.evidence) quizBox.append(renderEvidence(q.evidence));
+                quizBox.append(choices, feedback);
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                nextBtn.textContent = current === quizData.length - 1 ? "View Results →" : "Next Question →";
+                updateProgress();
+                if (focus) heading.focus();
+            }
+            function selectChoice(index) {
+                if (completed || answers[current] !== null || !Number.isInteger(index) || index < 0 || index > 3)
+                    return;
+                const q = quizData[current];
+                answers[current] = index;
+                const correct = index === q.a;
+                quizBox.querySelectorAll(".choice").forEach((button, i) => {
+                    button.disabled = true;
+                    const status = button.querySelector(".choice-status");
+                    if (i === q.a) {
+                        button.classList.add("correct");
+                        status.textContent = correct ? "✓ Your answer — correct" : "✓ Correct answer";
+                    } else if (i === index) {
+                        button.classList.add("incorrect");
+                        status.textContent = "✗ Your answer — incorrect";
+                    }
+                });
+                const feedback = document.getElementById("explanationBox");
+                feedback.classList.toggle("incorrect-feedback", !correct);
+                feedback.append(element("h3", "", correct ? "Correct." : "Not quite."));
+                if (!correct) feedback.append(element("p", "", q.why[index]));
+                feedback.append(
+                    element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                    element("p", "", q.e)
+                );
+                feedback.hidden = false;
+                nextBtn.hidden = false;
+                nextBtn.disabled = false;
+                updateProgress();
+                feedback.focus();
+            }
+            function nextQuestion() {
+                if (completed || answers[current] === null) return;
+                if (current === quizData.length - 1) showResult();
+                else {
+                    current += 1;
+                    showQuestion(true);
+                }
+            }
+            function starCount(percent) {
+                return percent === 100 ? 3 : percent >= 90 ? 2 : percent >= 80 ? 1 : 0;
+            }
+            function getScore() {
+                return answers.reduce((total, value, index) => total + (value === quizData[index].a ? 1 : 0), 0);
+            }
+            function sendResult(percent, passed) {
+                if (resultSent || !isEmbedded()) return;
+                // Same message and score format used by the Organic Chemistry quizzes.
+                window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+                resultSent = true;
+            }
+            function showResult() {
+                if (completed || answers.some((value) => value === null)) return;
+                completed = true;
+                const score = getScore();
+                const percent = Math.round((score / quizData.length) * 100);
+                const passed = percent >= PASS_PERCENT;
+                const stars = starCount(percent);
+                quizBox.replaceChildren();
+                nextBtn.hidden = true;
+                nextBtn.disabled = true;
+                updateProgress();
+                const result = element("section", "quiz-result-panel");
+                const starDisplay = element("div", "stars", "★".repeat(stars) + "☆".repeat(3 - stars));
+                starDisplay.setAttribute("role", "img");
+                starDisplay.setAttribute("aria-label", `${stars} out of 3 stars`);
+                const title = element("h2", "result", `You scored ${score}/${quizData.length} (${percent}%)`);
+                title.id = "resultTitle";
+                title.tabIndex = -1;
+                result.setAttribute("aria-labelledby", "resultTitle");
+                const outcome = passed
+                    ? "Passed — you met the 80% target."
+                    : "Not yet passed — review the explanations, then retry.";
+                const status = element("p", "save-status");
+                status.id = "saveStatus";
+                status.setAttribute("role", "status");
+                status.textContent = isEmbedded()
+                    ? "Sending your result to LearnTrack..."
+                    : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                result.append(starDisplay, title, element("p", "result-status", outcome), status);
+                const nav = element("nav", "quiz-nav");
+                nav.setAttribute("aria-label", "Quiz result actions");
+                const back = element("button", "quiz-btn", "← Back to Lesson");
+                back.type = "button";
+                back.id = "backBtn";
+                back.disabled = true;
+                const retry = element("button", "quiz-btn", "Retry Quiz");
+                retry.type = "button";
+                retry.id = "retryBtn";
+                retry.disabled = true;
+                const next = element("button", "quiz-btn primary", "Next Lesson →");
+                next.type = "button";
+                next.id = "nextLessonBtn";
+                next.disabled = true;
+                back.addEventListener("click", () => {
+                    if (isEmbedded()) window.parent.postMessage({ type: "quizBack" }, "*");
+                });
+                retry.addEventListener("click", retryQuiz);
+                next.addEventListener("click", () => {
+                    if (passed && isEmbedded()) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+                });
+                nav.append(back, retry, next);
+                result.append(nav);
+                quizBox.append(result);
 
-  const q = quizData[current];
-  const buttons = document.querySelectorAll(".choice");
-  const expBox = document.getElementById("explanationBox");
-  const correct = i === q.a;
-
-  if (correct) score++;
-
-  buttons.forEach((btn, idx) => {
-    btn.disabled = true;
-
-    if (idx === q.a) {
-      btn.classList.add("correct");
-    }
-
-    if (idx === i && idx !== q.a) {
-      btn.classList.add("incorrect");
-    }
-  });
-
-  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
-  expBox.style.display = "block";
-  nextBtn.style.display = "inline-block";
-  showingExplanation = true;
-}
-
-nextBtn.addEventListener("click", () => {
-  current++;
-  if (current < quizData.length) showQuestion();
-  else showResult();
-});
-
-function updateProgress() {
-  const percent = (current / quizData.length) * 100;
-  progressBar.style.width = percent + "%";
-  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
-}
-
-function getStarRating(percent) {
-  if (percent === 100) return "⭐️⭐️⭐️";
-  else if (percent >= 90) return "⭐️⭐️☆";
-  else if (percent >= 80) return "⭐️☆☆";
-  else return "☆☆☆";
-}
-
-let resultSent = false;
-
-function showResult() {
-  progressBar.style.width = "100%";
-  progressText.textContent = "Quiz Completed";
-
-  const percent = Math.round((score / quizData.length) * 100);
-  const passed = percent >= 80;
-
-  quizBox.innerHTML = `
-    <div class='stars'>${getStarRating(percent)}</div>
-    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
-    <div class='quiz-nav'>
-      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
-      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
-      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
-    </div>
-  `;
-
-  nextBtn.style.display = "none";
-
-  if (!resultSent) {
-    resultSent = true;
-    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
-  }
-
-  setTimeout(() => {
-    const status = document.getElementById("saveStatus");
-    const backBtn = document.getElementById("backBtn");
-    const retryBtn = document.getElementById("retryBtn");
-    const nextLessonBtn = document.getElementById("nextLessonBtn");
-
-    if (status) status.textContent = passed
-      ? "Progress sent. You may proceed after it is saved."
-      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
-
-    if (backBtn) backBtn.disabled = false;
-    if (retryBtn) retryBtn.disabled = false;
-    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
-
-    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
-    if (backBtn) backBtn.addEventListener("click", () =>
-      window.parent.postMessage({ type: "quizBack" }, "*")
-    );
-    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
-      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
-    });
-  }, 1200);
-}
-
-function retryQuiz() {
-  resultSent = false;
-  current = 0;
-  score = 0;
-  showQuestion();
-}
-
-showQuestion();
-</script>
-</body>
+                // Send once before building optional review sections, matching the
+                // established Organic Chemistry quiz integration.
+                sendResult(percent, passed);
+                setTimeout(() => {
+                    if (document.getElementById("saveStatus") !== status) return;
+                    status.textContent = isEmbedded()
+                        ? "Result sent to LearnTrack. Saving has not been confirmed by the app."
+                        : "Preview mode: this attempt is not saved. Open the quiz inside LearnTrack to record progress and use lesson navigation.";
+                    back.disabled = !isEmbedded();
+                    retry.disabled = false;
+                    next.disabled = !isEmbedded() || !passed;
+                }, 1200);
+                renderTopicSummary();
+                renderReview();
+                title.focus();
+            }
+            function renderTopicSummary() {
+                const wrap = element("div", "table-wrap");
+                const table = element("table");
+                table.append(element("caption", "", "Your review priorities"));
+                const head = element("thead");
+                const header = element("tr");
+                ["Area", "Score", "Next step"].forEach((text) => {
+                    const th = element("th", "", text);
+                    th.scope = "col";
+                    header.append(th);
+                });
+                head.append(header);
+                table.append(head);
+                const body = element("tbody");
+                [...new Set(quizData.map((q) => q.topic))].forEach((topic) => {
+                    const indices = quizData.map((q, i) => (q.topic === topic ? i : -1)).filter((i) => i >= 0);
+                    const correct = indices.filter((i) => answers[i] === quizData[i].a).length;
+                    const row = element("tr");
+                    const name = element("th", "", topic);
+                    name.scope = "row";
+                    row.append(
+                        name,
+                        element("td", "", `${correct}/${indices.length}`),
+                        element(
+                            "td",
+                            "",
+                            correct === indices.length
+                                ? "All correct this attempt"
+                                : "Review the related explanations below"
+                        )
+                    );
+                    body.append(row);
+                });
+                table.append(body);
+                wrap.append(table);
+                quizBox.append(wrap);
+            }
+            function renderReview() {
+                const section = element("section", "review-section");
+                section.append(
+                    element("h3", "", "Review your answers"),
+                    element(
+                        "p",
+                        "small",
+                        "Open any question to compare your answer with the explanation. Retry starts a new attempt with the same question and choice order."
+                    )
+                );
+                quizData.forEach((q, index) => {
+                    const correct = answers[index] === q.a;
+                    const details = element("details");
+                    details.append(
+                        element("summary", "", `Question ${index + 1} · ${correct ? "Correct" : "Review needed"}`),
+                        element("p", "review-question", q.q),
+                        element(
+                            "p",
+                            "review-choice",
+                            `Your answer: ${letters[answers[index]]}. ${q.c[answers[index]]}`
+                        ),
+                        element("p", "correct-answer", `Correct answer: ${letters[q.a]}. ${q.c[q.a]}`),
+                        element("p", "review-answer", q.e)
+                    );
+                    if (q.evidence) details.querySelector(".review-question").after(renderEvidence(q.evidence));
+                    const all = element("details");
+                    all.append(element("summary", "", "Why each option fits or does not fit"));
+                    q.c.forEach((text, i) =>
+                        all.append(element("p", "review-choice", `${letters[i]}. ${text} — ${q.why[i]}`))
+                    );
+                    details.append(all);
+                    section.append(details);
+                });
+                quizBox.append(section);
+            }
+            function retryQuiz() {
+                current = 0;
+                answers = Array(quizData.length).fill(null);
+                completed = false;
+                resultSent = false;
+                showQuestion(true);
+            }
+            nextBtn.addEventListener("click", nextQuestion);
+            showQuestion();
+        </script>
+    </body>
 </html>
