@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 3 Lesson 7: Relative and Average Atomic Mass</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .nuclide {
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                align-items: center;
+                color: #174ea6;
+                font-weight: 700;
+                vertical-align: middle;
+                line-height: 1;
+            }
+            .nuclide .numbers {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                font-size: 0.56em;
+                gap: 0.14em;
+            }
+            .nuclide .symbol {
+                font-size: 1.8em;
+            }
+            .nuclide .charge {
+                align-self: start;
+                font-size: 0.55em;
+            }
+            .diagram {
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 3 · Lesson 7 · SAS #14</div>
+                <h1>Relative Atomic Mass and Average Atomic Mass</h1>
+                <p>
+                    Chlorine has isotopes with different masses. Why, then, does a periodic table give a single value
+                    near 35.45? Explore the weighted average behind that value.
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#objectives">Objectives</a><a href="#terms">Mass terms</a
+                    ><a href="#weighted">Weighted average</a><a href="#examples">Worked examples</a
+                    ><a href="#applications">Applications</a><a href="#practice">Practice</a>
+                </nav>
+            </header>
+            <section class="card" id="objectives">
+                <h2>Learning objectives</h2>
+                <p>After this lesson, you should be able to:</p>
+                <ul>
+                    <li>Distinguish mass number, isotopic mass, average atomic mass, and relative atomic mass.</li>
+                    <li>Explain the carbon-12 reference and convert isotope percentages to fractions.</li>
+                    <li>Calculate an abundance-weighted average from isotopic data and assess its reasonableness.</li>
+                    <li>
+                        Explain why isotopic composition matters in periodic-table values and chemical calculations.
+                    </li>
+                </ul>
+                <div class="note">
+                    <strong>Connect to Lesson 4:</strong> Isotopes have the same number of protons but different neutron
+                    counts. Their different masses and abundances together determine a sample’s average atomic mass.
+                </div>
+            </section>
+            <section class="card" id="terms">
+                <h2>1. Four related mass terms</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Term</th>
+                                <th>What it means</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mass number, A</td>
+                                <td>Whole-number count of protons and neutrons in one nuclide.</td>
+                                <td>Chlorine-35 has A = 35.</td>
+                            </tr>
+                            <tr>
+                                <td>Isotopic mass</td>
+                                <td>
+                                    Mass of one atom of a specified isotope, commonly expressed in unified atomic mass
+                                    units, u.
+                                </td>
+                                <td>A chlorine-35 atom has mass approximately 34.969 u.</td>
+                            </tr>
+                            <tr>
+                                <td>Average atomic mass</td>
+                                <td>
+                                    Average mass per atom for an element in a specified isotopic mixture, weighted by
+                                    isotope abundance; expressed in u.
+                                </td>
+                                <td>A typical chlorine mixture has an average near 35.45 u per atom.</td>
+                            </tr>
+                            <tr>
+                                <td>Relative atomic mass, A<sub>r</sub></td>
+                                <td>
+                                    The ratio of the average atomic mass to 1/12 of the mass of a carbon-12 atom; it has
+                                    no unit.
+                                </td>
+                                <td>For a sample averaging 35.45 u, A<sub>r</sub> = 35.45.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    By definition, <strong>1 u is one-twelfth of the mass of a carbon-12 atom</strong> in its ground
+                    state. Relative atomic mass and average atomic mass are closely linked: the former is dimensionless
+                    and, for the same sample, has the same numerical value as the latter expressed in u.
+                </p>
+                <p class="formula">A<sub>r</sub> = average mass per atom ÷ 1 u</p>
+                <div class="note">
+                    Both concepts can depend on isotope abundance. Relative atomic mass is also an abundance-weighted
+                    comparison; it is not based solely on one isotope when an element is present as a mixture.
+                </div>
+                <div class="practice">
+                    <h3>Try the distinction</h3>
+                    <p>A sample has an average atomic mass of 24.3 u per atom. What is its relative atomic mass?</p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            <strong>24.3</strong>, without a unit. It is the ratio of 24.3 u to 1 u for the same sample.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="weighted">
+                <h2>2. Why the average is weighted</h2>
+                <p>
+                    In an isotope mixture, the <strong>fractional abundance</strong> is the fraction of the element’s
+                    atoms that belong to a given isotope. Isotopes that occur more often contribute more to the average.
+                </p>
+                <div class="diagram">
+                    <svg
+                        viewBox="0 0 660 165"
+                        role="img"
+                        aria-label="Conceptual mixture: eight lighter atoms and two heavier atoms"
+                    >
+                        <rect x="1" y="1" width="658" height="163" rx="12" fill="#f5faff" stroke="#d8e5e8" />
+                        <g fill="#4ca895">
+                            <circle cx="55" cy="60" r="21" />
+                            <circle cx="115" cy="60" r="21" />
+                            <circle cx="175" cy="60" r="21" />
+                            <circle cx="235" cy="60" r="21" />
+                            <circle cx="295" cy="60" r="21" />
+                            <circle cx="355" cy="60" r="21" />
+                            <circle cx="415" cy="60" r="21" />
+                            <circle cx="475" cy="60" r="21" />
+                        </g>
+                        <g fill="#174ea6">
+                            <circle cx="535" cy="60" r="21" />
+                            <circle cx="595" cy="60" r="21" />
+                        </g>
+                        <text x="48" y="132" font-family="Arial" font-size="19">8 lighter atoms (80%)</text>
+                        <text x="391" y="132" font-family="Arial" font-size="19">2 heavier atoms (20%)</text>
+                    </svg>
+                    <p class="small">Illustration only; circles do not represent actual atomic size.</p>
+                </div>
+                <p>
+                    If the masses are 10.0 u and 11.0 u, the average is (10.0 × 0.80) + (11.0 × 0.20) =
+                    <strong>10.2 u</strong>. It is closer to 10.0 u because the lighter isotope is more abundant. An
+                    equal, unweighted mean would incorrectly treat both isotopes as equally common.
+                </p>
+                <p class="formula">average atomic mass = Σ (isotopic mass × fractional abundance)</p>
+                <ol>
+                    <li>Convert each percent to a decimal: abundance fraction = percent ÷ 100.</li>
+                    <li>Check that all fractions add to 1, allowing for rounding.</li>
+                    <li>Multiply each isotopic mass by its fraction, then add the contributions.</li>
+                    <li>Report the mass in u and check that the result lies between the isotope masses.</li>
+                </ol>
+                <div class="note">
+                    A decimal atomic mass is often due to a mixture of isotopes, but isotope masses themselves also need
+                    not be whole numbers. An average is not the mass of every individual atom.
+                </div>
+            </section>
+            <section class="card" id="examples">
+                <h2>3. Worked examples</h2>
+                <div class="worked">
+                    <h3>Example 1 · Two isotopes</h3>
+                    <p>
+                        A fictional element has isotope masses of 24.00 u (70.0%) and 26.00 u (30.0%). Find the average
+                        atomic mass.
+                    </p>
+                    <p>Fractions: 0.700 and 0.300; their sum is 1.000.</p>
+                    <p>
+                        Average = (24.00 u × 0.700) + (26.00 u × 0.300)<br />= 16.800 u + 7.800 u =
+                        <strong>24.6 u</strong>.
+                    </p>
+                    <p>
+                        Check: 24.6 is between 24.00 and 26.00 and is closer to 24.00, the more abundant isotope. The
+                        relative atomic mass for this sample is <strong>24.6</strong>, without a unit.
+                    </p>
+                </div>
+                <div class="worked">
+                    <h3>Example 2 · Three isotopes</h3>
+                    <p>A sample contains 23.985 u at 79.0%, 24.986 u at 10.0%, and 25.983 u at 11.0%.</p>
+                    <p>
+                        Average = (23.985 × 0.790) + (24.986 × 0.100) + (25.983 × 0.110)<br />= 18.94815 + 2.4986 +
+                        2.85813 = 24.30488 u ≈ <strong>24.3 u</strong>.
+                    </p>
+                    <p>
+                        Keep extra digits during the calculation and round the final answer according to the precision
+                        of the data. The average is closer to the most abundant isotope.
+                    </p>
+                </div>
+                <div class="worked">
+                    <h3>Example 3 · Estimate using mass numbers</h3>
+                    <p>
+                        Suppose a sample is 75% chlorine-35 and 25% chlorine-37, and measured isotope masses are not
+                        supplied. Estimate the average using 35 u and 37 u.
+                    </p>
+                    <p>
+                        (35 × 0.75) + (37 × 0.25) = <strong>35.5 u</strong>, an estimate for this simplified mixture.
+                        Actual isotope masses are not exactly their mass numbers, and natural abundances may vary.
+                    </p>
+                </div>
+                <div class="practice">
+                    <h3>Try it first</h3>
+                    <p>A sample has isotopes of 20.0 u and 22.0 u, each at 50.0%. Find its average atomic mass.</p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>(20.0 × 0.500) + (22.0 × 0.500) = <strong>21.0 u</strong>.</p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="abundance">
+                <h2>4. Find a missing abundance</h2>
+                <div class="worked">
+                    <h3>Example · Two-isotope mixture</h3>
+                    <p>
+                        A sample has isotopes with masses 10.0 u and 12.0 u. Its average mass is 10.5 u. Estimate the
+                        percentage of the heavier isotope.
+                    </p>
+                    <p>
+                        Let <em>x</em> be the heavier isotope’s fraction; the lighter isotope’s fraction is 1 −
+                        <em>x</em>.
+                    </p>
+                    <p>
+                        10.5 = 10.0(1 − <em>x</em>) + 12.0<em>x</em><br />10.5 = 10.0 + 2.0<em>x</em><br /><em>x</em> =
+                        0.25 = <strong>25%</strong>. The lighter isotope is 75%.
+                    </p>
+                    <p>
+                        Check: 10.0(0.75) + 12.0(0.25) = 10.5 u. The answer is an estimate because the supplied values
+                        are rounded.
+                    </p>
+                </div>
+                <div class="note">
+                    <strong>Avoid these errors:</strong> Multiply by 0.75, not 75; add all isotope contributions;
+                    distinguish an average from a mass number; and do not assume all isotopes are equally abundant. The
+                    average must fall between the smallest and largest contributing masses.
+                </div>
+            </section>
+            <section class="card" id="applications">
+                <h2>5. Why atomic mass matters</h2>
+                <p>
+                    Periodic-table atomic weights help chemists compare elements and calculate formula masses and molar
+                    masses. For example, using a typical relative atomic mass of 12.01 for carbon, carbon’s molar mass
+                    is approximately 12.01 g/mol. Isotopic composition matters when greater precision is needed.
+                </p>
+                <p>
+                    A standard atomic weight represents an element in specified normal terrestrial materials. Natural
+                    isotopic composition can vary, and some standard atomic weights are reported as intervals. Some
+                    elements have no standard atomic weight because a characteristic terrestrial isotope composition
+                    cannot be defined. Use the data given in your problem when calculating a particular sample’s
+                    average.
+                </p>
+            </section>
+            <section class="card" id="practice">
+                <h2>6. Practice and drills</h2>
+                <p>
+                    Choose an answer and select <strong>Check answer</strong>. These practice activities provide
+                    feedback but do not record a quiz score.
+                </p>
+                <div class="practice" data-quiz="q1">
+                    <fieldset>
+                        <legend>1. Which quantity counts the protons and neutrons in a specified atom?</legend>
+                        <label><input type="radio" name="q1" value="0" /> Atomic number</label
+                        ><label><input type="radio" name="q1" value="1" /> Mass number</label
+                        ><label><input type="radio" name="q1" value="2" /> Fractional abundance</label
+                        ><label><input type="radio" name="q1" value="3" /> Relative atomic mass</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q2">
+                    <fieldset>
+                        <legend>2. What is the standard used to define 1 u?</legend>
+                        <label><input type="radio" name="q2" value="0" /> The mass of one proton</label
+                        ><label
+                            ><input type="radio" name="q2" value="1" /> One-twelfth the mass of a carbon-12 atom</label
+                        ><label><input type="radio" name="q2" value="2" /> The mass of any carbon atom</label
+                        ><label
+                            ><input type="radio" name="q2" value="3" /> One-twelfth the mass of an oxygen-16 atom</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q3">
+                    <fieldset>
+                        <legend>3. A sample’s average atomic mass is 24.3 u. What is its relative atomic mass?</legend>
+                        <label><input type="radio" name="q3" value="0" /> 24.3 u</label
+                        ><label><input type="radio" name="q3" value="1" /> 24.3 with no unit</label
+                        ><label><input type="radio" name="q3" value="2" /> 12.15 u</label
+                        ><label><input type="radio" name="q3" value="3" /> 1 u</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q4">
+                    <fieldset>
+                        <legend>4. What fraction represents 75.0%?</legend>
+                        <label><input type="radio" name="q4" value="0" /> 0.0750</label
+                        ><label><input type="radio" name="q4" value="1" /> 0.750</label
+                        ><label><input type="radio" name="q4" value="2" /> 7.50</label
+                        ><label><input type="radio" name="q4" value="3" /> 75.0</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q5">
+                    <fieldset>
+                        <legend>5. A sample is 80.0% 10.0 u and 20.0% 11.0 u. What is its average atomic mass?</legend>
+                        <label><input type="radio" name="q5" value="0" /> 10.2 u</label
+                        ><label><input type="radio" name="q5" value="1" /> 10.5 u</label
+                        ><label><input type="radio" name="q5" value="2" /> 10.8 u</label
+                        ><label><input type="radio" name="q5" value="3" /> 21.0 u</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q6">
+                    <fieldset>
+                        <legend>
+                            6. Isotopes have masses of 24.00 u (70.0%) and 26.00 u (30.0%). Which average is correct?
+                        </legend>
+                        <label><input type="radio" name="q6" value="0" /> 24.6 u</label
+                        ><label><input type="radio" name="q6" value="1" /> 25.0 u</label
+                        ><label><input type="radio" name="q6" value="2" /> 25.4 u</label
+                        ><label><input type="radio" name="q6" value="3" /> 50.0 u</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q7">
+                    <fieldset>
+                        <legend>
+                            7. A sample has isotopes of 35 u and 37 u. Its average is 35.5 u. Which isotope is more
+                            abundant?
+                        </legend>
+                        <label><input type="radio" name="q7" value="0" /> The 35 u isotope</label
+                        ><label><input type="radio" name="q7" value="1" /> The 37 u isotope</label
+                        ><label><input type="radio" name="q7" value="2" /> They are equally abundant</label
+                        ><label
+                            ><input type="radio" name="q7" value="3" /> Neither isotope contributes to the
+                            average</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q8">
+                    <fieldset>
+                        <legend>8. Which statement is correct about average atomic mass?</legend>
+                        <label
+                            ><input type="radio" name="q8" value="0" /> It is always the mass number of an individual
+                            atom</label
+                        ><label
+                            ><input type="radio" name="q8" value="1" /> All isotopes contribute equally, regardless of
+                            abundance</label
+                        ><label
+                            ><input type="radio" name="q8" value="2" /> It is a weighted mean of isotope masses for a
+                            specified mixture</label
+                        ><label><input type="radio" name="q8" value="3" /> It must always be a whole number</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q9">
+                    <fieldset>
+                        <legend>
+                            9. A sample contains only two isotopes. The first has an abundance of 68.4%. What is the
+                            second isotope’s abundance?
+                        </legend>
+                        <label><input type="radio" name="q9" value="0" /> 21.6%</label
+                        ><label><input type="radio" name="q9" value="1" /> 31.6%</label
+                        ><label><input type="radio" name="q9" value="2" /> 68.4%</label
+                        ><label><input type="radio" name="q9" value="3" /> 168.4%</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q10">
+                    <fieldset>
+                        <legend>
+                            10. A sample has isotopic masses 10.0 u and 12.0 u and an average of 10.5 u. What fraction
+                            is the heavier isotope?
+                        </legend>
+                        <label><input type="radio" name="q10" value="0" /> 0.25</label
+                        ><label><input type="radio" name="q10" value="1" /> 0.50</label
+                        ><label><input type="radio" name="q10" value="2" /> 0.75</label
+                        ><label><input type="radio" name="q10" value="3" /> 0.90</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Explain a result</h3>
+                    <p>
+                        A two-isotope sample contains 90.0% of an isotope with mass 28.0 u and 10.0% of an isotope with
+                        mass 30.0 u. Calculate the average and explain why an equal average would be misleading.
+                    </p>
+                    <details>
+                        <summary>Show a possible answer</summary>
+                        <p>
+                            (28.0 × 0.900) + (30.0 × 0.100) = <strong>28.2 u</strong>. An equal mean would give 29.0 u,
+                            but it would ignore the much greater abundance of the 28.0 u isotope.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card">
+                <h2>7. Key takeaways</h2>
+                <ul>
+                    <li>Mass number is a nucleon count, while isotope mass is a measured mass.</li>
+                    <li>Average atomic mass weights isotopic masses by their abundance in the sample.</li>
+                    <li>Relative atomic mass compares the average atomic mass with 1 u; it is dimensionless.</li>
+                    <li>
+                        For the same mixture, average mass in u and relative atomic mass have the same numerical value.
+                    </li>
+                    <li>
+                        Use fractional abundances that add to 1 and check that the result lies between contributing
+                        isotope masses.
+                    </li>
+                </ul>
+                <p class="small">
+                    Original explanations and activities informed by Chemistry I Teacher’s Guide #14. Further reading:
+                    <a href="https://goldbook.iupac.org/terms/view/R05258" target="_blank" rel="noopener noreferrer"
+                        >IUPAC: relative atomic mass</a
+                    >;
+                    <a href="https://goldbook.iupac.org/terms/view/U06554" target="_blank" rel="noopener noreferrer"
+                        >IUPAC: unified atomic mass unit</a
+                    >;
+                    <a href="https://www.ciaaw.org/atomic-weights.htm" target="_blank" rel="noopener noreferrer"
+                        >CIAAW: standard atomic weights</a
+                    >.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status" aria-live="polite"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                q1: { answer: "1", explanation: "Mass number is the total number of protons and neutrons." },
+                q2: {
+                    answer: "1",
+                    explanation: "One unified atomic mass unit is defined from one-twelfth of a carbon-12 atom’s mass.",
+                },
+                q3: {
+                    answer: "1",
+                    explanation:
+                        "For the same mixture the numerical value is 24.3, but relative atomic mass has no unit.",
+                },
+                q4: { answer: "1", explanation: "Divide 75.0 by 100 to obtain 0.750." },
+                q5: { answer: "0", explanation: "(10.0 × 0.800) + (11.0 × 0.200) = 10.2 u." },
+                q6: { answer: "0", explanation: "(24.00 × 0.700) + (26.00 × 0.300) = 24.6 u." },
+                q7: {
+                    answer: "0",
+                    explanation:
+                        "In this two-isotope mixture, the average lies closer to 35 u, so the lighter isotope is more abundant.",
+                },
+                q8: {
+                    answer: "2",
+                    explanation: "Each isotope contributes according to its fractional abundance in the sample.",
+                },
+                q9: { answer: "1", explanation: "100.0% − 68.4% = 31.6%." },
+                q10: { answer: "0", explanation: "10.5 = 10.0(1 − x) + 12.0x gives x = 0.25." },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter3_lesson7_quiz.html" }, "*");
+                } else {
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+                }
+            });
+        </script>
+    </body>
+</html>
