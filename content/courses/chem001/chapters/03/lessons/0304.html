@@ -1,638 +1,658 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<title>Deriving the Chemical Formulas of Substances</title>
-
-<style>
-body{
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
-  padding:24px;
-  line-height:1.8;
-  font-size:20px;
-}
-
-h1{color:#136f63;}
-h2{color:#136f63;margin-top:1.4em;}
-h3{color:#174ea6;}
-
-.section{margin-bottom:30px;}
-
-.key-box{
-  background:#e8f7f5;
-  border-left:6px solid #136f63;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.example-box{
-  background:#fff;
-  border-left:5px solid #2b7de9;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.visual-box{
-  background:#fff;
-  border-radius:12px;
-  padding:14px;
-  margin:16px 0;
-  border:1px solid #ddd;
-}
-
-.lesson-img{
-  width:100%;
-  max-width:720px;
-  display:block;
-  margin:0 auto;
-  border-radius:12px;
-}
-
-.caption{
-  text-align:center;
-  font-size:0.9em;
-  color:#555;
-}
-
-.activity{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  margin:14px 0;
-}
-
-.toggle-btn{
-  background:#136f63;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.answer{
-  display:none;
-  margin-top:10px;
-  background:#eef3ff;
-  padding:10px;
-  border-radius:6px;
-}
-
-.formula{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.formula .equation-line{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:8px 0;
-}
-
-.formula .fraction{
-  display:inline-grid;
-  grid-template-rows:auto auto;
-  min-width:max-content;
-  text-align:center;
-  line-height:1.2;
-  vertical-align:middle;
-}
-
-.formula .fraction-top{
-  border-bottom:2px solid currentColor;
-  padding:0 10px 5px;
-}
-
-.formula .fraction-bottom{
-  padding:5px 10px 0;
-}
-
-.answer .formula{
-  font-size:20px;
-  margin:8px 0;
-}
-
-.answer ol{
-  margin-top:8px;
-}
-
-.quiz-button{
-  background:#136f63;
-  color:white;
-  padding:12px 22px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:16px 0;
-  background:#fff;
-}
-
-th,td{
-  border:1px solid #ddd;
-  padding:10px;
-}
-
-th{background:#e8f7f5;}
-
-iframe{
-  width:100%;
-  max-width:100%;
-}
-</style>
-</head>
-<body>
-<h1>Deriving the Chemical Formulas of Substances</h1>
-
-<div class="key-box">
-<strong>Real-World Scenario</strong><br><br>
-
-A laboratory analysis reveals that a compound contains 40.0% carbon, 6.7% hydrogen, and 53.3% oxygen by mass. Scientists must determine the compound's chemical formula before they can understand its properties or manufacture it.
-
-Chemical formulas are not guessed—they are derived from experimental data and the ratios of atoms present in a substance.
-</div>
-
-<div class="section">
-<h2>Learning Objectives</h2>
-
-<ul>
-<li>Differentiate molecular formulas and empirical formulas.</li>
-<li>Determine empirical formulas from atom ratios.</li>
-<li>Determine empirical formulas from percent composition data.</li>
-<li>Determine molecular formulas from empirical formulas.</li>
-<li>Solve multi-step formula derivation problems.</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>Why Chemical Formulas Matter</h2>
-
-<p>
-A chemical formula tells us the types and numbers of atoms present in a substance. It serves as a shorthand representation of the composition of a compound.
-</p>
-
-<div class="example-box">
-<h3>Examples</h3>
-
-<ul>
-<li>H₂O → Water</li>
-<li>CO₂ → Carbon Dioxide</li>
-<li>C₆H₁₂O₆ → Glucose</li>
-<li>NH₃ → Ammonia</li>
-</ul>
-
-</div>
-
-<div class="key-box">
-Chemical formulas provide information about the composition of a substance and are essential for chemical calculations.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Empirical Formula vs Molecular Formula</h2>
-
-<table>
-<tr>
-<th>Empirical Formula</th>
-<th>Molecular Formula</th>
-</tr>
-
-<tr>
-<td>Simplest whole-number ratio of atoms</td>
-<td>Actual number of atoms in a molecule</td>
-</tr>
-
-<tr>
-<td>CH₂O</td>
-<td>C₆H₁₂O₆</td>
-</tr>
-
-<tr>
-<td>CH</td>
-<td>C₆H₆</td>
-</tr>
-
-<tr>
-<td>HO</td>
-<td>H₂O₂</td>
-</tr>
-</table>
-
-<div class="key-box">
-The empirical formula may be the same as the molecular formula, but not always.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Determining an Empirical Formula from Atom Ratios</h2>
-
-<p>
-If the number of atoms of each element is known, the empirical formula can be found by simplifying the ratio to the smallest whole numbers.
-</p>
-
-<div class="example-box">
-<h3>Worked Example 1</h3>
-
-<p>
-A compound contains:
-</p>
-
-<ul>
-<li>4 carbon atoms</li>
-<li>8 hydrogen atoms</li>
-</ul>
-
-<p>
-Ratio:
-</p>
-
-<div class="formula">
-C₄H₈
-</div>
-
-<p>
-Divide each subscript by 4:
-</p>
-
-<div class="formula">
-CH₂
-</div>
-
-<p>
-<strong>Empirical Formula = CH₂</strong>
-</p>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Determining Empirical Formula from Percent Composition</h2>
-
-<p>
-This is one of the most important applications of the mole concept.
-</p>
-
-<div class="key-box">
-To determine an empirical formula from percent composition:
-<br><br>
-
-1. Assume 100 g of the compound.
-<br>
-2. Convert grams to moles.
-<br>
-3. Divide by the smallest number of moles.
-<br>
-4. Convert to whole-number ratios.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 2</h2>
-
-<div class="example-box">
-
-<p>
-A compound contains:
-</p>
-
-<ul>
-<li>40.0% Carbon</li>
-<li>6.7% Hydrogen</li>
-<li>53.3% Oxygen</li>
-</ul>
-
-<p><strong>Step 1: Assume 100 g sample</strong></p>
-
-<ul>
-<li>C = 40.0 g</li>
-<li>H = 6.7 g</li>
-<li>O = 53.3 g</li>
-</ul>
-
-<p><strong>Step 2: Convert grams to moles</strong></p>
-
-<div class="formula">
-C = 40.0 ÷ 12.01 = 3.33 mol
-</div>
-
-<div class="formula">
-H = 6.7 ÷ 1.01 = 6.63 mol
-</div>
-
-<div class="formula">
-O = 53.3 ÷ 16.00 = 3.33 mol
-</div>
-
-<p><strong>Step 3: Divide by smallest value (3.33)</strong></p>
-
-<div class="formula">
-C = 1
-</div>
-
-<div class="formula">
-H = 2
-</div>
-
-<div class="formula">
-O = 1
-</div>
-
-<p><strong>Step 4: Write formula</strong></p>
-
-<div class="formula">
-CH₂O
-</div>
-
-<p>
-<strong>Empirical Formula = CH₂O</strong>
-</p>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Determining a Molecular Formula</h2>
-
-<p>
-The molecular formula is a whole-number multiple of the empirical formula.
-</p>
-
-<div class="formula">
-Molecular Formula = (Empirical Formula)<sub>n</sub>
-</div>
-
-<p>
-To determine <strong>n</strong>:
-</p>
-
-<div class="formula">
-n = Molecular Mass ÷ Empirical Formula Mass
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 3</h2>
-
-<div class="example-box">
-
-<p>
-A compound has:
-</p>
-
-<ul>
-<li>Empirical Formula = CH₂O</li>
-<li>Molar Mass = 180 g/mol</li>
-</ul>
-
-<p><strong>Step 1: Determine empirical formula mass</strong></p>
-
-<div class="formula">
-12.01 + (2 × 1.01) + 16.00
-=
-30.03 g/mol
-</div>
-
-<p><strong>Step 2: Calculate n</strong></p>
-
-<div class="formula">
-180 ÷ 30.03 ≈ 6
-</div>
-
-<p><strong>Step 3: Multiply subscripts by 6</strong></p>
-
-<div class="formula">
-(CH₂O)₆
-=
-C₆H₁₂O₆
-</div>
-
-<p>
-<strong>Molecular Formula = C₆H₁₂O₆</strong>
-</p>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Handling Fractional Ratios</h2>
-
-<p>
-Sometimes dividing by the smallest mole value produces decimals instead of whole numbers.
-</p>
-
-<table>
-<tr>
-<th>Decimal Ratio</th>
-<th>Multiply By</th>
-</tr>
-
-<tr>
-<td>0.5</td>
-<td>2</td>
-</tr>
-
-<tr>
-<td>0.33</td>
-<td>3</td>
-</tr>
-
-<tr>
-<td>0.25</td>
-<td>4</td>
-</tr>
-
-<tr>
-<td>0.67</td>
-<td>3</td>
-</tr>
-
-</table>
-
-<div class="example-box">
-
-<p>
-Suppose the ratio obtained is:
-</p>
-
-<div class="formula">
-C = 1
-<br>
-H = 1.5
-</div>
-
-<p>
-Multiply all values by 2:
-</p>
-
-<div class="formula">
-C₂H₃
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Common Mistakes</h2>
-
-<div class="key-box">
-
-<ul>
-<li>Using atomic numbers instead of atomic masses.</li>
-<li>Forgetting to convert percentages to grams by assuming a 100 g sample.</li>
-<li>Failing to divide all mole values by the smallest value.</li>
-<li>Rounding ratios too early.</li>
-<li>Confusing empirical formulas with molecular formulas.</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Check Your Understanding</h2>
-
-<div class="activity">
-
-<p><strong>1.</strong> What is the empirical formula of C₂H₄?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-Divide subscripts by 2:
-
-<div class="formula">
-CH₂
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>2.</strong> What is the empirical formula of N₂O₄?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-Divide subscripts by 2:
-
-<div class="formula">
-NO₂
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>3.</strong> A compound has an empirical formula mass of 44 g/mol and a molecular mass of 88 g/mol. What is n?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-<div class="formula">
-88 ÷ 44 = 2
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>4.</strong> If the empirical formula is CH₂ and n = 3, what is the molecular formula?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-<div class="formula">
-C₃H₆
-</div>
-
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>5.</strong> Why do chemists assume a 100 g sample when solving percent composition problems?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-
-Because percentages can be directly interpreted as grams, making calculations simpler.
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Lesson Summary</h2>
-
-<ul>
-<li>Chemical formulas describe the composition of compounds.</li>
-<li>The empirical formula shows the simplest whole-number ratio of atoms.</li>
-<li>The molecular formula shows the actual number of atoms present.</li>
-<li>Empirical formulas can be determined from atom ratios or percent composition data.</li>
-<li>Molecular formulas are obtained using the empirical formula and molar mass.</li>
-<li>Careful mole calculations are essential when deriving formulas.</li>
-</ul>
-
-</div>
-  
-<div style="text-align:center;margin-top:30px;">
-	<button class="quiz-button" id="takeQuizBtn">
-
-Take the Quiz →
-
-</button>
-
-</div>
-
-<script>
-function toggleAnswer(btn){
-  const ans = btn.nextElementSibling;
-  ans.style.display = ans.style.display === "block" ? "none" : "block";
-}
-
-document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
-  const quizId = e.target.dataset.quiz;
-  window.parent.postMessage({
-    type:"openQuiz",
-    quiz:quizId
-  },"*");
-});
-</script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 3 Lesson 4: Isotopes and Isotope Notation</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .nuclide {
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                align-items: center;
+                color: #174ea6;
+                font-weight: 700;
+                vertical-align: middle;
+                line-height: 1;
+            }
+            .nuclide .numbers {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                font-size: 0.56em;
+                gap: 0.14em;
+            }
+            .nuclide .symbol {
+                font-size: 1.8em;
+            }
+            .nuclide .charge {
+                align-self: start;
+                font-size: 0.55em;
+            }
+            .diagram {
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 3 · Lesson 4 · SAS #10</div>
+                <h1>Isotopes and Isotope Notation</h1>
+                <p>
+                    Carbon-12, carbon-13, and carbon-14 are all carbon. Use isotope notation to see what stays the same
+                    and what changes.
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#goals">Objectives</a><a href="#isotopes">Isotopes</a><a href="#notation">Notation</a
+                    ><a href="#construct">Writing notation</a><a href="#practice">Practice</a
+                    ><a href="#summary">Takeaways</a>
+                </nav>
+            </header>
+            <section class="card" id="goals">
+                <h2>Learning objectives</h2>
+                <p>At the end of the lesson, you should be able to:</p>
+                <ul>
+                    <li>Explain why isotopes belong to the same element despite having different neutron counts.</li>
+                    <li>Interpret isotope notation and hyphenated isotope names.</li>
+                    <li>Calculate protons, neutrons, electrons, and mass number for a specified isotope.</li>
+                    <li>Construct correct isotope notation from particle counts and identify isotope pairs.</li>
+                </ul>
+                <div class="note">
+                    <strong>Connect to Lesson 3:</strong> Atomic number Z equals protons, mass number A equals protons
+                    plus neutrons, and a neutral atom has electrons equal to protons.
+                </div>
+            </section>
+            <section class="card" id="isotopes">
+                <h2>1. Same element, different neutron counts</h2>
+                <p>
+                    <strong>Isotopes</strong> are atoms of the same element with different numbers of neutrons. They
+                    have the same number of protons and different mass numbers.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Neutral atom</th>
+                                <th>Protons</th>
+                                <th>Neutrons</th>
+                                <th>Electrons</th>
+                                <th>Mass number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Carbon-12</td>
+                                <td>6</td>
+                                <td>6</td>
+                                <td>6</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Carbon-13</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>6</td>
+                                <td>13</td>
+                            </tr>
+                            <tr>
+                                <td>Carbon-14</td>
+                                <td>6</td>
+                                <td>8</td>
+                                <td>6</td>
+                                <td>14</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    All three have Z = 6, so they are carbon. Their neutron counts and mass numbers differ. Some
+                    isotopes are stable and some radioactive; being an isotope does not automatically mean an atom is
+                    radioactive.
+                </p>
+                <div class="practice">
+                    <h3>Think it through</h3>
+                    <p>Atom A has 8 protons and 8 neutrons. Atom B has 8 protons and 10 neutrons. Are they isotopes?</p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            Yes. Both have 8 protons (oxygen), but their neutron counts differ. Their mass numbers are
+                            16 and 18.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="notation">
+                <h2>2. Read isotope notation</h2>
+                <p>
+                    In nuclear or isotope notation, the element symbol is written with mass number A at the upper left
+                    and atomic number Z at the lower left.
+                </p>
+                <div class="diagram">
+                    <p class="formula">
+                        <span class="nuclide" aria-label="carbon 14, atomic number 6"
+                            ><span class="numbers"><span>14</span><span>6</span></span
+                            ><span class="symbol">C</span></span
+                        >
+                    </p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Part</th>
+                                    <th>Meaning</th>
+                                    <th>For carbon-14</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Upper left: A = 14</td>
+                                    <td>Protons + neutrons</td>
+                                    <td>14 nucleons</td>
+                                </tr>
+                                <tr>
+                                    <td>Lower left: Z = 6</td>
+                                    <td>Protons</td>
+                                    <td>6 protons</td>
+                                </tr>
+                                <tr>
+                                    <td>Symbol: C</td>
+                                    <td>Element identity</td>
+                                    <td>Carbon</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Neutrons = A − Z = 14 − 6 = <strong>8</strong>. With no charge shown, this represents a neutral
+                        atom, so it has <strong>6 electrons</strong>.
+                    </p>
+                </div>
+                <div class="note">
+                    Carbon-14 and C-14 are hyphenated names: the number is the <em>mass number</em>. Find its atomic
+                    number from the periodic table when needed. A periodic-table average is not the mass number of each
+                    individual atom.
+                </div>
+                <div class="worked">
+                    <h3>Worked example · Interpret sodium-23</h3>
+                    <p>
+                        For
+                        <span class="nuclide" aria-label="sodium 23, atomic number 11"
+                            ><span class="numbers"><span>23</span><span>11</span></span
+                            ><span class="symbol">Na</span></span
+                        >, A = 23 and Z = 11. There are <strong>11 protons</strong>, 23 − 11 =
+                        <strong>12 neutrons</strong>, and, because no charge is shown, <strong>11 electrons</strong>.
+                    </p>
+                </div>
+            </section>
+            <section class="card" id="construct">
+                <h2>3. Construct isotope notation</h2>
+                <ol>
+                    <li>Count the protons; use Z to find the element symbol on the periodic table.</li>
+                    <li>Add protons and neutrons to obtain A.</li>
+                    <li>Write A at the upper left and Z at the lower left of the symbol.</li>
+                    <li>
+                        If a charge is specified, write it at the upper right. Otherwise, use a neutral atom when
+                        counting electrons.
+                    </li>
+                </ol>
+                <div class="worked">
+                    <h3>Worked example · From particles to notation</h3>
+                    <p>
+                        An atom has 8 protons, 10 neutrons, and 8 electrons. Z = 8 identifies oxygen, O. A = 8 + 10 =
+                        18. Equal protons and electrons mean it is neutral.
+                    </p>
+                    <p class="formula">
+                        <span class="nuclide" aria-label="oxygen 18, atomic number 8"
+                            ><span class="numbers"><span>18</span><span>8</span></span
+                            ><span class="symbol">O</span></span
+                        >
+                        &nbsp; or oxygen-18
+                    </p>
+                </div>
+                <div class="worked">
+                    <h3>Extension · When a charge is shown</h3>
+                    <p>
+                        <span class="nuclide" aria-label="chlorine 35, atomic number 17, charge minus one"
+                            ><span class="numbers"><span>35</span><span>17</span></span
+                            ><span class="symbol">Cl</span><span class="charge">−</span></span
+                        >
+                        has 17 protons and 18 neutrons. The −1 charge means it has gained one electron, giving
+                        <strong>18 electrons</strong>. Its isotope is chlorine-35 whether the chlorine atom is neutral
+                        or is a chloride ion.
+                    </p>
+                </div>
+                <div class="note">
+                    Changing electrons forms an ion. Changing neutrons gives a different isotope of the same element.
+                    Changing protons gives a different element.
+                </div>
+            </section>
+            <section class="card" id="practice">
+                <h2>5. Check your understanding</h2>
+                <p>
+                    Select an answer and choose <strong>Check answer</strong>. These practice questions give feedback
+                    and do not record a quiz score.
+                </p>
+                <div class="practice" data-quiz="q1">
+                    <fieldset>
+                        <legend>1. Which pair consists of isotopes of the same element?</legend>
+                        <label
+                            ><input type="radio" name="q1" value="0" /> 6 protons, 6 neutrons and 6 protons, 8
+                            neutrons</label
+                        ><label
+                            ><input type="radio" name="q1" value="1" /> 6 protons, 6 neutrons and 7 protons, 6
+                            neutrons</label
+                        ><label
+                            ><input type="radio" name="q1" value="2" /> 8 protons, 9 neutrons and 9 protons, 8
+                            neutrons</label
+                        ><label
+                            ><input type="radio" name="q1" value="3" /> 7 protons, 7 neutrons and 8 protons, 8
+                            neutrons</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q2">
+                    <fieldset>
+                        <legend>2. For ¹⁸₈O, what are the numbers of protons and neutrons?</legend>
+                        <label><input type="radio" name="q2" value="0" /> 8 protons, 10 neutrons</label
+                        ><label><input type="radio" name="q2" value="1" /> 8 protons, 18 neutrons</label
+                        ><label><input type="radio" name="q2" value="2" /> 10 protons, 8 neutrons</label
+                        ><label><input type="radio" name="q2" value="3" /> 18 protons, 8 neutrons</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q3">
+                    <fieldset>
+                        <legend>3. What does the 23 in sodium-23 represent?</legend>
+                        <label><input type="radio" name="q3" value="0" /> Electron count</label
+                        ><label><input type="radio" name="q3" value="1" /> Proton count</label
+                        ><label><input type="radio" name="q3" value="2" /> Mass number</label
+                        ><label><input type="radio" name="q3" value="3" /> Charge</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q4">
+                    <fieldset>
+                        <legend>4. A neutral atom has 3 protons and 4 neutrons. Which notation is correct?</legend>
+                        <label><input type="radio" name="q4" value="0" /> ⁷₃Li</label
+                        ><label><input type="radio" name="q4" value="1" /> ⁴₃Li</label
+                        ><label><input type="radio" name="q4" value="2" /> ⁷₄Be</label
+                        ><label><input type="radio" name="q4" value="3" /> ³₇Li</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q5">
+                    <fieldset>
+                        <legend>5. How many electrons are in a neutral atom of ³⁵₁₇Cl?</legend>
+                        <label><input type="radio" name="q5" value="0" /> 17</label
+                        ><label><input type="radio" name="q5" value="1" /> 18</label
+                        ><label><input type="radio" name="q5" value="2" /> 35</label
+                        ><label><input type="radio" name="q5" value="3" /> 52</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q6">
+                    <fieldset>
+                        <legend>6. Which quantity differs between carbon-12 and carbon-14?</legend>
+                        <label><input type="radio" name="q6" value="0" /> Proton count</label
+                        ><label><input type="radio" name="q6" value="1" /> Element symbol</label
+                        ><label><input type="radio" name="q6" value="2" /> Neutron count</label
+                        ><label><input type="radio" name="q6" value="3" /> Atomic number</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q7">
+                    <fieldset>
+                        <legend>
+                            7. An atom has 12 protons, 13 neutrons, and 12 electrons. What is its hyphenated isotope
+                            name?
+                        </legend>
+                        <label><input type="radio" name="q7" value="0" /> Magnesium-12</label
+                        ><label><input type="radio" name="q7" value="1" /> Magnesium-25</label
+                        ><label><input type="radio" name="q7" value="2" /> Aluminum-25</label
+                        ><label><input type="radio" name="q7" value="3" /> Magnesium-13</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q8">
+                    <fieldset>
+                        <legend>8. How many electrons are in ³⁵₁₇Cl⁻?</legend>
+                        <label><input type="radio" name="q8" value="0" /> 16</label
+                        ><label><input type="radio" name="q8" value="1" /> 17</label
+                        ><label><input type="radio" name="q8" value="2" /> 18</label
+                        ><label><input type="radio" name="q8" value="3" /> 35</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Explain your reasoning</h3>
+                    <p>
+                        Two neutral atoms contain 17 protons each. One has 18 neutrons and the other has 20. Name both
+                        isotopes and explain their relationship.
+                    </p>
+                    <details>
+                        <summary>Show a possible answer</summary>
+                        <p>
+                            Both are chlorine because Z = 17. Their mass numbers are 35 and 37, so they are chlorine-35
+                            and chlorine-37. They are isotopes because they have the same proton count and different
+                            neutron counts.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="summary">
+                <h2>6. Key terms and takeaways</h2>
+                <ul>
+                    <li>Isotopes have the same number of protons but different numbers of neutrons.</li>
+                    <li>
+                        In isotope notation, A is at the upper left and Z is at the lower left of the element symbol.
+                    </li>
+                    <li>Protons = Z; neutrons = A − Z; for neutral atoms electrons = protons.</li>
+                    <li>In a hyphenated name such as oxygen-18, the number is the mass number.</li>
+                </ul>
+                <p class="small">
+                    Original explanations and activities informed by Chemistry I Teacher’s Guide #10, Isotopes and
+                    Atomic Identity.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status" aria-live="polite"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                q1: { answer: "0", explanation: "They have the same proton count but different neutron counts." },
+                q2: { answer: "0", explanation: "Z = 8 protons and neutrons = 18 − 8 = 10." },
+                q3: { answer: "2", explanation: "The number after the hyphen is the mass number." },
+                q4: { answer: "0", explanation: "Z = 3 identifies lithium, and A = 3 + 4 = 7." },
+                q5: { answer: "0", explanation: "With no charge specified, electrons equal protons, so there are 17." },
+                q6: {
+                    answer: "2",
+                    explanation: "Both have 6 protons but carbon-12 has 6 neutrons and carbon-14 has 8.",
+                },
+                q7: { answer: "1", explanation: "Z = 12 is magnesium, and its mass number is 12 + 13 = 25." },
+                q8: {
+                    answer: "2",
+                    explanation: "A −1 charge means one more electron than the 17 protons, giving 18 electrons.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter3_lesson4_quiz.html" }, "*");
+                } else {
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+                }
+            });
+        </script>
+    </body>
 </html>
