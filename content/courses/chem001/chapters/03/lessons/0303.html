@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Chemistry I | Chapter 3 Lesson 3: Isotopes and Atomic Identity</title>
+        <title>Chemistry I | Chapter 3 Lesson 3: Atomic Identity: Protons, Neutrons, and Electrons</title>
         <style>
             :root {
                 --green: #136f63;
@@ -283,38 +283,68 @@
     <body>
         <main>
             <header>
-                <div class="eyebrow">Chemistry I · Chapter 3 · Lesson 3</div>
-                <h1>Isotopes and Atomic Identity</h1>
+                <div class="eyebrow">Chemistry I · Chapter 3 · Lesson 3 · SAS #10</div>
+                <h1>Atomic Identity: Protons, Neutrons, and Electrons</h1>
                 <p>
-                    Carbon-12 and carbon-14 are both carbon, even though their mass numbers differ. What makes them the
-                    same element, and what makes them different isotopes?
+                    What makes a carbon atom carbon? Explore the particles inside atoms and use simple relationships to
+                    determine their numbers.
                 </p>
                 <nav aria-label="Lesson sections">
                     <a href="#goals">Objectives</a><a href="#particles">Particles</a
-                    ><a href="#notation">Isotope notation</a><a href="#isotopes">Isotopes</a><a href="#ions">Ions</a
-                    ><a href="#practice">Practice</a><a href="#video">Video</a>
+                    ><a href="#identity">Atomic identity</a><a href="#mass">Mass number</a
+                    ><a href="#electrons">Electrons</a><a href="#practice">Practice</a><a href="#summary">Takeaways</a>
                 </nav>
             </header>
             <section class="card" id="goals">
                 <h2>Learning objectives</h2>
-                <p>After this lesson, you should be able to:</p>
+                <p>At the end of the lesson, you should be able to:</p>
                 <ul>
-                    <li>Identify protons, neutrons, and electrons by charge and location.</li>
-                    <li>Use atomic number and mass number to determine proton and neutron counts.</li>
-                    <li>Interpret isotope notation and names and explain what makes atoms isotopes of an element.</li>
-                    <li>Determine electron counts for neutral atoms and simple ions.</li>
-                    <li>
-                        Distinguish an isotope’s mass number from the relative atomic mass listed on a periodic table.
-                    </li>
+                    <li>Describe the charges and locations of protons, neutrons, and electrons.</li>
+                    <li>Use atomic number to identify an element and determine its number of protons.</li>
+                    <li>Calculate mass number or neutron count using proton and neutron counts.</li>
+                    <li>Determine the number of electrons in neutral atoms and simple monatomic ions.</li>
                 </ul>
                 <div class="note">
-                    <strong>Connection:</strong> In Lessons 1 and 2 we traced how models of the atom developed. We now
-                    use the nuclear model to describe atomic identity. Radioisotopes and abundance-weighted average
-                    atomic mass are studied later.
+                    <strong>Connect:</strong> Earlier lessons showed how evidence led to the nuclear model. Now use that
+                    model to describe individual atoms. In Lesson 4, you will use these skills to compare isotopes and
+                    write isotope notation.
                 </div>
             </section>
             <section class="card" id="particles">
-                <h2>1. The particles inside an atom</h2>
+                <h2>1. Meet the subatomic particles</h2>
+                <p>
+                    An atom has a tiny nucleus containing protons and neutrons. Electrons occupy states around the
+                    nucleus; they are described by regions of probability rather than fixed planetary paths.
+                </p>
+                <div class="diagram">
+                    <svg
+                        viewBox="0 0 540 210"
+                        role="img"
+                        aria-label="Schematic of a nucleus containing protons and neutrons with electrons outside. Not to scale."
+                    >
+                        <ellipse
+                            cx="220"
+                            cy="100"
+                            rx="150"
+                            ry="75"
+                            fill="none"
+                            stroke="#8fb8b0"
+                            stroke-width="3"
+                            stroke-dasharray="7 6"
+                        />
+                        <circle cx="200" cy="91" r="22" fill="#d0842e" />
+                        <circle cx="239" cy="91" r="22" fill="#7995b0" />
+                        <circle cx="220" cy="125" r="22" fill="#d0842e" />
+                        <text x="193" y="98" fill="white" font-size="22">+</text>
+                        <text x="213" y="132" fill="white" font-size="22">+</text>
+                        <circle cx="87" cy="58" r="10" fill="#174ea6" />
+                        <circle cx="358" cy="145" r="10" fill="#174ea6" />
+                        <text x="397" y="68" font-size="18" fill="#24323d">orange: proton</text>
+                        <text x="397" y="100" font-size="18" fill="#24323d">gray: neutron</text>
+                        <text x="397" y="132" font-size="18" fill="#24323d">blue: electron</text>
+                    </svg>
+                    <p class="small">Schematic, not to scale. The dashed outline is not an electron orbit.</p>
+                </div>
                 <div class="table-wrap">
                     <table>
                         <thead>
@@ -322,7 +352,7 @@
                                 <th>Particle</th>
                                 <th>Relative charge</th>
                                 <th>Location</th>
-                                <th>Why it matters here</th>
+                                <th>Role in this lesson</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -330,377 +360,247 @@
                                 <td>Proton (p⁺)</td>
                                 <td>+1</td>
                                 <td>Nucleus</td>
-                                <td>Determines the element.</td>
+                                <td>Determines element identity.</td>
                             </tr>
                             <tr>
                                 <td>Neutron (n)</td>
                                 <td>0</td>
                                 <td>Nucleus</td>
-                                <td>Different numbers give isotopes of the same element.</td>
+                                <td>Contributes to mass number.</td>
                             </tr>
                             <tr>
                                 <td>Electron (e⁻)</td>
                                 <td>−1</td>
-                                <td>Outside the nucleus, described by quantum states</td>
-                                <td>Electron gain or loss changes an atom’s charge.</td>
+                                <td>Outside the nucleus</td>
+                                <td>Affects the atom’s net charge.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </section>
+            <section class="card" id="identity">
+                <h2>2. Atomic number determines identity</h2>
                 <p>
-                    <strong>Atomic number (Z)</strong> is the number of protons. Every atom with Z = 6 is carbon. A
-                    neutral atom has equal numbers of protons and electrons.
+                    The <strong>atomic number (Z)</strong> is the number of protons. It identifies the element. Every
+                    carbon atom has 6 protons, and every oxygen atom has 8.
                 </p>
-                <p>
-                    <strong>Mass number (A)</strong> is the total number of protons and neutrons in the nucleus of a
-                    specified atom.
-                </p>
-                <p class="formula">A = protons + neutrons &nbsp; · &nbsp; neutrons = A − Z</p>
-                <div class="note">
-                    Mass number is a count and is always a whole number. It is not the mass of the nucleus in grams and
-                    is not the same thing as the relative atomic mass printed on many periodic tables.
+                <p class="formula">atomic number Z = number of protons</p>
+                <div class="worked">
+                    <h3>Worked example · Identify an element</h3>
+                    <p>
+                        An atom has 12 protons and 13 neutrons. Its atomic number is 12. Find Z = 12 in a periodic
+                        table: the element is <strong>magnesium (Mg)</strong>. The neutron count does not change the
+                        element’s identity.
+                    </p>
+                </div>
+                <div class="practice">
+                    <h3>Think it through</h3>
+                    <p>One atom has 8 protons, another has 9. Can both be oxygen?</p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            No. An atom with 8 protons is oxygen; an atom with 9 protons is fluorine. Different proton
+                            counts mean different elements.
+                        </p>
+                    </details>
                 </div>
             </section>
-            <section class="card" id="notation">
-                <h2>2. Read isotope notation</h2>
+            <section class="card" id="mass">
+                <h2>3. Mass number and neutron count</h2>
                 <p>
-                    The example below represents carbon-14. The left superscript is the mass number A, the left
-                    subscript is atomic number Z, and the center is the element symbol.
+                    The <strong>mass number (A)</strong> counts the protons and neutrons in a particular atom. Electrons
+                    are not included in this count.
                 </p>
-                <div class="diagram">
-                    <p class="formula">
-                        <span class="nuclide" aria-label="carbon 14, atomic number 6"
-                            ><span class="numbers"><span>14</span><span>6</span></span
-                            ><span class="symbol">C</span></span
-                        >
-                    </p>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Part</th>
-                                    <th>Meaning</th>
-                                    <th>For carbon-14</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Symbol C</td>
-                                    <td>Element symbol</td>
-                                    <td>Carbon</td>
-                                </tr>
-                                <tr>
-                                    <td>Atomic number, lower left</td>
-                                    <td>Proton count Z</td>
-                                    <td>6 protons</td>
-                                </tr>
-                                <tr>
-                                    <td>Mass number, upper left</td>
-                                    <td>Protons + neutrons A</td>
-                                    <td>14 nucleons</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <p class="formula">mass number A = protons + neutrons<br />neutrons = A − Z</p>
+                <div class="worked">
+                    <h3>Worked example · Find mass number</h3>
                     <p>
-                        Neutrons = 14 − 6 = <strong>8</strong>. No charge is shown, so this notation represents a
-                        neutral atom: <strong>6 electrons</strong>.
+                        A neutral nitrogen atom has 7 protons and 8 neutrons. A = 7 + 8 = <strong>15</strong>. Because Z
+                        = 7, the atom is nitrogen. Its mass number is 15.
                     </p>
                 </div>
                 <div class="worked">
-                    <h3>Worked example · Sodium-23</h3>
+                    <h3>Worked example · Find neutrons</h3>
                     <p>
-                        Sodium has Z = 11. The notation
-                        <span class="nuclide" aria-label="sodium 23, atomic number 11"
-                            ><span class="numbers"><span>23</span><span>11</span></span
-                            ><span class="symbol">Na</span></span
-                        >
-                        gives A = 23 and Z = 11. Therefore, the neutral atom has
-                        <strong>11 protons, 12 neutrons, and 11 electrons</strong>.
-                    </p>
-                    <p>
-                        The hyphenated name <strong>sodium-23</strong> also identifies the mass number. Find Z from the
-                        periodic table if it is not written.
+                        A sodium atom has atomic number 11 and mass number 23. It has 11 protons and 23 − 11 =
+                        <strong>12 neutrons</strong>.
                     </p>
                 </div>
+                <div class="note">
+                    Mass number is a whole-number count for a specified atom. It is different from the decimal relative
+                    atomic mass often shown on the periodic table. Do not infer a particular atom’s neutron count from a
+                    rounded average unless the atom’s mass number is specified.
+                </div>
             </section>
-            <section class="card" id="isotopes">
-                <h2>3. Same element, different isotopes</h2>
+            <section class="card" id="electrons">
+                <h2>4. Count electrons and interpret charge</h2>
                 <p>
-                    <strong>Isotopes</strong> are atoms of the same element with different numbers of neutrons. They
-                    have the same atomic number and different mass numbers.
+                    In a <strong>neutral atom</strong>, positive proton charge balances negative electron charge, so
+                    electrons = protons = Z. If an atom loses or gains electrons, it becomes an ion. In this section,
+                    consider only ions made from one atom.
                 </p>
+                <p class="formula">charge = protons − electrons<br />electrons = Z − signed charge</p>
                 <div class="table-wrap">
                     <table>
                         <thead>
                             <tr>
-                                <th>Neutral atom</th>
+                                <th>Particle</th>
                                 <th>Protons</th>
-                                <th>Neutrons</th>
                                 <th>Electrons</th>
-                                <th>Mass number</th>
+                                <th>Reason</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Carbon-12</td>
-                                <td>6</td>
-                                <td>6</td>
-                                <td>6</td>
-                                <td>12</td>
+                                <td>Neutral sodium, Na</td>
+                                <td>11</td>
+                                <td>11</td>
+                                <td>Equal charges balance.</td>
                             </tr>
                             <tr>
-                                <td>Carbon-13</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>6</td>
-                                <td>13</td>
+                                <td>Sodium ion, Na⁺</td>
+                                <td>11</td>
+                                <td>10</td>
+                                <td>One electron was lost.</td>
                             </tr>
                             <tr>
-                                <td>Carbon-14</td>
-                                <td>6</td>
-                                <td>8</td>
-                                <td>6</td>
-                                <td>14</td>
+                                <td>Chloride ion, Cl⁻</td>
+                                <td>17</td>
+                                <td>18</td>
+                                <td>One electron was gained.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <p>
-                    Each has six protons, so each is carbon. The neutron count distinguishes these isotopes. Some
-                    isotopes are stable and others radioactive; we will study radioactive decay and applications in a
-                    later lesson.
-                </p>
+                <div class="worked">
+                    <h3>Worked example · A 2+ ion</h3>
+                    <p>
+                        Magnesium has Z = 12. For Mg²⁺, electrons = 12 − (+2) = <strong>10</strong>. It still has 12
+                        protons; forming this ion does not change its nucleus.
+                    </p>
+                </div>
                 <div class="note">
-                    <strong>Do not confuse the terms:</strong> A change in proton count gives a different element. A
-                    change in neutron count gives a different isotope of the same element. A change in electron count
-                    changes the charge and produces an ion.
+                    <strong>Keep the changes separate:</strong> Proton count determines the element; changing the
+                    neutron count changes its mass number; changing the electron count changes its charge.
                 </div>
-            </section>
-            <section class="card" id="ions">
-                <h2>4. Count electrons in ions</h2>
-                <p>
-                    An <strong>ion</strong> is an atom or group with a net electric charge. This lesson considers
-                    single-atom ions. The charge is the number of protons minus the number of electrons.
-                </p>
-                <p class="formula">charge = protons − electrons &nbsp; · &nbsp; electrons = Z − charge</p>
-                <p>
-                    Use the <em>signed</em> charge in the formula: +1 for Na⁺ and −1 for Cl⁻. A positive ion has lost
-                    electrons; a negative ion has gained electrons. In ion formation, the proton and neutron counts in
-                    the nucleus remain unchanged.
-                </p>
-                <div class="worked">
-                    <h3>Worked example · Sodium-23 ion</h3>
-                    <p>
-                        For
-                        <span class="nuclide" aria-label="sodium 23, atomic number 11, charge plus one"
-                            ><span class="numbers"><span>23</span><span>11</span></span
-                            ><span class="symbol">Na</span><span class="charge">+</span></span
-                        >: protons = 11; neutrons = 23 − 11 = 12; electrons = 11 − (+1) = <strong>10</strong>. The +1
-                        charge means one electron was removed from a neutral sodium atom.
-                    </p>
-                </div>
-                <div class="worked">
-                    <h3>Worked example · Chloride-35 ion</h3>
-                    <p>
-                        For
-                        <span class="nuclide" aria-label="chlorine 35, atomic number 17, charge minus one"
-                            ><span class="numbers"><span>35</span><span>17</span></span
-                            ><span class="symbol">Cl</span><span class="charge">−</span></span
-                        >: protons = 17; neutrons = 35 − 17 = 18; electrons = 17 − (−1) = <strong>18</strong>. The −1
-                        charge means one extra electron compared with neutral chlorine.
-                    </p>
-                </div>
-            </section>
-            <section class="card" id="mass">
-                <h2>5. Mass number and relative atomic mass</h2>
-                <p>
-                    Carbon-12 has mass number 12: it counts the 6 protons and 6 neutrons in that nuclide. A periodic
-                    table may list a decimal <strong>relative atomic mass</strong> for carbon, reflecting the weighted
-                    contributions of isotopes in a specified natural sample or reference composition. The two values
-                    answer different questions.
-                </p>
-                <p>
-                    Do not infer the exact neutron count of a particular atom by rounding a periodic-table average
-                    unless the isotope is specified. We will calculate abundance-weighted averages in a later lesson.
-                </p>
             </section>
             <section class="card" id="practice">
-                <h2>6. Practice and drills</h2>
-                <p>Select an answer and choose <strong>Check answer</strong>. Practice does not record a quiz score.</p>
-                <div class="practice" data-quiz="identity">
+                <h2>5. Check your understanding</h2>
+                <p>
+                    Select an answer and choose <strong>Check answer</strong>. These practice questions give feedback
+                    and do not record a quiz score.
+                </p>
+                <div class="practice" data-quiz="q1">
                     <fieldset>
-                        <legend>Which particle count determines the identity of an element?</legend>
-                        <label><input type="radio" name="identity" value="0" /> Number of protons</label
-                        ><label><input type="radio" name="identity" value="1" /> Number of neutrons</label
-                        ><label><input type="radio" name="identity" value="2" /> Total number of nucleons</label
-                        ><label><input type="radio" name="identity" value="3" /> Number of electrons only</label>
+                        <legend>1. Which particle determines the identity of an element?</legend>
+                        <label><input type="radio" name="q1" value="0" /> Neutron</label
+                        ><label><input type="radio" name="q1" value="1" /> Proton</label
+                        ><label><input type="radio" name="q1" value="2" /> Electron</label
+                        ><label><input type="radio" name="q1" value="3" /> All three equally</label>
                     </fieldset>
                     <button type="button" data-check>Check answer</button>
                     <div class="feedback" role="status" aria-live="polite" hidden></div>
                 </div>
-                <div class="practice" data-quiz="neutrons">
+                <div class="practice" data-quiz="q2">
                     <fieldset>
-                        <legend>
-                            A neutral atom has atomic number 8 and mass number 18. How many neutrons does it contain?
-                        </legend>
-                        <label><input type="radio" name="neutrons" value="0" /> 8</label
-                        ><label><input type="radio" name="neutrons" value="1" /> 10</label
-                        ><label><input type="radio" name="neutrons" value="2" /> 18</label
-                        ><label><input type="radio" name="neutrons" value="3" /> 26</label>
+                        <legend>2. An atom has atomic number 8. How many protons does it have?</legend>
+                        <label><input type="radio" name="q2" value="0" /> 4</label
+                        ><label><input type="radio" name="q2" value="1" /> 8</label
+                        ><label><input type="radio" name="q2" value="2" /> 16</label
+                        ><label><input type="radio" name="q2" value="3" /> It depends on its charge</label>
                     </fieldset>
                     <button type="button" data-check>Check answer</button>
                     <div class="feedback" role="status" aria-live="polite" hidden></div>
                 </div>
-                <div class="practice" data-quiz="isotopes">
+                <div class="practice" data-quiz="q3">
                     <fieldset>
-                        <legend>Which pair represents isotopes of the same element?</legend>
-                        <label
-                            ><input type="radio" name="isotopes" value="0" /> Atoms with 6 protons and 6 neutrons; 6
-                            protons and 8 neutrons</label
-                        ><label
-                            ><input type="radio" name="isotopes" value="1" /> Atoms with 6 protons and 6 neutrons; 7
-                            protons and 6 neutrons</label
-                        ><label
-                            ><input type="radio" name="isotopes" value="2" /> Atoms with 8 protons and 8 neutrons; 9
-                            protons and 8 neutrons</label
-                        ><label
-                            ><input type="radio" name="isotopes" value="3" /> Atoms with 7 protons and 7 neutrons; 8
-                            protons and 8 neutrons</label
-                        >
+                        <legend>3. An atom has 12 protons and 13 neutrons. What is its mass number?</legend>
+                        <label><input type="radio" name="q3" value="0" /> 1</label
+                        ><label><input type="radio" name="q3" value="1" /> 12</label
+                        ><label><input type="radio" name="q3" value="2" /> 13</label
+                        ><label><input type="radio" name="q3" value="3" /> 25</label>
                     </fieldset>
                     <button type="button" data-check>Check answer</button>
                     <div class="feedback" role="status" aria-live="polite" hidden></div>
                 </div>
-                <div class="practice" data-quiz="neutral">
+                <div class="practice" data-quiz="q4">
                     <fieldset>
-                        <legend>
-                            A neutral chlorine-37 atom has atomic number 17. How many electrons does it have?
-                        </legend>
-                        <label><input type="radio" name="neutral" value="0" /> 17</label
-                        ><label><input type="radio" name="neutral" value="1" /> 20</label
-                        ><label><input type="radio" name="neutral" value="2" /> 37</label
-                        ><label><input type="radio" name="neutral" value="3" /> 54</label>
+                        <legend>4. A nitrogen atom has Z = 7 and A = 15. How many neutrons does it have?</legend>
+                        <label><input type="radio" name="q4" value="0" /> 7</label
+                        ><label><input type="radio" name="q4" value="1" /> 8</label
+                        ><label><input type="radio" name="q4" value="2" /> 15</label
+                        ><label><input type="radio" name="q4" value="3" /> 22</label>
                     </fieldset>
                     <button type="button" data-check>Check answer</button>
                     <div class="feedback" role="status" aria-live="polite" hidden></div>
                 </div>
-                <div class="practice" data-quiz="cation">
+                <div class="practice" data-quiz="q5">
                     <fieldset>
-                        <legend>
-                            A sodium-23 ion is Na⁺, and sodium has atomic number 11. How many protons, neutrons, and
-                            electrons does it have?
-                        </legend>
-                        <label
-                            ><input type="radio" name="cation" value="0" /> 11 protons, 12 neutrons, 10 electrons</label
-                        ><label
-                            ><input type="radio" name="cation" value="1" /> 11 protons, 12 neutrons, 12 electrons</label
-                        ><label
-                            ><input type="radio" name="cation" value="2" /> 10 protons, 13 neutrons, 11 electrons</label
-                        ><label
-                            ><input type="radio" name="cation" value="3" /> 11 protons, 11 neutrons, 12 electrons</label
-                        >
+                        <legend>5. A neutral chlorine atom has 17 protons. How many electrons does it have?</legend>
+                        <label><input type="radio" name="q5" value="0" /> 16</label
+                        ><label><input type="radio" name="q5" value="1" /> 17</label
+                        ><label><input type="radio" name="q5" value="2" /> 18</label
+                        ><label><input type="radio" name="q5" value="3" /> 35</label>
                     </fieldset>
                     <button type="button" data-check>Check answer</button>
                     <div class="feedback" role="status" aria-live="polite" hidden></div>
                 </div>
-                <div class="practice" data-quiz="anion">
+                <div class="practice" data-quiz="q6">
                     <fieldset>
-                        <legend>
-                            A chlorine-35 ion is Cl⁻, and chlorine has atomic number 17. How many electrons does it
-                            have?
-                        </legend>
-                        <label><input type="radio" name="anion" value="0" /> 16</label
-                        ><label><input type="radio" name="anion" value="1" /> 17</label
-                        ><label><input type="radio" name="anion" value="2" /> 18</label
-                        ><label><input type="radio" name="anion" value="3" /> 35</label>
+                        <legend>6. A sodium ion Na⁺ has 11 protons. How many electrons does it have?</legend>
+                        <label><input type="radio" name="q6" value="0" /> 10</label
+                        ><label><input type="radio" name="q6" value="1" /> 11</label
+                        ><label><input type="radio" name="q6" value="2" /> 12</label
+                        ><label><input type="radio" name="q6" value="3" /> 23</label>
                     </fieldset>
                     <button type="button" data-check>Check answer</button>
                     <div class="feedback" role="status" aria-live="polite" hidden></div>
                 </div>
-                <div class="practice" data-quiz="mass">
+                <div class="practice" data-quiz="q7">
                     <fieldset>
-                        <legend>An atom contains 13 protons and 14 neutrons. What is its mass number?</legend>
-                        <label><input type="radio" name="mass" value="0" /> 13</label
-                        ><label><input type="radio" name="mass" value="1" /> 14</label
-                        ><label><input type="radio" name="mass" value="2" /> 27</label
-                        ><label><input type="radio" name="mass" value="3" /> 1</label>
+                        <legend>7. A magnesium ion Mg²⁺ has 12 protons. How many electrons does it have?</legend>
+                        <label><input type="radio" name="q7" value="0" /> 10</label
+                        ><label><input type="radio" name="q7" value="1" /> 12</label
+                        ><label><input type="radio" name="q7" value="2" /> 14</label
+                        ><label><input type="radio" name="q7" value="3" /> 24</label>
                     </fieldset>
                     <button type="button" data-check>Check answer</button>
                     <div class="feedback" role="status" aria-live="polite" hidden></div>
                 </div>
-                <div class="practice" data-quiz="distinguish">
+                <div class="practice" data-quiz="q8">
                     <fieldset>
-                        <legend>Which statement correctly distinguishes mass number from relative atomic mass?</legend>
-                        <label
-                            ><input type="radio" name="distinguish" value="0" /> Mass number is an integer for one
-                            nuclide; relative atomic mass may reflect an abundance-weighted average.</label
-                        ><label
-                            ><input type="radio" name="distinguish" value="1" /> Both always equal the number of
-                            protons.</label
-                        ><label
-                            ><input type="radio" name="distinguish" value="2" /> Mass number counts only
-                            electrons.</label
-                        ><label
-                            ><input type="radio" name="distinguish" value="3" /> Every isotope of an element must have
-                            the same mass number.</label
-                        >
+                        <legend>8. Which quantity is a whole-number count of protons plus neutrons?</legend>
+                        <label><input type="radio" name="q8" value="0" /> Charge</label
+                        ><label><input type="radio" name="q8" value="1" /> Atomic number</label
+                        ><label><input type="radio" name="q8" value="2" /> Mass number</label
+                        ><label><input type="radio" name="q8" value="3" /> Relative atomic mass</label>
                     </fieldset>
                     <button type="button" data-check>Check answer</button>
                     <div class="feedback" role="status" aria-live="polite" hidden></div>
                 </div>
                 <div class="practice">
-                    <h3>Challenge · Compare two particles</h3>
+                    <h3>Challenge · Explain your reasoning</h3>
                     <p>
-                        Particle A is neutral carbon-14. Particle B is carbon-14 with a 2− charge. Compare their proton,
-                        neutron, and electron counts.
+                        A neutral atom has 16 protons and 18 neutrons. Identify its element, mass number, and electron
+                        count.
                     </p>
                     <details>
-                        <summary>Show one possible answer</summary>
-                        <p>
-                            Both have 6 protons and 8 neutrons, so both represent carbon-14. Neutral A has 6 electrons;
-                            B has 8 electrons because its charge is 2−. They are the same isotope in different charge
-                            states.
-                        </p>
+                        <summary>Show a possible answer</summary>
+                        <p>Z = 16 is sulfur. A = 16 + 18 = 34. Because the atom is neutral, it has 16 electrons.</p>
                     </details>
                 </div>
             </section>
-            <section class="card" id="video">
-                <h2>7. Watch: Atomic number, mass number, and isotopes</h2>
-                <p>This Khan Academy discussion demonstrates how atomic and mass numbers represent isotopes.</p>
-                <div class="video-wrap">
-                    <iframe
-                        src="https://www.youtube-nocookie.com/embed/I-Or4bUAIfo"
-                        title="Atomic number, mass number, and isotopes | Khan Academy"
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
-                    ></iframe>
-                </div>
-                <p>
-                    <a href="https://www.youtube.com/watch?v=I-Or4bUAIfo" target="_blank" rel="noopener noreferrer"
-                        >Open the video on YouTube</a
-                    >
-                    if the embedded video does not load.
-                </p>
-            </section>
-            <section class="card" id="takeaways">
-                <h2>8. Key terms and takeaways</h2>
+            <section class="card" id="summary">
+                <h2>6. Key terms and takeaways</h2>
                 <ul>
-                    <li><strong>Atomic number Z:</strong> protons; determines the element.</li>
-                    <li><strong>Mass number A:</strong> protons plus neutrons; neutron count is A − Z.</li>
-                    <li><strong>Isotopes:</strong> same proton count, different neutron counts.</li>
-                    <li>
-                        <strong>Neutral atom:</strong> electrons equal protons. For ions, electrons = Z − signed charge.
-                    </li>
-                    <li>
-                        <strong>Relative atomic mass:</strong> a different quantity from the mass number of an
-                        individual nuclide.
-                    </li>
+                    <li>Protons, neutrons, and electrons have charges +1, 0, and −1, respectively.</li>
+                    <li>Atomic number Z equals the proton count and identifies the element.</li>
+                    <li>Mass number A = protons + neutrons; neutrons = A − Z.</li>
+                    <li>Neutral atoms have equal proton and electron counts; ions have unequal counts.</li>
                 </ul>
                 <p class="small">
-                    Original LearnTrack lesson developed for the Chemistry I course outline. Video: Khan Academy,
-                    “Atomic number, mass number, and isotopes.”
+                    Original explanations and activities informed by Chemistry I Teacher’s Guide #10, Isotopes and
+                    Atomic Identity.
                 </p>
             </section>
             <div class="quiz-area">
@@ -710,33 +610,14 @@
         </main>
         <script>
             const practiceAnswers = {
-                identity: {
-                    answer: "0",
-                    explanation: "An element is defined by its atomic number, the number of protons.",
-                },
-                neutrons: { answer: "1", explanation: "Neutrons = mass number − atomic number = 18 − 8 = 10." },
-                isotopes: {
-                    answer: "0",
-                    explanation: "Isotopes share the same number of protons and differ in the number of neutrons.",
-                },
-                neutral: {
-                    answer: "0",
-                    explanation: "A neutral atom has the same number of electrons and protons, so it has 17 electrons.",
-                },
-                cation: {
-                    answer: "0",
-                    explanation: "Na⁺ has 11 protons, 23 − 11 = 12 neutrons, and 11 − 1 = 10 electrons.",
-                },
-                anion: {
-                    answer: "2",
-                    explanation: "The −1 charge means one more electron than protons: 17 + 1 = 18 electrons.",
-                },
-                mass: { answer: "2", explanation: "Mass number is the sum of protons and neutrons: 13 + 14 = 27." },
-                distinguish: {
-                    answer: "0",
-                    explanation:
-                        "Mass number counts protons and neutrons for a specific nuclide; relative atomic mass can reflect a weighted average of isotopic masses.",
-                },
+                q1: { answer: "1", explanation: "The proton count is the atomic number and determines the element." },
+                q2: { answer: "1", explanation: "Atomic number equals the number of protons." },
+                q3: { answer: "3", explanation: "A = protons + neutrons = 12 + 13 = 25." },
+                q4: { answer: "1", explanation: "Neutrons = A − Z = 15 − 7 = 8." },
+                q5: { answer: "1", explanation: "A neutral atom has the same number of electrons as protons." },
+                q6: { answer: "0", explanation: "The +1 ion has lost one electron, so 11 − 1 = 10." },
+                q7: { answer: "0", explanation: "A 2+ ion has two fewer electrons than protons: 12 − 2 = 10." },
+                q8: { answer: "2", explanation: "Mass number counts protons and neutrons in a specified atom." },
             };
             document.querySelectorAll("[data-quiz]").forEach((card) => {
                 card.querySelector("[data-check]").addEventListener("click", () => {
