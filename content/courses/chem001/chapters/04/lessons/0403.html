@@ -1,749 +1,869 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<title>Calculating Amounts of Reactants and Products</title>
-
-<style>
-body{
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
-  padding:24px;
-  line-height:1.8;
-  font-size:20px;
-}
-
-h1{color:#136f63;}
-h2{color:#136f63;margin-top:1.4em;}
-h3{color:#174ea6;}
-
-.section{margin-bottom:30px;}
-
-.key-box{
-  background:#e8f7f5;
-  border-left:6px solid #136f63;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.example-box{
-  background:#fff;
-  border-left:5px solid #2b7de9;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
-
-.visual-box{
-  background:#fff;
-  border-radius:12px;
-  padding:14px;
-  margin:16px 0;
-  border:1px solid #ddd;
-}
-
-.lesson-img{
-  width:100%;
-  max-width:720px;
-  display:block;
-  margin:0 auto;
-  border-radius:12px;
-}
-
-.caption{
-  text-align:center;
-  font-size:0.9em;
-  color:#555;
-}
-
-.activity{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  margin:14px 0;
-}
-
-.toggle-btn{
-  background:#136f63;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.answer{
-  display:none;
-  margin-top:10px;
-  background:#eef3ff;
-  padding:10px;
-  border-radius:6px;
-}
-
-.formula{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.formula .equation-line{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:8px 0;
-}
-
-.formula .fraction{
-  display:inline-grid;
-  grid-template-rows:auto auto;
-  min-width:max-content;
-  text-align:center;
-  line-height:1.2;
-  vertical-align:middle;
-}
-
-.formula .fraction-top{
-  border-bottom:2px solid currentColor;
-  padding:0 10px 5px;
-}
-
-.formula .fraction-bottom{
-  padding:5px 10px 0;
-}
-
-.answer .formula{
-  font-size:20px;
-  margin:8px 0;
-}
-
-.answer ol{
-  margin-top:8px;
-}
-
-.quiz-button{
-  background:#136f63;
-  color:white;
-  padding:12px 22px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:16px 0;
-  background:#fff;
-}
-
-th,td{
-  border:1px solid #ddd;
-  padding:10px;
-}
-
-th{background:#e8f7f5;}
-
-iframe{
-  width:100%;
-  max-width:100%;
-}
-</style>
-</head>
-<body>
-
-<h1>Calculating Amounts of Reactants and Products</h1>
-
-<div class="key-box">
-<strong>Real-World Scenario</strong><br><br>
-
-A chemical engineer needs to determine how much ammonia can be produced from a given amount of nitrogen gas. A pharmaceutical manufacturer needs to know exactly how much reactant is required to produce a specific quantity of medicine.
-
-These questions are answered using <strong>stoichiometry</strong>, the branch of chemistry that deals with quantitative relationships in chemical reactions.
-</div>
-
-<div class="section">
-<h2>Learning Objectives</h2>
-
-<ul>
-<li>Explain the meaning of stoichiometry.</li>
-<li>Interpret mole ratios from balanced chemical equations.</li>
-<li>Perform mole-to-mole calculations.</li>
-<li>Perform mass-to-mass calculations.</li>
-<li>Perform mass-to-mole and mole-to-mass calculations.</li>
-<li>Apply stoichiometric reasoning to chemical reactions.</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>What is Stoichiometry?</h2>
-
-<p>
-<strong>Stoichiometry</strong> is the calculation of the amounts of reactants and products in a chemical reaction.
-</p>
-
-<div class="key-box">
-Stoichiometry uses the coefficients in a balanced chemical equation to determine how many moles of one substance react with or produce another substance.
-</div>
-
-<p>
-A balanced equation works like a recipe. If a recipe says 2 cups of flour make 12 cookies, then doubling the flour also doubles the cookies. In the same way, chemical coefficients show the proportional relationship between substances.
-</p>
-</div>
-
-<div class="section">
-<h2>Balanced Equations as Chemical Recipes</h2>
-
-<div class="example-box">
-<h3>Example Equation</h3>
-
-<div class="formula">
-N₂ + 3H₂ → 2NH₃
-</div>
-
-<p>This means:</p>
-
-<ul>
-<li>1 mole of N₂ reacts with 3 moles of H₂.</li>
-<li>1 mole of N₂ produces 2 moles of NH₃.</li>
-<li>3 moles of H₂ produce 2 moles of NH₃.</li>
-</ul>
-</div>
-
-<div class="key-box">
-The coefficients in a balanced equation become the mole ratios used in stoichiometry.
-</div>
-</div>
-
-<div class="section">
-<h2>Mole Ratios</h2>
-
-<p>
-A <strong>mole ratio</strong> is a conversion factor taken from the coefficients of a balanced chemical equation.
-</p>
-
-<div class="example-box">
-
-<div class="formula">
-N₂ + 3H₂ → 2NH₃
-</div>
-
-<p>Some possible mole ratios are:</p>
-
-<div class="formula">
-<div class="equation-line">
-<span class="fraction">
-<span class="fraction-top">3 mol H₂</span>
-<span class="fraction-bottom">1 mol N₂</span>
-</span>
-
-<span>or</span>
-
-<span class="fraction">
-<span class="fraction-top">2 mol NH₃</span>
-<span class="fraction-bottom">1 mol N₂</span>
-</span>
-
-<span>or</span>
-
-<span class="fraction">
-<span class="fraction-top">2 mol NH₃</span>
-<span class="fraction-bottom">3 mol H₂</span>
-</span>
-</div>
-</div>
-
-</div>
-
-<p>
-The correct mole ratio depends on what substance is given and what substance is being solved for.
-</p>
-</div>
-
-<div class="section">
-<h2>General Stoichiometry Roadmap</h2>
-
-<div class="key-box">
-Most stoichiometry problems follow this sequence:
-<br><br>
-
-<ol>
-<li>Write and balance the chemical equation.</li>
-<li>Convert the given quantity to moles, if needed.</li>
-<li>Use the mole ratio from the balanced equation.</li>
-<li>Convert the answer to the requested unit, if needed.</li>
-</ol>
-</div>
-</div>
-
-<div class="section">
-<h2>Mole-to-Mole Calculations</h2>
-
-<p>
-The simplest stoichiometry problems convert from moles of one substance to moles of another substance.
-</p>
-
-<div class="example-box">
-<h3>Worked Example 1</h3>
-
-<p>
-How many moles of NH₃ can be produced from 5.00 mol of N₂?
-</p>
-
-<div class="formula">
-N₂ + 3H₂ → 2NH₃
-</div>
-
-<p><strong>Step 1:</strong> Identify the mole ratio.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span class="fraction">
-<span class="fraction-top">2 mol NH₃</span>
-<span class="fraction-bottom">1 mol N₂</span>
-</span>
-</div>
-</div>
-
-<p><strong>Step 2:</strong> Multiply by the mole ratio.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>5.00 mol N₂ ×</span>
-<span class="fraction">
-<span class="fraction-top">2 mol NH₃</span>
-<span class="fraction-bottom">1 mol N₂</span>
-</span>
-<span>= 10.0 mol NH₃</span>
-</div>
-</div>
-
-<div class="key-box">
-Answer: 10.0 mol NH₃
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>Mass-to-Mass Calculations</h2>
-
-<p>
-Most laboratory measurements use grams, not moles. For this reason, mass-to-mass stoichiometry is one of the most useful skills in chemistry.
-</p>
-
-<div class="key-box">
-Mass-to-mass pathway:
-<br><br>
-<strong>Mass → Moles → Mole Ratio → Moles → Mass</strong>
-</div>
-</div>
-
-<div class="section">
-<h2>Worked Example 2: Mass-to-Mass</h2>
-
-<div class="example-box">
-
-<p>
-How many grams of water are produced when 4.00 g of hydrogen reacts completely with oxygen?
-</p>
-
-<div class="formula">
-2H₂ + O₂ → 2H₂O
-</div>
-
-<p><strong>Step 1:</strong> Convert grams of H₂ to moles.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>4.00 g H₂ ×</span>
-<span class="fraction">
-<span class="fraction-top">1 mol H₂</span>
-<span class="fraction-bottom">2.02 g H₂</span>
-</span>
-<span>= 1.98 mol H₂</span>
-</div>
-</div>
-
-<p><strong>Step 2:</strong> Use the mole ratio.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>1.98 mol H₂ ×</span>
-<span class="fraction">
-<span class="fraction-top">2 mol H₂O</span>
-<span class="fraction-bottom">2 mol H₂</span>
-</span>
-<span>= 1.98 mol H₂O</span>
-</div>
-</div>
-
-<p><strong>Step 3:</strong> Convert moles of H₂O to grams.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>1.98 mol H₂O ×</span>
-<span class="fraction">
-<span class="fraction-top">18.02 g H₂O</span>
-<span class="fraction-bottom">1 mol H₂O</span>
-</span>
-<span>= 35.7 g H₂O</span>
-</div>
-</div>
-
-<div class="key-box">
-Answer: 35.7 g H₂O
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>Mole-to-Mass Calculations</h2>
-
-<p>
-In mole-to-mass problems, the given quantity is already in moles, so you only need the mole ratio and molar mass.
-</p>
-
-<div class="example-box">
-<h3>Worked Example 3</h3>
-
-<p>
-How many grams of CO₂ are produced from 3.00 mol of CH₄?
-</p>
-
-<div class="formula">
-CH₄ + 2O₂ → CO₂ + 2H₂O
-</div>
-
-<p><strong>Step 1:</strong> Use the mole ratio.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>3.00 mol CH₄ ×</span>
-<span class="fraction">
-<span class="fraction-top">1 mol CO₂</span>
-<span class="fraction-bottom">1 mol CH₄</span>
-</span>
-<span>= 3.00 mol CO₂</span>
-</div>
-</div>
-
-<p><strong>Step 2:</strong> Convert moles of CO₂ to grams.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>3.00 mol CO₂ ×</span>
-<span class="fraction">
-<span class="fraction-top">44.01 g CO₂</span>
-<span class="fraction-bottom">1 mol CO₂</span>
-</span>
-<span>= 132.03 g CO₂</span>
-</div>
-</div>
-
-<div class="key-box">
-Answer: 132.03 g CO₂
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>Mass-to-Mole Calculations</h2>
-
-<p>
-In mass-to-mole problems, convert the given mass into moles first, then use the mole ratio.
-</p>
-
-<div class="example-box">
-<h3>Worked Example 4</h3>
-
-<p>
-How many moles of oxygen are needed to react completely with 16.0 g of methane?
-</p>
-
-<div class="formula">
-CH₄ + 2O₂ → CO₂ + 2H₂O
-</div>
-
-<p><strong>Step 1:</strong> Convert methane to moles.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>16.0 g CH₄ ×</span>
-<span class="fraction">
-<span class="fraction-top">1 mol CH₄</span>
-<span class="fraction-bottom">16.05 g CH₄</span>
-</span>
-<span>= 0.997 mol CH₄</span>
-</div>
-</div>
-
-<p><strong>Step 2:</strong> Use the mole ratio.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>0.997 mol CH₄ ×</span>
-<span class="fraction">
-<span class="fraction-top">2 mol O₂</span>
-<span class="fraction-bottom">1 mol CH₄</span>
-</span>
-<span>= 1.99 mol O₂</span>
-</div>
-</div>
-
-<div class="key-box">
-Answer: 1.99 mol O₂
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>Choosing the Correct Mole Ratio</h2>
-
-<p>
-The mole ratio must cancel the given substance and leave the desired substance.
-</p>
-
-<div class="example-box">
-
-<p>
-For the equation:
-</p>
-
-<div class="formula">
-2H₂ + O₂ → 2H₂O
-</div>
-
-<p>
-If the given substance is H₂ and the target is H₂O, use:
-</p>
-
-<div class="formula">
-<div class="equation-line">
-<span class="fraction">
-<span class="fraction-top">2 mol H₂O</span>
-<span class="fraction-bottom">2 mol H₂</span>
-</span>
-</div>
-</div>
-
-<p>
-This works because mol H₂ cancels, leaving mol H₂O.
-</p>
-
-</div>
-</div>
-
-<div class="section">
-<h2>Common Mistakes</h2>
-
-<div class="key-box">
-<ul>
-<li>Using an unbalanced chemical equation.</li>
-<li>Skipping the mole conversion step.</li>
-<li>Using the wrong mole ratio.</li>
-<li>Using subscripts instead of coefficients for mole ratios.</li>
-<li>Forgetting to convert the final answer into the requested unit.</li>
-<li>Using atomic mass instead of molar mass for compounds.</li>
-</ul>
-</div>
-</div>
-
-<div class="section">
-<h2>Check Your Understanding</h2>
-
-<div class="activity">
-<p><strong>1.</strong> Using the equation N₂ + 3H₂ → 2NH₃, how many moles of NH₃ are produced from 4.00 mol N₂?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-<div class="formula">
-<div class="equation-line">
-<span>4.00 mol N₂ ×</span>
-<span class="fraction">
-<span class="fraction-top">2 mol NH₃</span>
-<span class="fraction-bottom">1 mol N₂</span>
-</span>
-<span>= 8.00 mol NH₃</span>
-</div>
-</div>
-</div>
-</div>
-
-<div class="activity">
-<p><strong>2.</strong> Using 2H₂ + O₂ → 2H₂O, how many moles of H₂O are produced from 6.00 mol H₂?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-<div class="formula">
-<div class="equation-line">
-<span>6.00 mol H₂ ×</span>
-<span class="fraction">
-<span class="fraction-top">2 mol H₂O</span>
-<span class="fraction-bottom">2 mol H₂</span>
-</span>
-<span>= 6.00 mol H₂O</span>
-</div>
-</div>
-</div>
-</div>
-
-<div class="activity">
-<p><strong>3.</strong> How many grams of CO₂ are produced from 1.00 mol CO₂?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-<div class="formula">
-<div class="equation-line">
-<span>1.00 mol CO₂ ×</span>
-<span class="fraction">
-<span class="fraction-top">44.01 g CO₂</span>
-<span class="fraction-bottom">1 mol CO₂</span>
-</span>
-<span>= 44.01 g CO₂</span>
-</div>
-</div>
-</div>
-</div>
-
-<div class="activity">
-<p><strong>4.</strong> Why must every stoichiometric calculation begin with a balanced equation?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-Because the coefficients in the balanced equation provide the mole ratios needed for stoichiometric calculations.
-</div>
-</div>
-
-<div class="activity">
-<p><strong>5.</strong> Which conversion factor connects two substances in a chemical equation?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-The mole ratio derived from the coefficients of the balanced chemical equation.
-</div>
-</div>
-
-<div class="activity">
-<p><strong>6.</strong> Using CH₄ + 2O₂ → CO₂ + 2H₂O, how many moles of O₂ are needed for 2.50 mol CH₄?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-<div class="formula">
-<div class="equation-line">
-<span>2.50 mol CH₄ ×</span>
-<span class="fraction">
-<span class="fraction-top">2 mol O₂</span>
-<span class="fraction-bottom">1 mol CH₄</span>
-</span>
-<span>= 5.00 mol O₂</span>
-</div>
-</div>
-</div>
-</div>
-
-<div class="activity">
-<p><strong>7.</strong> Using 2KClO₃ → 2KCl + 3O₂, how many moles of O₂ are produced from 4.00 mol KClO₃?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-<div class="formula">
-<div class="equation-line">
-<span>4.00 mol KClO₃ ×</span>
-<span class="fraction">
-<span class="fraction-top">3 mol O₂</span>
-<span class="fraction-bottom">2 mol KClO₃</span>
-</span>
-<span>= 6.00 mol O₂</span>
-</div>
-</div>
-</div>
-</div>
-
-<div class="activity">
-<p><strong>8.</strong> How many grams of NH₃ are produced from 2.00 mol N₂ using N₂ + 3H₂ → 2NH₃?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-
-<div class="answer">
-<p><strong>Step 1:</strong> Convert mol N₂ to mol NH₃.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>2.00 mol N₂ ×</span>
-<span class="fraction">
-<span class="fraction-top">2 mol NH₃</span>
-<span class="fraction-bottom">1 mol N₂</span>
-</span>
-<span>= 4.00 mol NH₃</span>
-</div>
-</div>
-
-<p><strong>Step 2:</strong> Convert mol NH₃ to grams.</p>
-
-<div class="formula">
-<div class="equation-line">
-<span>4.00 mol NH₃ ×</span>
-<span class="fraction">
-<span class="fraction-top">17.04 g NH₃</span>
-<span class="fraction-bottom">1 mol NH₃</span>
-</span>
-<span>= 68.16 g NH₃</span>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
-<div class="section">
-<h2>Lesson Summary</h2>
-
-<ul>
-<li>Stoichiometry calculates the amounts of reactants and products in chemical reactions.</li>
-<li>Balanced equations provide the mole ratios used in calculations.</li>
-<li>Mole ratios come from coefficients, not subscripts.</li>
-<li>Mole-to-mole problems use only the balanced equation ratio.</li>
-<li>Mass-to-mass problems require conversion from grams to moles and then back to grams.</li>
-<li>Unit cancellation helps confirm that the setup is correct.</li>
-</ul>
-</div>
-
-
-<div style="text-align:center;margin-top:30px;">
-	<button class="quiz-button" id="takeQuizBtn">
-
-Take the Quiz →
-
-</button>
-
-</div>
-
-<script>
-function toggleAnswer(btn){
-  const ans = btn.nextElementSibling;
-  ans.style.display = ans.style.display === "block" ? "none" : "block";
-}
-
-document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
-  const quizId = e.target.dataset.quiz;
-  window.parent.postMessage({
-    type:"openQuiz",
-    quiz:quizId
-  },"*");
-});
-</script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Chemistry I | Chapter 4 Lesson 3: Empirical Formulas from Composition Data</title>
+        <style>
+            :root {
+                --green: #136f63;
+                --blue: #174ea6;
+                --ink: #24323d;
+                --muted: #526572;
+                --line: #d8e5e8;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                padding: 32px 24px;
+                background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+                color: var(--ink);
+                font:
+                    20px/1.7 "Segoe UI",
+                    Arial,
+                    sans-serif;
+            }
+            main {
+                max-width: 1020px;
+                margin: auto;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.3;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 4vw, 2.7rem);
+                color: var(--green);
+                margin: 12px 0 18px;
+            }
+            h2 {
+                color: var(--green);
+                font-size: 1.5em;
+                margin: 0 0 14px;
+            }
+            h3 {
+                font-size: 1.12em;
+                color: var(--blue);
+                margin: 24px 0 10px;
+            }
+            p {
+                margin: 12px 0;
+            }
+            li + li {
+                margin-top: 7px;
+            }
+            a {
+                color: var(--blue);
+            }
+            header {
+                padding: 10px 0 24px;
+            }
+            .eyebrow {
+                color: var(--green);
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                font-weight: 700;
+                font-size: 0.75em;
+            }
+            .small,
+            figcaption {
+                font-size: 0.86em;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 10px 20px;
+                flex-wrap: wrap;
+                font-size: 0.86em;
+            }
+            section.card {
+                background: #fff;
+                padding: 28px 30px;
+                border-radius: 14px;
+                box-shadow: 0 4px 18px #0000000d;
+                margin-bottom: 24px;
+                scroll-margin-top: 16px;
+            }
+            .worked,
+            .note,
+            .practice {
+                padding: 18px 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+            .worked {
+                background: #eff9f5;
+                border: 1px solid #c7e7d9;
+            }
+            .note {
+                background: #fff8e7;
+                border-left: 5px solid #ac7a13;
+            }
+            .practice {
+                background: #f5f8ff;
+                border-left: 5px solid var(--blue);
+            }
+            .worked h3,
+            .practice h3 {
+                margin-top: 0;
+            }
+            .formula {
+                text-align: center;
+                color: var(--blue);
+                font-size: 1.15em;
+                font-weight: 700;
+                overflow-wrap: anywhere;
+            }
+            .table-wrap {
+                overflow-x: auto;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 0.92em;
+                margin: 15px 0;
+            }
+            th,
+            td {
+                padding: 11px 13px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                background: #f1f6ff;
+                color: var(--blue);
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .grid > div {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 16px;
+            }
+            .grid h3 {
+                margin-top: 0;
+            }
+            details {
+                margin-top: 12px;
+            }
+            summary {
+                cursor: pointer;
+                color: var(--green);
+                font-weight: 650;
+            }
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            legend {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+            input {
+                margin-right: 10px;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+            }
+            button[data-check],
+            .quiz-button {
+                background: var(--green);
+                color: white;
+                border: 0;
+                border-radius: 9px;
+                padding: 10px 18px;
+                font-weight: 600;
+            }
+            button:hover {
+                filter: brightness(0.92);
+            }
+            button:focus-visible,
+            summary:focus-visible,
+            input:focus-visible,
+            a:focus-visible {
+                outline: 3px solid #ad7115;
+                outline-offset: 3px;
+            }
+            .feedback {
+                margin-top: 12px;
+                padding: 12px;
+                background: white;
+                border-radius: 7px;
+            }
+            .quiz-area {
+                text-align: center;
+                padding: 10px 0 35px;
+            }
+            .notice {
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+            svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+            }
+            @media (max-width: 650px) {
+                body {
+                    padding: 20px 14px;
+                    font-size: 18px;
+                }
+                section.card {
+                    padding: 21px 18px;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <style>
+            .nuclide {
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                align-items: center;
+                color: #174ea6;
+                font-weight: 700;
+                vertical-align: middle;
+                line-height: 1;
+            }
+            .nuclide .numbers {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                font-size: 0.56em;
+                gap: 0.14em;
+            }
+            .nuclide .symbol {
+                font-size: 1.8em;
+            }
+            .nuclide .charge {
+                align-self: start;
+                font-size: 0.55em;
+            }
+            .diagram {
+                background: #f5faff;
+                border: 1px solid #d4e4ed;
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .video-wrap {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                background: #e8f1f2;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .video-wrap iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="eyebrow">Chemistry I · Chapter 4 · Lesson 3 · SAS #16</div>
+                <h1>Empirical Formulas from Composition Data</h1>
+                <p>
+                    Percent composition tells us how much of each element is present by mass. How can those masses
+                    reveal the simplest ratio of atoms in a compound?
+                </p>
+                <nav aria-label="Lesson sections">
+                    <a href="#goals">Objectives</a><a href="#concept">Concept</a><a href="#procedure">Steps</a
+                    ><a href="#examples">Examples</a><a href="#fractions">Fractional ratios</a
+                    ><a href="#practice">Practice</a>
+                </nav>
+            </header>
+            <section class="card" id="goals">
+                <h2>Learning objectives</h2>
+                <p>After this lesson, you should be able to:</p>
+                <ul>
+                    <li>Explain an empirical formula as the simplest whole-number ratio of atoms.</li>
+                    <li>Find an empirical formula from a molecular formula or a given mole ratio.</li>
+                    <li>Determine an empirical formula from measured masses or percent composition.</li>
+                    <li>Interpret near-whole-number and common fractional mole ratios without premature rounding.</li>
+                    <li>Check whether a proposed formula is consistent with the input composition.</li>
+                </ul>
+                <div class="note">
+                    <strong>Connection to Lesson 2:</strong> We previously moved from a formula to mass percent. Now we
+                    reverse the process: composition → masses → moles → simplest whole-number ratio. Lesson 4 will use
+                    empirical formulas and molar mass to determine molecular formulas.
+                </div>
+            </section>
+            <section class="card" id="concept">
+                <h2>1. What does an empirical formula show?</h2>
+                <p>
+                    An <strong>empirical formula</strong> shows the simplest whole-number ratio of the atoms of each
+                    element in a compound. It does not necessarily show the actual numbers of atoms in a molecule.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Molecular formula</th>
+                                <th>Atom ratio</th>
+                                <th>Divide subscripts by</th>
+                                <th>Empirical formula</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></td>
+                                <td>6 : 12 : 6</td>
+                                <td>6</td>
+                                <td>CH<sub>2</sub>O</td>
+                            </tr>
+                            <tr>
+                                <td>H<sub>2</sub>O<sub>2</sub></td>
+                                <td>2 : 2</td>
+                                <td>2</td>
+                                <td>HO</td>
+                            </tr>
+                            <tr>
+                                <td>H<sub>2</sub>O</td>
+                                <td>2 : 1</td>
+                                <td>1</td>
+                                <td>H<sub>2</sub>O</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    An empirical formula and molecular formula <strong>can be the same</strong>, as for H<sub>2</sub>O,
+                    or different, as for H<sub>2</sub>O<sub>2</sub>. Different molecular compounds can share an
+                    empirical formula; the ratio alone does not establish the actual molecular formula or structure.
+                </p>
+                <div class="note">
+                    Ionic compounds such as NaCl are represented by formula units, which show the simplest whole-number
+                    ratio of ions in the compound. Do not describe an ionic formula as the formula of a discrete
+                    molecule.
+                </div>
+                <div class="practice">
+                    <h3>Try it first</h3>
+                    <p>What is the empirical formula corresponding to C<sub>4</sub>H<sub>8</sub>?</p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            Divide both subscripts by 4: 4 : 8 becomes 1 : 2, so the empirical formula is
+                            <strong>CH<sub>2</sub></strong
+                            >.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="procedure">
+                <h2>2. From composition data to an empirical formula</h2>
+                <ol>
+                    <li>
+                        <strong>Find the mass of each element.</strong> If only percentages are given, choose a
+                        convenient 100.0 g sample: 40.0% corresponds to 40.0 g in that assumed sample.
+                    </li>
+                    <li>
+                        <strong>Convert mass to moles.</strong> For each element, divide its mass in grams by its atomic
+                        molar mass in g/mol.
+                    </li>
+                    <li>
+                        <strong>Find a simple mole ratio.</strong> Divide every mole amount by the smallest mole amount.
+                    </li>
+                    <li>
+                        <strong>Convert to whole numbers.</strong> If the ratios are close to small integers, use those
+                        integers. For common fractions such as 1.5, multiply every ratio by the same small whole number.
+                    </li>
+                    <li>
+                        <strong>Write and check the formula.</strong> Use the resulting whole-number ratio as
+                        subscripts; omit subscript 1. Compare the calculated composition with the given data to the
+                        precision available.
+                    </li>
+                </ol>
+                <p class="formula">moles of element = mass of element ÷ atomic molar mass</p>
+                <p>
+                    Atoms combine in whole-number ratios, while a laboratory sample contains many atoms. This is why the
+                    relevant comparison is <strong>moles of atoms</strong>, not the mass ratio itself.
+                </p>
+                <div class="note">
+                    When starting with actual element masses, use those measured masses directly; you do not have to
+                    assume a 100 g sample. If the given composition does not include every element, do not infer missing
+                    elements without additional information.
+                </div>
+            </section>
+            <section class="card" id="examples">
+                <h2>3. Worked examples</h2>
+                <p>
+                    For these exercises use C = 12.01, H = 1.01, O = 16.00, Mg = 24.31, and Fe = 55.85 g/mol. Values may
+                    differ slightly with another rounding convention.
+                </p>
+                <div class="worked">
+                    <h3>Example 1 · From percentages to a near-integer ratio</h3>
+                    <p>A compound contains 40.00% C, 6.71% H, and 53.29% O by mass. Find the empirical formula.</p>
+                    <p>Assume a 100.0 g sample, so the element masses are 40.00 g C, 6.71 g H, and 53.29 g O.</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Element</th>
+                                    <th>Moles = mass ÷ molar mass</th>
+                                    <th>Divide by smallest, approximately 3.331</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>C</td>
+                                    <td>40.00 ÷ 12.01 ≈ 3.331 mol</td>
+                                    <td>3.331 ÷ 3.331 ≈ 1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>H</td>
+                                    <td>6.71 ÷ 1.01 ≈ 6.644 mol</td>
+                                    <td>6.644 ÷ 3.331 ≈ 1.99</td>
+                                </tr>
+                                <tr>
+                                    <td>O</td>
+                                    <td>53.29 ÷ 16.00 ≈ 3.331 mol</td>
+                                    <td>3.331 ÷ 3.331 ≈ 1.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        The ratio is approximately 1 : 2 : 1, so the empirical formula is
+                        <strong>CH<sub>2</sub>O</strong>. The small difference from exactly 2 reflects the precision of
+                        the input values.
+                    </p>
+                    <p>
+                        <strong>Check:</strong> M(CH<sub>2</sub>O) = 12.01 + 2(1.01) + 16.00 = 30.03 g/mol. The
+                        calculated percentages are about 39.99% C, 6.73% H, and 53.28% O, consistent with the rounded
+                        data.
+                    </p>
+                </div>
+                <div class="worked">
+                    <h3>Example 2 · From measured masses</h3>
+                    <p>A compound contains only magnesium and oxygen. A sample contains 4.862 g Mg and 3.200 g O.</p>
+                    <p>Mg: 4.862 ÷ 24.31 = 0.2000 mol<br />O: 3.200 ÷ 16.00 = 0.2000 mol</p>
+                    <p>Divide by 0.2000: Mg : O = 1 : 1. The empirical formula is <strong>MgO</strong>.</p>
+                </div>
+                <div class="practice">
+                    <h3>Try it first · From a mole ratio</h3>
+                    <p>
+                        A sample contains 0.30 mol of element A atoms and 0.60 mol of element B atoms. What is the
+                        empirical formula?
+                    </p>
+                    <details>
+                        <summary>Show answer</summary>
+                        <p>
+                            Divide by the smaller amount, 0.30 mol: A : B = 1 : 2. The empirical formula is
+                            <strong>AB<sub>2</sub></strong
+                            >.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card" id="fractions">
+                <h2>4. What if the ratio is not a whole number?</h2>
+                <p>
+                    Values close to integers because of measurement and rounding may be treated as those integers, but a
+                    value near 1.50 should not simply be rounded to 2. Instead, multiply <strong>every ratio</strong> by
+                    the same small integer to obtain a whole-number ratio.
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ratio close to</th>
+                                <th>Multiply all ratios by</th>
+                                <th>Result for that term</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.5</td>
+                                <td>2</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>1.33 or 1.67</td>
+                                <td>3</td>
+                                <td>approximately 4 or 5</td>
+                            </tr>
+                            <tr>
+                                <td>1.25 or 1.75</td>
+                                <td>4</td>
+                                <td>5 or 7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="worked">
+                    <h3>Example 3 · A 1 : 1.5 mole ratio</h3>
+                    <p>An iron oxide contains 69.94% Fe and 30.06% O. In a 100.00 g sample:</p>
+                    <p>Fe: 69.94 ÷ 55.85 ≈ 1.252 mol<br />O: 30.06 ÷ 16.00 ≈ 1.879 mol</p>
+                    <p>
+                        Divide by 1.252: Fe : O ≈ 1.00 : 1.50. Multiply <em>both</em> values by 2: 2 : 3. The empirical
+                        formula is <strong>Fe<sub>2</sub>O<sub>3</sub></strong
+                        >.
+                    </p>
+                    <p>
+                        Check: its molar mass using these data is 2(55.85) + 3(16.00) = 159.70 g/mol. Fe percent =
+                        111.70 ÷ 159.70 × 100% ≈ 69.94%; O percent ≈ 30.06%.
+                    </p>
+                </div>
+                <div class="note">
+                    Measurements have uncertainty. Ratios such as 1.49 or 1.51 may suggest 1.5 if consistent with the
+                    data; do not force an arbitrary ratio to the nearest fraction. If no plausible small whole-number
+                    ratio matches, recheck measurements, arithmetic, assumptions, and rounding.
+                </div>
+            </section>
+            <section class="card" id="errors">
+                <h2>5. Common errors to avoid</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Error</th>
+                                <th>Better approach</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Using percent masses as formula subscripts.</td>
+                                <td>Convert each element’s mass to moles before comparing ratios.</td>
+                            </tr>
+                            <tr>
+                                <td>Dividing by the largest mole value.</td>
+                                <td>Divide every value by the smallest to obtain a convenient starting ratio.</td>
+                            </tr>
+                            <tr>
+                                <td>Changing 1 : 1.5 directly to 1 : 2.</td>
+                                <td>Multiply both terms by 2 to preserve the ratio: 2 : 3.</td>
+                            </tr>
+                            <tr>
+                                <td>Multiplying only the fractional term.</td>
+                                <td>Multiply all terms by the same factor.</td>
+                            </tr>
+                            <tr>
+                                <td>Assuming an empirical formula identifies one particular molecule.</td>
+                                <td>
+                                    Different molecular formulas can share the same empirical ratio; additional
+                                    information is needed.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    <strong>Why it matters:</strong> Empirical formulas summarize elemental composition and help
+                    chemists compare experimental results with proposed formulas. Composition alone does not uniquely
+                    identify a compound’s structure.
+                </p>
+            </section>
+            <section class="card" id="practice">
+                <h2>6. Practice and drills</h2>
+                <p>
+                    Choose an answer, then select <strong>Check answer</strong>. These practice activities give feedback
+                    but do not record a quiz score.
+                </p>
+                <div class="practice" data-quiz="q1">
+                    <fieldset>
+                        <legend>1. What does an empirical formula represent?</legend>
+                        <label
+                            ><input type="radio" name="q1" value="0" /> The simplest whole-number ratio of atoms in a
+                            compound</label
+                        ><label><input type="radio" name="q1" value="1" /> The mass of one sample in grams</label
+                        ><label
+                            ><input type="radio" name="q1" value="2" /> The arrangement of all bonds in a
+                            molecule</label
+                        ><label><input type="radio" name="q1" value="3" /> The number of molecules in one mole</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q2">
+                    <fieldset>
+                        <legend>2. What is the empirical formula of C₆H₁₂O₆?</legend>
+                        <label><input type="radio" name="q2" value="0" /> C₆H₁₂O₆</label
+                        ><label><input type="radio" name="q2" value="1" /> CH₂O</label
+                        ><label><input type="radio" name="q2" value="2" /> C₃H₆O₃</label
+                        ><label><input type="radio" name="q2" value="3" /> CHO</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q3">
+                    <fieldset>
+                        <legend>3. Which formula is already in its simplest whole-number ratio?</legend>
+                        <label><input type="radio" name="q3" value="0" /> C₂H₄</label
+                        ><label><input type="radio" name="q3" value="1" /> H₂O₂</label
+                        ><label><input type="radio" name="q3" value="2" /> CO₂</label
+                        ><label><input type="radio" name="q3" value="3" /> C₆H₆</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q4">
+                    <fieldset>
+                        <legend>
+                            4. A compound contains 24.31 g Mg and 16.00 g O. Use Mg = 24.31 and O = 16.00 g/mol. What is
+                            its empirical formula?
+                        </legend>
+                        <label><input type="radio" name="q4" value="0" /> MgO</label
+                        ><label><input type="radio" name="q4" value="1" /> Mg₂O</label
+                        ><label><input type="radio" name="q4" value="2" /> MgO₂</label
+                        ><label><input type="radio" name="q4" value="3" /> Mg₂O₃</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q5">
+                    <fieldset>
+                        <legend>
+                            5. If a sample contains 0.40 mol A atoms and 0.80 mol B atoms, what is the simplest formula?
+                        </legend>
+                        <label><input type="radio" name="q5" value="0" /> A₂B</label
+                        ><label><input type="radio" name="q5" value="1" /> AB</label
+                        ><label><input type="radio" name="q5" value="2" /> AB₂</label
+                        ><label><input type="radio" name="q5" value="3" /> A₂B₄</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q6">
+                    <fieldset>
+                        <legend>
+                            6. A compound has 40.0% C, 6.7% H, and 53.3% O by mass. What sample mass is convenient to
+                            assume for converting percentages into grams?
+                        </legend>
+                        <label><input type="radio" name="q6" value="0" /> 1.00 g only</label
+                        ><label><input type="radio" name="q6" value="1" /> 10.0 g only</label
+                        ><label><input type="radio" name="q6" value="2" /> 100 g</label
+                        ><label><input type="radio" name="q6" value="3" /> 1 mol</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q7">
+                    <fieldset>
+                        <legend>
+                            7. After dividing mole amounts by the smallest value, a ratio is 1.00 : 1.50. What should
+                            you do?
+                        </legend>
+                        <label><input type="radio" name="q7" value="0" /> Round 1.50 to 2 immediately</label
+                        ><label><input type="radio" name="q7" value="1" /> Multiply both terms by 2</label
+                        ><label><input type="radio" name="q7" value="2" /> Multiply only 1.50 by 2</label
+                        ><label><input type="radio" name="q7" value="3" /> Write a subscript of 1.5</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q8">
+                    <fieldset>
+                        <legend>
+                            8. The ratio of A : B is 1.00 : 1.33, within measurement precision. What whole-number ratio
+                            is suggested?
+                        </legend>
+                        <label><input type="radio" name="q8" value="0" /> 1 : 1</label
+                        ><label><input type="radio" name="q8" value="1" /> 1 : 2</label
+                        ><label><input type="radio" name="q8" value="2" /> 2 : 3</label
+                        ><label><input type="radio" name="q8" value="3" /> 3 : 4</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q9">
+                    <fieldset>
+                        <legend>
+                            9. Why must mass data be converted to moles before determining an empirical formula?
+                        </legend>
+                        <label
+                            ><input type="radio" name="q9" value="0" /> Mole amounts compare numbers of atoms, while
+                            different elements have different atomic masses.</label
+                        ><label><input type="radio" name="q9" value="1" /> All atoms have identical masses.</label
+                        ><label
+                            ><input type="radio" name="q9" value="2" /> Mass percentages are already atom ratios.</label
+                        ><label
+                            ><input type="radio" name="q9" value="3" /> Moles remove the need to check the
+                            result.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q10">
+                    <fieldset>
+                        <legend>
+                            10. An iron oxide has a normalized Fe : O mole ratio of approximately 1.00 : 1.50. What is
+                            its empirical formula?
+                        </legend>
+                        <label><input type="radio" name="q10" value="0" /> FeO</label
+                        ><label><input type="radio" name="q10" value="1" /> FeO₂</label
+                        ><label><input type="radio" name="q10" value="2" /> Fe₂O₃</label
+                        ><label><input type="radio" name="q10" value="3" /> Fe₃O₂</label>
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q11">
+                    <fieldset>
+                        <legend>11. Which statement about empirical and molecular formulas is correct?</legend>
+                        <label><input type="radio" name="q11" value="0" /> They must always be different.</label
+                        ><label
+                            ><input type="radio" name="q11" value="1" /> They can be identical, and different molecular
+                            compounds can share an empirical formula.</label
+                        ><label
+                            ><input type="radio" name="q11" value="2" /> An empirical formula always shows the exact
+                            number of atoms in a molecule.</label
+                        ><label
+                            ><input type="radio" name="q11" value="3" /> An empirical formula alone uniquely determines
+                            molecular structure.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice" data-quiz="q12">
+                    <fieldset>
+                        <legend>
+                            12. A student finds a mole ratio A : B of 1.00 : 1.50 and writes AB₂. What is the best
+                            correction?
+                        </legend>
+                        <label
+                            ><input type="radio" name="q12" value="0" /> Keep AB₂ because all decimals must be rounded
+                            independently.</label
+                        ><label
+                            ><input type="radio" name="q12" value="1" /> Write A₂B₃ because both terms must be
+                            multiplied by 2.</label
+                        ><label
+                            ><input type="radio" name="q12" value="2" /> Write AB₁.₅ because fractional subscripts are
+                            allowed in this empirical formula.</label
+                        ><label
+                            ><input type="radio" name="q12" value="3" /> Write A₂B because only the A ratio needs
+                            multiplication.</label
+                        >
+                    </fieldset>
+                    <button type="button" data-check>Check answer</button>
+                    <div class="feedback" role="status" aria-live="polite" hidden></div>
+                </div>
+                <div class="practice">
+                    <h3>Challenge · Start with percentages</h3>
+                    <p>
+                        A compound contains 27.29% C and 72.71% O by mass. Using C = 12.01 and O = 16.00 g/mol,
+                        determine its empirical formula. Assume these are the only elements.
+                    </p>
+                    <details>
+                        <summary>Show one solution</summary>
+                        <p>
+                            For 100.00 g: C = 27.29 ÷ 12.01 ≈ 2.272 mol; O = 72.71 ÷ 16.00 ≈ 4.544 mol. Divide both by
+                            2.272: C : O ≈ 1 : 2. The empirical formula is <strong>CO<sub>2</sub></strong
+                            >. Check: using the same masses, % C = 12.01 ÷ 44.01 × 100% ≈ 27.29%.
+                        </p>
+                    </details>
+                </div>
+            </section>
+            <section class="card">
+                <h2>7. Key takeaways</h2>
+                <ul>
+                    <li>An empirical formula shows the simplest whole-number ratio of atoms.</li>
+                    <li>Convert element masses to moles before comparing their quantities.</li>
+                    <li>
+                        Divide all mole values by the smallest, then multiply all ratios by a common factor if needed.
+                    </li>
+                    <li>Keep extra digits and check the final formula against the given data.</li>
+                    <li>An empirical formula alone does not uniquely determine a molecular formula or structure.</li>
+                </ul>
+                <p class="small">
+                    Original LearnTrack lesson informed by Chemistry I Student Activity Sheet #16. Further reading:
+                    <a
+                        href="https://openstax.org/books/chemistry-2e/pages/3-2-determining-empirical-and-molecular-formulas"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >OpenStax Chemistry 2e: Determining Empirical and Molecular Formulas</a
+                    >.
+                </p>
+            </section>
+            <div class="quiz-area">
+                <button class="quiz-button" id="takeQuizBtn" type="button">Take the Lesson Quiz →</button>
+                <p class="notice" id="quizNotice" role="status" aria-live="polite"></p>
+            </div>
+        </main>
+        <script>
+            const practiceAnswers = {
+                q1: {
+                    answer: "0",
+                    explanation: "An empirical formula gives the simplest whole-number ratio of atoms.",
+                },
+                q2: { answer: "1", explanation: "Divide all subscripts by 6: 6 : 12 : 6 becomes 1 : 2 : 1, or CH₂O." },
+                q3: {
+                    answer: "2",
+                    explanation: "CO₂ has a 1 : 2 ratio that cannot be reduced by a common whole-number factor.",
+                },
+                q4: { answer: "0", explanation: "24.31 ÷ 24.31 = 1 mol Mg and 16.00 ÷ 16.00 = 1 mol O, giving MgO." },
+                q5: { answer: "2", explanation: "Divide both amounts by 0.40: A : B = 1 : 2, giving AB₂." },
+                q6: {
+                    answer: "2",
+                    explanation:
+                        "In a 100 g assumed sample, the percentages correspond numerically to grams of each element.",
+                },
+                q7: { answer: "1", explanation: "Multiply both terms by 2 to preserve the ratio: 2 : 3." },
+                q8: { answer: "3", explanation: "Multiply both terms by 3: 1 : 1.33 becomes approximately 3 : 4." },
+                q9: {
+                    answer: "0",
+                    explanation:
+                        "Moles express relative numbers of atoms; grams cannot be compared directly as atom counts.",
+                },
+                q10: {
+                    answer: "2",
+                    explanation: "Multiply the entire ratio by 2 to obtain Fe : O = 2 : 3, giving Fe₂O₃.",
+                },
+                q11: {
+                    answer: "1",
+                    explanation:
+                        "The two formulas can match, and different molecular formulas can reduce to the same simplest ratio.",
+                },
+                q12: {
+                    answer: "1",
+                    explanation: "Multiplying both terms by 2 gives 2 : 3; the empirical formula is A₂B₃.",
+                },
+            };
+            document.querySelectorAll("[data-quiz]").forEach((card) => {
+                card.querySelector("[data-check]").addEventListener("click", () => {
+                    const picked = card.querySelector("input:checked");
+                    const box = card.querySelector(".feedback");
+                    box.hidden = false;
+                    if (!picked) {
+                        box.textContent = "Choose an answer first, then check again.";
+                        return;
+                    }
+                    const item = practiceAnswers[card.dataset.quiz];
+                    box.textContent = (picked.value === item.answer ? "Correct. " : "Not quite. ") + item.explanation;
+                });
+            });
+            document.getElementById("takeQuizBtn").addEventListener("click", () => {
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: "openQuiz", quiz: "chemistry1_chapter4_lesson3_quiz.html" }, "*");
+                } else {
+                    document.getElementById("quizNotice").textContent =
+                        "Open this lesson inside LearnTrack to launch the quiz.";
+                }
+            });
+        </script>
+    </body>
 </html>
